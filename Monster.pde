@@ -21,6 +21,6 @@ public class Monster{
     fill(255);
     int W = displayWidth; 
     int H = displayHeight; 
-    rect(W/2.1, H/2.6, W/100, W/100);
+    rect(W/2 - W/20, H/5, W/10, W/10);
   }
 }

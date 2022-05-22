@@ -11,6 +11,7 @@ color cSec;
 
 void setup() {
   h = new Heart();
+  m = new Monster();
   cFirst = color(229, 209, 19);  
   cSec = color(216, 110, 28);
   print(displayWidth); 
@@ -71,6 +72,7 @@ void draw() {
   h.xSpeed = W/160; 
   h.ySpeed = H/90; 
   h.display(); 
+  m.display();
   if (h.x >= W/1.51) {
     h.x = W/1.52; 
   }
