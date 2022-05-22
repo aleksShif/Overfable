@@ -48,23 +48,23 @@ void draw() {
   text("ITEM", W/1.46, H/1.05); 
   set(2125, 1710, #D86E1C);
   
-  h.xSpeed = 20; 
-  h.ySpeed = 20; 
+  h.xSpeed = W/160; 
+  h.ySpeed = H/90; 
   h.display(); 
-  if (h.x >= 2170) {
-    h.x = 2135; 
+  if (h.x >= W/1.47) {
+    h.x = W/1.499; 
     h.xSpeed = 0;
   }
-  if (h.x <= 1025) {
-    h.x = 1060; 
+  if (h.x <= W/3.12) {
+    h.x = W/3.02; 
     h.xSpeed = 0; 
   }
-  if (h.y >= 1375) {
-    h.y = 1340;
+  if (h.y >= H/1.31) {
+    h.y = H/1.34;
     h.ySpeed = 0;
   }
-  if (h.y <= 825) {
-    h.y = 860; 
+  if (h.y <= H/2.18) {
+    h.y = H/2.09; 
     h.ySpeed = 0; 
   }
   h.move(); 
