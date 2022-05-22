@@ -1,40 +1,51 @@
 Heart h;
 boolean keyHeld; 
-boolean UP,DOWN,RIGHT,LEFT = false; 
+boolean Up,Down,Right,Left;
+color cFirst; 
+color cSec; 
 
 void setup() {
-  h = new Heart(); 
-  fullScreen();  
+  h = new Heart();
+  cFirst = color(229, 209, 19); 
+  cSec = color(216, 110, 28);
+  print(displayWidth); 
+  print(displayHeight); 
+  fullScreen();   
 }
 
 void draw() { 
+  int W = displayWidth; 
+  int H = displayHeight; 
   background(0);
   stroke(255); 
   strokeWeight(20); 
   noFill(); 
-  rect(950, 750, 1300, 700); 
+  rect(W/3.36, H/2.4, W/2.46, H/2.57); 
   fill(255); 
-  PFont font = createFont("C:/Users/sasha/Downloads/processing-3.5.4-windows64/processing-3.5.4/lib/fonts/undertale-attack-font.ttf", 45);
+  PFont font = createFont("undertale-attack-font.ttf.vlw", 45); 
+  //PFont font = createFont("C:/Users/sasha/Downloads/processing-3.5.4-windows64/processing-3.5.4/lib/fonts/undertale-attack-font.ttf", 45);
   textFont(font); 
-  text("TOMMY WOLF", 200, 1550); 
-  text("LV 1", 800, 1550); 
-  textSize(30); 
-  text("HP", 1300, 1550); 
+  text("TOMMY WOLF", W/16, H/1.16); 
+  text("LV 1", W/4, H/1.16); 
+  textSize(H/60); 
+  text("HP", W/2.46, H/1.16); 
   noStroke(); 
   fill(223, 252, 8); 
-  rect(1400, 1500, 65, 50); 
+  rect(W/2.29, H/1.2, W/49.2, H/36); 
   fill(255); 
-  textSize(45); 
-  text("20 / 20", 1500, 1550); 
+  textSize(H/40); 
+  text("20 / 20", W/2.1, H/1.16); 
   noFill(); 
-  stroke(216, 110, 28); 
+  stroke(cFirst); 
   strokeWeight(10); 
-  rect(800, 1600, 500, 150);
-  rect(2000, 1600, 500, 150);
-  fill(216, 110, 28);
-  textSize(60); 
-  text("FIGHT", 925, 1710); 
-  text("ITEM", 2195, 1710); 
+  rect(W/4, H/1.125, W/6.4, H/12);
+  stroke(cSec); 
+  rect(W/1.6, H/1.125, W/6.4, H/12);
+  textSize(H/30); 
+  fill(cFirst);
+  text("FIGHT", W/3.46, H/1.05);
+  fill(cSec);
+  text("ITEM", W/1.46, H/1.05); 
   set(2125, 1710, #D86E1C);
   
   h.xSpeed = 20; 
@@ -62,32 +73,43 @@ void draw() {
 void keyPressed() {
   keyHeld = true; 
   if (keyCode == 87) {
-    UP = true; 
+    //keyHeld = true; 
+    Up = true; 
   }
   if (keyCode == 65) {
-    RIGHT = true; 
+    //keyHeld = true; 
+    Right = true; 
   }
   if (keyCode == 83) {
-    DOWN = true; 
+    //keyHeld = true; 
+    Down = true; 
   }
   if (keyCode == 68) {
-    LEFT = true;  
+    //keyHeld = true; 
+    Left = true;  
+  }
+  if (keyCode == RIGHT) {
+    keyHeld = false; 
+    color tempF = cFirst; 
+    color tempS = cSec; 
+    cFirst = tempS; 
+    cSec = tempF;
   }
 }
 
 void keyReleased() {
   keyHeld = false; 
   if (keyCode == 87) {
-    UP = false; 
+    Up = false; 
   }
   if (keyCode == 65) {
-    RIGHT = false; 
+    Right = false; 
   }
   if (keyCode == 83) {
-    DOWN = false; 
+    Down = false; 
   }
   if (keyCode == 68) {
-    LEFT = false;  
+    Left = false;  
   }
 }
 

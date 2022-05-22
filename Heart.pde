@@ -22,9 +22,9 @@ public class Heart {
   }
   
   void move() {
-    if (UP) {y -= ySpeed;}
-    if (DOWN) {y += ySpeed;}
-    if (RIGHT) {x -= xSpeed;}
-    if (LEFT) {x += xSpeed;}
+    if (Up) {y -= ySpeed;}
+    if (Down) {y += ySpeed;}
+    if (Right) {x -= xSpeed;}
+    if (Left) {x += xSpeed;}
   }
 }
