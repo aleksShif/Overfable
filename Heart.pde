@@ -13,7 +13,6 @@ public class Heart {
   }
   
   void display() {
-    float y_ = ySpeed / 2; 
     fill(255, 0, 0);
     noStroke(); 
 <<<<<<< HEAD
