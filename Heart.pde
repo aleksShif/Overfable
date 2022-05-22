@@ -1,15 +1,15 @@
 public class Heart {
-  int x,y;  
-  int xSpeed = 20;
-  int ySpeed = 20; 
+  float x,y;  
+  int xSpeed = displayWidth / 160;
+  int ySpeed = displayHeight / 90; 
   boolean inv; 
   int currentHP; 
   float hitbox; 
   
   public Heart() {
     inv = false;
-    x = 1500; 
-    y = 1100; 
+    x = displayWidth / 2.13 ; 
+    y = displayHeight / 1.64; 
   }
   
   void display() {
