@@ -1,10 +1,10 @@
 Heart h;
 boolean keyHeld; 
+boolean UP,DOWN,RIGHT,LEFT = false; 
 
 void setup() {
   h = new Heart(); 
-  fullScreen(); 
-   
+  fullScreen();  
 }
 
 void draw() { 
@@ -25,7 +25,7 @@ void draw() {
   rect(1400, 1500, 65, 50); 
   fill(255); 
   textSize(45); 
-  text("16 / 20", 1500, 1550); 
+  text("20 / 20", 1500, 1550); 
   noFill(); 
   stroke(216, 110, 28); 
   strokeWeight(10); 
@@ -36,51 +36,55 @@ void draw() {
   text("FIGHT", 925, 1710); 
   text("ITEM", 2195, 1710); 
   set(2125, 1710, #D86E1C);
+  
   h.display(); 
+  if (h.x < 2200 && h.x > 1010 && h.y < 1400 && h.y > 810) {
+    h.move(); 
+  }
+  else {
+    if (h.x >= 2200 || h.x <= 1010) {
+        h.xSpeed *= -1;
+        h.move(); 
+        h.xSpeed *= -1; 
+      }
+      if (h.y >= 1400 || h.y <= 810) {
+        h.ySpeed *= -1;
+        h.move(); 
+        h.ySpeed *= -1; 
+      }
+  }
 }
 
 void keyPressed() {
   keyHeld = true; 
   if (keyCode == 87) {
-    if (keyCode == 65) {
-      h.move(-10, 10); 
-    }
-    if (keyCode == 68) {
-      h.move(10, -10);
-    }
-    else{h.move(0, -10);} 
+    UP = true; 
   }
   if (keyCode == 65) {
-    if (keyCode == 87) {
-      h.move(-10, 10);
-    }
-    if (keyCode == 83) {
-      h.move(-10, 10);
-    }
-    else{h.move(-10, 0);} 
+    RIGHT = true; 
   }
   if (keyCode == 83) {
-    if (keyCode == 65) {
-      h.move(-10, 10); 
-    }
-    if (keyCode == 68) {
-      h.move(10, 10); 
-    }
-    else{h.move(0, 10);} 
+    DOWN = true; 
   }
   if (keyCode == 68) {
-    if (keyCode == 87) {
-      h.move(10, -10); 
-    }
-    if (keyCode == 83) {
-      h.move(10, 10); 
-    }
-    else{h.move(10, 0);} 
+    LEFT = true;  
   }
 }
 
 void keyReleased() {
   keyHeld = false; 
+  if (keyCode == 87) {
+    UP = false; 
+  }
+  if (keyCode == 65) {
+    RIGHT = false; 
+  }
+  if (keyCode == 83) {
+    DOWN = false; 
+  }
+  if (keyCode == 68) {
+    LEFT = false;  
+  }
 }
 
 //void swordSymbol() {

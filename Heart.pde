@@ -1,5 +1,7 @@
 public class Heart {
   int x,y;  
+  int xSpeed = 20;
+  int ySpeed = 20; 
   boolean inv; 
   int currentHP; 
   float hitbox; 
@@ -19,8 +21,10 @@ public class Heart {
     //image(heart, 1000, 1000); 
   }
   
-  void move(float x_, float y_) {
-    x += x_; 
-    y += y_; 
+  void move() {
+    if (UP) {y -= ySpeed;}
+    if (DOWN) {y += ySpeed;}
+    if (RIGHT) {x -= xSpeed;}
+    if (LEFT) {x += xSpeed;}
   }
 }
