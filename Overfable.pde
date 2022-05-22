@@ -70,21 +70,17 @@ void draw() {
   h.xSpeed = W/160; 
   h.ySpeed = H/90; 
   h.display(); 
-  if (h.x >= W/1.47) {
-    h.x = W/1.499; 
-    h.xSpeed = 0;
+  if (h.x >= W/1.51) {
+    h.x = W/1.52; 
   }
-  if (h.x <= W/3.12) {
-    h.x = W/3.02; 
-    h.xSpeed = 0; 
+  if (h.x <= W/3.27) {
+    h.x = W/3.24; 
   }
-  if (h.y >= H/1.31) {
-    h.y = H/1.34;
-    h.ySpeed = 0;
+  if (h.y >= H/1.35) {
+    h.y = H/1.37;
   }
-  if (h.y <= H/2.18) {
-    h.y = H/2.09; 
-    h.ySpeed = 0; 
+  if (h.y <= H/2.30) {
+    h.y = H/2.28; 
   }
   h.move(); 
 }
