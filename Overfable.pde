@@ -37,22 +37,26 @@ void draw() {
   text("ITEM", 2195, 1710); 
   set(2125, 1710, #D86E1C);
   
+  h.xSpeed = 20; 
+  h.ySpeed = 20; 
   h.display(); 
-  if (h.x < 2200 && h.x > 1010 && h.y < 1400 && h.y > 810) {
-    h.move(); 
+  if (h.x >= 2170) {
+    h.x = 2135; 
+    h.xSpeed = 0;
   }
-  else {
-    if (h.x >= 2200 || h.x <= 1010) {
-        h.xSpeed *= -1;
-        h.move(); 
-        h.xSpeed *= -1; 
-      }
-      if (h.y >= 1400 || h.y <= 810) {
-        h.ySpeed *= -1;
-        h.move(); 
-        h.ySpeed *= -1; 
-      }
+  if (h.x <= 1025) {
+    h.x = 1060; 
+    h.xSpeed = 0; 
   }
+  if (h.y >= 1375) {
+    h.y = 1340;
+    h.ySpeed = 0;
+  }
+  if (h.y <= 825) {
+    h.y = 860; 
+    h.ySpeed = 0; 
+  }
+  h.move(); 
 }
 
 void keyPressed() {
