@@ -66,7 +66,6 @@ void draw() {
     text("ITEM", W/1.46, H/1.05); 
     set(2125, 1710, #D86E1C);
   }
->>>>>>> heartMove
   
   h.xSpeed = W/160; 
   h.ySpeed = H/90; 
