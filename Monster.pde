@@ -17,4 +17,10 @@ public class Monster{
     HP = hp;
     name = Name;
   }
+  void display(){
+    fill(255);
+    int W = displayWidth; 
+    int H = displayHeight; 
+    rect(W/2.1, H/2.6, W/100, W/100);
+  }
 }
