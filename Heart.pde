@@ -17,8 +17,8 @@ public class Heart {
     noStroke(); 
     ellipseMode(RADIUS); 
     ellipse(x, y, 50, 50); 
-    //PImage heart = loadImage("heart.png"); 
-    //image(heart, 1000, 1000); 
+    PImage heart = loadImage("heart.png"); 
+    image(heart, 1000, 1000); 
   }
   
   void move() {

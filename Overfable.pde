@@ -22,8 +22,8 @@ void draw() {
   noFill(); 
   rect(W/3.36, H/2.4, W/2.46, H/2.57); 
   fill(255); 
-  PFont font = createFont("undertale-attack-font.ttf", 45); 
-  //PFont font = createFont("C:/Users/sasha/Downloads/processing-3.5.4-windows64/processing-3.5.4/lib/fonts/undertale-attack-font.ttf", 45);
+  PFont font = createFont("undertale-attack-font.ttf", H/40); 
+  //PFont font = createFont("C:/Users/sasha/Downloads/processing-3.5.4-windows64/processing-3.5.4/lib/fonts/undertale-attack-font.ttf", H/40);
   textFont(font); 
   text("TOMMY WOLF", W/16, H/1.16); 
   text("LV 1", W/4, H/1.16); 
