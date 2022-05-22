@@ -4,7 +4,7 @@ public class Heart {
   int ySpeed = displayHeight / 90; 
   boolean inv; 
   int currentHP; 
-  float hitbox; 
+  float hitbox;   
   
   public Heart() {
     inv = false;
