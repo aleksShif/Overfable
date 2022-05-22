@@ -16,6 +16,7 @@ public class Heart {
     float y_ = ySpeed / 2; 
     fill(255, 0, 0);
     noStroke(); 
+<<<<<<< HEAD
     beginShape (POLYGON);
     vertex (x+8*100/16, y+4*100/16);
     vertex (x+8*100/16, y+3*100/16);
@@ -63,6 +64,12 @@ public class Heart {
     //ellipse(x, y, 50, 50); 
     //PImage 100eart = loadImage("redSoul.png"); 
     //image(100eart, 1000, 1000); 
+=======
+    ellipseMode(RADIUS); 
+    ellipse(x, y, 50, 50); 
+    PImage heart = loadImage("heart.png"); 
+    image(heart, 1000, 1000); 
+>>>>>>> 6510d0289816d39b880d849acc1356564944ac80
   }
   
   void move() {
