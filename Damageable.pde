@@ -19,8 +19,7 @@ public class Damageable{
     int W = displayWidth; 
     int H = displayHeight; 
     fill(255);
-    ellipseMode(RADIUS); 
-    ellipse(x, y, W/75, W/75); 
+    circle(x, y, 100);  
   }
   
   void move(float X, float Y){
