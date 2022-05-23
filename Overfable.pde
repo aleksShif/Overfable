@@ -67,7 +67,7 @@ void draw() {
     textSize(H/40); 
     fill(255); 
     text("           * Butterscotch Pie", W/12.8, H/2); 
-    text("           * Steak", W/12.8, 1050); 
+    text("           * Steak", W/12.8, H/1.714); 
     if (!switchItem) {
       item.display(W/10.667, H/2.209, displayWidth/32, displayHeight/18);
     }
@@ -176,13 +176,13 @@ void keyPressed() {
         enPress = false;
       }
     }
+  }
     if (keyCode == DOWN && ITEM_SCREEN) {
       switchItem = true; 
     }
     if (keyCode == UP && ITEM_SCREEN) {
       switchItem = false; 
     }
-  }
 }
 
 void keyReleased() {
