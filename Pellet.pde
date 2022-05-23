@@ -18,7 +18,7 @@ public class Pellet extends Damageable{
   void display(){
     fill(255);
     ellipseMode(RADIUS);
-    ellipse(getX,getY, size * displyWidth/150, size * displayWidth/90);
+    ellipse(getX(),getY(), size * displayWidth/150, size * displayWidth/90);
   }
   
   void move(float X, float Y){
@@ -26,4 +26,5 @@ public class Pellet extends Damageable{
     setY(y+Y);
     rotate(PI/12);
   }
+
 }

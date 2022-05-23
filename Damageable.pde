@@ -41,4 +41,10 @@ public class Damageable{
   void setY(float Y){
     y = Y;
   }
+  
+  boolean inside(){
+    return x > displayWidth/3.36 && x < displayWidth/3.36 + displayWidth/2.46 && y > displayHeight/2.4 && y < displayHeight/2.4 + displayHeight/2.57;
+          //rect(W/3.36, H/2.4, W/2.46, H/2.57);
+
+  }
 }

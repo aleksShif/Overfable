@@ -38,4 +38,46 @@ public class Monster{
     }
     
   }
+  
+  void attack2(){
+    int W = displayWidth; 
+    int H = displayHeight; 
+    for(int i = 0; i < 5; i++){
+      Pellet p0 = new Pellet(2, W/2.46 + W/14.76,H/2.4);
+      Pellet p1 = new Pellet(2, W/2.46 + 2*W/14.76,H/2.4);
+      Pellet p2 = new Pellet(2, W/2.46 + 3*W/14.76,H/2.4);
+      Pellet p3 = new Pellet(2, W/2.46 + 4*W/14.76,H/2.4);
+      Pellet p4 = new Pellet(2, W/2.46 + 5*W/14.76,H/2.4);
+      int rand = (int)(Math.random()*5);
+      while(p0.inside() || p1.inside() || p2.inside() || p3.inside() || p4.inside()){
+        switch(rand){
+          case 0:
+            p0.move(0,1);
+            if(p0.getY() < H/2.4 + H/2.57){
+              p0.display();
+            }
+          case 1:
+            p1.move(0,1);
+            if(p1.getY() < H/2.4 + H/2.57){
+              p1.display();
+            }
+          case 2:
+            p2.move(0,1);
+            if(p2.getY() < H/2.4 + H/2.57){
+              p2.display();
+            }
+          case 3:
+            p3.move(0,1);
+            if(p3.getY() < H/2.4 + H/2.57){
+              p3.display();
+            }
+          case 4:
+            p4.move(0,1);
+            if(p4.getY() < H/2.4 + H/2.57){
+              p4.display();
+            }
+        }
+      }
+    }
+  }
 }
