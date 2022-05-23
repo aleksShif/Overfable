@@ -53,27 +53,27 @@ public class Monster{
         switch(rand){
           case 0:
             p0.move(0,1);
-            if(p0.getY() < H/2.4 + H/2.57){
+            if(p0.inside()){
               p0.display();
             }
           case 1:
             p1.move(0,1);
-            if(p1.getY() < H/2.4 + H/2.57){
+            if(p1.inside()){
               p1.display();
             }
           case 2:
             p2.move(0,1);
-            if(p2.getY() < H/2.4 + H/2.57){
+            if(p2.inside()){
               p2.display();
             }
           case 3:
             p3.move(0,1);
-            if(p3.getY() < H/2.4 + H/2.57){
+            if(p3.inside()){
               p3.display();
             }
           case 4:
             p4.move(0,1);
-            if(p4.getY() < H/2.4 + H/2.57){
+            if(p4.inside()){
               p4.display();
             }
         }
