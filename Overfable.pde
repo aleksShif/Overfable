@@ -22,6 +22,7 @@ void setup() {
 }
 
 void draw() { 
+  
   int W = displayWidth; 
   int H = displayHeight; 
   background(0); 
