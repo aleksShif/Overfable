@@ -25,4 +25,5 @@ public class Pellet extends Damageable{
     setX(x+X);
     setY(y+Y);
     rotate(PI/12);
+  }
 }
