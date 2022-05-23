@@ -8,6 +8,7 @@ boolean enPress = false;
 boolean switchItem = false;
 boolean ITEM_SCREEN = false; 
 boolean FIGHT_SCREEN = false; 
+boolean ENEMY_SCREEN = false; 
 color cFirst; 
 color cSec; 
 
@@ -57,7 +58,7 @@ void draw() {
   }
   else if (!arrowPress && !ITEM_SCREEN) {
     item.display(item.x, item.y, displayWidth/32, displayHeight/18);
-  } 
+  }
   if (ITEM_SCREEN) { 
     stroke(255); 
     strokeWeight(20); 
@@ -77,7 +78,17 @@ void draw() {
     strokeWeight(20); 
     noFill(); 
     rect(W/16, H/2.4, W/1.14, H/2.57);
+    textSize(H/40); 
+    fill(255); 
+    text("           * Fart", W/12.8, H/2);
+    item.display(W/10.667, H/2.209, displayWidth/32, displayHeight/18);
   } 
+  else if (ENEMY_SCREEN) {
+    stroke(255); 
+    strokeWeight(20); 
+    noFill(); 
+    rect(W/3.36, H/2.4, W/2.46, H/2.57);
+  }
   else{
     stroke(255); 
     strokeWeight(20); 
@@ -143,28 +154,34 @@ void keyPressed() {
     cSec = tempF;
   }
   if (keyCode == ENTER) {
-    if (!enPress) {      
-      if (cFirst == color(216, 110, 28)) {
-        ITEM_SCREEN = true;
-        FIGHT_SCREEN = false; 
-      }
-      else if (cFirst == color(229, 209, 19)) {
-        FIGHT_SCREEN = true; 
-        ITEM_SCREEN = false; 
-      }
-      enPress = true; 
+    if (FIGHT_SCREEN) {
+      ENEMY_SCREEN = true; 
+      FIGHT_SCREEN = false; 
     }
     else {
-      ITEM_SCREEN = false;
-      FIGHT_SCREEN = false;
-      enPress = false;
+      if (!enPress) {      
+        if (cFirst == color(216, 110, 28)) {
+          ITEM_SCREEN = true;
+          FIGHT_SCREEN = false; 
+        }
+        else if (cFirst == color(229, 209, 19)) {
+          FIGHT_SCREEN = true; 
+          ITEM_SCREEN = false; 
+        }
+        enPress = true; 
+      }
+      else {
+        ITEM_SCREEN = false;
+        FIGHT_SCREEN = false;
+        enPress = false;
+      }
     }
-  }
-  if (keyCode == DOWN && ITEM_SCREEN) {
-    switchItem = true; 
-  }
-  if (keyCode == UP && ITEM_SCREEN) {
-    switchItem = false; 
+    if (keyCode == DOWN && ITEM_SCREEN) {
+      switchItem = true; 
+    }
+    if (keyCode == UP && ITEM_SCREEN) {
+      switchItem = false; 
+    }
   }
 }
 
