@@ -23,4 +23,7 @@ public class Monster{
     int H = displayHeight; 
     rect(W/2 - W/20, H/5, W/10, W/10);
   }
+  void attack(){
+    
+  }
 }
