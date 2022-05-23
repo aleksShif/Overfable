@@ -88,6 +88,7 @@ void draw() {
     strokeWeight(20); 
     noFill(); 
     rect(W/3.36, H/2.4, W/2.46, H/2.57);
+    h.display(h.x, h.y, displayWidth/32, displayHeight/18); 
   }
   else{
     stroke(255); 
@@ -102,7 +103,6 @@ void draw() {
   
   h.xSpeed = W/160; 
   h.ySpeed = H/90; 
-  h.display(h.x, h.y, displayWidth/32, displayHeight/18); 
   m.display();
   if (h.x >= W/1.51) {
     h.x = W/1.52; 
