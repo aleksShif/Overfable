@@ -8,6 +8,7 @@ public class Heart {
   
   public Heart() {
     inv = false;
+    currentHP = 20;
     x = displayWidth / 2.13 ; 
     y = displayHeight / 1.64; 
   }
@@ -75,5 +76,9 @@ public class Heart {
     if (Down) {y += ySpeed;}
     if (Right) {x -= xSpeed;}
     if (Left) {x += xSpeed;}
+  }
+  
+  int getCurrentHP(){
+    return currentHP;
   }
 }

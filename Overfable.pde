@@ -1,5 +1,6 @@
 Heart h;
 Monster m;
+Player p;
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
 boolean arrowPress = false; 
@@ -10,6 +11,7 @@ color cFirst;
 color cSec; 
 
 void setup() {
+  p = new Player(true);
   h = new Heart();
   m = new Monster();
   cFirst = color(229, 209, 19);  
@@ -46,7 +48,7 @@ void draw() {
     PFont font = createFont("undertale-attack-font.ttf", H/40); 
     textFont(font); 
     text("TOMMY WOLF", W/16, H/1.16); 
-    text("LV 1", W/4, H/1.16); 
+    text("LV " + p.getLV(), W/4, H/1.16); 
     textSize(H/60); 
     text("HP", W/2.46, H/1.16); 
     noStroke(); 
@@ -54,7 +56,7 @@ void draw() {
     rect(W/2.29, H/1.2, W/49.2, H/36); 
     fill(255); 
     textSize(H/40); 
-    text("20 / 20", W/2.1, H/1.16); 
+    text(h.getCurrentHP() + " / " +  p.getHP(), W/2.1, H/1.16); 
     noFill(); 
     stroke(cFirst); 
     strokeWeight(10); 

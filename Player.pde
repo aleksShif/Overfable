@@ -12,5 +12,12 @@ public class Player{
     MODE = mode;
   }
   
+  int getHP(){
+    return HP;
+  }
+ 
+  int getLV(){
+    return LV;
+  }
   
 }
