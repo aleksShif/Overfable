@@ -15,6 +15,9 @@ public class Damageable{
   int getAT(){
     return AT;
   }
+  void setAT(int at){
+    AT = at;
+  }
   float getHitbox(){
     return hitbox;
   }
