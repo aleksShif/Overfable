@@ -6,18 +6,16 @@ public class Heart {
   int currentHP; 
   float hitbox;   
   
-  public Heart() {
+  public Heart(float x_, float y_) {
     inv = false;
-    x = displayWidth / 2.13 ; 
-    y = displayHeight / 1.64; 
+    x = x_; 
+    y = y_; 
   }
   
-  void display() {
+  void display(float x, float y, float varW, float varH) {
     fill(255, 0, 0);
     noStroke(); 
     beginShape (POLYGON);
-    float varW = displayWidth/32;
-    float varH = displayHeight/18;
     vertex (x+8*varW/16, y+4*varH/16);
     vertex (x+8*varW/16, y+3*varH/16);
     vertex (x+4*varW/16, y+3*varH/16);
@@ -59,15 +57,7 @@ public class Heart {
     vertex (x+10*varW/16, y+3*varH/16);
     vertex (x+10*varW/16, y+4*varH/16);
     vertex (x+8*varW/16, y+4*varH/16);
-    endShape (CLOSE);
-    //ellipseMode(RADIUS); 
-    //ellipse(x, y, 50, 50); 
-    //PImage varWeart = loadImage("redSoul.png"); 
-    //image(varWeart, varW0, varW0); 
-    //ellipseMode(RADIUS); 
-    //ellipse(x, y, 50, 50); 
-    //PImage heart = loadImage("heart.png"); 
-    //image(heart, varW0, varW0); 
+    endShape (CLOSE); 
   }
   
   void move() {
