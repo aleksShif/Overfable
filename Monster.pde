@@ -32,7 +32,7 @@ public class Monster{
       Damageable d = new Damageable(2, W/3.36, Y);
       while(d.getX() < W/2.46){
         d.move(1,0);
-        d.display();
+        //d.display();
       }
       //rect(W/3.36, H/2.4, W/2.46, H/2.57);
     }
