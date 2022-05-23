@@ -23,7 +23,20 @@ public class Monster{
     int H = displayHeight; 
     rect(W/2 - W/20, H/5, W/10, W/10);
   }
-  void attack(){
+
+  void attack1(){
+    int W = displayWidth; 
+    int H = displayHeight; 
+    for(int i = 0; i < 10; i++){
+      float Y = (float)(Math.random() * H/2.57 + H/2.4) ;
+      Damageable d = new Damageable(2, W/3.36, Y);
+      while(d.getX() < W/2.46){
+        d.move(1,0);
+        d.display();
+        
+      }
+      //rect(W/3.36, H/2.4, W/2.46, H/2.57);
+    }
     
   }
 }
