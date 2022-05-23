@@ -8,8 +8,14 @@ public class Heart {
   
   public Heart(float x_, float y_) {
     inv = false;
+<<<<<<< HEAD
     x = x_; 
     y = y_; 
+=======
+    currentHP = 20;
+    x = displayWidth / 2.13 ; 
+    y = displayHeight / 1.64; 
+>>>>>>> ad0b71b3deb6b593c7c72daf67297b4c4cfe1391
   }
   
   void display(float x, float y, float varW, float varH) {
@@ -65,5 +71,9 @@ public class Heart {
     if (Down) {y += ySpeed;}
     if (Right) {x -= xSpeed;}
     if (Left) {x += xSpeed;}
+  }
+  
+  int getCurrentHP(){
+    return currentHP;
   }
 }
