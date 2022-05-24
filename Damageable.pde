@@ -1,6 +1,6 @@
 public class Damageable{
   int AT;
-  float hitbox, xSpeed, ySpeed, x, y;
+  float hitboxX, hitboxY, xSpeed, ySpeed, x, y;
   
   public Damageable(){
     AT = 3;
@@ -18,8 +18,19 @@ public class Damageable{
   void setAT(int at){
     AT = at;
   }
-  float getHitbox(){
-    return hitbox;
+  float getHitboxX(){
+    return hitboxX;
+  }
+  
+  void setHitboxX(float hb){
+    hitboxX = hb;
+  }
+  float getHitboxY(){
+    return hitboxY;
+  }
+  
+  void setHitboxY(float hb){
+    hitboxY = hb;
   }
   
   void move(float X, float Y){

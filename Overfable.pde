@@ -102,6 +102,11 @@ void draw() {
     rect(W/3.36, H/2.4, W/2.46, H/2.57);
     h.display(h.x, h.y, displayWidth/32, displayHeight/18);
     if(!m.attack2(p0,p1,p2,p3,p4)){
+      h.damaged(p0);
+      h.damaged(p1);
+      h.damaged(p2);
+      h.damaged(p3);
+      h.damaged(p4);
       ENEMY_SCREEN = false;
     }
   }

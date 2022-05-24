@@ -68,6 +68,12 @@ public class Heart {
     if (Left) {x += xSpeed;}
   }
   
+  void damaged(Damageable d){
+    if (x > d.getX() - d.getHitboxX() && x < d.getX() + d.getHitboxX() && y > d.getY() - d.getHitboxY() && y < d.getY() + d.getHitboxY()){
+      currentHP -= d.getAT();
+    }
+  }
+  
   int getCurrentHP(){
     return currentHP;
   }
