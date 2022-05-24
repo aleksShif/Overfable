@@ -4,13 +4,22 @@ public class Heart {
   int ySpeed = displayHeight / 90; 
   boolean inv; 
   int currentHP; 
-  float hitbox;   
+  float hitboxX, hitboxY;   
   
   public Heart(float x_, float y_) {
     inv = false;
     x = x_; 
     y = y_; 
     currentHP = 20;
+    hitboxX = 10;
+    hitboxY = 5;
+  }
+  
+  float getHitboxX(){
+    return hitboxX;
+  }
+  float getHitboxY(){
+    return hitboxY;
   }
   
   void display(float x, float y, float varW, float varH) {
@@ -69,7 +78,15 @@ public class Heart {
   }
   
   void damaged(Damageable d){
-    if (x > d.getX() - d.getHitboxX() && x < d.getX() + d.getHitboxX() && y > d.getY() - d.getHitboxY() && y < d.getY() + d.getHitboxY()){
+    float leftEdgeH = x + hitboxX;
+    float rightEdgeH = x + 2 * hitboxX;
+    float lowerEdgeH = y + hitboxY;
+    float upperEdgeH = y - hitboxY;
+    float leftEdgeD = d.getX() - d.getHitboxX();
+    float rightEdgeD = d.getX() + d.getHitboxX();
+    float lowerEdgeD = d.getY() + d.getHitboxY();
+    float upperEdgeD = d.getY() - d.getHitboxY();
+    if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH)){
       currentHP -= d.getAT();
     }
   }
