@@ -109,6 +109,9 @@ void draw() {
     h.damaged(p2);
     h.damaged(p3);
     h.damaged(p4);
+    if(millis() - h.getHitTime() > 500){
+      h.setInv(false);
+    }
   }
   else{
     stroke(255); 

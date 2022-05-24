@@ -5,6 +5,7 @@ public class Heart {
   boolean inv; 
   int currentHP; 
   float hitboxX, hitboxY;   
+  int hitTime;
   
   public Heart(float x_, float y_) {
     inv = false;
@@ -86,9 +87,19 @@ public class Heart {
     float rightEdgeD = d.getX() + d.getHitboxX();
     float lowerEdgeD = d.getY() + d.getHitboxY();
     float upperEdgeD = d.getY() - d.getHitboxY();
-    if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH)){
+    if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
       currentHP -= d.getAT();
+      inv = true;
+      hitTime = millis(); 
     }
+  }
+  
+  int getHitTime(){
+    return hitTime;
+  }
+  
+  void setInv(boolean b){
+    inv = b;
   }
   
   int getCurrentHP(){
