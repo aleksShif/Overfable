@@ -101,9 +101,10 @@ void draw() {
     noFill(); 
     rect(W/3.36, H/2.4, W/2.46, H/2.57);
     h.display(h.x, h.y, displayWidth/32, displayHeight/18);
-    if(!m.attack2(p0,p1,p2,p3,p4)){
-      ENEMY_SCREEN = false;
-    }
+    //if(!m.attack2(p0,p1,p2,p3,p4)){    FOR NOW, EDIT OUT LATER
+    //  ENEMY_SCREEN = false;
+    //}
+    m.attack1(); 
   }
   else{
     stroke(255); 
