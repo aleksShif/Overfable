@@ -39,16 +39,16 @@ public class Monster{
     
   }
   
-  void attack2(){
+  boolean attack2(Pellet p0, Pellet p1, Pellet p2, Pellet p3, Pellet p4){
     int W = displayWidth; 
     int H = displayHeight; 
-    for(int i = 0; i < 5; i++){
-      Pellet p0 = new Pellet(2, W/3.36 + W/14.76,H/2.3);
-      Pellet p1 = new Pellet(2, W/3.36 + 2*W/14.76,H/2.3);
-      Pellet p2 = new Pellet(2, W/3.36 + 3*W/14.76,H/2.3);
-      Pellet p3 = new Pellet(2, W/3.36 + 4*W/14.76,H/2.3);
-      Pellet p4 = new Pellet(2, W/3.36 + 5*W/14.76,H/2.3);
-      while(p0.inside() || p1.inside() || p2.inside() || p3.inside() || p4.inside()){
+    //for(int i = 0; i < 3; i++){
+      //Pellet p0 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+      //Pellet p1 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+      //Pellet p2 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+      //Pellet p3 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+      //Pellet p4 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+      if(p0.inside() || p1.inside() || p2.inside() || p3.inside() || p4.inside()){
         int rand = (int)(Math.random()*5);
         switch(rand){
           case 0:
@@ -77,7 +77,8 @@ public class Monster{
               p4.display();
             }
         }
-      }
-    }
+        return true;
+      }else{return false;}
+    //}
   }
 }

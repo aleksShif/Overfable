@@ -1,6 +1,11 @@
 Heart h, item;
 Monster m;
 Player p;
+Pellet p0;
+Pellet p1;
+Pellet p2;
+Pellet p3;
+Pellet p4;
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
 boolean arrowPress = false; 
@@ -19,6 +24,13 @@ void setup() {
   m = new Monster();
   cFirst = color(229, 209, 19);  
   cSec = color(216, 110, 28);
+  int W = displayWidth; 
+  int H = displayHeight; 
+  p0 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+  p1 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+  p2 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+  p3 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+  p4 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
   print(displayWidth); 
   print(displayHeight); 
   fullScreen();   
@@ -89,7 +101,9 @@ void draw() {
     noFill(); 
     rect(W/3.36, H/2.4, W/2.46, H/2.57);
     h.display(h.x, h.y, displayWidth/32, displayHeight/18);
-    m.attack2();
+    if(!m.attack2(p0,p1,p2,p3,p4)){
+      ENEMY_SCREEN = false;
+    }
   }
   else{
     stroke(255); 
