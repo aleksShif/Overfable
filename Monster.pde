@@ -43,13 +43,13 @@ public class Monster{
     int W = displayWidth; 
     int H = displayHeight; 
     for(int i = 0; i < 5; i++){
-      Pellet p0 = new Pellet(2, W/2.46 + W/14.76,H/2.4);
-      Pellet p1 = new Pellet(2, W/2.46 + 2*W/14.76,H/2.4);
-      Pellet p2 = new Pellet(2, W/2.46 + 3*W/14.76,H/2.4);
-      Pellet p3 = new Pellet(2, W/2.46 + 4*W/14.76,H/2.4);
-      Pellet p4 = new Pellet(2, W/2.46 + 5*W/14.76,H/2.4);
-      int rand = (int)(Math.random()*5);
+      Pellet p0 = new Pellet(2, W/3.36 + W/14.76,H/2.3);
+      Pellet p1 = new Pellet(2, W/3.36 + 2*W/14.76,H/2.3);
+      Pellet p2 = new Pellet(2, W/3.36 + 3*W/14.76,H/2.3);
+      Pellet p3 = new Pellet(2, W/3.36 + 4*W/14.76,H/2.3);
+      Pellet p4 = new Pellet(2, W/3.36 + 5*W/14.76,H/2.3);
       while(p0.inside() || p1.inside() || p2.inside() || p3.inside() || p4.inside()){
+        int rand = (int)(Math.random()*5);
         switch(rand){
           case 0:
             p0.move(0,1);

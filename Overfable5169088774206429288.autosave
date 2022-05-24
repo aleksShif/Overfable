@@ -88,8 +88,7 @@ void draw() {
     strokeWeight(20); 
     noFill(); 
     rect(W/3.36, H/2.4, W/2.46, H/2.57);
-    h.display(h.x, h.y, displayWidth/32, displayHeight/18);
-    m.attack2();
+    h.display(h.x, h.y, displayWidth/32, displayHeight/18); 
   }
   else{
     stroke(255); 
@@ -177,13 +176,13 @@ void keyPressed() {
         enPress = false;
       }
     }
-  }
     if (keyCode == DOWN && ITEM_SCREEN) {
       switchItem = true; 
     }
     if (keyCode == UP && ITEM_SCREEN) {
       switchItem = false; 
     }
+  }
 }
 
 void keyReleased() {

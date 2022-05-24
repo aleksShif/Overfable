@@ -67,7 +67,7 @@ void draw() {
     textSize(H/40); 
     fill(255); 
     text("           * Butterscotch Pie", W/12.8, H/2); 
-    text("           * Steak", W/12.8, H/1.714); 
+    text("           * Steak", W/12.8, 1050); 
     if (!switchItem) {
       item.display(W/10.667, H/2.209, displayWidth/32, displayHeight/18);
     }
@@ -88,8 +88,6 @@ void draw() {
     strokeWeight(20); 
     noFill(); 
     rect(W/3.36, H/2.4, W/2.46, H/2.57);
-    h.display(h.x, h.y, displayWidth/32, displayHeight/18);
-    m.attack2();
   }
   else{
     stroke(255); 
@@ -104,6 +102,7 @@ void draw() {
   
   h.xSpeed = W/160; 
   h.ySpeed = H/90; 
+  h.display(h.x, h.y, displayWidth/32, displayHeight/18); 
   m.display();
   if (h.x >= W/1.51) {
     h.x = W/1.52; 
@@ -177,13 +176,13 @@ void keyPressed() {
         enPress = false;
       }
     }
-  }
     if (keyCode == DOWN && ITEM_SCREEN) {
       switchItem = true; 
     }
     if (keyCode == UP && ITEM_SCREEN) {
       switchItem = false; 
     }
+  }
 }
 
 void keyReleased() {

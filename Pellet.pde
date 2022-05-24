@@ -21,10 +21,10 @@ public class Pellet extends Damageable{
     ellipse(getX(),getY(), size * displayWidth/150, size * displayWidth/90);
   }
   
-  void move(float X, float Y){
-    setX(x+X);
-    setY(y+Y);
-    rotate(PI/12);
-  }
+  //void move(float X, float Y){
+  //  setX(x+X);
+  //  setY(y+Y);
+  //  rotate(PI/12);
+  //}
 
 }
