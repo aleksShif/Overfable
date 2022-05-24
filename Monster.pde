@@ -6,6 +6,7 @@ public class Monster{
   int gold;
   int exp;
   String[] actionOrder;
+  ArrayList pellets; 
   
   public Monster(){
     name = "Dummy";
@@ -28,11 +29,23 @@ public class Monster{
     int W = displayWidth; 
     int H = displayHeight;  
     for(int i = 0; i < 10; i++){
-      float X = (float)(Math.random() * 1250 + 975); 
-      float Y = (float)(Math.random() * 60 + 780);
-      Pellet p = new Pellet(true, 1, X, Y);
-      p.display(); 
-      //rect(W/3.36, H/2.4, W/2.46, H/2.57);
+      if (i == 0 || i % 3 != 0) {
+        float X = (float)(Math.random() * W/2.56 + W/3.282); 
+        float Y = (float)(Math.random() * H/30 + H/2.308);
+        Pellet Np = new Pellet(true, 1, X, Y);
+        pellets.add(Np);
+        
+        Y = (float)(Math.random() * H/30 + H/1.364); 
+        Pellet Sp = new Pellet(true, 1, X, Y); 
+        pellets.add(Sp); 
+        
+        Np.display();
+        Sp.display(); 
+        //rect(W/3.36, H/2.4, W/2.46, H/2.57);
+      }
+      else {
+        for (int p = 0; p < pellets.size(); p++) {
+          int xSp = (int)(Math.random() * 3)-1; 
     }
     
   }

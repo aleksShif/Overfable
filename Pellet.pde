@@ -18,14 +18,16 @@ public class Pellet extends Damageable{
   }
   
   void display(){
+    int W = displayWidth; 
+    int H = displayHeight; 
     if (isAt1) {
       fill(255);
       noStroke();
       float x_ = getX();
       float y_ = getY(); 
-      triangle(x_, y_, x_, y_+20, x_+20, y_+10); 
-      triangle(x_+20, y_+10, x_+10, y_+30, x_+30, y_+30); 
-      triangle(x_+20, y_+10, x_+40, y_+20, x_+40, y_); 
+      triangle(x_, y_, x_, y_+H/90, x_+W/160, y_+H/180); 
+      triangle(x_+W/160, y_+H/180, x_+W/320, y_+H/60, x_+W/106.667, y_+H/60); 
+      triangle(x_+W/160, y_+H/180, x_+W/80, y_+H/90, x_+W/80, y_); 
     }
     else {
       fill(255);
