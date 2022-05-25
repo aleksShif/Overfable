@@ -44,7 +44,7 @@ void draw() {
   PFont font = createFont("undertale-attack-font.ttf", H/40); 
   textFont(font); 
   text("TOMMY WOLF", W/16, H/1.16); 
-  text("LV 1", W/4, H/1.16); 
+  text("LV " + p.getLV(), W/4, H/1.16); 
   textSize(H/60); 
   text("HP", W/2.46, H/1.16); 
   noStroke(); 
@@ -52,7 +52,7 @@ void draw() {
   rect(W/2.29, H/1.2, W/49.2, H/36); 
   fill(255); 
   textSize(H/40); 
-  text("20 / 20", W/2.1, H/1.16); 
+  text(h.getCurrentHP() + " / " + p.getHP(), W/2.1, H/1.16); 
   noFill(); 
   stroke(cFirst); 
   strokeWeight(10); 
@@ -103,6 +103,14 @@ void draw() {
     h.display(h.x, h.y, displayWidth/32, displayHeight/18);
     if(!m.attack2(p0,p1,p2,p3,p4)){
       ENEMY_SCREEN = false;
+    }
+    h.damaged(p0);
+    h.damaged(p1);
+    h.damaged(p2);
+    h.damaged(p3);
+    h.damaged(p4);
+    if(millis() - h.getHitTime() > 500){
+      h.setInv(false);
     }
   }
   else{
