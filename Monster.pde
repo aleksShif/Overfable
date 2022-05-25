@@ -55,31 +55,31 @@ public class Monster{
         switch(rand){
           case 0:
             if(p0.inside()){
-              for(int i = 0; i < 3; i++){
+              for(int i = 0; i < 5; i++){
                 p0.move(0,1);
               }
             }
           case 1:
             if(p1.inside()){
-              for(int i = 0; i < 3; i++){
+              for(int i = 0; i < 5; i++){
                 p1.move(0,1);
               }
             }
           case 2:
             if(p2.inside()){
-              for(int i = 0; i < 3; i++){
+              for(int i = 0; i < 5; i++){
                 p2.move(0,1);
               }
             }
           case 3:
             if(p3.inside()){
-              for(int i = 0; i < 3; i++){
+              for(int i = 0; i < 5; i++){
                 p3.move(0,1);
               }
             }
           case 4:
             if(p4.inside()){
-              for(int i = 0; i < 3; i++){
+              for(int i = 0; i < 5; i++){
                 p4.move(0,1);
               }
             }

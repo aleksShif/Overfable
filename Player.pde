@@ -5,7 +5,6 @@ public class Player{
   int DF;
   int LV = 1;
   int EXP = 0;
-  int INV;
   boolean MODE;
   
   Player(boolean mode){

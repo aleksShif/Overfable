@@ -44,7 +44,7 @@ void draw() {
   PFont font = createFont("undertale-attack-font.ttf", H/40); 
   textFont(font); 
   text("TOMMY WOLF", W/16, H/1.16); 
-  text("LV 1", W/4, H/1.16); 
+  text("LV " + p.getLV(), W/4, H/1.16); 
   textSize(H/60); 
   text("HP", W/2.46, H/1.16); 
   noStroke(); 
@@ -52,7 +52,7 @@ void draw() {
   rect(W/2.29, H/1.2, W/49.2, H/36); 
   fill(255); 
   textSize(H/40); 
-  text("20 / 20", W/2.1, H/1.16); 
+  text(h.getCurrentHP() + " / " + p.getHP(), W/2.1, H/1.16); 
   noFill(); 
   stroke(cFirst); 
   strokeWeight(10); 
@@ -102,7 +102,27 @@ void draw() {
     rect(W/3.36, H/2.4, W/2.46, H/2.57);
     h.display(h.x, h.y, displayWidth/32, displayHeight/18);
     if(!m.attack2(p0,p1,p2,p3,p4)){
-      ENEMY_SCREEN = false;
+      p0.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p0.setY(H/2.3);
+      p1.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p1.setY(H/2.3);
+      p2.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p2.setY(H/2.3);
+      p3.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p3.setY(H/2.3);
+      p4.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p4.setY(H/2.3);
+      if(!m.attack2(p0,p1,p2,p3,p4)){
+        ENEMY_SCREEN = false;
+      }
+    }
+    h.damaged(p0);
+    h.damaged(p1);
+    h.damaged(p2);
+    h.damaged(p3);
+    h.damaged(p4);
+    if(millis() - h.getHitTime() > 1000){
+      h.setInv(false);
     }
   }
   else{
