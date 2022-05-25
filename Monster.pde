@@ -29,50 +29,67 @@ public class Monster{
   void attack1(){
     int W = displayWidth; 
     int H = displayHeight;  
+    for (int i = 0; i < 20; i++) {
+      float X = (float)(Math.random() * W/2.56 + W/3.282); 
+      float Y = (float)(Math.random() * H/30 + H/2.308);
+      Pellet Np = new Pellet(true, 1, X, Y); 
+      Np.setSide("North"); 
+      pellets.add(Np);
+      
+      X = (float)(Math.random() * W/2.56 + W/3.282); 
+      Y = (float)(Math.random() * H/30 + H/1.364); 
+      Pellet Sp = new Pellet(true, 1, X, Y); 
+      pellets.add(Sp); 
+      Sp.setSide("South"); 
+      pellets.add(Sp); 
+      
+      Np.display();
+      Sp.display();
+    }
     int m = millis(); 
-    while (millis() - m < 50) {
-      for (int i = 0; i < 4; i++) {
-        float X = (float)(Math.random() * W/2.56 + W/3.282); 
-        float Y = (float)(Math.random() * H/30 + H/2.308);
-        Pellet Np = new Pellet(true, 1, X, Y); 
-        Np.setSide("North"); 
-        pellets.add(Np);
-        
-        X = (float)(Math.random() * W/2.56 + W/3.282); 
-        Y = (float)(Math.random() * H/30 + H/1.364); 
-        Pellet Sp = new Pellet(true, 1, X, Y); 
-        pellets.add(Sp); 
-        Sp.setSide("South"); 
-        pellets.add(Sp); 
-        
-        Np.display();
-        Sp.display(); 
-               
-        for (int p = 0; p < pellets.size(); p++) {
-          Pellet current = pellets.get(p); 
-          int xSp = 0; 
-          int ySp = 0; 
-          if (current.getSide().equals("North")) {
-            int det = (int)(Math.random() * 2); 
-            if (det == 0) {
-              xSp = 20; 
+     while (millis() - m < 1000) {     
+       for (int p = 0; p < pellets.size(); p++) {    
+         Pellet current = pellets.get(p); 
+         int xSp = 0; 
+         int ySp = 0; 
+         if (current.getSide().equals("North")) {
+           int det = (int)(Math.random() * 2); 
+           if (det == 0) {
+             xSp = 20; 
             }
-            else {
-              xSp = -20; 
+           else {
+             xSp = -20; 
             }
-            ySp = 20; 
+           ySp = 20; 
           }
-          else {
-            ySp *= -1; 
+         else {
+           ySp *= -1; 
           }
-          current.move(xSp, ySp); 
+         current.move(xSp, ySp); 
         }
       }
-      int tempM = millis(); 
-      while(millis() - tempM < 4) {
-      }
-    }
   }
+             
+    //  for (int p = 0; p < pellets.size(); p++) {
+    //    Pellet current = pellets.get(p); 
+    //    int xSp = 0; 
+    //    int ySp = 0; 
+    //    if (current.getSide().equals("North")) {
+    //      int det = (int)(Math.random() * 2); 
+    //      if (det == 0) {
+    //        xSp = 20; 
+    //      }
+    //      else {
+    //        xSp = -20; 
+    //      }
+    //      ySp = 20; 
+    //    }
+    //    else {
+    //      ySp *= -1; 
+    //    }
+    //    current.move(xSp, ySp); 
+    //  }
+    //}
         
     //    Y = (float)(Math.random() * H/30 + H/1.364); 
     //    Pellet Sp = new Pellet(true, 1, X, Y); 

@@ -8,7 +8,6 @@ public class Pellet extends Damageable{
     setX(X);
     setY(Y);
     setAT(at);
-    side = "North"; 
   }
   
   Pellet(boolean _isAt1, int at, float X, float Y){
@@ -16,8 +15,7 @@ public class Pellet extends Damageable{
     size = 1;
     setX(X);
     setY(Y);
-    setAT(at);
-    side = "North"; 
+    setAT(at); 
   }
   
   void display(){

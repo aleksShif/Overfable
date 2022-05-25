@@ -104,7 +104,7 @@ void draw() {
     //if(!m.attack2(p0,p1,p2,p3,p4)){    FOR NOW, EDIT OUT LATER
     //  ENEMY_SCREEN = false;
     //}
-    m.attack1(); 
+    m.attack1();
     noLoop(); 
   }
   else{
