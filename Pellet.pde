@@ -2,6 +2,8 @@ public class Pellet extends Damageable{
   String side; 
   float size;
   boolean isAt1 = false; 
+  int immobileTime = 0; 
+  int xSpeed, ySpeed; 
   
   Pellet(int at, float X, float Y, float Size){
     size = Size;
@@ -16,6 +18,8 @@ public class Pellet extends Damageable{
     setX(X);
     setY(Y);
     setAT(at); 
+    xSpeed = 0; 
+    ySpeed = 0; 
   }
   
   void display(){
