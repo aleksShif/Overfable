@@ -24,7 +24,11 @@ public class Heart {
   }
   
   void display(float x, float y, float varW, float varH) {
-    fill(255, 0, 0);
+    if(inv && (millis() - hitTime) % 2 == 0){
+      fill(255,0,0,75);
+    }else{
+      fill(255, 0, 0);
+    }
     noStroke(); 
     beginShape (POLYGON);
     vertex (x+8*varW/16, y+4*varH/16);

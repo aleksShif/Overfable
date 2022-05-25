@@ -109,7 +109,7 @@ void draw() {
     h.damaged(p2);
     h.damaged(p3);
     h.damaged(p4);
-    if(millis() - h.getHitTime() > 500){
+    if(millis() - h.getHitTime() > 1000){
       h.setInv(false);
     }
   }
