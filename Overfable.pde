@@ -66,10 +66,10 @@ void draw() {
   text("ITEM", W/1.46, H/1.05); 
   set(2125, 1710, #D86E1C);
   if (arrowPress && !ITEM_SCREEN) {
-    item.display(W/1.576, H/1.111, displayWidth/32, displayHeight/18);
+    item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6);
   }
   else if (!arrowPress && !ITEM_SCREEN) {
-    item.display(item.x, item.y, displayWidth/32, displayHeight/18);
+    item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6);
   }
   if (ITEM_SCREEN) { 
     stroke(255); 
@@ -81,9 +81,9 @@ void draw() {
     text("           * Butterscotch Pie", W/12.8, H/2); 
     text("           * Steak", W/12.8, H/1.714); 
     if (!switchItem) {
-      item.display(W/10.667, H/2.209, displayWidth/32, displayHeight/18);
+      item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
     }
-    else{item.display(W/10.667, H/1.865, displayWidth/32, displayHeight/18);}
+    else{item.display(W/10.667, H/1.865, displayWidth/38.4, displayHeight/21.6);}
   }
   else if (FIGHT_SCREEN) { 
     stroke(255); 
@@ -93,14 +93,14 @@ void draw() {
     textSize(H/40); 
     fill(255); 
     text("           * Fart", W/12.8, H/2);
-    item.display(W/10.667, H/2.209, displayWidth/32, displayHeight/18);
+    item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
   } 
   else if (ENEMY_SCREEN) {
     stroke(255); 
     strokeWeight(20); 
     noFill(); 
     rect(W/3.36, H/2.4, W/2.46, H/2.57);
-    h.display(h.x, h.y, displayWidth/32, displayHeight/18);
+    h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6);
     if(!m.attack2(p0,p1,p2,p3,p4)){
       p0.setX((float)(Math.random() * W/2.46 + W/3.36));
       p0.setY(H/2.3);
