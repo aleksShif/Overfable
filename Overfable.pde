@@ -6,6 +6,7 @@ Pellet p1;
 Pellet p2;
 Pellet p3;
 Pellet p4;
+int count = 0;
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
 boolean arrowPress = false; 
@@ -112,9 +113,7 @@ void draw() {
       p3.setY(H/2.3);
       p4.setX((float)(Math.random() * W/2.46 + W/3.36));
       p4.setY(H/2.3);
-      if(!m.attack2(p0,p1,p2,p3,p4)){
-        ENEMY_SCREEN = false;
-      }
+      count++;
     }
     h.damaged(p0);
     h.damaged(p1);
@@ -123,6 +122,10 @@ void draw() {
     h.damaged(p4);
     if(millis() - h.getHitTime() > 1000){
       h.setInv(false);
+    }
+    if(count >= 5){
+      ENEMY_SCREEN = false;
+      count = 0;
     }
   }
   else{
