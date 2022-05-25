@@ -102,7 +102,19 @@ void draw() {
     rect(W/3.36, H/2.4, W/2.46, H/2.57);
     h.display(h.x, h.y, displayWidth/32, displayHeight/18);
     if(!m.attack2(p0,p1,p2,p3,p4)){
-      ENEMY_SCREEN = false;
+      p0.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p0.setY(H/2.3);
+      p1.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p1.setY(H/2.3);
+      p2.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p2.setY(H/2.3);
+      p3.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p3.setY(H/2.3);
+      p4.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p4.setY(H/2.3);
+      if(!m.attack2(p0,p1,p2,p3,p4)){
+        ENEMY_SCREEN = false;
+      }
     }
     h.damaged(p0);
     h.damaged(p1);
