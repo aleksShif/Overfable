@@ -105,6 +105,7 @@ void draw() {
     //  ENEMY_SCREEN = false;
     //}
     m.attack1(); 
+    noLoop(); 
   }
   else{
     stroke(255); 

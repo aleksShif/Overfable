@@ -1,4 +1,5 @@
 public class Pellet extends Damageable{
+  String side; 
   float size;
   boolean isAt1 = false; 
   
@@ -7,6 +8,7 @@ public class Pellet extends Damageable{
     setX(X);
     setY(Y);
     setAT(at);
+    side = "North"; 
   }
   
   Pellet(boolean _isAt1, int at, float X, float Y){
@@ -15,6 +17,7 @@ public class Pellet extends Damageable{
     setX(X);
     setY(Y);
     setAT(at);
+    side = "North"; 
   }
   
   void display(){
@@ -36,6 +39,13 @@ public class Pellet extends Damageable{
     }
   }
   
+  void setSide(String s) {
+    side = s; 
+  }
+  
+  String getSide() {
+    return side; 
+  }
   //void move(float X, float Y){
   //  setX(x+X);
   //  setY(y+Y);
