@@ -1,11 +1,12 @@
 public class Monster{
-  String name;
   int HP;
   int AT;
-  String[] dialogue;
   int gold;
   int exp;
+  int countdown; 
+  String name;
   String[] actionOrder;
+  String[] dialogue;
   ArrayList<Pellet> pellets; 
   
   public Monster(){
@@ -13,11 +14,13 @@ public class Monster{
     HP = 50;
     AT = 3;
     pellets = new ArrayList<Pellet>(); 
+    countdown = 400; 
   }
-  public Monster(String Name, int hp, int at){
+  public Monster(int count, String Name, int hp, int at){
     AT = at;
     HP = hp;
     name = Name;
+    countdown = count; 
     pellets = new ArrayList<Pellet>(); 
   }
   void damaged(int a){
