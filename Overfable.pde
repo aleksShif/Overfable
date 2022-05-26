@@ -104,47 +104,47 @@ void draw() {
     noFill(); 
     rect(W/3.36, H/2.4, W/2.46, H/2.57);
 
-    h.display(h.x, h.y, displayWidth/32, displayHeight/18);
+    h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6);
     
     m.attack1();
-    if (countdown < 200) {
+    if (countdown < 400) {
       for (int i = 0; i < m.pellets.size(); i++) {
         Pellet p = m.pellets.get(i); 
         p.display(); 
        }
-       
-    h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6);
-    if(!m.attack2(p0,p1,p2,p3,p4)){
-      p0.setX((float)(Math.random() * W/2.46 + W/3.36));
-      p0.setY(H/2.3);
-      p1.setX((float)(Math.random() * W/2.46 + W/3.36));
-      p1.setY(H/2.3);
-      p2.setX((float)(Math.random() * W/2.46 + W/3.36));
-      p2.setY(H/2.3);
-      p3.setX((float)(Math.random() * W/2.46 + W/3.36));
-      p3.setY(H/2.3);
-      p4.setX((float)(Math.random() * W/2.46 + W/3.36));
-      p4.setY(H/2.3);
-      count++;
-    }
-    h.damaged(p0);
-    h.damaged(p1);
-    h.damaged(p2);
-    h.damaged(p3);
-    h.damaged(p4);
-    if(millis() - h.getHitTime() > 1000){
-      h.setInv(false);
-    }
-    if(count >= 5){
-      ENEMY_SCREEN = false;
-      count = 0;
     }
     countdown--; 
     if (countdown == 0) {
       ENEMY_SCREEN = false;
       h = new Heart(displayWidth / 2.13, displayHeight / 1.8); 
       m.pellets = new ArrayList<Pellet>(); 
-    } 
+    }
+       
+    //if(!m.attack2(p0,p1,p2,p3,p4)){
+    //  p0.setX((float)(Math.random() * W/2.46 + W/3.36));
+    //  p0.setY(H/2.3);
+    //  p1.setX((float)(Math.random() * W/2.46 + W/3.36));
+    //  p1.setY(H/2.3);
+    //  p2.setX((float)(Math.random() * W/2.46 + W/3.36));
+    //  p2.setY(H/2.3);
+    //  p3.setX((float)(Math.random() * W/2.46 + W/3.36));
+    //  p3.setY(H/2.3);
+    //  p4.setX((float)(Math.random() * W/2.46 + W/3.36));
+    //  p4.setY(H/2.3);
+    //  count++;
+    //}
+    //h.damaged(p0);
+    //h.damaged(p1);
+    //h.damaged(p2);
+    //h.damaged(p3);
+    //h.damaged(p4);
+    //if(millis() - h.getHitTime() > 1000){
+    //  h.setInv(false);
+    //}
+    //if(count >= 5){
+    //  ENEMY_SCREEN = false;
+    //  count = 0;
+    //} 
   }
   else{
     stroke(255); 
@@ -212,7 +212,7 @@ void keyPressed() {
   if (keyCode == ENTER) {
     if (FIGHT_SCREEN) {
       ENEMY_SCREEN = true;
-      countdown = 200; 
+      countdown = 400; 
       FIGHT_SCREEN = false; 
       m.damaged(p.getAT());
     }

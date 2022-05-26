@@ -36,7 +36,7 @@ public class Monster{
   void attack1(){
     int W = displayWidth; 
     int H = displayHeight; 
-    if (countdown % 25 == 0) {
+    if (countdown % 50 == 0) {
       for (int i = 0; i < 2; i++) {
         float X = (float)(Math.random() * W/2.56 + W/3.282); 
         float Y = (float)(Math.random() * H/30 + H/2.308);
@@ -53,13 +53,13 @@ public class Monster{
         Sp.immobileTime = 5; 
         pellets.add(Sp); 
         
-        if (countdown == 200) {
+        if (countdown == 400) {
           Np.display(); 
           Sp.display();
         }
       }
     }
-   if (countdown < 200 && countdown % 5 == 0) {
+   if (countdown < 400 && countdown % 5 == 0) {
      for (int p = 0; p < pellets.size(); p++) {    
        Pellet current = pellets.get(p);
        if (current.immobileTime > 0) {
