@@ -5,6 +5,7 @@ public class Monster{
   int exp;
   int countdown; 
   String name;
+  boolean dead = false; 
   String[] actionOrder;
   String[] dialogue = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
   String currentSentence = " "; 

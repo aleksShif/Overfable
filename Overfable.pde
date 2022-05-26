@@ -9,6 +9,7 @@ Pellet p4;
 //move to class 
 int count = 0;
 int attack = 0; 
+int n = 1; 
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
 boolean arrowPress = false; 
@@ -106,35 +107,45 @@ void draw() {
     rect(W/16, H/2.4, W/1.14, H/2.57);
     textSize(H/40); 
     fill(255); 
-    text("  You farted on the dummy! It was so foul that it dealt damage!", W/12.8, H/2);
-    text(" (for testing purposes: dealt " + p.getAT() + " AT and dummy now has " + m.getHP() + " HP left.", W/12.8, H/1.636); 
-    
-    strokeWeight(5); 
-    noFill(); 
-    rect(1850, 200, 500, 300); 
-    fill(255); 
-    textSize(H/90); 
-    if (m.currentSentence == " ") {
-      int randSen = (int)(Math.random() * 3); 
-      m.currentSentence = m.dialogue[randSen]; 
+    if (m.dead) {
+      text("  You killed the dummy! Why would you do that???", W/12.8, H/2); 
+      text("  Okay killer, you gained " + m.exp + " EXP and " + m.gold + " GOLD. Happy?", W/12.8, H/1.636);
     }
-    float w_ = 1900; 
-    float h_ = 260; 
-    int count = 10; 
-    for (int i = 0; i < m.currentSentence.length(); i++) {
-      if (count > 0) {
-        count -= 1;
-        i--; 
-        continue; 
+    else{
+      text("  You farted on the dummy! It was so foul that it dealt damage!", W/12.8, H/2);
+      
+      text(" (for testing purposes: dealt " + p.getAT() + " AT and dummy now has " + m.getHP() + " HP left.", W/12.8, H/1.636); 
+      
+      strokeWeight(5); 
+      fill(255); 
+      rect(1850, 380, 500, 300, 7, 7, 7, 7); 
+      fill(0); 
+      strokeWeight(7); 
+      textSize(H/85); 
+      if (m.currentSentence == " ") {
+        int randSen = (int)(Math.random() * 3); 
+        m.currentSentence = m.dialogue[randSen]; 
       }
-      count = 10; 
-      if (w_ >= 2250 && i != 0 && m.currentSentence.charAt(i-1) == ' ') { 
-        w_ = 1900; 
-        h_ += 38; 
+      float w_ = 1900;
+      float h_ = 440; 
+      for (int i = 0; i < n; i++) { 
+        if (w_ >= 2250 && i != 0 && m.currentSentence.charAt(i-1) == ' ') { 
+          w_ = 1900; 
+          h_ += 38; 
+        }
+        char temp = m.currentSentence.charAt(i); 
+        text(temp, w_, h_); 
+        w_ += 20; 
       }
-      char temp = m.currentSentence.charAt(i); 
-      text(temp, w_, h_); 
-      w_ += 20; 
+      m.countdown--; 
+      if (m.countdown <= 0) {
+        n++; 
+        m.countdown = 5; 
+      }
+      if (n > m.currentSentence.length()) {
+        n = 1; 
+        noLoop();
+      }
     }
   }
   else if (ENEMY_SCREEN) {
@@ -159,7 +170,8 @@ void draw() {
       m.countdown--; 
       if (m.countdown == 0) {
         ENEMY_SCREEN = false;
-        m.currentSentence = " "; 
+        m.currentSentence = " ";
+        m.countdown = 400; 
         attack = 0; 
         h = new Heart(displayWidth / 2.13, displayHeight / 1.8); 
         m.pellets = new ArrayList<Pellet>(); 
@@ -266,10 +278,17 @@ void keyPressed() {
       TEXT_SCREEN = true; 
       FIGHT_SCREEN = false; 
       m.damaged(p.getAT());
+      m.countdown = 5; 
+      if (p.getHP() <= 0) {
+        m.HP = 0; 
+        m.dead = true; 
+      }
     }
     else if (TEXT_SCREEN) {
       TEXT_SCREEN = false; 
       ENEMY_SCREEN = true; 
+      m.countdown = 400; 
+      loop(); 
     }
     else {
       if (!enPress && !ENEMY_SCREEN && !TEXT_SCREEN) {      
