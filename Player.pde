@@ -1,6 +1,6 @@
 public class Player{
   int GOLD = 0;
-  int AT;
+  int AT = 5;
   int HP = 20;
   int DF;
   int LV = 1;
@@ -18,5 +18,10 @@ public class Player{
   int getLV(){
     return LV;
   }
+  
+  int getAT(){
+    return AT;
+  }
+  
   
 }

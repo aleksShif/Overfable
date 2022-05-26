@@ -17,6 +17,12 @@ public class Monster{
     HP = hp;
     name = Name;
   }
+  void damaged(int a){
+    HP -= a;
+  }
+  int getHP(){
+    return HP;
+  }
   void display(){
     fill(255);
     int W = displayWidth; 

@@ -195,6 +195,7 @@ void keyPressed() {
     if (FIGHT_SCREEN) {
       ENEMY_SCREEN = true; 
       FIGHT_SCREEN = false; 
+      m.damaged(p.getAT());
     }
     else {
       if (!enPress) {      
