@@ -1,6 +1,14 @@
 Heart h, item;
 Monster m;
 Player p;
+Pellet p0;
+Pellet p1;
+Pellet p2;
+Pellet p3;
+Pellet p4;
+//move to class
+int countdown; 
+int count = 0;
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
 boolean arrowPress = false; 
@@ -13,12 +21,19 @@ color cFirst;
 color cSec; 
 
 void setup() {
-  h = new Heart(displayWidth / 2.13, displayHeight / 1.64);
+  h = new Heart(displayWidth / 2.13, displayHeight / 1.8);
   item = new Heart(displayWidth / 3.902, displayHeight / 1.111);
   p = new Player(true);
   m = new Monster();
   cFirst = color(229, 209, 19);  
   cSec = color(216, 110, 28);
+  int W = displayWidth; 
+  int H = displayHeight; 
+  p0 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+  p1 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+  p2 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+  p3 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+  p4 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
   print(displayWidth); 
   print(displayHeight); 
   fullScreen();   
@@ -32,7 +47,7 @@ void draw() {
   PFont font = createFont("undertale-attack-font.ttf", H/40); 
   textFont(font); 
   text("TOMMY WOLF", W/16, H/1.16); 
-  text("LV 1", W/4, H/1.16); 
+  text("LV " + p.getLV(), W/4, H/1.16); 
   textSize(H/60); 
   text("HP", W/2.46, H/1.16); 
   noStroke(); 
@@ -40,7 +55,7 @@ void draw() {
   rect(W/2.29, H/1.2, W/49.2, H/36); 
   fill(255); 
   textSize(H/40); 
-  text("20 / 20", W/2.1, H/1.16); 
+  text(h.getCurrentHP() + " / " + p.getHP(), W/2.1, H/1.16); 
   noFill(); 
   stroke(cFirst); 
   strokeWeight(10); 
@@ -54,10 +69,10 @@ void draw() {
   text("ITEM", W/1.46, H/1.05); 
   set(2125, 1710, #D86E1C);
   if (arrowPress && !ITEM_SCREEN) {
-    item.display(W/1.576, H/1.111, displayWidth/32, displayHeight/18);
+    item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6);
   }
   else if (!arrowPress && !ITEM_SCREEN) {
-    item.display(item.x, item.y, displayWidth/32, displayHeight/18);
+    item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6);
   }
   if (ITEM_SCREEN) { 
     stroke(255); 
@@ -69,9 +84,9 @@ void draw() {
     text("           * Butterscotch Pie", W/12.8, H/2); 
     text("           * Steak", W/12.8, H/1.714); 
     if (!switchItem) {
-      item.display(W/10.667, H/2.209, displayWidth/32, displayHeight/18);
+      item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
     }
-    else{item.display(W/10.667, H/1.865, displayWidth/32, displayHeight/18);}
+    else{item.display(W/10.667, H/1.865, displayWidth/38.4, displayHeight/21.6);}
   }
   else if (FIGHT_SCREEN) { 
     stroke(255); 
@@ -81,14 +96,55 @@ void draw() {
     textSize(H/40); 
     fill(255); 
     text("           * Fart", W/12.8, H/2);
-    item.display(W/10.667, H/2.209, displayWidth/32, displayHeight/18);
+    item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
   } 
   else if (ENEMY_SCREEN) {
     stroke(255); 
     strokeWeight(20); 
     noFill(); 
     rect(W/3.36, H/2.4, W/2.46, H/2.57);
-    h.display(h.x, h.y, displayWidth/32, displayHeight/18); 
+
+    h.display(h.x, h.y, displayWidth/32, displayHeight/18);
+    
+    m.attack1();
+    if (countdown < 200) {
+      for (int i = 0; i < m.pellets.size(); i++) {
+        Pellet p = m.pellets.get(i); 
+        p.display(); 
+       }
+       
+    h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6);
+    if(!m.attack2(p0,p1,p2,p3,p4)){
+      p0.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p0.setY(H/2.3);
+      p1.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p1.setY(H/2.3);
+      p2.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p2.setY(H/2.3);
+      p3.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p3.setY(H/2.3);
+      p4.setX((float)(Math.random() * W/2.46 + W/3.36));
+      p4.setY(H/2.3);
+      count++;
+    }
+    h.damaged(p0);
+    h.damaged(p1);
+    h.damaged(p2);
+    h.damaged(p3);
+    h.damaged(p4);
+    if(millis() - h.getHitTime() > 1000){
+      h.setInv(false);
+    }
+    if(count >= 5){
+      ENEMY_SCREEN = false;
+      count = 0;
+    }
+    countdown--; 
+    if (countdown == 0) {
+      ENEMY_SCREEN = false;
+      h = new Heart(displayWidth / 2.13, displayHeight / 1.8); 
+      m.pellets = new ArrayList<Pellet>(); 
+    } 
   }
   else{
     stroke(255); 
@@ -155,8 +211,10 @@ void keyPressed() {
   }
   if (keyCode == ENTER) {
     if (FIGHT_SCREEN) {
-      ENEMY_SCREEN = true; 
+      ENEMY_SCREEN = true;
+      countdown = 200; 
       FIGHT_SCREEN = false; 
+      m.damaged(p.getAT());
     }
     else {
       if (!enPress) {      
