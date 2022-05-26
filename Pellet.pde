@@ -10,6 +10,8 @@ public class Pellet extends Damageable{
     setX(X);
     setY(Y);
     setAT(at);
+    setHitboxX(displayWidth/150);
+    setHitboxY(displayWidth/90);
   }
   
   Pellet(boolean _isAt1, int at, float X, float Y){
