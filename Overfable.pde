@@ -71,7 +71,7 @@ void draw() {
   if (arrowPress && !ITEM_SCREEN) {
     item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6);
   }
-  else if (!arrowPress && !ITEM_SCREEN) {
+  else if (!arrowPress && !ITEM_SCREEN && !FIGHT_SCREEN) {
     item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6);
   }
   if (ITEM_SCREEN) { 
@@ -123,6 +123,7 @@ void draw() {
         attack = 0; 
         h = new Heart(displayWidth / 2.13, displayHeight / 1.8); 
         m.pellets = new ArrayList<Pellet>(); 
+        enPress = false; 
       }
     }
     
@@ -152,6 +153,7 @@ void draw() {
         ENEMY_SCREEN = false;
         attack = 0; 
         count = 0;
+        enPress = false; 
       } 
     }
   }
@@ -218,14 +220,14 @@ void keyPressed() {
     cFirst = tempS; 
     cSec = tempF;
   }
-  if (keyCode == ENTER) {
+  if (keyCode == 90) {
     if (FIGHT_SCREEN) {
       ENEMY_SCREEN = true; 
       FIGHT_SCREEN = false; 
       m.damaged(p.getAT());
     }
     else {
-      if (!enPress) {      
+      if (!enPress && !ENEMY_SCREEN) {      
         if (cFirst == color(216, 110, 28)) {
           ITEM_SCREEN = true;
           FIGHT_SCREEN = false; 
@@ -236,11 +238,13 @@ void keyPressed() {
         }
         enPress = true; 
       }
-      else {
-        ITEM_SCREEN = false;
-        FIGHT_SCREEN = false;
-        enPress = false;
-      }
+    }
+  }
+  if (keyCode == 88) {
+    if (enPress && !ENEMY_SCREEN) {
+      FIGHT_SCREEN = false; 
+      ITEM_SCREEN = false; 
+      enPress = false; 
     }
   }
     if (keyCode == DOWN && ITEM_SCREEN) {
