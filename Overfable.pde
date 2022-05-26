@@ -16,6 +16,7 @@ boolean enPress = false;
 boolean switchItem = false;
 boolean ITEM_SCREEN = false; 
 boolean FIGHT_SCREEN = false; 
+boolean TEXT_SCREEN = false; 
 boolean ENEMY_SCREEN = false; 
 color cFirst; 
 color cSec; 
@@ -97,7 +98,45 @@ void draw() {
     fill(255); 
     text("           * Fart", W/12.8, H/2);
     item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
-  } 
+  }
+  else if (TEXT_SCREEN) {
+    stroke(255);
+    strokeWeight(20); 
+    noFill(); 
+    rect(W/16, H/2.4, W/1.14, H/2.57);
+    textSize(H/40); 
+    fill(255); 
+    text("  You farted on the dummy! It was so foul that it dealt damage!", W/12.8, H/2);
+    text(" (for testing purposes: dealt " + p.getAT() + " AT and dummy now has " + m.getHP() + " HP left.", W/12.8, H/1.636); 
+    
+    strokeWeight(5); 
+    noFill(); 
+    rect(1850, 200, 500, 300); 
+    fill(255); 
+    textSize(H/90); 
+    if (m.currentSentence == " ") {
+      int randSen = (int)(Math.random() * 3); 
+      m.currentSentence = m.dialogue[randSen]; 
+    }
+    float w_ = 1900; 
+    float h_ = 260; 
+    int count = 10; 
+    for (int i = 0; i < m.currentSentence.length(); i++) {
+      if (count > 0) {
+        count -= 1;
+        i--; 
+        continue; 
+      }
+      count = 10; 
+      if (w_ >= 2250 && i != 0 && m.currentSentence.charAt(i-1) == ' ') { 
+        w_ = 1900; 
+        h_ += 38; 
+      }
+      char temp = m.currentSentence.charAt(i); 
+      text(temp, w_, h_); 
+      w_ += 20; 
+    }
+  }
   else if (ENEMY_SCREEN) {
     stroke(255); 
     strokeWeight(20); 
@@ -120,6 +159,7 @@ void draw() {
       m.countdown--; 
       if (m.countdown == 0) {
         ENEMY_SCREEN = false;
+        m.currentSentence = " "; 
         attack = 0; 
         h = new Heart(displayWidth / 2.13, displayHeight / 1.8); 
         m.pellets = new ArrayList<Pellet>(); 
@@ -151,6 +191,7 @@ void draw() {
       }
       if(count >= 5){
         ENEMY_SCREEN = false;
+        m.currentSentence = " "; 
         attack = 0; 
         count = 0;
         enPress = false; 
@@ -222,12 +263,16 @@ void keyPressed() {
   }
   if (keyCode == 90) {
     if (FIGHT_SCREEN) {
-      ENEMY_SCREEN = true; 
+      TEXT_SCREEN = true; 
       FIGHT_SCREEN = false; 
       m.damaged(p.getAT());
     }
+    else if (TEXT_SCREEN) {
+      TEXT_SCREEN = false; 
+      ENEMY_SCREEN = true; 
+    }
     else {
-      if (!enPress && !ENEMY_SCREEN) {      
+      if (!enPress && !ENEMY_SCREEN && !TEXT_SCREEN) {      
         if (cFirst == color(216, 110, 28)) {
           ITEM_SCREEN = true;
           FIGHT_SCREEN = false; 
@@ -241,7 +286,7 @@ void keyPressed() {
     }
   }
   if (keyCode == 88) {
-    if (enPress && !ENEMY_SCREEN) {
+    if (enPress && !ENEMY_SCREEN && !TEXT_SCREEN) {
       FIGHT_SCREEN = false; 
       ITEM_SCREEN = false; 
       enPress = false; 

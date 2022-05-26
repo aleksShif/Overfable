@@ -6,22 +6,27 @@ public class Monster{
   int countdown; 
   String name;
   String[] actionOrder;
-  String[] dialogue;
+  String[] dialogue = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
+  String currentSentence = " "; 
   ArrayList<Pellet> pellets; 
   
   public Monster(){
     name = "Dummy";
-    HP = 50;
+    HP = 20;
     AT = 3;
+    exp = (int)(Math.random() * 4) + 2; 
+    gold = (int)(Math.random() * 6) + 10; 
     pellets = new ArrayList<Pellet>(); 
     countdown = 400; 
   }
   public Monster(int count, String Name, int hp, int at){
-    AT = at;
-    HP = hp;
     name = Name;
-    countdown = count; 
-    pellets = new ArrayList<Pellet>(); 
+    HP = hp;
+    AT = at;
+    exp = (int)(Math.random() * 4) + 2; 
+    gold = (int)(Math.random() * 6) + 10;
+    pellets = new ArrayList<Pellet>();
+    countdown = count;  
   }
   void damaged(int a){
     HP -= a;
