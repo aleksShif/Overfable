@@ -93,27 +93,27 @@ public class Monster{
     int H = displayHeight;    
     if(p0.inside() || p1.inside() || p2.inside() || p3.inside() || p4.inside()){
       if(p0.inside()){
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 8; i++){
           p0.move(0,1);
         }
       }
       if(p1.inside()){
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 8; i++){
           p1.move(0,1);
         }
       }
       if(p2.inside()){
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 8; i++){
           p2.move(0,1);
         }
       }
       if(p3.inside()){
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 8; i++){
           p3.move(0,1);
         }
       }
       if(p4.inside()){
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 8; i++){
           p4.move(0,1);
         }
       }

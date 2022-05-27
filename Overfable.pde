@@ -106,14 +106,13 @@ void draw() {
 
     h.display(h.x, h.y, displayWidth/32, displayHeight/18);
     
-    m.attack1();
-    if (countdown < 200) {
-      for (int i = 0; i < m.pellets.size(); i++) {
-        Pellet p = m.pellets.get(i); 
-        p.display(); 
-       }
+    //m.attack1();
+    //if (countdown < 200) {
+    //  for (int i = 0; i < m.pellets.size(); i++) {
+    //    Pellet p = m.pellets.get(i); 
+    //    p.display(); 
+    //   }
        
-    h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6);
     if(!m.attack2(p0,p1,p2,p3,p4)){
       p0.setX((float)(Math.random() * W/2.46 + W/3.36));
       p0.setY(H/2.3);
@@ -172,8 +171,8 @@ void draw() {
   if (h.y <= H/2.35) {
     h.y = H/2.33; 
   }
-  h.move(); 
-}
+  h.move();
+} 
 
 void keyPressed() {
   keyHeld = true; 
