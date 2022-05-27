@@ -2,7 +2,7 @@ public class Player{
   int GOLD = 0;
   int AT = 5;
   int HP = 20;
-  int DF;
+  int DF = 1;
   int LV = 1;
   int EXP = 0;
   boolean MODE;
