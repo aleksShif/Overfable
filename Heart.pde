@@ -93,6 +93,7 @@ public class Heart {
     float upperEdgeD = d.getY() - d.getHitboxY();
     if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
       currentHP -= d.getAT();
+      currentHP += p.getDF();
       inv = true;
       hitTime = millis(); 
     }

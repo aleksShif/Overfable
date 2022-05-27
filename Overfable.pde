@@ -64,6 +64,7 @@ void draw() {
     textSize(H/40); 
     text(h.getCurrentHP() + " / " + p.getHP(), W/2.1, H/1.16); 
     noFill(); 
+    rect(W/3.36, H/2.4, W/2.46, H/2.57);
     stroke(cFirst); 
     strokeWeight(10); 
     rect(W/4, H/1.125, W/6.4, H/12);
@@ -209,7 +210,7 @@ void draw() {
         h.damaged(p2);
         h.damaged(p3);
         h.damaged(p4);
-        if(millis() - h.getHitTime() > 1000){
+        if(millis() - h.getHitTime() > 800){
           h.setInv(false);
         }
         if(count >= 5){
@@ -252,7 +253,12 @@ void draw() {
   else {
     background(0); 
   }
+<<<<<<< HEAD
+  h.move();
+} 
+=======
 }
+>>>>>>> heartMove
 
 void keyPressed() {
   keyHeld = true; 
