@@ -169,15 +169,20 @@ void draw() {
           for (int i = 0; i < m.pellets.size(); i++) {
             Pellet p = m.pellets.get(i); 
             p.display(); 
-           }
+            h.damaged(p);
+            if(millis() - h.getHitTime() > 1500){
+              h.setInv(false);
+            }
+          }
         }
         m.countdown--; 
         if (m.countdown == 0) {
           ENEMY_SCREEN = false;
           m.currentSentence = " ";
           m.countdown = 400; 
-          attack = 0; 
-          h = new Heart(displayWidth / 2.13, displayHeight / 1.8); 
+          attack = 0;
+          h.x = displayWidth / 2.13; 
+          h.y = displayHeight / 1.8;  
           m.pellets = new ArrayList<Pellet>(); 
           enPress = false; 
         }

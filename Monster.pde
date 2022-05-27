@@ -78,14 +78,14 @@ public class Monster{
        if (current.xSpeed == 0 || current.ySpeed == 0) {
          int det = (int)(Math.random() * 2); 
            if (det == 0) {
-             current.xSpeed = 5;
+             current.xSpeed = 9;
             }
            else {
-             current.xSpeed = -5; 
+             current.xSpeed = -9; 
             }
-         current.ySpeed = -5; 
+         current.ySpeed = -9; 
          if (current.getSide().equals("North")) {
-           current.ySpeed = 5; 
+           current.ySpeed = 9; 
           }
        }
        current.move(current.xSpeed, current.ySpeed);
