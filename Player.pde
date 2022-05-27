@@ -23,5 +23,23 @@ public class Player{
     return AT;
   }
   
+  int getEXP(){
+    return EXP;
+  }
+  
+  int getDF(){
+    return DF;
+  }
+  
+  int getGOLD(){
+    return GOLD;
+  }
+  
+  void setGOLD(int g){
+    GOLD = g;
+  }
+   void setEXP(int E){
+     EXP = E;
+   }
   
 }
