@@ -2,7 +2,7 @@ public class Player{
   int GOLD = 0;
   int AT = 5;
   int HP = 20;
-  int DF;
+  int DF = 1;
   int LV = 1;
   int EXP = 0;
   boolean MODE;
@@ -23,5 +23,23 @@ public class Player{
     return AT;
   }
   
+  int getEXP(){
+    return EXP;
+  }
+  
+  int getDF(){
+    return DF;
+  }
+  
+  int getGOLD(){
+    return GOLD;
+  }
+  
+  void setGOLD(int g){
+    GOLD = g;
+  }
+   void setEXP(int E){
+     EXP = E;
+   }
   
 }
