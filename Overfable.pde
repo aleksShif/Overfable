@@ -253,12 +253,9 @@ void draw() {
   else {
     background(0); 
   }
-<<<<<<< HEAD
   h.move();
-} 
-=======
-}
->>>>>>> heartMove
+  }
+
 
 void keyPressed() {
   keyHeld = true; 
