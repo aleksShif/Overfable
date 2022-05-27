@@ -57,7 +57,9 @@ void draw() {
     text("HP", W/2.46, H/1.16); 
     noStroke(); 
     fill(223, 252, 8); 
-    rect(W/2.29, H/1.2, W/49.2, H/36); 
+    rect(W/2.29, H/1.2, W/(49.2*(65 - (3.25 * h.getCurrentHP()))), H/36);
+    fill(255, 0, 0); 
+    rect(W/2.29 + W/(49.2*(65 - (3.25 * h.getCurrentHP()))), H/1.2, W/49.2 - W/(49.2*(65 - (3.25 * h.getCurrentHP()))), H/36); 
     fill(255); 
     textSize(H/40); 
     text(h.getCurrentHP() + " / " + p.getHP(), W/2.1, H/1.16); 
