@@ -11,6 +11,8 @@ int count = 0;
 int attack = 0; 
 int rounds = 0; 
 int n = 1; 
+int stagger = 5;
+float texSiz; 
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
 boolean arrowPress = false; 
@@ -20,6 +22,7 @@ boolean COMBAT = false;
 boolean ITEM_SCREEN = false; 
 boolean FIGHT_SCREEN = false; 
 boolean TEXT_SCREEN = false; 
+boolean SPEECH_SCREEN = false; 
 boolean ENEMY_SCREEN = false; 
 color cFirst; 
 color cSec; 
@@ -39,8 +42,6 @@ void setup() {
   p2 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
   p3 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
   p4 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
-  print(displayWidth); 
-  print(displayHeight); 
   fullScreen();   
 }
 
@@ -55,6 +56,7 @@ void draw() {
     text("TOMMY WOLF", W/16, H/1.16); 
     text("LV " + p.getLV(), W/4, H/1.16); 
     textSize(H/60); 
+    texSiz = H/60;
     text("HP", W/2.46, H/1.16); 
     noStroke(); 
     fill(223, 252, 8); 
@@ -64,6 +66,7 @@ void draw() {
     rect(W/2.29 + (max / p.getHP()) * h.getCurrentHP(), H/1.2, W/49.2 - (max / p.getHP()) * h.getCurrentHP(), H/36); 
     fill(255); 
     textSize(H/40); 
+    texSiz = H/40; 
     text(h.getCurrentHP() + " / " + p.getHP(), W/2.1, H/1.16); 
     noFill(); 
     rect(W/3.36, H/2.4, W/2.46, H/2.57);
@@ -73,6 +76,7 @@ void draw() {
     stroke(cSec); 
     rect(W/1.6, H/1.125, W/6.4, H/12);
     textSize(H/30); 
+    texSiz = H/30; 
     fill(cFirst);
     text("FIGHT", W/3.46, H/1.05);
     fill(cSec);
@@ -97,6 +101,7 @@ void draw() {
       }
        
        textSize(H/20); 
+       texSiz = H/20; 
        text("GAME OVER", W/2.667, H/9); 
        
       
@@ -107,6 +112,7 @@ void draw() {
       noFill(); 
       rect(W/16, H/2.4, W/1.14, H/2.57);
       textSize(H/40); 
+      texSiz = H/40; 
       fill(255); 
       text("           * Butterscotch Pie", W/12.8, H/2); 
       text("           * Steak", W/12.8, H/1.714); 
@@ -121,6 +127,7 @@ void draw() {
       noFill(); 
       rect(W/16, H/2.4, W/1.14, H/2.57);
       textSize(H/40); 
+      texSiz = H/40; 
       fill(255); 
       text("           * Fart", W/12.8, H/2);
       item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
@@ -131,47 +138,15 @@ void draw() {
       noFill(); 
       rect(W/16, H/2.4, W/1.14, H/2.57);
       textSize(H/40); 
+      texSiz = H/40; 
       fill(255); 
       if (m.dead) {
-        text("  You killed Teddy Grizzlevelt! Why would you do that???", W/12.8, H/2); 
-        text("  Okay killer, you gained " + m.exp * rounds + " EXP and " + m.gold * rounds + " GOLD. Happy?", W/12.8, H/1.636);
+        addText("You killed Teddy Grizzlevelt! Why would you do that??? Okay killer, you gained " + m.exp * rounds + " EXP and " + m.gold * rounds + " GOLD. Happy?"
+        , W/53.333, H/2.4, W/16, W/1.063); 
       }
       else{
-        text("  You farted on Mr. Grizzlevelt! It was so foul that it dealt damage!", W/12.8, H/2);
-        
-        text(" (for testing purposes: dealt " + p.getAT() + " AT and dummy now has " + m.getHP() + " HP left.", W/12.8, H/1.636); 
-        
-        strokeWeight(5); 
-        fill(255); 
-        rect(W/1.7297, H/4.737, W/6.4, H/6, 7, 7, 7, 7); 
-        triangle(W/1.768, H/3.396, W/1.7297, H/3.529, W/1.7297, H/3.273); 
-        fill(0); 
-        strokeWeight(7); 
-        textSize(H/85); 
-        if (m.currentSentence == " ") {
-          int randSen = (int)(Math.random() * 3); 
-          m.currentSentence = m.dialogue[randSen]; 
-        }
-        float w_ = W/1.684;
-        float h_ = H/4.091; 
-        for (int i = 0; i < n; i++) { 
-          if (w_ >= W/1.422 && i != 0 && m.currentSentence.charAt(i-1) == ' ') { 
-            w_ = W/1.684; 
-            h_ += H/47.368; 
-          }
-          char temp = m.currentSentence.charAt(i); 
-          text(temp, w_, h_); 
-          w_ += W/160; 
-        }
-        m.countdown--; 
-        if (m.countdown <= 0) {
-          n++; 
-          m.countdown = 3; 
-        }
-        if (n > m.currentSentence.length()) {
-          n = 1; 
-          noLoop();
-        }
+        addText("You farted on Mr. Grizzlevelt! It was so foul that it dealt damage! Dealt " + p.getAT() + " AT and Teddy now has " + m.getHP() + " HP left."
+        , W/53.333, H/2.4, W/16, W/1.063);
       }
     }
     else if (ENEMY_SCREEN) {
@@ -182,68 +157,85 @@ void draw() {
   
       h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6);
       
-      if (attack == 0) {
-        attack = (int)(Math.random() * 2) + 1;
-      }
-      if (attack == 1) {
-        m.attack1();
-        if (m.countdown < 400) {
-          for (int i = 0; i < m.pellets.size(); i++) {
-            Pellet p = m.pellets.get(i); 
-            p.display(); 
-            h.damaged(p);
-            if (h.getCurrentHP() <= 0) {
-              h.dead = true;
-              break; 
-            }
-            if(millis() - h.getHitTime() > 1500){
-              h.setInv(false);
-            }
-          }
-        }
-        m.countdown--; 
-        if (m.countdown <= 0) {
-          ENEMY_SCREEN = false;
-          m.currentSentence = " ";
-          m.countdown = 400;
-          attack = 0;  
-          m.pellets = new ArrayList<Pellet>(); 
-          enPress = false; 
-        }
+      if (SPEECH_SCREEN) {
+        if (m.currentSentence == " ") {
+          int randSen = (int)(Math.random() * 3); 
+          m.currentSentence = m.dialogue[randSen]; 
+         }
+        noStroke(); 
+        fill(255);
+        textSize(H/85);
+        texSiz = H/85;
+        rect(W/1.7297, H/4.737, W/5.818, H/6, 10, 10, 10, 10);  
+        triangle(W/1.768, H/3.396, W/1.7297, H/3.529, W/1.7297, H/3.273); 
+        fill(0);  
+        addText(m.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
       }
       
-      else if (attack == 2) {
-        if(!m.attack2(p0,p1,p2,p3,p4)){
-          p0.setX((float)(Math.random() * W/2.46 + W/3.36));
-          p0.setY(H/2.3);
-          p1.setX((float)(Math.random() * W/2.46 + W/3.36));
-          p1.setY(H/2.3);
-          p2.setX((float)(Math.random() * W/2.46 + W/3.36));
-          p2.setY(H/2.3);
-          p3.setX((float)(Math.random() * W/2.46 + W/3.36));
-          p3.setY(H/2.3);
-          p4.setX((float)(Math.random() * W/2.46 + W/3.36));
-          p4.setY(H/2.3);
-          count++;
+      else {
+        if (attack == 0) {
+          attack = (int)(Math.random() * 2) + 1;
         }
-        h.damaged(p0);
-        h.damaged(p1);
-        h.damaged(p2);
-        h.damaged(p3);
-        h.damaged(p4);
-        if(millis() - h.getHitTime() > 800){
-          h.setInv(false);
+        if (attack == 1) {
+          m.attack1();
+          if (m.countdown < 400) {
+            for (int i = 0; i < m.pellets.size(); i++) {
+              Pellet p = m.pellets.get(i); 
+              p.display(); 
+              h.damaged(p);
+              if (h.getCurrentHP() <= 0) {
+                h.dead = true;
+                break; 
+              }
+              if(millis() - h.getHitTime() > 1500){
+                h.setInv(false);
+              }
+            }
+          }
+          m.countdown--; 
+          if (m.countdown <= 0) {
+            ENEMY_SCREEN = false;
+            m.currentSentence = " ";
+            m.countdown = 400;
+            attack = 0;  
+            m.pellets = new ArrayList<Pellet>(); 
+            enPress = false; 
+          }
         }
-        if(count >= 5){
-          ENEMY_SCREEN = false;
-          m.currentSentence = " ";
-          attack = 0; 
-          count = 0;
-          enPress = false; 
-        } 
-      }
-      if (!ENEMY_SCREEN) {
-        rounds += 1; 
+        
+        else if (attack == 2) {
+          if(!m.attack2(p0,p1,p2,p3,p4)){
+            p0.setX((float)(Math.random() * W/2.46 + W/3.36));
+            p0.setY(H/2.3);
+            p1.setX((float)(Math.random() * W/2.46 + W/3.36));
+            p1.setY(H/2.3);
+            p2.setX((float)(Math.random() * W/2.46 + W/3.36));
+            p2.setY(H/2.3);
+            p3.setX((float)(Math.random() * W/2.46 + W/3.36));
+            p3.setY(H/2.3);
+            p4.setX((float)(Math.random() * W/2.46 + W/3.36));
+            p4.setY(H/2.3);
+            count++;
+          }
+          h.damaged(p0);
+          h.damaged(p1);
+          h.damaged(p2);
+          h.damaged(p3);
+          h.damaged(p4);
+          if(millis() - h.getHitTime() > 800){
+            h.setInv(false);
+          }
+          if(count >= 5){
+            ENEMY_SCREEN = false;
+            m.currentSentence = " ";
+            attack = 0; 
+            count = 0;
+            enPress = false; 
+          } 
+        }
+        if (!ENEMY_SCREEN) {
+          rounds += 1; 
+        }
       }
     }
     else{
@@ -251,16 +243,17 @@ void draw() {
       strokeWeight(20); 
       noFill(); 
       rect(W/16, H/2.4, W/1.14, H/2.57);
-      textSize(H/40); 
+      textSize(H/40);
+      texSiz = H/40; 
       fill(255);
       h.x = displayWidth / 2.13; 
       h.y = displayHeight / 1.714; 
       if (rounds < m.update.length) {
-        String temp = m.update[rounds]; 
-        text("* " + temp, W/12.8, H/2); 
+        String temp = m.update[rounds];
+        addText("* " + temp, W/53.333, H/2.4, W/16, W/1.063); 
       }
       else {
-        text("* " + m.update[m.update.length - 1], W/12.8, H/2); 
+        addText("* " + m.update[m.update.length - 1], W/53.333, H/2.4, W/16, W/1.063);  
       }  
     }
     
@@ -338,19 +331,22 @@ void keyPressed() {
         COMBAT = false;
       }
       else{
-        TEXT_SCREEN = false; 
+        TEXT_SCREEN = false;
+        SPEECH_SCREEN = true; 
         ENEMY_SCREEN = true; 
         m.countdown = 400; 
         loop();
       }
     }
     else {
-      if (!enPress && !ENEMY_SCREEN && !TEXT_SCREEN) {      
+      if (!enPress && !ENEMY_SCREEN && !TEXT_SCREEN) {
         if (cFirst == color(216, 110, 28)) {
+          loop(); 
           ITEM_SCREEN = true;
           FIGHT_SCREEN = false; 
         }
         else if (cFirst == color(229, 209, 19)) {
+          loop(); 
           FIGHT_SCREEN = true; 
           ITEM_SCREEN = false; 
         }
@@ -389,6 +385,34 @@ void keyReleased() {
   }
 }
 
+void addText(String t, float wInc, float upBounds, float leftBounds, float rightBounds) {
+  int W = displayWidth;
+  int H = displayHeight;
+  float w_ = leftBounds + W/32;
+  float h_ = upBounds + H/18;  
+  for (int i = 0; i < n; i++) { 
+    if (w_ >= rightBounds - texSiz*9 && i != 0 && t.charAt(i-1) == ' ') { 
+      w_ = leftBounds + W/32; 
+      h_ += texSiz*2.222; 
+    }
+    char temp = t.charAt(i); 
+    text(temp, w_, h_); 
+    w_ += wInc; 
+  }
+  stagger--; 
+  if (stagger <= 0) {
+    n++; 
+    m.countdown = 3; 
+  }
+  if (n > t.length()) {
+    n = 1; 
+    noLoop(); 
+    if (SPEECH_SCREEN) {
+      SPEECH_SCREEN = false; 
+      loop(); 
+    }
+  }
+}
 //void swordSymbol() {
 //  for (int i = 
 //}
