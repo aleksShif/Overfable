@@ -47,7 +47,7 @@ public class Monster{
     PImage bear;
     if(dead){
        bear = loadImage("FancyBear5.png");
-       bear.resize(bear.width*2, bear.height*2);
+       bear.resize(bear.width*W/700, bear.height*W/700);
        image(bear,W/2.35,H/8.5); 
     }
     else if(at2){
@@ -88,13 +88,13 @@ public class Monster{
       }else{
         bear = loadImage("FancyBear8.png"); 
       }
-      bear.resize(bear.width*2, bear.height*2);
+      bear.resize(bear.width*W/700, bear.height*W/700);
       image(bear,W/2.35,H/8.5); 
     }
     else if(hurt && !at2){
       bear = loadImage("FancyBear4.png");
       hurtTime++;
-      bear.resize(bear.width*2, bear.height*2);
+      bear.resize(bear.width*W/700, bear.height*W/700);
       if(hurtTime >= 60){
         hurt = false;
         hurtTime = 0;
@@ -128,7 +128,7 @@ public class Monster{
         displayCount = 0;
         bear = loadImage("FancyBear0.png");
       }
-      bear.resize(bear.width*2, bear.height*2);
+      bear.resize(bear.width*W/700, bear.height*W/700);
       image(bear,W/2.35,H/8.5); 
     }
     displayCount++;
