@@ -219,6 +219,7 @@ void draw() {
           attack = 0; 
           count = 0;
           enPress = false; 
+          m.at2 = false;
         } 
       }
     }
