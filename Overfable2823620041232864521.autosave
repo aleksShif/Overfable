@@ -16,7 +16,7 @@ float texSiz;
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
 boolean arrowPress = false; 
-boolean enPress = true;
+boolean enPress = false;
 boolean switchItem = false;
 boolean COMBAT = false; 
 boolean ITEM_SCREEN = false; 
@@ -24,7 +24,6 @@ boolean FIGHT_SCREEN = false;
 boolean TEXT_SCREEN = false; 
 boolean SPEECH_SCREEN = false; 
 boolean ENEMY_SCREEN = false; 
-String tex;
 color cFirst; 
 color cSec; 
 
@@ -142,12 +141,12 @@ void draw() {
       texSiz = H/40; 
       fill(255); 
       if (m.dead) {
-        tex = "You killed Teddy Grizzlevelt! Why would you do that??? Okay killer, you gained " + m.exp * rounds + " EXP and " + m.gold * rounds + " GOLD. Happy?"; 
-        addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
+        addText("You killed Teddy Grizzlevelt! Why would you do that??? Okay killer, you gained " + m.exp * rounds + " EXP and " + m.gold * rounds + " GOLD. Happy?"
+        , W/53.333, H/2.4, W/16, W/1.063); 
       }
       else{
-        tex = "You farted on Mr. Grizzlevelt! It was so foul that it dealt damage! Dealt " + p.getAT() + " AT and Teddy now has " + m.getHP() + " HP left."; 
-        addText(tex, W/53.333, H/2.4, W/16, W/1.063);
+        addText("You farted on Mr. Grizzlevelt! It was so foul that it dealt damage! Dealt " + p.getAT() + " AT and Teddy now has " + m.getHP() + " HP left."
+        , W/53.333, H/2.4, W/16, W/1.063);
       }
     }
     else if (ENEMY_SCREEN) {
@@ -173,7 +172,7 @@ void draw() {
         addText(m.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
       }
       
-      else if (!SPEECH_SCREEN) {
+      else {
         if (attack == 0) {
           attack = (int)(Math.random() * 2) + 1;
         }
@@ -232,7 +231,7 @@ void draw() {
             attack = 0; 
             count = 0;
             enPress = false; 
-            m.at2 = false;
+            m.at2 = false; 
           } 
         }
         if (!ENEMY_SCREEN) {
@@ -252,12 +251,10 @@ void draw() {
       h.y = displayHeight / 1.714; 
       if (rounds < m.update.length) {
         String temp = m.update[rounds];
-        tex = "* " + temp; 
-        addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
+        addText("* " + temp, W/53.333, H/2.4, W/16, W/1.063); 
       }
       else {
-        tex = "* " + m.update[m.update.length - 1]; 
-        addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
+        addText("* " + m.update[m.update.length - 1], W/53.333, H/2.4, W/16, W/1.063);  
       }  
     }
     
@@ -331,11 +328,7 @@ void keyPressed() {
       }
     }
     else if (TEXT_SCREEN) {
-      if (n > 1) {
-        n = tex.length();
-        loop(); 
-      }
-      else if (m.dead) {
+      if (m.dead) {
         COMBAT = false;
       }
       else{
@@ -346,19 +339,8 @@ void keyPressed() {
         loop();
       }
     }
-    else if (SPEECH_SCREEN) {
-      if (n > 1) {
-        n = m.currentSentence.length(); 
-        m.countdown = 400;  
-      }
-    }
     else {
-      if (n > 1) {
-          n = tex.length();  
-          loop(); 
-          enPress = false; 
-       }
-      else if (!enPress && !ENEMY_SCREEN && !TEXT_SCREEN) {
+      if (!enPress && !ENEMY_SCREEN && !TEXT_SCREEN) {
         if (cFirst == color(216, 110, 28)) {
           loop(); 
           ITEM_SCREEN = true;
@@ -421,7 +403,7 @@ void addText(String t, float wInc, float upBounds, float leftBounds, float right
   stagger--; 
   if (stagger <= 0) {
     n++; 
-    stagger = 3; 
+    m.countdown = 3; 
   }
   if (n > t.length()) {
     n = 1; 
