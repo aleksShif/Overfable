@@ -5,6 +5,8 @@ public class Monster{
   int exp;
   int countdown; 
   String name;
+  boolean hurt = false;
+  int hurtTime = 0;
   boolean dead = false; 
   String[] actionOrder;
   String[] dialogue = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
@@ -32,6 +34,7 @@ public class Monster{
   }
   void damaged(int a){
     HP -= a;
+    hurt = true;
   }
   int getHP(){
     return HP;
@@ -40,24 +43,40 @@ public class Monster{
     int W = displayWidth; 
     int H = displayHeight;
     PImage bear;
-    if (displayCount <= 10){
-      bear = loadImage("FancyBear0.png");
-      displayCount++;
-    }
-    else if(displayCount <= 20){
-      bear = loadImage("FancyBear1.png");
-      displayCount++;
-    }
-    else if(displayCount <= 29){
-      bear = loadImage("FancyBear2.png");
-      displayCount++;
+    if(hurt){
+      bear = loadImage("FancyBear3.png");
+      hurtTime++;
+     bear.resize(bear.width*2, bear.height*2);
+      if(hurtTime >= 30){
+        hurt = false;
+        hurtTime = 0;
+      }
+      else if(hurtTime <= 10){
+        image(bear,W/2.3,H/8.5); 
+      }else if(hurtTime <= 20){
+        image(bear,W/2.35,H/8.5); 
+      }else{
+        image(bear,W/2.4,H/8.5);
+      }
     }
     else{
-      displayCount = 0;
-      bear = loadImage("FancyBear0.png");
+      if (displayCount <= 10){
+        bear = loadImage("FancyBear0.png");
+      }
+      else if(displayCount <= 20 || (displayCount > 30 && displayCount <= 40)){
+        bear = loadImage("FancyBear1.png");
+      }
+      else if(displayCount <= 30){
+        bear = loadImage("FancyBear2.png");
+      }
+      else{
+        displayCount = 0;
+        bear = loadImage("FancyBear0.png");
+      }
+      bear.resize(bear.width*2, bear.height*2);
+      image(bear,W/2.35,H/8.5); 
     }
-    bear.resize(bear.width*2, bear.height*2);
-    image(bear,W/2.35,H/8.5); 
+    displayCount++;
   }
 
   void attack1(){
