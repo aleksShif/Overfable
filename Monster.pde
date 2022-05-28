@@ -5,12 +5,16 @@ public class Monster{
   int exp;
   int countdown; 
   String name;
+  boolean at2 = false;
+  boolean hurt = false;
+  int hurtTime = 0;
   boolean dead = false; 
   String[] actionOrder;
   String[] dialogue = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
   String[] update = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"};  
   String currentSentence = " "; 
   ArrayList<Pellet> pellets; 
+  int displayCount = 0;
   
   public Monster(){
     name = "Dummy";
@@ -32,15 +36,102 @@ public class Monster{
   }
   void damaged(int a){
     HP -= a;
+    hurt = true;
   }
   int getHP(){
     return HP;
   }
   void display(){
-    fill(255);
     int W = displayWidth; 
-    int H = displayHeight; 
-    rect(W/2 - W/20, H/5, W/10, W/10);
+    int H = displayHeight;
+    PImage bear;
+    if(dead){
+       bear = loadImage("FancyBear5.png");
+       bear.resize(bear.width*2, bear.height*2);
+       image(bear,W/2.35,H/8.5); 
+    }
+    else if(at2){
+      hurtTime++;
+      if(hurtTime <= 15){
+        bear = loadImage("FancyBear4.png"); 
+      }else if(hurtTime <= 30){
+        bear = loadImage("FancyBear6.png"); 
+      }else if(hurtTime <= 45){
+        bear = loadImage("FancyBear7.png");
+      }
+      else if(hurtTime <= 60){
+        bear = loadImage("FancyBear8.png"); 
+      }else if(hurtTime <= 75){
+        bear = loadImage("FancyBear4.png");
+      }else if(hurtTime <= 90){
+        bear = loadImage("FancyBear6.png");
+      }else if(hurtTime <= 105){
+        bear = loadImage("FancyBear7.png");
+      }else if(hurtTime <= 120){
+        bear = loadImage("FancyBear8.png");
+      }
+      else if(hurtTime <= 135){
+        bear = loadImage("FancyBear4.png"); 
+      }else if(hurtTime <= 150){
+        bear = loadImage("FancyBear6.png"); 
+      }else if(hurtTime <= 165){
+        bear = loadImage("FancyBear7.png");
+      }
+      else if(hurtTime <= 180){
+        bear = loadImage("FancyBear8.png"); 
+      }else if(hurtTime <= 195){
+        bear = loadImage("FancyBear4.png");
+      }else if(hurtTime <= 210){
+        bear = loadImage("FancyBear6.png");
+      }else if(hurtTime <= 235){
+        bear = loadImage("FancyBear7.png");
+      }else{
+        bear = loadImage("FancyBear8.png"); 
+      }
+      bear.resize(bear.width*2, bear.height*2);
+      image(bear,W/2.35,H/8.5); 
+    }
+    else if(hurt && !at2){
+      bear = loadImage("FancyBear4.png");
+      hurtTime++;
+      bear.resize(bear.width*2, bear.height*2);
+      if(hurtTime >= 60){
+        hurt = false;
+        hurtTime = 0;
+      }
+      else if(hurtTime <= 10){
+        image(bear,W/2.3,H/8.5); 
+      }else if(hurtTime <= 20){
+        image(bear,W/2.35,H/8.5); 
+      }else if(hurtTime <= 30){
+        image(bear,W/2.4,H/8.5);
+      }
+      else if(hurtTime <= 40){
+        image(bear,W/2.35,H/8.5); 
+      }else if(hurtTime <= 50){
+        image(bear,W/2.3,H/8.5); 
+      }else if(hurtTime <= 60){
+        image(bear,W/2.35,H/8.5);
+      }
+    }
+    else{
+      if (displayCount <= 10){
+        bear = loadImage("FancyBear0.png");
+      }
+      else if(displayCount <= 20 || (displayCount > 30 && displayCount <= 40)){
+        bear = loadImage("FancyBear1.png");
+      }
+      else if(displayCount <= 30){
+        bear = loadImage("FancyBear2.png");
+      }
+      else{
+        displayCount = 0;
+        bear = loadImage("FancyBear0.png");
+      }
+      bear.resize(bear.width*2, bear.height*2);
+      image(bear,W/2.35,H/8.5); 
+    }
+    displayCount++;
   }
 
   void attack1(){
@@ -99,6 +190,7 @@ public class Monster{
     }
   
   boolean attack2(Pellet p0, Pellet p1, Pellet p2, Pellet p3, Pellet p4){
+    at2 = true;
     int W = displayWidth; 
     int H = displayHeight;    
     if(p0.inside() || p1.inside() || p2.inside() || p3.inside() || p4.inside()){
@@ -143,6 +235,8 @@ public class Monster{
         p4.display();
       }
       return true;
-    }else{return false;}
+    }else{
+      return false;
+    }
   }
 }

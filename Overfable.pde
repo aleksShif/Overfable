@@ -236,6 +236,17 @@ void draw() {
         if (!ENEMY_SCREEN) {
           rounds += 1; 
         }
+<<<<<<< HEAD
+=======
+        if(count >= 5){
+          ENEMY_SCREEN = false;
+          m.currentSentence = " "; 
+          attack = 0; 
+          count = 0;
+          enPress = false; 
+          m.at2 = false;
+        } 
+>>>>>>> 99b704ca89049115f526a81d2991987ac7ab3511
       }
     }
     else{
