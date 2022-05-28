@@ -43,11 +43,16 @@ public class Monster{
     int W = displayWidth; 
     int H = displayHeight;
     PImage bear;
-    if(hurt){
-      bear = loadImage("FancyBear3.png");
+    if(dead){
+       bear = loadImage("FancyBear5.png");
+       bear.resize(bear.width*2, bear.height*2);
+       image(bear,W/2.35,H/8.5); 
+    }
+    else if(hurt){
+      bear = loadImage("FancyBear4.png");
       hurtTime++;
-     bear.resize(bear.width*2, bear.height*2);
-      if(hurtTime >= 30){
+      bear.resize(bear.width*2, bear.height*2);
+      if(hurtTime >= 60){
         hurt = false;
         hurtTime = 0;
       }
@@ -55,8 +60,15 @@ public class Monster{
         image(bear,W/2.3,H/8.5); 
       }else if(hurtTime <= 20){
         image(bear,W/2.35,H/8.5); 
-      }else{
+      }else if(hurtTime <= 30){
         image(bear,W/2.4,H/8.5);
+      }
+      else if(hurtTime <= 40){
+        image(bear,W/2.35,H/8.5); 
+      }else if(hurtTime <= 50){
+        image(bear,W/2.3,H/8.5); 
+      }else if(hurtTime <= 60){
+        image(bear,W/2.35,H/8.5);
       }
     }
     else{
