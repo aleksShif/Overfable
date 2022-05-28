@@ -10,6 +10,7 @@ public class Monster{
   String[] dialogue = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
   String currentSentence = " "; 
   ArrayList<Pellet> pellets; 
+  int displayCount = 0;
   
   public Monster(){
     name = "Dummy";
@@ -36,10 +37,27 @@ public class Monster{
     return HP;
   }
   void display(){
-    fill(255);
     int W = displayWidth; 
-    int H = displayHeight; 
-    rect(W/2 - W/20, H/5, W/10, W/10);
+    int H = displayHeight;
+    PImage bear;
+    if (displayCount <= 10){
+      bear = loadImage("FancyBear0.png");
+      displayCount++;
+    }
+    else if(displayCount <= 20){
+      bear = loadImage("FancyBear1.png");
+      displayCount++;
+    }
+    else if(displayCount <= 29){
+      bear = loadImage("FancyBear2.png");
+      displayCount++;
+    }
+    else{
+      displayCount = 0;
+      bear = loadImage("FancyBear0.png");
+    }
+    bear.resize(bear.width*2, bear.height*2);
+    image(bear,W/2.35,H/8.5); 
   }
 
   void attack1(){
