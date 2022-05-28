@@ -9,6 +9,7 @@ Pellet p4;
 //move to class 
 int count = 0;
 int attack = 0; 
+int rounds = 0; 
 int n = 1; 
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
@@ -25,7 +26,7 @@ color cSec;
 
 void setup() {
   COMBAT = true; 
-  h = new Heart(displayWidth / 2.13, displayHeight / 1.8);
+  h = new Heart(displayWidth / 2.13, displayHeight / 1.714);
   item = new Heart(displayWidth / 3.902, displayHeight / 1.111);
   p = new Player(true);
   m = new Monster();
@@ -77,13 +78,30 @@ void draw() {
     fill(cSec);
     text("ITEM", W/1.46, H/1.05); 
     set(2125, 1710, #D86E1C);
-    if (arrowPress && !ITEM_SCREEN) {
+    if (arrowPress && !ITEM_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
       item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6);
     }
-    else if (!arrowPress && !ITEM_SCREEN && !FIGHT_SCREEN) {
+    else if (!arrowPress && !ITEM_SCREEN && !FIGHT_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
       item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6);
     }
-    if (ITEM_SCREEN) { 
+    if (h.dead) {
+      background(0); 
+      
+      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6); 
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+       }
+      
+      if (!h.inv) {
+        h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6); 
+      }
+       
+       textSize(H/20); 
+       text("GAME OVER", W/2.667, H/9); 
+       
+      
+    }
+    else if (ITEM_SCREEN) { 
       stroke(255); 
       strokeWeight(20); 
       noFill(); 
@@ -115,11 +133,11 @@ void draw() {
       textSize(H/40); 
       fill(255); 
       if (m.dead) {
-        text("  You killed the dummy! Why would you do that???", W/12.8, H/2); 
-        text("  Okay killer, you gained " + m.exp + " EXP and " + m.gold + " GOLD. Happy?", W/12.8, H/1.636);
+        text("  You killed Teddy Grizzlevelt! Why would you do that???", W/12.8, H/2); 
+        text("  Okay killer, you gained " + m.exp * rounds + " EXP and " + m.gold * rounds + " GOLD. Happy?", W/12.8, H/1.636);
       }
       else{
-        text("  You farted on the dummy! It was so foul that it dealt damage!", W/12.8, H/2);
+        text("  You farted on Mr. Grizzlevelt! It was so foul that it dealt damage!", W/12.8, H/2);
         
         text(" (for testing purposes: dealt " + p.getAT() + " AT and dummy now has " + m.getHP() + " HP left.", W/12.8, H/1.636); 
         
@@ -148,7 +166,7 @@ void draw() {
         m.countdown--; 
         if (m.countdown <= 0) {
           n++; 
-          m.countdown = 5; 
+          m.countdown = 3; 
         }
         if (n > m.currentSentence.length()) {
           n = 1; 
@@ -174,19 +192,21 @@ void draw() {
             Pellet p = m.pellets.get(i); 
             p.display(); 
             h.damaged(p);
+            if (h.getCurrentHP() <= 0) {
+              h.dead = true;
+              break; 
+            }
             if(millis() - h.getHitTime() > 1500){
               h.setInv(false);
             }
           }
         }
         m.countdown--; 
-        if (m.countdown == 0) {
+        if (m.countdown <= 0) {
           ENEMY_SCREEN = false;
           m.currentSentence = " ";
-          m.countdown = 400; 
-          attack = 0;
-          h.x = displayWidth / 2.13; 
-          h.y = displayHeight / 1.8;  
+          m.countdown = 400;
+          attack = 0;  
           m.pellets = new ArrayList<Pellet>(); 
           enPress = false; 
         }
@@ -216,11 +236,14 @@ void draw() {
         }
         if(count >= 5){
           ENEMY_SCREEN = false;
-          m.currentSentence = " "; 
+          m.currentSentence = " ";
           attack = 0; 
           count = 0;
           enPress = false; 
         } 
+      }
+      if (!ENEMY_SCREEN) {
+        rounds += 1; 
       }
     }
     else{
@@ -229,9 +252,16 @@ void draw() {
       noFill(); 
       rect(W/16, H/2.4, W/1.14, H/2.57);
       textSize(H/40); 
-      fill(255); 
-      text("* Dummy skedaddled into your personal space!", W/12.8, H/2); 
-      //rect(W/3.36, H/2.4, W/2.46, H/2.57);   
+      fill(255);
+      h.x = displayWidth / 2.13; 
+      h.y = displayHeight / 1.714; 
+      if (rounds < m.update.length) {
+        String temp = m.update[rounds]; 
+        text("* " + temp, W/12.8, H/2); 
+      }
+      else {
+        text("* " + m.update[m.update.length - 1], W/12.8, H/2); 
+      }  
     }
     
     h.xSpeed = W/160; 
@@ -260,19 +290,19 @@ void draw() {
 
 void keyPressed() {
   keyHeld = true; 
-  if (keyCode == 87) {
+  if (keyCode == 87 && !h.dead) {
     //keyHeld = true; 
     Up = true; 
   }
-  if (keyCode == 65) {
+  if (keyCode == 65 && !h.dead) {
     //keyHeld = true; 
     Right = true; 
   }
-  if (keyCode == 83) {
+  if (keyCode == 83 && !h.dead) {
     //keyHeld = true; 
     Down = true; 
   }
-  if (keyCode == 68) {
+  if (keyCode == 68 && !h.dead) {
     //keyHeld = true; 
     Left = true;  
   }
@@ -297,7 +327,7 @@ void keyPressed() {
       TEXT_SCREEN = true; 
       FIGHT_SCREEN = false; 
       m.damaged(p.getAT());
-      m.countdown = 5; 
+      m.countdown = 3; 
       if (m.getHP() <= 0) {
         m.HP = 0; 
         m.dead = true; 

@@ -8,6 +8,7 @@ public class Monster{
   boolean dead = false; 
   String[] actionOrder;
   String[] dialogue = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
+  String[] update = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"};  
   String currentSentence = " "; 
   ArrayList<Pellet> pellets; 
   
@@ -49,14 +50,14 @@ public class Monster{
       for (int i = 0; i < 2; i++) {
         float X = (float)(Math.random() * W/2.56 + W/3.282); 
         float Y = (float)(Math.random() * H/30 + H/2.308);
-        Pellet Np = new Pellet(true, 1, X, Y); 
+        Pellet Np = new Pellet(true, 3, X, Y); 
         Np.setSide("North"); 
         Np.immobileTime = 5; 
         pellets.add(Np);
         
         X = (float)(Math.random() * W/2.56 + W/3.282); 
         Y = (float)(Math.random() * H/30 + H/1.364); 
-        Pellet Sp = new Pellet(true, 1, X, Y); 
+        Pellet Sp = new Pellet(true, 3, X, Y); 
         pellets.add(Sp); 
         Sp.setSide("South");
         Sp.immobileTime = 5; 
