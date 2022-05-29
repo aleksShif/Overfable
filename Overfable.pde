@@ -1,4 +1,4 @@
-PImage forest; 
+PImage entrance, forest, forestScroll, prim, secon;
 Heart h, item;
 Monster m;
 Player p;
@@ -13,6 +13,8 @@ int attack = 0;
 int rounds = 0; 
 int n = 1; 
 int stagger = 5;
+int LimgShift = -45; 
+int RimgShift = 45; 
 float texSiz; 
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
@@ -28,11 +30,18 @@ boolean ENEMY_SCREEN = false;
 String tex;
 color cFirst; 
 color cSec; 
+Controller keyboardInput;
 
 void setup() {
   COMBAT = false; 
-  forest = loadImage("pixil-frame-1.png");
-  forest.resize(3200, 1800);
+  entrance = loadImage("pixil-frame-1.png");
+  entrance.resize(displayWidth, displayHeight);
+  forest = loadImage("pixil-frame-0 (3).png"); 
+  forest.resize(displayWidth, displayHeight); 
+  prim = forest;
+  forestScroll = loadImage("pixil-frame-0 (3).png"); 
+  forestScroll.resize(displayWidth, displayHeight); 
+  secon = forestScroll; 
   h = new Heart(displayWidth / 2.13, displayHeight / 1.714);
   item = new Heart(displayWidth / 3.902, displayHeight / 1.111);
   p = new Player(true);
@@ -282,11 +291,56 @@ void draw() {
     h.move(); 
   }
   else {
-    image(forest, 0, 0); 
-    p.display(); 
+    //image(forest, -50, 0);
+    //image(forestScroll, 200, 0);
+    if (p.x < W/2) {
+      image(forest, 0, 0); 
+      p.display(); 
+      p.move(); 
+    }
+    else if (p.x >= W/2 && p.walking) {
+      p.display(); 
+      if (Left) {
+        if (LimgShift <= -3100) {
+          LimgShift = 0;
+          PImage tempA = prim; 
+          PImage tempB = secon; 
+          prim = tempB; 
+          secon = tempA; 
+        }
+        image(prim, LimgShift, 0); 
+        image(secon, 3200+LimgShift-50, 0);  
+        if ((Up || Down) && !Right && !Left) {
+          p.display(); 
+          p.move(); 
+        }
+        else {
+          LimgShift -= 45; 
+        }
+       }
+       else if (Right) { 
+         if (RimgShift >= 3100) {
+          RimgShift = 0;
+          PImage tempA = prim; 
+          PImage tempB = secon; 
+          prim = tempB; 
+          secon = tempA; 
+        }
+        image(prim, RimgShift, 0); 
+        image(secon, RimgShift-3200+50, 0); 
+        if ((Up || Down) && !Right && !Left) {
+          p.display(); 
+          p.move(); 
+        }
+        else {
+          RimgShift += 45;
+        } 
+       }
+       p.display(); 
+    }
+  //h.move();
   }
-  h.move();
-  }
+ }
 
 
 void keyPressed() {
@@ -436,6 +490,9 @@ void addText(String t, float wInc, float upBounds, float leftBounds, float right
     }
   }
 }
+
+
+
 //void swordSymbol() {
 //  for (int i = 
 //}
