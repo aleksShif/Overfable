@@ -12,9 +12,9 @@ public class Player{
   }
   
   void display() {
-    PImage protagonist = loadImage("Protag.png"); 
-    protagonist.resize(200, 200); 
-    image(protagonist, 300, 900); 
+    PImage protagonist = loadImage("Tommy.png"); 
+    protagonist.resize(protagonist.width * displayWidth/2850, protagonist.height * displayWidth/2850); 
+    image(protagonist, displayWidth/3.5, displayHeight/1.5); 
   }
   
   int getHP(){
