@@ -302,7 +302,7 @@ void draw() {
       p.display(); 
       if (Left) {
         if (LimgShift <= -3100) {
-          LimgShift = -45;
+          LimgShift = 0;
           PImage tempA = prim; 
           PImage tempB = secon; 
           prim = tempB; 
@@ -310,11 +310,17 @@ void draw() {
         }
         image(prim, LimgShift, 0); 
         image(secon, 3200+LimgShift-50, 0);  
-        LimgShift -= 45; 
+        if ((Up || Down) && !Right && !Left) {
+          p.display(); 
+          p.move(); 
+        }
+        else {
+          LimgShift -= 45; 
+        }
        }
-       else if (Right) {
+       else if (Right) { 
          if (RimgShift >= 3100) {
-          RimgShift = 45;
+          RimgShift = 0;
           PImage tempA = prim; 
           PImage tempB = secon; 
           prim = tempB; 
@@ -322,10 +328,16 @@ void draw() {
         }
         image(prim, RimgShift, 0); 
         image(secon, RimgShift-3200+50, 0); 
-        RimgShift += 45; 
+        if ((Up || Down) && !Right && !Left) {
+          p.display(); 
+          p.move(); 
+        }
+        else {
+          RimgShift += 45;
+        } 
        }
        p.display(); 
-    } 
+    }
   //h.move();
   }
  }
