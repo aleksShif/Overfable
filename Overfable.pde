@@ -28,6 +28,7 @@ boolean ENEMY_SCREEN = false;
 String tex;
 color cFirst; 
 color cSec; 
+Controller keyboardInput;
 
 void setup() {
   COMBAT = false; 
@@ -283,7 +284,8 @@ void draw() {
   }
   else {
     image(forest, 0, 0); 
-    p.display(); 
+    p.display();
+    p.move();
   }
   h.move();
   }
@@ -436,6 +438,9 @@ void addText(String t, float wInc, float upBounds, float leftBounds, float right
     }
   }
 }
+
+
+
 //void swordSymbol() {
 //  for (int i = 
 //}
