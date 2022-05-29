@@ -13,8 +13,8 @@ int attack = 0;
 int rounds = 0; 
 int n = 1; 
 int stagger = 5;
-int LimgShift = -45; 
-int RimgShift = 45; 
+int LimgShift = (int)(-1 * (displayWidth/71.111)); 
+int RimgShift = (int)(displayWidth/71.111); 
 float texSiz; 
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
@@ -301,7 +301,7 @@ void draw() {
     else if (p.x >= W/2 && p.walking) {
       p.display(); 
       if (Left) {
-        if (LimgShift <= -3100) {
+        if (LimgShift <= (-1)*(W - (W/32))) {
           LimgShift = 0;
           PImage tempA = prim; 
           PImage tempB = secon; 
@@ -309,17 +309,17 @@ void draw() {
           secon = tempA; 
         }
         image(prim, LimgShift, 0); 
-        image(secon, 3200+LimgShift-50, 0);  
+        image(secon, W+LimgShift-(W/64), 0);  
         if ((Up || Down) && !Right && !Left) {
           p.display(); 
           p.move(); 
         }
         else {
-          LimgShift -= 45; 
+          LimgShift -= W/71.111; 
         }
        }
        else if (Right) { 
-         if (RimgShift >= 3100) {
+         if (RimgShift >= (W - (W/32))) {
           RimgShift = 0;
           PImage tempA = prim; 
           PImage tempB = secon; 
@@ -327,13 +327,13 @@ void draw() {
           secon = tempA; 
         }
         image(prim, RimgShift, 0); 
-        image(secon, RimgShift-3200+50, 0); 
+        image(secon, RimgShift-W+(W/64), 0); 
         if ((Up || Down) && !Right && !Left) {
           p.display(); 
           p.move(); 
         }
         else {
-          RimgShift += 45;
+          RimgShift += W/71.111;
         } 
        }
        p.display(); 
