@@ -13,8 +13,8 @@ public class Player{
   
   void display() {
     PImage protagonist = loadImage("Protag.png"); 
-    protagonist.resize(200, 200); 
-    image(protagonist, 300, 900); 
+    protagonist.resize(protagonist.width * displayWidth/500, protagonist.height * displayWidth/500); 
+    image(protagonist, displayWidth/3.5, displayHeight/1.5); 
   }
   
   int getHP(){
