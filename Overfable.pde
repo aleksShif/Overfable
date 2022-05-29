@@ -32,7 +32,7 @@ color cSec;
 void setup() {
   COMBAT = false; 
   forest = loadImage("pixil-frame-1.png");
-  forest.resize(3200, 1800); 
+  forest.resize(3200, 1800);
   h = new Heart(displayWidth / 2.13, displayHeight / 1.714);
   item = new Heart(displayWidth / 3.902, displayHeight / 1.111);
   p = new Player(true);
@@ -283,6 +283,7 @@ void draw() {
   }
   else {
     image(forest, 0, 0); 
+    p.display(); 
   }
   h.move();
   }
