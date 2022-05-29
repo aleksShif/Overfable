@@ -14,6 +14,7 @@ public class Player{
   String walkFrame = "TommyWalkDown1.png";
   int walkStagger = 80;
   int walkStart = 0;
+  boolean walking = true;
   
   Player(boolean mode){
     MODE = mode;
@@ -60,6 +61,20 @@ public class Player{
         }
       }
     }
+    //else if(!walking){
+    //  if(walkFrame == "TommyWalkUp2.png" || walkFrame == "TommyWalkUp3.png"){
+    //    walkFrame = "TommyWalkUp1.png";
+    //  }
+    //  if(walkFrame == "TommyWalkDown2.png" || walkFrame == "TommyWalkDown3.png"){
+    //    walkFrame = "TommyWalkDown1.png";
+    //  }
+    //  if(walkFrame == "TommyWalkRight2.png"){
+    //    walkFrame = "TommyWalkRight1.png";
+    //  }
+    //  if(walkFrame == "TommyWalkLeft2.png"){
+    //    walkFrame = "TommyWalkLeft1.png";
+    //  }
+    //}
     protagonist = loadImage(walkFrame);
     walkingCount++;
     protagonist.resize(protagonist.width * displayWidth/2800, protagonist.height * displayWidth/2800); 
@@ -67,10 +82,23 @@ public class Player{
   }
   
   void move() {
-    if (Up) {y -= ySpeed;}
-    if (Down) {y += ySpeed;}
-    if (Right) {x -= xSpeed;}
-    if (Left) {x += xSpeed;}
+    if (Up) {
+      y -= ySpeed;
+      walking = true;
+    }
+    if (Down) {
+      y += ySpeed;
+      walking = true;
+    }
+    if (Right) {
+      x -= xSpeed;
+      walking = true;
+    }
+    if (Left) {
+      x += xSpeed;
+      walking = true;  
+    }
+    else{walking = false;}
   }
   
   int getHP(){
