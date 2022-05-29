@@ -11,6 +11,12 @@ public class Player{
     MODE = mode;
   }
   
+  void display() {
+    PImage protagonist = loadImage("Protag.png"); 
+    protagonist.resize(200, 200); 
+    image(protagonist, 300, 900); 
+  }
+  
   int getHP(){
     return HP;
   }
