@@ -1,4 +1,4 @@
-PImage entrance, forest, forestScroll; 
+PImage entrance, forest, forestScroll, prim, secon;
 Heart h, item;
 Monster m;
 Player p;
@@ -13,6 +13,8 @@ int attack = 0;
 int rounds = 0; 
 int n = 1; 
 int stagger = 5;
+int LimgShift = -45; 
+int RimgShift = 45; 
 float texSiz; 
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
@@ -36,8 +38,10 @@ void setup() {
   entrance.resize(displayWidth, displayHeight);
   forest = loadImage("pixil-frame-0 (3).png"); 
   forest.resize(displayWidth, displayHeight); 
+  prim = forest;
   forestScroll = loadImage("pixil-frame-0 (3).png"); 
   forestScroll.resize(displayWidth, displayHeight); 
+  secon = forestScroll; 
   h = new Heart(displayWidth / 2.13, displayHeight / 1.714);
   item = new Heart(displayWidth / 3.902, displayHeight / 1.111);
   p = new Player(true);
@@ -289,12 +293,42 @@ void draw() {
   else {
     //image(forest, -50, 0);
     //image(forestScroll, 200, 0);
-    image(forest, 0, 0); 
-    p.display();
-    p.move();
+    if (p.x < W/2) {
+      image(forest, 0, 0); 
+      p.display(); 
+      p.move(); 
+    }
+    else if (p.x >= W/2 && p.walking) {
+      p.display(); 
+      if (Left) {
+        if (LimgShift <= -3100) {
+          LimgShift = -45;
+          PImage tempA = prim; 
+          PImage tempB = secon; 
+          prim = tempB; 
+          secon = tempA; 
+        }
+        image(prim, LimgShift, 0); 
+        image(secon, 3200+LimgShift-50, 0);  
+        LimgShift -= 45; 
+       }
+       else if (Right) {
+         if (RimgShift >= 3100) {
+          RimgShift = 45;
+          PImage tempA = prim; 
+          PImage tempB = secon; 
+          prim = tempB; 
+          secon = tempA; 
+        }
+        image(prim, RimgShift, 0); 
+        image(secon, RimgShift-3200+50, 0); 
+        RimgShift += 45; 
+       }
+       p.display(); 
+    } 
+  //h.move();
   }
-  h.move();
-  }
+ }
 
 
 void keyPressed() {
