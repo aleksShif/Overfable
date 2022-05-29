@@ -6,6 +6,10 @@ public class Player{
   int LV = 0;
   int EXP = 0;
   boolean MODE;
+  float x = displayWidth/3.5;
+  float y = displayHeight/1.5;
+  int xSpeed = displayWidth / 160;
+  int ySpeed = displayHeight / 90; 
   
   Player(boolean mode){
     MODE = mode;
@@ -14,7 +18,14 @@ public class Player{
   void display() {
     PImage protagonist = loadImage("Tommy.png"); 
     protagonist.resize(protagonist.width * displayWidth/2850, protagonist.height * displayWidth/2850); 
-    image(protagonist, displayWidth/3.5, displayHeight/1.5); 
+    image(protagonist, x, y); 
+  }
+  
+  void move() {
+    if (Up) {y -= ySpeed;}
+    if (Down) {y += ySpeed;}
+    if (Right) {x -= xSpeed;}
+    if (Left) {x += xSpeed;}
   }
   
   int getHP(){
