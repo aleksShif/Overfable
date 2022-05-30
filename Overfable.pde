@@ -38,7 +38,7 @@ color cSec;
 Controller keyboardInput;
 
 void setup() {
-  COMBAT = true; 
+  COMBAT = false; 
   entrance = loadImage("pixil-frame-1.png");
   entrance.resize(displayWidth, displayHeight);
   forest = loadImage("pixil-frame-0 (3).png"); 
@@ -305,60 +305,68 @@ void draw() {
       p.display(); 
       p.move(); 
     }
-    else if ((Up || Down) && scroll && p.x >= W/2) {
-      if (justLeft) {
+    if ((p.x >= W/2 && p.walking) || (scroll)) {
+      scroll = true; 
+      if ((Up || Down) && !Right && !Left) {
+        if (justLeft) {
         image(prim, LimgShift, 0); 
         image(secon, W+LimgShift-(W/64), 0); 
       }
-      else if (justRight) {        
+      if (justRight) {        
         image(prim, RimgShift, 0); 
         image(secon, RimgShift-W+(W/64), 0);
       }
-      p.display(); 
-      p.move();  
-    }
-    else if ((p.x >= W/2 && p.walking) || (scroll && p.walking)) {
-      scroll = true; 
-      p.display(); 
-      if (Left && !Right) {
-        justRight = false;
-        if (Up || Down) {
-          p.move(); 
-          LimgShift -= W/49.231; 
-        }
+        p.display();
+        p.move();
+      }
+      else {
         p.display(); 
-        if (LimgShift <= (-1)*(W - (W/32))) {
-          LimgShift = 0;
-          PImage tempA = prim; 
-          PImage tempB = secon; 
-          prim = tempB; 
-          secon = tempA; 
+        if (Left && !Right) {
+          justRight = false;
+          if (Up || Down) {
+            p.move(); 
+            LimgShift -= W/49.231; 
           }
-        image(prim, LimgShift, 0); 
-        image(secon, W+LimgShift-(W/64), 0);
-        LimgShift -= W/71.111; 
-        justLeft = true; 
-       }
-       else if (Right && !Left) { 
-         justLeft = false; 
-         if (Up || Down) {          
-           p.move(); 
-           RimgShift += W/49.231;
+          else {
+            p.display(); 
           }
-         p.display();
-         if (RimgShift >= (W - (W/32))) {
-           RimgShift = 0;
-           PImage tempA = prim; 
-           PImage tempB = secon; 
-           prim = tempB; 
-           secon = tempA; 
-          }
-         image(prim, RimgShift, 0); 
-         image(secon, RimgShift-W+(W/64), 0);
-         RimgShift += W/71.111;
-         justRight = true; 
-       }
-       p.display(); 
+          if (LimgShift <= (-1)*(W - (W/32))) {
+            LimgShift = 0;
+            PImage tempA = prim; 
+            PImage tempB = secon; 
+            prim = tempB; 
+            secon = tempA; 
+            }
+          image(prim, LimgShift, 0); 
+          image(secon, W+LimgShift-(W/64), 0);
+          p.display(); 
+          LimgShift -= W/71.111; 
+          justLeft = true; 
+         }
+         else if (Right && !Left) { 
+           justLeft = false; 
+           if (Up || Down) {          
+             p.move(); 
+             RimgShift += W/49.231;
+            }
+           else {
+             p.display();
+           }
+           if (RimgShift >= (W - (W/32))) {
+             RimgShift = 0;
+             PImage tempA = prim; 
+             PImage tempB = secon; 
+             prim = tempB; 
+             secon = tempA; 
+            }
+           image(prim, RimgShift, 0); 
+           image(secon, RimgShift-W+(W/64), 0);
+           p.display(); 
+           RimgShift += W/71.111;
+           justRight = true; 
+         }
+         p.display(); 
+        }
       }
     }
   //h.move();
