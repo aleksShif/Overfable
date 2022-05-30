@@ -16,6 +16,9 @@ int stagger = 5;
 int LimgShift = (int)(-1 * (displayWidth/71.111)); 
 int RimgShift = (int)(displayWidth/71.111); 
 float texSiz; 
+boolean justLeft = false; 
+boolean justRight = false; 
+boolean scroll = false; 
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
 boolean arrowPress = false; 
@@ -293,54 +296,69 @@ void draw() {
   else {
     //image(forest, -50, 0);
     //image(forestScroll, 200, 0);
-    if (p.x < W/2) {
+    if (p.x < W/2 && !scroll) {
       image(forest, 0, 0); 
       p.display(); 
       p.move(); 
     }
-    else if (p.x >= W/2 && p.walking) {
+    else if ((Up || Down) && scroll && p.x >= W/2) {
+      if (justLeft) {
+        image(prim, LimgShift, 0); 
+        image(secon, W+LimgShift-(W/64), 0); 
+      }
+      else if (justRight) {        
+        image(prim, RimgShift, 0); 
+        image(secon, RimgShift-W+(W/64), 0);
+      }
       p.display(); 
-      if (Left) {
+      p.move();  
+    }
+    else if ((p.x >= W/2 && p.walking) || (scroll && p.walking)) {
+      scroll = true; 
+      p.display(); 
+      if (Left && !Right) {
+        justRight = false;
+        if (Up || Down) {
+          p.move(); 
+          LimgShift -= W/49.231; 
+        }
+        p.display(); 
         if (LimgShift <= (-1)*(W - (W/32))) {
           LimgShift = 0;
           PImage tempA = prim; 
           PImage tempB = secon; 
           prim = tempB; 
           secon = tempA; 
-        }
+          }
         image(prim, LimgShift, 0); 
-        image(secon, W+LimgShift-(W/64), 0);  
-        if ((Up || Down) && !Right && !Left) {
-          p.display(); 
-          p.move(); 
-        }
-        else {
-          LimgShift -= W/71.111; 
-        }
+        image(secon, W+LimgShift-(W/64), 0);
+        LimgShift -= W/71.111; 
+        justLeft = true; 
        }
-       else if (Right) { 
+       else if (Right && !Left) { 
+         justLeft = false; 
+         if (Up || Down) {          
+           p.move(); 
+           RimgShift += W/49.231;
+          }
+         p.display();
          if (RimgShift >= (W - (W/32))) {
-          RimgShift = 0;
-          PImage tempA = prim; 
-          PImage tempB = secon; 
-          prim = tempB; 
-          secon = tempA; 
-        }
-        image(prim, RimgShift, 0); 
-        image(secon, RimgShift-W+(W/64), 0); 
-        if ((Up || Down) && !Right && !Left) {
-          p.display(); 
-          p.move(); 
-        }
-        else {
-          RimgShift += W/71.111;
-        } 
+           RimgShift = 0;
+           PImage tempA = prim; 
+           PImage tempB = secon; 
+           prim = tempB; 
+           secon = tempA; 
+          }
+         image(prim, RimgShift, 0); 
+         image(secon, RimgShift-W+(W/64), 0);
+         RimgShift += W/71.111;
+         justRight = true; 
        }
        p.display(); 
+      }
     }
   //h.move();
   }
- }
 
 
 void keyPressed() {
