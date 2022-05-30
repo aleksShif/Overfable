@@ -196,18 +196,18 @@ void draw() {
         if (attack == 1) {
           //t.attack1();
           if (t.countdown < 400) {
-            for (int i = 0; i < t.pellets.size(); i++) {
-              Pellet p = t.pellets.get(i); 
-              p.display(); 
-              h.damaged(p);
-              if (h.getCurrentHP() <= 0) {
-                h.dead = true;
-                break; 
-              }
-              if(millis() - h.getHitTime() > 1500){
-                h.setInv(false);
-              }
-            }
+            //for (int i = 0; i < t.pellets.size(); i++) {
+            //  Pellet p = t.pellets.get(i); 
+            //  p.display(); 
+            //  h.damaged(p);
+            //  if (h.getCurrentHP() <= 0) {
+            //    h.dead = true;
+            //    break; 
+            //  }
+            //  if(millis() - h.getHitTime() > 1500){
+            //    h.setInv(false);
+            //  }
+            //}
           }
           t.countdown--; 
           if (t.countdown <= 0) {

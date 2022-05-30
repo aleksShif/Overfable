@@ -1,8 +1,8 @@
 class BirdLock extends Monster{
   int countdown;
   boolean at2 = false;
-  String[] dialogue = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
-  String[] update = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"};  
+  String[] dialogue = {"The game is afoot", "Intriguing", "Aha! It was you!"};
+  String[] update = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};  
   String currentSentence = " "; 
   ArrayList<Pellet> pellets; 
   int displayCount = 0;
