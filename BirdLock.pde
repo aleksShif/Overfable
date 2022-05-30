@@ -5,6 +5,7 @@ class BirdLock extends Monster{
   String[] update = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};  
   String currentSentence = " "; 
   ArrayList<Pellet> pellets; 
+  Hawkson hawk = new Hawkson();
   int displayCount = 0;
   public BirdLock(){
     name = "Dummy";
@@ -75,11 +76,11 @@ class BirdLock extends Monster{
     displayCount++;
   }
   
-  void attack1(){
-    
+  void attack1(int phase){
+    hawk.display(phase);
   }
   
-  void attack2(){
-    
+  void attack2(int phase){
+    hawk.display(phase);
   }
 }

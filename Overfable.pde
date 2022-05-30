@@ -10,6 +10,7 @@ Pellet p2;
 Pellet p3;
 Pellet p4;
 //move to class 
+int hawkPhase = 1;
 int count = 0;
 int attack = 0; 
 int rounds = 0; 
@@ -38,7 +39,7 @@ color cSec;
 Controller keyboardInput;
 
 void setup() {
-  COMBAT = false; 
+  COMBAT = true; 
   entrance = loadImage("pixil-frame-1.png");
   entrance.resize(displayWidth, displayHeight);
   forest = loadImage("pixil-frame-0 (3).png"); 
@@ -197,21 +198,22 @@ void draw() {
           attack = (int)(Math.random() * 2) + 1;
         }
         if (attack == 1) {
-          //t.attack1();
-          if (t.countdown < 400) {
-            //for (int i = 0; i < t.pellets.size(); i++) {
-            //  Pellet p = t.pellets.get(i); 
-            //  p.display(); 
-            //  h.damaged(p);
-            //  if (h.getCurrentHP() <= 0) {
-            //    h.dead = true;
-            //    break; 
-            //  }
-            //  if(millis() - h.getHitTime() > 1500){
-            //    h.setInv(false);
-            //  }
-            //}
-          }
+          t.attack1(hawkPhase);
+          hawkPhase++;
+          //if (t.countdown < 400) {
+          //  for (int i = 0; i < t.pellets.size(); i++) {
+          //    Pellet p = t.pellets.get(i); 
+          //    p.display(); 
+          //    h.damaged(p);
+          //    if (h.getCurrentHP() <= 0) {
+          //      h.dead = true;
+          //      break; 
+          //    }
+          //    if(millis() - h.getHitTime() > 1500){
+          //      h.setInv(false);
+          //    }
+          //  }
+          //}
           t.countdown--; 
           if (t.countdown <= 0) {
             ENEMY_SCREEN = false;
@@ -224,6 +226,8 @@ void draw() {
         }
         
         else if (attack == 2) {
+          t.attack1(hawkPhase);
+          hawkPhase++;
           //if(!t.attack2(p0,p1,p2,p3,p4)){
           //  p0.setX((float)(Math.random() * W/2.46 + W/3.36));
           //  p0.setY(H/2.3);
