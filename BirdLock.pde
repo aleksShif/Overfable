@@ -74,4 +74,12 @@ class BirdLock extends Monster{
     }
     displayCount++;
   }
+  
+  void attack1(){
+    
+  }
+  
+  void attack2(){
+    
+  }
 }
