@@ -1,6 +1,7 @@
-PImage entrance, forest, forestScroll, prim, secon;
+PImage entranceScene, cliffEntranceScene, forestScene, forestScrollScene, snowyScene, snowyScrollScene, prim, secon;
 Heart h, item;
 Monster m;
+Screen s; 
 //Teddy t;
 Player p;
 BirdLock t;
@@ -39,6 +40,7 @@ color cSec;
 Controller keyboardInput;
 
 void setup() {
+<<<<<<< HEAD
   COMBAT = true; 
   entrance = loadImage("pixil-frame-1.png");
   entrance.resize(displayWidth, displayHeight);
@@ -48,6 +50,24 @@ void setup() {
   forestScroll = loadImage("pixil-frame-0 (3).png"); 
   forestScroll.resize(displayWidth, displayHeight); 
   secon = forestScroll; 
+=======
+  COMBAT = false; 
+  entranceScene = loadImage("pixil-frame-1.png");
+  entranceScene.resize(displayWidth, displayHeight);
+  forestScene = loadImage("pixil-frame-0 (3).png"); 
+  forestScene.resize(displayWidth, displayHeight); 
+  prim = forestScene;
+  forestScrollScene = loadImage("pixil-frame-0 (3).png"); 
+  forestScrollScene.resize(displayWidth, displayHeight); 
+  secon = forestScrollScene; 
+  snowyScene = loadImage("pixil-frame-2.png"); 
+  snowyScene.resize(displayWidth, displayHeight); 
+  snowyScrollScene = loadImage("pixil-frame-2.png");
+  snowyScrollScene.resize(displayWidth, displayHeight); 
+  cliffEntranceScene = loadImage("pixil-frame-3.png");
+  cliffEntranceScene.resize(displayWidth, displayHeight); 
+  s = new Screen("entrance", 15); 
+>>>>>>> main
   h = new Heart(displayWidth / 2.13, displayHeight / 1.714);
   item = new Heart(displayWidth / 3.902, displayHeight / 1.111);
   p = new Player(true);
@@ -302,78 +322,146 @@ void draw() {
     h.move(); 
   }
   else {
-    //image(forest, -50, 0);
-    //image(forestScroll, 200, 0);
-    if (p.x < W/2 && !scroll) {
-      image(forest, 0, 0); 
-      p.display(); 
-      p.move(); 
-    }
-    if ((p.x >= W/2 && p.walking) || (scroll)) {
-      scroll = true; 
-      if ((Up || Down) && !Right && !Left) {
-        if (justLeft) {
-        image(prim, LimgShift, 0); 
-        image(secon, W+LimgShift-(W/64), 0); 
-      }
-      if (justRight) {        
-        image(prim, RimgShift, 0); 
-        image(secon, RimgShift-W+(W/64), 0);
-      }
-        p.display();
-        p.move();
+    if (s.getScene().equals("entrance") || s.getScene().equals("cliffEntrance")) {
+      if (p.x >= W - W/160) {
+        p.xSpeed = 0; 
+        p.ySpeed = 0; 
+        background(0); 
+        s.loading(); 
+        if (s.loadTime <= 0) {
+          if (s.getScene().equals("entrance")) {
+            s = new Screen("forest", 15);  
+            p.x = W/3.5; 
+            p.y = H/1.5;
+          }
+          else {
+            s = new Screen("cliff", 15);
+            p.x = W/3.5; 
+            p.y = H/1.895; 
+          } 
+          p.xSpeed = W/160;
+          p.ySpeed = H/90; 
+        }
       }
       else {
-        p.display(); 
-        if (Left && !Right) {
-          justRight = false;
-          if (Up || Down) {
+        if (s.getScene().equals("entrance")) {      
+          image(entranceScene, 0, 0);
+        }
+        else if (s.getScene().equals("cliffEntrance")) {
+          image(cliffEntranceScene, 0, 0); 
+        }
+        p.display();
+        p.move(); 
+      }
+    }
+    else if (s.getScene().equals("forest") || s.getScene().equals("snowy")) {
+      if (s.screenTime <= 0) {
+        if (p.x >= W - W/160) {
+          p.xSpeed = 0; 
+          p.ySpeed = 0; 
+          background(0); 
+          s.loading(); 
+          if (s.loadTime <= 0) {
+            if (s.getScene().equals("forest")) {
+              s = new Screen("snowy", 15); 
+              prim = snowyScene;
+              secon = snowyScrollScene;  
+            }
+            else {
+              s = new Screen("cliffEntrance", 15); 
+            }
+            p.x = W/3.5; 
+            p.y = H/1.5; 
+            p.xSpeed = W/160;
+            p.ySpeed = H/90; 
+            }
+        }
+        else {
+          scroll = false; 
+          p.display(); 
+          if (justLeft) {
+              image(prim, LimgShift, 0); 
+              image(secon, W+LimgShift-(W/64), 0); 
+             }  
+          if (justRight) {        
+            image(prim, RimgShift, 0); 
+            image(secon, RimgShift-W+(W/64), 0);
+           }
+           p.move(); 
+           p.display(); 
+        }
+      }
+      else { 
+        if (p.x < W/2 && !scroll) {
+          if (s.getScene().equals("forest")) {
+            image(forestScene, 0, 0); 
+          }
+          else if (s.getScene().equals("snowy")) {
+            image(snowyScene, 0, 0); 
+          }
+          p.display(); 
+          p.move(); 
+        }
+        else if ((p.x >= W/2 && p.walking) || (scroll)) {
+          scroll = true;
+          if (p.walking) {
+            s.screenTime -= 1;
+          }
+          if ((Up || Down) && !Right && !Left) {
+            p.display();
+            if (justLeft) {
+              image(prim, LimgShift, 0); 
+              image(secon, W+LimgShift-(W/64), 0); 
+             }  
+            if (justRight) {        
+              image(prim, RimgShift, 0); 
+              image(secon, RimgShift-W+(W/64), 0);
+             }
             p.move(); 
-            LimgShift -= W/49.231; 
+            p.display(); 
           }
           else {
             p.display(); 
+            if (Left && !Right) {
+              justRight = false;
+              if (Up || Down) {
+                p.move(); 
+              }
+              if (LimgShift <= (-1)*(W - (W/32))) {
+                LimgShift = 0;
+                PImage tempA = prim; 
+                PImage tempB = secon; 
+                prim = tempB; 
+                secon = tempA; 
+                }
+              image(prim, LimgShift, 0); 
+              image(secon, W+LimgShift-(W/64), 0);
+              LimgShift -= W/71.111; 
+              justLeft = true; 
+             }
+             else if (Right && !Left) { 
+               justLeft = false; 
+               if (Up || Down) {          
+                 p.move(); 
+                }
+               if (RimgShift >= (W - (W/32))) {
+                 RimgShift = 0;
+                 PImage tempA = prim; 
+                 PImage tempB = secon; 
+                 prim = tempB;
+                 secon = tempA; 
+                }
+               image(prim, RimgShift, 0); 
+               image(secon, RimgShift-W+(W/64), 0); 
+               RimgShift += W/71.111;
+               justRight = true; 
+             }
+             p.display(); 
+            }
           }
-          if (LimgShift <= (-1)*(W - (W/32))) {
-            LimgShift = 0;
-            PImage tempA = prim; 
-            PImage tempB = secon; 
-            prim = tempB; 
-            secon = tempA; 
-            }
-          image(prim, LimgShift, 0); 
-          image(secon, W+LimgShift-(W/64), 0);
-          p.display(); 
-          LimgShift -= W/71.111; 
-          justLeft = true; 
-         }
-         else if (Right && !Left) { 
-           justLeft = false; 
-           if (Up || Down) {          
-             p.move(); 
-             RimgShift += W/49.231;
-            }
-           else {
-             p.display();
-           }
-           if (RimgShift >= (W - (W/32))) {
-             RimgShift = 0;
-             PImage tempA = prim; 
-             PImage tempB = secon; 
-             prim = tempB; 
-             secon = tempA; 
-            }
-           image(prim, RimgShift, 0); 
-           image(secon, RimgShift-W+(W/64), 0);
-           p.display(); 
-           RimgShift += W/71.111;
-           justRight = true; 
-         }
-         p.display(); 
         }
       }
     }
-  //h.move();
   }
 
 
