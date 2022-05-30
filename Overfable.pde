@@ -40,17 +40,6 @@ color cSec;
 Controller keyboardInput;
 
 void setup() {
-<<<<<<< HEAD
-  COMBAT = true; 
-  entrance = loadImage("pixil-frame-1.png");
-  entrance.resize(displayWidth, displayHeight);
-  forest = loadImage("pixil-frame-0 (3).png"); 
-  forest.resize(displayWidth, displayHeight); 
-  prim = forest;
-  forestScroll = loadImage("pixil-frame-0 (3).png"); 
-  forestScroll.resize(displayWidth, displayHeight); 
-  secon = forestScroll; 
-=======
   COMBAT = false; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(displayWidth, displayHeight);
@@ -67,7 +56,6 @@ void setup() {
   cliffEntranceScene = loadImage("pixil-frame-3.png");
   cliffEntranceScene.resize(displayWidth, displayHeight); 
   s = new Screen("entrance", 15); 
->>>>>>> main
   h = new Heart(displayWidth / 2.13, displayHeight / 1.714);
   item = new Heart(displayWidth / 3.902, displayHeight / 1.111);
   p = new Player(true);
