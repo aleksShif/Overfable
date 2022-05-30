@@ -1,7 +1,9 @@
 PImage entrance, forest, forestScroll, prim, secon;
 Heart h, item;
 Monster m;
+//Teddy t;
 Player p;
+BirdLock t;
 Pellet p0;
 Pellet p1;
 Pellet p2;
@@ -36,7 +38,7 @@ color cSec;
 Controller keyboardInput;
 
 void setup() {
-  COMBAT = false; 
+  COMBAT = true; 
   entrance = loadImage("pixil-frame-1.png");
   entrance.resize(displayWidth, displayHeight);
   forest = loadImage("pixil-frame-0 (3).png"); 
@@ -49,6 +51,8 @@ void setup() {
   item = new Heart(displayWidth / 3.902, displayHeight / 1.111);
   p = new Player(true);
   m = new Monster();
+  //t = new Teddy();
+  t = new BirdLock();
   cFirst = color(229, 209, 19);  
   cSec = color(216, 110, 28);
   int W = displayWidth; 
@@ -156,12 +160,12 @@ void draw() {
       textSize(H/40); 
       texSiz = H/40; 
       fill(255); 
-      if (m.dead) {
-        tex = "You killed Teddy Grizzlevelt! Why would you do that??? Okay killer, you gained " + m.exp * rounds + " EXP and " + m.gold * rounds + " GOLD. Happy?"; 
+      if (t.dead) {
+        tex = "You killed Teddy Grizzlevelt! Why would you do that??? Okay killer, you gained " + t.exp * rounds + " EXP and " + t.gold * rounds + " GOLD. Happy?"; 
         addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
       }
       else{
-        tex = "You farted on Mr. Grizzlevelt! It was so foul that it dealt damage! Dealt " + p.getAT() + " AT and Teddy now has " + m.getHP() + " HP left."; 
+        tex = "You farted on Mr. Grizzlevelt! It was so foul that it dealt damage! Dealt " + p.getAT() + " AT and Teddy now has " + t.getHP() + " HP left."; 
         addText(tex, W/53.333, H/2.4, W/16, W/1.063);
       }
     }
@@ -174,9 +178,9 @@ void draw() {
       h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6);
       
       if (SPEECH_SCREEN) {
-        if (m.currentSentence == " ") {
+        if (t.currentSentence == " ") {
           int randSen = (int)(Math.random() * 3); 
-          m.currentSentence = m.dialogue[randSen]; 
+          t.currentSentence = t.dialogue[randSen]; 
          }
         noStroke(); 
         fill(255);
@@ -185,7 +189,7 @@ void draw() {
         rect(W/1.7297, H/4.737, W/5.818, H/6, 10, 10, 10, 10);  
         triangle(W/1.768, H/3.396, W/1.7297, H/3.529, W/1.7297, H/3.273); 
         fill(0);  
-        addText(m.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
+        addText(t.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
       }
       
       else if (!SPEECH_SCREEN) {
@@ -193,46 +197,46 @@ void draw() {
           attack = (int)(Math.random() * 2) + 1;
         }
         if (attack == 1) {
-          m.attack1();
-          if (m.countdown < 400) {
-            for (int i = 0; i < m.pellets.size(); i++) {
-              Pellet p = m.pellets.get(i); 
-              p.display(); 
-              h.damaged(p);
-              if (h.getCurrentHP() <= 0) {
-                h.dead = true;
-                break; 
-              }
-              if(millis() - h.getHitTime() > 1500){
-                h.setInv(false);
-              }
-            }
+          //t.attack1();
+          if (t.countdown < 400) {
+            //for (int i = 0; i < t.pellets.size(); i++) {
+            //  Pellet p = t.pellets.get(i); 
+            //  p.display(); 
+            //  h.damaged(p);
+            //  if (h.getCurrentHP() <= 0) {
+            //    h.dead = true;
+            //    break; 
+            //  }
+            //  if(millis() - h.getHitTime() > 1500){
+            //    h.setInv(false);
+            //  }
+            //}
           }
-          m.countdown--; 
-          if (m.countdown <= 0) {
+          t.countdown--; 
+          if (t.countdown <= 0) {
             ENEMY_SCREEN = false;
-            m.currentSentence = " ";
-            m.countdown = 400;
+            t.currentSentence = " ";
+            t.countdown = 400;
             attack = 0;  
-            m.pellets = new ArrayList<Pellet>(); 
+            t.pellets = new ArrayList<Pellet>(); 
             enPress = false; 
           }
         }
         
         else if (attack == 2) {
-          if(!m.attack2(p0,p1,p2,p3,p4)){
-            p0.setX((float)(Math.random() * W/2.46 + W/3.36));
-            p0.setY(H/2.3);
-            p1.setX((float)(Math.random() * W/2.46 + W/3.36));
-            p1.setY(H/2.3);
-            p2.setX((float)(Math.random() * W/2.46 + W/3.36));
-            p2.setY(H/2.3);
-            p3.setX((float)(Math.random() * W/2.46 + W/3.36));
-            p3.setY(H/2.3);
-            p4.setX((float)(Math.random() * W/2.46 + W/3.36));
-            p4.setY(H/2.3);
-            count++;
-          }
+          //if(!t.attack2(p0,p1,p2,p3,p4)){
+          //  p0.setX((float)(Math.random() * W/2.46 + W/3.36));
+          //  p0.setY(H/2.3);
+          //  p1.setX((float)(Math.random() * W/2.46 + W/3.36));
+          //  p1.setY(H/2.3);
+          //  p2.setX((float)(Math.random() * W/2.46 + W/3.36));
+          //  p2.setY(H/2.3);
+          //  p3.setX((float)(Math.random() * W/2.46 + W/3.36));
+          //  p3.setY(H/2.3);
+          //  p4.setX((float)(Math.random() * W/2.46 + W/3.36));
+          //  p4.setY(H/2.3);
+          //  count++;
+          //}
           h.damaged(p0);
           h.damaged(p1);
           h.damaged(p2);
@@ -243,11 +247,11 @@ void draw() {
           }
           if(count >= 5){
             ENEMY_SCREEN = false;
-            m.currentSentence = " ";
+            t.currentSentence = " ";
             attack = 0; 
             count = 0;
             enPress = false; 
-            m.at2 = false;
+            t.at2 = false;
           } 
         }
         if (!ENEMY_SCREEN) {
@@ -265,20 +269,20 @@ void draw() {
       fill(255);
       h.x = displayWidth / 2.13; 
       h.y = displayHeight / 1.714; 
-      if (rounds < m.update.length) {
-        String temp = m.update[rounds];
+      if (rounds < t.update.length) {
+        String temp = t.update[rounds];
         tex = "* " + temp; 
         addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
       }
       else {
-        tex = "* " + m.update[m.update.length - 1]; 
+        tex = "* " + t.update[t.update.length - 1]; 
         addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
       }  
     }
     
     h.xSpeed = W/160; 
     h.ySpeed = H/90; 
-    m.display();
+    t.display();
     if (h.x >= W/1.51) {
       h.x = W/1.52; 
     }
@@ -399,11 +403,11 @@ void keyPressed() {
     if (FIGHT_SCREEN) {
       TEXT_SCREEN = true; 
       FIGHT_SCREEN = false; 
-      m.damaged(p.getAT());
-      m.countdown = 3; 
-      if (m.getHP() <= 0) {
-        m.HP = 0; 
-        m.dead = true; 
+      t.damaged(p.getAT());
+      t.countdown = 3; 
+      if (t.getHP() <= 0) {
+        t.HP = 0; 
+        t.dead = true; 
       }
     }
     else if (TEXT_SCREEN) {
@@ -411,21 +415,21 @@ void keyPressed() {
         n = tex.length();
         loop(); 
       }
-      else if (m.dead) {
+      else if (t.dead) {
         COMBAT = false;
       }
       else{
         TEXT_SCREEN = false;
         SPEECH_SCREEN = true; 
         ENEMY_SCREEN = true; 
-        m.countdown = 400; 
+        t.countdown = 400; 
         loop();
       }
     }
     else if (SPEECH_SCREEN) {
       if (n > 1) {
-        n = m.currentSentence.length(); 
-        m.countdown = 400;  
+        n = t.currentSentence.length(); 
+        t.countdown = 400;  
       }
     }
     else {
