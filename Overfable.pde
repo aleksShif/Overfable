@@ -298,26 +298,25 @@ void draw() {
     h.move(); 
   }
   else {
-    //image(forest, -50, 0);
-    //image(forestScroll, 200, 0);
     if (p.x < W/2 && !scroll) {
       image(forest, 0, 0); 
       p.display(); 
       p.move(); 
     }
-    if ((p.x >= W/2 && p.walking) || (scroll)) {
+    else if ((p.x >= W/2 && p.walking) || (scroll)) {
       scroll = true; 
       if ((Up || Down) && !Right && !Left) {
+        p.display();
         if (justLeft) {
         image(prim, LimgShift, 0); 
         image(secon, W+LimgShift-(W/64), 0); 
-      }
+        }  
       if (justRight) {        
         image(prim, RimgShift, 0); 
         image(secon, RimgShift-W+(W/64), 0);
-      }
-        p.display();
-        p.move();
+        }
+        p.move(); 
+        p.display(); 
       }
       else {
         p.display(); 
@@ -325,10 +324,6 @@ void draw() {
           justRight = false;
           if (Up || Down) {
             p.move(); 
-            LimgShift -= W/49.231; 
-          }
-          else {
-            p.display(); 
           }
           if (LimgShift <= (-1)*(W - (W/32))) {
             LimgShift = 0;
@@ -339,7 +334,6 @@ void draw() {
             }
           image(prim, LimgShift, 0); 
           image(secon, W+LimgShift-(W/64), 0);
-          p.display(); 
           LimgShift -= W/71.111; 
           justLeft = true; 
          }
@@ -347,11 +341,7 @@ void draw() {
            justLeft = false; 
            if (Up || Down) {          
              p.move(); 
-             RimgShift += W/49.231;
             }
-           else {
-             p.display();
-           }
            if (RimgShift >= (W - (W/32))) {
              RimgShift = 0;
              PImage tempA = prim; 
@@ -361,7 +351,6 @@ void draw() {
             }
            image(prim, RimgShift, 0); 
            image(secon, RimgShift-W+(W/64), 0);
-           p.display(); 
            RimgShift += W/71.111;
            justRight = true; 
          }
@@ -369,7 +358,6 @@ void draw() {
         }
       }
     }
-  //h.move();
   }
 
 
