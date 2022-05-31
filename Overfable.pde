@@ -10,6 +10,12 @@ Pellet p1;
 Pellet p2;
 Pellet p3;
 Pellet p4;
+BirdPellet bp0;
+BirdPellet bp1;
+BirdPellet bp2;
+BirdPellet bp3;
+BirdPellet bp4;
+BirdPellet bp5;
 //move to class 
 int hawkPhase = 1;
 int count = 0;
@@ -40,7 +46,6 @@ color cSec;
 Controller keyboardInput;
 
 void setup() {
-  COMBAT = false; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(displayWidth, displayHeight);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
@@ -75,6 +80,7 @@ void setup() {
 }
 
 void draw() {   
+  COMBAT = true;
   int W = displayWidth; 
   int H = displayHeight; 
   if (COMBAT) {
@@ -203,11 +209,26 @@ void draw() {
       
       else if (!SPEECH_SCREEN) {
         if (attack == 0) {
-          attack = (int)(Math.random() * 2) + 1;
+          //attack = (int)(Math.random() * 2) + 1;
+          attack = 1;
         }
-        if (attack == 1) {
+        else if (attack == 1) {
           t.attack1(hawkPhase);
+          if(hawkPhase < 15){
+            t.moveHawk(W/100,W/200);
+          }
+          else if(hawkPhase < 30){
+            t.moveHawk(W/100,-W/200);
+          }
           hawkPhase++;
+          h.damaged(t.getHawkson());
+          if(hawkPhase >= 30){
+            attack = 0;
+            hawkPhase = 0;
+            ENEMY_SCREEN = false;
+            t.resetHawk();
+          }
+          
           //if (t.countdown < 400) {
           //  for (int i = 0; i < t.pellets.size(); i++) {
           //    Pellet p = t.pellets.get(i); 
@@ -222,33 +243,33 @@ void draw() {
           //    }
           //  }
           //}
-          t.countdown--; 
-          if (t.countdown <= 0) {
-            ENEMY_SCREEN = false;
-            t.currentSentence = " ";
-            t.countdown = 400;
-            attack = 0;  
-            t.pellets = new ArrayList<Pellet>(); 
-            enPress = false; 
-          }
+        //  t.countdown--; 
+        //  if (t.countdown <= 0) {
+        //    ENEMY_SCREEN = false;
+        //    t.currentSentence = " ";
+        //    t.countdown = 400;
+        //    attack = 0;  
+        //    t.pellets = new ArrayList<Pellet>(); 
+        //    enPress = false; 
+        //  }
         }
         
         else if (attack == 2) {
-          t.attack1(hawkPhase);
-          hawkPhase++;
-          //if(!t.attack2(p0,p1,p2,p3,p4)){
-          //  p0.setX((float)(Math.random() * W/2.46 + W/3.36));
-          //  p0.setY(H/2.3);
-          //  p1.setX((float)(Math.random() * W/2.46 + W/3.36));
-          //  p1.setY(H/2.3);
-          //  p2.setX((float)(Math.random() * W/2.46 + W/3.36));
-          //  p2.setY(H/2.3);
-          //  p3.setX((float)(Math.random() * W/2.46 + W/3.36));
-          //  p3.setY(H/2.3);
-          //  p4.setX((float)(Math.random() * W/2.46 + W/3.36));
-          //  p4.setY(H/2.3);
-          //  count++;
-          //}
+          if(!t.attack2(bp0,bp1,bp2,bp3,bp4,bp5)){
+            bp0.setX(W/3.3);
+            bp0.setY((float)(Math.random() * H/2.57 + H/2.4));
+            bp1.setX(W/3.3);
+            bp1.setY((float)(Math.random() * H/2.57 + H/2.4));
+            bp2.setX(W/3.3);
+            bp2.setY((float)(Math.random() * H/2.57 + H/2.4));
+            bp3.setX(W/3.3);
+            bp3.setY((float)(Math.random() * H/2.57 + H/2.4));
+            bp4.setX(W/3.3);
+            bp4.setY((float)(Math.random() * H/2.57 + H/2.4));
+            bp5.setX(W/3.3);
+            bp5.setY((float)(Math.random() * H/2.57 + H/2.4));
+            count++;
+          }
           h.damaged(p0);
           h.damaged(p1);
           h.damaged(p2);
@@ -505,6 +526,7 @@ void keyPressed() {
       }
       else if (t.dead) {
         COMBAT = false;
+        
       }
       else{
         TEXT_SCREEN = false;
