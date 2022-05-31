@@ -4,14 +4,15 @@ class BirdLock extends Monster{
   String[] dialogue = {"The game is afoot", "Intriguing", "Aha! It was you!"};
   String[] update = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};  
   String currentSentence = " "; 
-  ArrayList<Pellet> pellets; 
+  ArrayList<BirdPellet> pellets; 
+  Hawkson hawk = new Hawkson();
   int displayCount = 0;
   public BirdLock(){
     name = "Dummy";
     HP = 20;
     AT = 3;
     exp = (int)(Math.random() * 4) + 2; 
-    gold = (int)(Math.random() * 6) + 10; 
+    gold = (int)(Math.random() * 6) + 10;
   }
   public BirdLock(int count, String Name, int hp, int at){
     name = Name;
@@ -73,5 +74,78 @@ class BirdLock extends Monster{
       image(bird,W/2.55,H/20); 
     }
     displayCount++;
+  }
+  
+  void attack1(int phase){
+    hawk.display(phase);
+  }
+  
+  void moveHawk(float X, float Y){
+    hawk.move(X,Y);
+  }
+  
+  boolean attack2(BirdPellet bp0, BirdPellet bp1, BirdPellet bp2, BirdPellet bp3, BirdPellet bp4, BirdPellet b5){
+                  //rect(W/3.36, H/2.4, W/2.46, H/2.57);
+    if(bp0.inside() || bp1.inside() || bp2.inside() || bp3.inside() || bp4.inside() || bp5.inside()){
+      if(bp0.inside()){
+        for(int i = 0; i < 8; i++){
+          bp0.move(1,0);
+        }
+      }
+      if(bp1.inside()){
+        for(int i = 0; i < 8; i++){
+          bp1.move(1,0);
+        }
+      }
+      if(bp2.inside()){
+        for(int i = 0; i < 8; i++){
+          bp2.move(1,0);
+        }
+      }
+      if(bp3.inside()){
+        for(int i = 0; i < 8; i++){
+          bp3.move(1,0);
+        }
+      }
+      if(bp4.inside()){
+        for(int i = 0; i < 8; i++){
+          bp4.move(1,0);
+        }
+      }
+      if(bp5.inside()){
+        for(int i = 0; i < 8; i++){
+          bp5.move(1,0);
+        }
+      }
+      if(bp0.inside()){
+        bp0.display();
+      }
+      if(bp1.inside()){
+        bp1.display();
+      }
+      if(bp2.inside()){
+        bp2.display();
+      }
+      if(bp3.inside()){
+        bp3.display();
+      }
+      if(bp4.inside()){
+        bp4.display();
+      }
+      if(bp5.inside()){
+        bp5.display();
+      }
+      return true;
+    }else{
+      return false;
+    }
+  }
+  
+  Damageable getHawkson(){
+    return hawk;
+  }
+  
+  void resetHawk(){
+    hawk.reset();
   }
 }
