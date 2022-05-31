@@ -858,7 +858,7 @@ void keyPressed() {
         }
       }
     }
-    else if (COMBAT) {
+    else{
       if (n > 1) {
         n = tex.length();  
         loop(); 
