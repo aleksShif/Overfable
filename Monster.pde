@@ -8,6 +8,9 @@ public class Monster{
   int hurtTime = 0;
   boolean dead = false; 
   String[] actionOrder;
+  String[] dialogue; 
+  String[] update; 
+  String currentSentence = " "; 
   
   public Monster(){
     name = "Dummy";

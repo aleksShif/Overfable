@@ -7,6 +7,7 @@ public class Heart {
   int currentHP; 
   float hitboxX, hitboxY;   
   int hitTime;
+  int combatFlash = 10; 
   
   public Heart(float x_, float y_) {
     dead = false; 
@@ -28,6 +29,10 @@ public class Heart {
   void display(float x, float y, float varW, float varH) {
     if(inv && (millis() - hitTime) % 2 == 0){
       fill(255,0,0,75);
+    }
+    else if(p.preCombat && h.combatFlash > 0) {
+      fill(255, 0, 0, 75); 
+      combatFlash -= 1; 
     }else{
       fill(255, 0, 0);
     }
