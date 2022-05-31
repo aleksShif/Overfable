@@ -8,16 +8,9 @@ class BirdLock extends Monster{
   Hawkson hawk = new Hawkson();
   int displayCount = 0;
   public BirdLock(){
-    name = "Dummy";
+    name = "BirdLock";
     HP = 20;
     AT = 3;
-    exp = (int)(Math.random() * 4) + 2; 
-    gold = (int)(Math.random() * 6) + 10;
-  }
-  public BirdLock(int count, String Name, int hp, int at){
-    name = Name;
-    HP = hp;
-    AT = at;
     exp = (int)(Math.random() * 4) + 2; 
     gold = (int)(Math.random() * 6) + 10;
   }

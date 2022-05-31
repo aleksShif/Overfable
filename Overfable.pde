@@ -6,6 +6,7 @@ Screen s;
 Player p;
 Teddy b; 
 BirdLock t;
+MonKing mk; 
 Pellet p0;
 Pellet p1;
 Pellet p2;
@@ -19,7 +20,7 @@ BirdPellet bp4;
 BirdPellet bp5;
 //move to class 
 int hawkPhase = 1;
-int which = 1; 
+int which = 0; 
 int count = 0;
 int attack = 0; 
 int rounds = 0; 
@@ -66,10 +67,11 @@ void setup() {
   s = new Screen("entrance", 15); 
   h = new Heart(displayWidth / 2.13, displayHeight / 1.714);
   TeddyJr = loadImage("TeddyJr.png");
-  TeddyJr.resize(700, 800); 
+  TeddyJr.resize((int)(displayWidth/4.571), (int)(displayHeight/2.25)); 
   item = new Heart(displayWidth / 3.902, displayHeight / 1.111);
   p = new Player(true);
   m = new Monster(); 
+  mk = new MonKing(); 
   cFirst = color(229, 209, 19);  
   cSec = color(216, 110, 28);
   int W = displayWidth; 
@@ -94,7 +96,60 @@ void draw() {
         t = new BirdLock();
       }
     }
-  if (COMBAT && which == 2) {
+  if (COMBAT && s.getScene().equals("cliffEntrance")) {
+    background(0); 
+    fill(255); 
+    PFont font = createFont("undertale-attack-font.ttf", H/40); 
+    textFont(font); 
+    text("TOMMY WOLF", W/16, H/1.16); 
+    text("LV " + p.getLV(), W/4, H/1.16); 
+    textSize(H/60); 
+    texSiz = H/60;
+    text("HP", W/2.46, H/1.16); 
+    noStroke(); 
+    fill(223, 252, 8); 
+    float max = W / 49.2; 
+    rect(W/2.29, H/1.2, (max / p.getHP()) * h.getCurrentHP(), H/36);
+    fill(255, 0, 0); 
+    rect(W/2.29 + (max / p.getHP()) * h.getCurrentHP(), H/1.2, W/49.2 - (max / p.getHP()) * h.getCurrentHP(), H/36); 
+    fill(255); 
+    textSize(H/40); 
+    texSiz = H/40; 
+    text(h.getCurrentHP() + " / " + p.getHP(), W/2.1, H/1.16); 
+    noFill(); 
+    rect(W/3.36, H/2.4, W/2.46, H/2.57);
+    stroke(cFirst); 
+    strokeWeight(10); 
+    rect(W/4, H/1.125, W/6.4, H/12);
+    stroke(cSec); 
+    rect(W/1.6, H/1.125, W/6.4, H/12);
+    textSize(H/30); 
+    texSiz = H/30; 
+    fill(cFirst);
+    text("FIGHT", W/3.46, H/1.05);
+    fill(cSec);
+    text("ITEM", W/1.46, H/1.05); 
+    set(2125, 1710, #D86E1C);
+    if (arrowPress && !ITEM_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
+      item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6);
+    }
+    else if (!arrowPress && !ITEM_SCREEN && !FIGHT_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
+      item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6);
+    }
+    mk.display(); 
+    stroke(255); 
+    strokeWeight(20); 
+    noFill(); 
+    rect(W/16, H/2.4, W/1.14, H/2.57);
+    textSize(H/40);
+    texSiz = H/40; 
+    fill(255);
+    h.x = displayWidth / 2.13; 
+    h.y = displayHeight / 1.714; 
+    tex = "* This is the first boss that the player will encounter, MonKing, and he will have multiple phases which will set apart from the regular monsters."; 
+    addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
+  }
+  else if (COMBAT && which == 2) {
     background(0); 
     fill(255); 
     PFont font = createFont("undertale-attack-font.ttf", H/40); 
@@ -573,7 +628,7 @@ void draw() {
         else {
           if (s.getScene().equals("entrance")) {      
             image(entranceScene, 0, 0);
-            image(TeddyJr, 100, 800); 
+            image(TeddyJr, W/32, H/2.25); 
           }
           else if (s.getScene().equals("cliffEntrance")) {
             image(cliffEntranceScene, 0, 0); 
