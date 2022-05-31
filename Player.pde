@@ -1,6 +1,6 @@
 public class Player{
   int GOLD = 0;
-  int AT = 10;
+  int AT = 6;
   int HP = 20;
   int DF = 1;
   int LV = 0;

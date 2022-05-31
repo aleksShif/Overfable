@@ -1,4 +1,5 @@
 PImage entranceScene, cliffEntranceScene, forestScene, forestScrollScene, snowyScene, snowyScrollScene, prim, secon;
+PImage TeddyJr; 
 Heart h, item;
 Monster m;
 Screen s; 
@@ -47,6 +48,7 @@ color cSec;
 Controller keyboardInput;
 
 void setup() { 
+  COMBAT = false; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(displayWidth, displayHeight);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
@@ -63,6 +65,8 @@ void setup() {
   cliffEntranceScene.resize(displayWidth, displayHeight); 
   s = new Screen("entrance", 15); 
   h = new Heart(displayWidth / 2.13, displayHeight / 1.714);
+  TeddyJr = loadImage("TeddyJr.png");
+  TeddyJr.resize(700, 800); 
   item = new Heart(displayWidth / 3.902, displayHeight / 1.111);
   p = new Player(true);
   m = new Monster(); 
@@ -78,8 +82,7 @@ void setup() {
   fullScreen();   
 }
 
-void draw() {   
-  COMBAT = false;
+void draw() {     
   int W = displayWidth; 
   int H = displayHeight;
   if (which == 0) {
@@ -175,18 +178,18 @@ void draw() {
     }
     else if (TEXT_SCREEN) {
       stroke(255);
-      strokeWeight(20); 
+      strokeWeight(20);
       noFill(); 
       rect(W/16, H/2.4, W/1.14, H/2.57);
       textSize(H/40); 
       texSiz = H/40; 
       fill(255); 
       if (t.dead) {
-        tex = "You killed Teddy Grizzlevelt! Why would you do that??? Okay killer, you gained " + t.exp * rounds + " EXP and " + t.gold * rounds + " GOLD. Happy?"; 
+        tex = "You killed BirdLock Holmes! Why would you do that??? Okay killer, you gained " + t.exp * rounds + " EXP and " + t.gold * rounds + " GOLD. Happy?"; 
         addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
       }
       else{
-        tex = "You farted on Mr. Grizzlevelt! It was so foul that it dealt damage! Dealt " + p.getAT() + " AT and Teddy now has " + t.getHP() + " HP left."; 
+        tex = "You farted on BirdLock Holmes! It was so foul that it dealt damage! Dealt " + p.getAT() + " AT and BirdLock now has " + t.getHP() + " HP left."; 
         addText(tex, W/53.333, H/2.4, W/16, W/1.063);
       }
     }
@@ -218,7 +221,7 @@ void draw() {
           //attack = (int)(Math.random() * 2) + 1;
           attack = 1;
         }
-        else if (attack == 1) {
+        if (attack == 1) {
           t.attack1(hawkPhase);
           if(hawkPhase < 15){
             t.moveHawk(W/100,W/200);
@@ -233,42 +236,44 @@ void draw() {
             hawkPhase = 0;
             ENEMY_SCREEN = false;
             t.resetHawk();
+            t.currentSentence = " "; 
+            enPress = false; 
           }
         }
         
-        else if (attack == 2) {
-          if(!t.attack2(bp0,bp1,bp2,bp3,bp4,bp5)){
-            bp0.setX(W/3.3);
-            bp0.setY((float)(Math.random() * H/2.57 + H/2.4));
-            bp1.setX(W/3.3);
-            bp1.setY((float)(Math.random() * H/2.57 + H/2.4));
-            bp2.setX(W/3.3);
-            bp2.setY((float)(Math.random() * H/2.57 + H/2.4));
-            bp3.setX(W/3.3);
-            bp3.setY((float)(Math.random() * H/2.57 + H/2.4));
-            bp4.setX(W/3.3);
-            bp4.setY((float)(Math.random() * H/2.57 + H/2.4));
-            bp5.setX(W/3.3);
-            bp5.setY((float)(Math.random() * H/2.57 + H/2.4));
-            count++;
-          }
-          h.damaged(bp0);
-          h.damaged(bp1);
-          h.damaged(bp2);
-          h.damaged(bp3);
-          h.damaged(bp4);
-          if(millis() - h.getHitTime() > 800){
-            h.setInv(false);
-          }
-          if(count >= 5){
-            ENEMY_SCREEN = false;
-            t.currentSentence = " ";
-            attack = 0; 
-            count = 0;
-            enPress = false; 
-            t.at2 = false;
-          } 
-        }
+        //else if (attack == 2) {
+        //  if(!t.attack2(bp0,bp1,bp2,bp3,bp4,bp5)){
+        //    bp0.setX(W/3.3);
+        //    bp0.setY((float)(Math.random() * H/2.57 + H/2.4));
+        //    bp1.setX(W/3.3);
+        //    bp1.setY((float)(Math.random() * H/2.57 + H/2.4));
+        //    bp2.setX(W/3.3);
+        //    bp2.setY((float)(Math.random() * H/2.57 + H/2.4));
+        //    bp3.setX(W/3.3);
+        //    bp3.setY((float)(Math.random() * H/2.57 + H/2.4));
+        //    bp4.setX(W/3.3);
+        //    bp4.setY((float)(Math.random() * H/2.57 + H/2.4));
+        //    bp5.setX(W/3.3);
+        //    bp5.setY((float)(Math.random() * H/2.57 + H/2.4));
+        //    count++;
+        //  }
+        //  h.damaged(bp0);
+        //  h.damaged(bp1);
+        //  h.damaged(bp2);
+        //  h.damaged(bp3);
+        //  h.damaged(bp4);
+        //  if(millis() - h.getHitTime() > 800){
+        //    h.setInv(false);
+        //  }
+        //  if(count >= 5){
+        //    ENEMY_SCREEN = false;
+        //    t.currentSentence = " ";
+        //    attack = 0; 
+        //    count = 0;
+        //    enPress = false; 
+        //    t.at2 = false;
+        //  } 
+        //}
         if (!ENEMY_SCREEN) {
           rounds += 1; 
         }
@@ -312,7 +317,7 @@ void draw() {
     }
     h.move(); 
   }
-  else if (COMBAT && which == 1) {
+  else if (COMBAT && which == 1) { 
     background(0); 
     fill(255); 
     PFont font = createFont("undertale-attack-font.ttf", H/40); 
@@ -568,6 +573,7 @@ void draw() {
         else {
           if (s.getScene().equals("entrance")) {      
             image(entranceScene, 0, 0);
+            image(TeddyJr, 100, 800); 
           }
           else if (s.getScene().equals("cliffEntrance")) {
             image(cliffEntranceScene, 0, 0); 
@@ -691,18 +697,13 @@ void draw() {
 void keyPressed() {
   keyHeld = true; 
   if (keyCode == ENTER) {
-    background(0);
-    which = 0; 
-    COMBAT = false;
-    TEXT_SCREEN = false; 
-    SPEECH_SCREEN = false; 
-    ITEM_SCREEN = false; 
-    ENEMY_SCREEN = false; 
-    FIGHT_SCREEN = false; 
-    rounds = 0; 
-    p.noDisplay = false; 
-    p.xSpeed = displayWidth / 160; 
-    p.ySpeed = displayHeight / 90;
+    TEXT_SCREEN = true; 
+    if (which == 1) {
+      b.dead = true; 
+    }
+    else if (which == 2) {
+      t.dead = true; 
+    }
   }
   if (keyCode == 87 && !h.dead) {
     //keyHeld = true; 
