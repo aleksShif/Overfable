@@ -20,7 +20,7 @@ public class Monster{
     gold = (int)(Math.random() * 6) + 10; 
  
   }
-  public Monster(int count, String Name, int hp, int at){
+  public Monster(String Name, int hp, int at){
     name = Name;
     HP = hp;
     AT = at;

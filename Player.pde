@@ -53,7 +53,7 @@ public class Player{
           if (!s.getScene().equals("entrance")) {
             steps += 1; 
           }
-          if (steps % 45 == 0 && p.x < displayWidth - displayWidth/160 && p.x > displayWidth/160 && !s.getScene().equals("entrance")) {
+          if (steps % 100 == 0 && p.x < displayWidth - displayWidth/160 && p.x > displayWidth/160 && !s.getScene().equals("entrance")) {
             p.noDisplay = true; 
             enterCombat(); 
           }
