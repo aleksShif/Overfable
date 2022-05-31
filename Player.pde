@@ -50,10 +50,10 @@ public class Player{
       PImage protagonist;
       if(millis() - walkStart >= walkStagger){
         if (Up || Down || Left || Right) {
-          if (!s.getScene().equals("entrance")) {
+          if (!s.getScene().equals("entrance") && !s.getScene().equals("cliffEntrance")) {
             steps += 1; 
           }
-          if (steps % 45 == 0 && p.x < displayWidth - displayWidth/160 && p.x > displayWidth/160 && !s.getScene().equals("entrance")) {
+          if (steps % 45 == 0 && p.x < displayWidth - displayWidth/160 && p.x > displayWidth/160 && !s.getScene().equals("entrance") && !s.getScene().equals("cliffEntrance")) {
             p.noDisplay = true; 
             enterCombat(); 
           }

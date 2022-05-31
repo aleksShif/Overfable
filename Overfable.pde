@@ -19,7 +19,7 @@ BirdPellet bp4;
 BirdPellet bp5;
 //move to class 
 int hawkPhase = 1;
-int which = 0; 
+int which = 1; 
 int count = 0;
 int attack = 0; 
 int rounds = 0; 
