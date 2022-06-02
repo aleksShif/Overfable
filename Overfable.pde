@@ -90,7 +90,7 @@ void draw() {
   int H = displayHeight;
   if (which == 0) {
     which = (int)(Math.random() * 2) + 1; 
-    which = 0; //DELETE LATER DELETE LATER DELETE LATER DELETE LATER DELETE LATER DELETE LATER DELETE LATER DELETE LATER 
+    //which = 0; //DELETE LATER DELETE LATER DELETE LATER DELETE LATER DELETE LATER DELETE LATER DELETE LATER DELETE LATER 
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -98,8 +98,7 @@ void draw() {
       t = new BirdLock();
     }
   }
-  p.enterCombat();
-  if (COMBAT) { //used to have && s.getScene().equals("cliffEntrance")
+  if (COMBAT && s.getScene().equals("cliffEntrance")) { //used to have && s.getScene().equals("cliffEntrance")
     background(0); 
     fill(255); 
     PFont font = createFont("undertale-attack-font.ttf", H/40); 
@@ -148,7 +147,7 @@ void draw() {
     fill(255);
     h.x = displayWidth / 2.13; 
     h.y = displayHeight / 1.714; 
-    tex = "                             "; 
+    tex = "* This is the first boss that the player will encounter, MonKing, and he will have multiple phases which will set apart from the regular monsters."; 
     addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
     if (h.dead) {
       background(0); 
@@ -281,7 +280,7 @@ void draw() {
     }
     h.move(); 
   }
-  else if (COMBAT && which == 2) {
+  else if (COMBAT && which == 2) { //BIRDLOCK
     background(0); 
     fill(255); 
     PFont font = createFont("undertale-attack-font.ttf", H/40); 
@@ -504,7 +503,7 @@ void draw() {
     }
     h.move(); 
   }
-  else if (COMBAT && which == 1) { 
+  else if (COMBAT && which == 1) { //TEDDY 
     background(0); 
     fill(255); 
     PFont font = createFont("undertale-attack-font.ttf", H/40); 
