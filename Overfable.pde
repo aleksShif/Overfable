@@ -19,7 +19,7 @@ BirdPellet bp3;
 BirdPellet bp4;
 BirdPellet bp5;
 //move to class 
-int heartMode = 1;
+int heartMode = 0;
 int hawkPhase = 1;
 int which = 0; 
 int count = 0;
@@ -98,7 +98,8 @@ void draw() {
       t = new BirdLock();
     }
   }
-  if (COMBAT && s.getScene().equals("cliffEntrance")) { //used to have && s.getScene().equals("cliffEntrance")
+  if (COMBAT && s.getScene().equals("cliffEntrance")) {
+    heartMode = 1;
     background(0); 
     fill(255); 
     PFont font = createFont("undertale-attack-font.ttf", H/40); 

@@ -138,7 +138,10 @@ public class Player{
       protagonist = loadImage(walkFrame);
       protagonist.resize(protagonist.width * displayWidth/2800, protagonist.height * displayWidth/2800); 
       image(protagonist, x, y); 
+      
       //textSize(20);
+      //text("walking?: " + walking, x,y);  DEBUGGING CODE
+
       //text("START: " + (millis() - walkStart),x,y-20);  DEBUGGING CODE
       //text("FRAME: " + walkFrame,x,y-40);
      }
@@ -177,7 +180,9 @@ public class Player{
       x += xSpeed;
       walking = true;  
     }
-    else{walking = false;}
+    if(!(Up || Down || Left || Right)){
+      walking = false;
+    }
   }
   
   int getHP(){
