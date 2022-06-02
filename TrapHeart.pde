@@ -1,47 +1,18 @@
-public class Heart {
-  float x,y;  
-  int xSpeed = displayWidth / 160;
-  int ySpeed = displayHeight / 90; 
-  boolean inv; 
-  boolean dead;
-  int currentHP; 
-  float hitboxX, hitboxY;   
-  int hitTime;
-  int combatFlash = 10; 
+class TrapHeart extends Heart{
+  int level = 2;
   
-  public Heart(float x_, float y_) {
-    dead = false; 
-    inv = false;
-    x = x_; 
-    y = y_; 
-    currentHP = 20;
-    hitboxX = 10;
-    hitboxY = 5;
+  TrapHeart() {
+    super();
   }
-  public Heart() {
-    dead = false; 
-    inv = false;
-    currentHP = getCurrentHP();
-    hitboxX = 10;
-    hitboxY = 5;
-  }
-  
-  float getHitboxX(){
-    return hitboxX;
-  }
-  float getHitboxY(){
-    return hitboxY;
-  }
-  
   void display(float x, float y, float varW, float varH) {
     if(inv && (millis() - hitTime) % 2 == 0){
-      fill(255,0,0,75);
+      fill(237, 245, 7);
     }
     else if(p.preCombat && h.combatFlash > 0) {
-      fill(255, 0, 0, 75); 
+      fill(237, 245, 7); 
       combatFlash -= 1; 
     }else{
-      fill(255, 0, 0);
+      fill(237, 245, 7);
     }
     noStroke();
     if (dead && !inv) {
@@ -142,41 +113,5 @@ public class Heart {
       vertex (x+8*varW/16, y+4*varH/16);
       endShape (CLOSE); 
     }
-  }
-  
-  void move() {
-    if (Up) {y -= ySpeed;}
-    if (Down) {y += ySpeed;}
-    if (Right) {x -= xSpeed;}
-    if (Left) {x += xSpeed;}
-  }
-  
-  void damaged(Damageable d){
-    float leftEdgeH = x + hitboxX;
-    float rightEdgeH = x + 2 * hitboxX;
-    float lowerEdgeH = y + hitboxY;
-    float upperEdgeH = y - hitboxY;
-    float leftEdgeD = d.getX() - d.getHitboxX();
-    float rightEdgeD = d.getX() + d.getHitboxX();
-    float lowerEdgeD = d.getY() + d.getHitboxY();
-    float upperEdgeD = d.getY() - d.getHitboxY();
-    if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
-      currentHP -= d.getAT();
-      currentHP += p.getDF();
-      inv = true;
-      hitTime = millis(); 
-    }
-  }
-  
-  int getHitTime(){
-    return hitTime;
-  }
-  
-  void setInv(boolean b){
-    inv = b;
-  }
-  
-  int getCurrentHP(){
-    return currentHP;
   }
 }

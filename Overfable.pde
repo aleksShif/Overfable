@@ -1,5 +1,6 @@
 PImage entranceScene, cliffEntranceScene, forestScene, forestScrollScene, snowyScene, snowyScrollScene, prim, secon;
 PImage TeddyJr; 
+TrapHeart th;
 Heart h, item;
 Monster m;
 Screen s; 
@@ -88,15 +89,17 @@ void draw() {
   int W = displayWidth; 
   int H = displayHeight;
   if (which == 0) {
-      which = (int)(Math.random() * 2) + 1; 
-      if (which == 1) {
-        b = new Teddy(); 
-      }
-      else if (which == 2) {
-        t = new BirdLock();
-      }
+    which = (int)(Math.random() * 2) + 1; 
+    which = 0; //DELETE LATER DELETE LATER DELETE LATER DELETE LATER DELETE LATER DELETE LATER DELETE LATER DELETE LATER 
+    if (which == 1) {
+      b = new Teddy(); 
     }
-  if (COMBAT && s.getScene().equals("cliffEntrance")) {
+    else if (which == 2) {
+      t = new BirdLock();
+    }
+  }
+  p.enterCombat();
+  if (COMBAT) { //used to have && s.getScene().equals("cliffEntrance")
     background(0); 
     fill(255); 
     PFont font = createFont("undertale-attack-font.ttf", H/40); 
@@ -140,14 +143,143 @@ void draw() {
     stroke(255); 
     strokeWeight(20); 
     noFill(); 
-    rect(W/16, H/2.4, W/1.14, H/2.57);
     textSize(H/40);
     texSiz = H/40; 
     fill(255);
     h.x = displayWidth / 2.13; 
     h.y = displayHeight / 1.714; 
-    tex = "* This is the first boss that the player will encounter, MonKing, and he will have multiple phases which will set apart from the regular monsters."; 
+    tex = "                             "; 
     addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
+    if (h.dead) {
+      background(0); 
+      
+      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6); 
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+       }
+      
+      if (!h.inv) {
+        h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6); 
+      }
+       
+       textSize(H/20); 
+       texSiz = H/20; 
+       text("GAME OVER", W/2.667, H/9);     
+    }
+    else if (ITEM_SCREEN) { 
+      stroke(255); 
+      strokeWeight(20); 
+      noFill(); 
+      rect(W/16, H/2.4, W/1.14, H/2.57);
+      textSize(H/40); 
+      texSiz = H/40; 
+      fill(255); 
+      text("           * Butterscotch Pie", W/12.8, H/2); 
+      text("           * Steak", W/12.8, H/1.714); 
+      if (!switchItem) {
+        item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
+      }
+      else{item.display(W/10.667, H/1.865, displayWidth/38.4, displayHeight/21.6);}
+    }
+    else if (FIGHT_SCREEN) { 
+      stroke(255); 
+      strokeWeight(20); 
+      noFill(); 
+      rect(W/16, H/2.4, W/1.14, H/2.57);
+      textSize(H/40); 
+      texSiz = H/40; 
+      fill(255); 
+      text("           * Fart", W/12.8, H/2);
+      item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
+    }
+    else if (TEXT_SCREEN) {
+      stroke(255);
+      strokeWeight(20);
+      noFill(); 
+      rect(W/16, H/2.4, W/1.14, H/2.57);
+      textSize(H/40); 
+      texSiz = H/40; 
+      fill(255); 
+      if (mk.dead) {
+        tex = "You killed BirdLock Holmes! Why would you do that??? Okay killer, you gained " + t.exp * rounds + " EXP and " + t.gold * rounds + " GOLD. Happy?"; 
+        addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
+      }
+      else{
+        tex = "You farted on BirdLock Holmes! It was so foul that it dealt damage! Dealt " + p.getAT() + " AT and BirdLock now has " + mk.getHP() + " HP left."; 
+        addText(tex, W/53.333, H/2.4, W/16, W/1.063);
+      }
+    }
+    else if (ENEMY_SCREEN) {
+      stroke(255); 
+      strokeWeight(20); 
+      noFill(); 
+      rect(W/3.36, H/2.4, W/2.46, H/2.57);
+  
+      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6);
+      stroke(237, 245, 7);
+      strokeWeight(2);
+      line(W/3.01, H/1.99, W/1.5, H/1.99);
+      line(W/3.01, H/1.65, W/1.5, H/1.65);
+      line(W/3.01, H/1.39, W/1.5, H/1.39);
+      
+      if (SPEECH_SCREEN) {
+        if (mk.currentSentence == " ") {
+          int randSen = (int)(Math.random() * 3); 
+          mk.currentSentence = mk.dialogue[randSen]; 
+         }
+        noStroke(); 
+        fill(255);
+        textSize(H/85);
+        texSiz = H/85;
+        rect(W/1.7297, H/4.737, W/5.818, H/6, 10, 10, 10, 10);  
+        triangle(W/1.768, H/3.396, W/1.7297, H/3.529, W/1.7297, H/3.273); 
+        fill(0);  
+        addText(mk.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
+      }
+      
+      else if (!SPEECH_SCREEN) {
+        if (!ENEMY_SCREEN) {
+          rounds += 1; 
+        }
+      }
+    }
+    else{
+      stroke(255); 
+      strokeWeight(20); 
+      noFill(); 
+      rect(W/16, H/2.4, W/1.14, H/2.57);
+      textSize(H/40);
+      texSiz = H/40; 
+      fill(255);
+      h.x = displayWidth / 2.13; 
+      h.y = displayHeight / 1.714; 
+      if (rounds < mk.update.length) {
+        String temp = mk.update[rounds];
+        tex = "* " + temp; 
+        addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
+      }
+      else {
+        tex = "* " + t.update[t.update.length - 1]; 
+        addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
+      }  
+    }
+    
+    h.xSpeed = W/160; 
+    h.ySpeed = H/90; 
+    mk.display(); 
+    if (h.x >= W/1.51) {
+      h.x = W/1.52; 
+    }
+    if (h.x <= W/3.27) {
+      h.x = W/3.25; 
+    }
+    if (h.y >= H/1.35) {
+      h.y = H/1.37;
+    }
+    if (h.y <= H/2.35) {
+      h.y = H/2.33; 
+    }
+    h.move(); 
   }
   else if (COMBAT && which == 2) {
     background(0); 
