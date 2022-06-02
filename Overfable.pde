@@ -19,6 +19,7 @@ BirdPellet bp3;
 BirdPellet bp4;
 BirdPellet bp5;
 //move to class 
+int heartMode = 1;
 int hawkPhase = 1;
 int which = 0; 
 int count = 0;
@@ -133,10 +134,10 @@ void draw() {
     text("ITEM", W/1.46, H/1.05); 
     set(2125, 1710, #D86E1C);
     if (arrowPress && !ITEM_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
-      item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6);
+      item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6,heartMode);
     }
     else if (!arrowPress && !ITEM_SCREEN && !FIGHT_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
-      item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6);
+      item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6,heartMode);
     }
     mk.display(); 
     stroke(255); 
@@ -152,13 +153,13 @@ void draw() {
     if (h.dead) {
       background(0); 
       
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6); 
+      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
        }
       
       if (!h.inv) {
-        h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6); 
+        h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
       }
        
        textSize(H/20); 
@@ -176,9 +177,9 @@ void draw() {
       text("           * Butterscotch Pie", W/12.8, H/2); 
       text("           * Steak", W/12.8, H/1.714); 
       if (!switchItem) {
-        item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
+        item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6,heartMode);
       }
-      else{item.display(W/10.667, H/1.865, displayWidth/38.4, displayHeight/21.6);}
+      else{item.display(W/10.667, H/1.865, displayWidth/38.4, displayHeight/21.6,heartMode);}
     }
     else if (FIGHT_SCREEN) { 
       stroke(255); 
@@ -189,7 +190,7 @@ void draw() {
       texSiz = H/40; 
       fill(255); 
       text("           * Fart", W/12.8, H/2);
-      item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
+      item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6,heartMode);
     }
     else if (TEXT_SCREEN) {
       stroke(255);
@@ -214,7 +215,7 @@ void draw() {
       noFill(); 
       rect(W/3.36, H/2.4, W/2.46, H/2.57);
   
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6);
+      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode);
       stroke(237, 245, 7);
       strokeWeight(2);
       line(W/3.01, H/1.99, W/1.5, H/1.99);
@@ -315,21 +316,21 @@ void draw() {
     text("ITEM", W/1.46, H/1.05); 
     set(2125, 1710, #D86E1C);
     if (arrowPress && !ITEM_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
-      item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6);
+      item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6,heartMode);
     }
     else if (!arrowPress && !ITEM_SCREEN && !FIGHT_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
-      item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6);
+      item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6,heartMode);
     }
     if (h.dead) {
       background(0); 
       
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6); 
+      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
        }
       
       if (!h.inv) {
-        h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6); 
+        h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
       }
        
        textSize(H/20); 
@@ -347,9 +348,9 @@ void draw() {
       text("           * Butterscotch Pie", W/12.8, H/2); 
       text("           * Steak", W/12.8, H/1.714); 
       if (!switchItem) {
-        item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
+        item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6,heartMode);
       }
-      else{item.display(W/10.667, H/1.865, displayWidth/38.4, displayHeight/21.6);}
+      else{item.display(W/10.667, H/1.865, displayWidth/38.4, displayHeight/21.6,heartMode);}
     }
     else if (FIGHT_SCREEN) { 
       stroke(255); 
@@ -360,7 +361,7 @@ void draw() {
       texSiz = H/40; 
       fill(255); 
       text("           * Fart", W/12.8, H/2);
-      item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
+      item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6,heartMode);
     }
     else if (TEXT_SCREEN) {
       stroke(255);
@@ -385,7 +386,7 @@ void draw() {
       noFill(); 
       rect(W/3.36, H/2.4, W/2.46, H/2.57);
   
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6);
+      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode);
       
       if (SPEECH_SCREEN) {
         if (t.currentSentence == " ") {
@@ -538,21 +539,21 @@ void draw() {
     text("ITEM", W/1.46, H/1.05); 
     set(2125, 1710, #D86E1C);
     if (arrowPress && !ITEM_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
-      item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6);
+      item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6,heartMode);
     }
     else if (!arrowPress && !ITEM_SCREEN && !FIGHT_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
-      item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6);
+      item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6,heartMode);
     }
     if (h.dead) {
       background(0); 
       
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6); 
+      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
        }
       
       if (!h.inv) {
-        h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6); 
+        h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
       }
        
        textSize(H/20); 
@@ -570,9 +571,9 @@ void draw() {
       text("           * Butterscotch Pie", W/12.8, H/2); 
       text("           * Steak", W/12.8, H/1.714); 
       if (!switchItem) {
-        item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
+        item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6,heartMode);
       }
-      else{item.display(W/10.667, H/1.865, displayWidth/38.4, displayHeight/21.6);}
+      else{item.display(W/10.667, H/1.865, displayWidth/38.4, displayHeight/21.6,heartMode);}
     }
     else if (FIGHT_SCREEN) { 
       stroke(255); 
@@ -583,7 +584,7 @@ void draw() {
       texSiz = H/40; 
       fill(255); 
       text("           * Fart", W/12.8, H/2);
-      item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6);
+      item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6,heartMode);
     }
     else if (TEXT_SCREEN) {
       stroke(255);
@@ -608,7 +609,7 @@ void draw() {
       noFill(); 
       rect(W/3.36, H/2.4, W/2.46, H/2.57);
   
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6);
+      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode);
       
       if (SPEECH_SCREEN) {
         if (b.currentSentence == " ") {

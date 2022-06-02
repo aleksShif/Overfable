@@ -34,7 +34,7 @@ public class Player{
     xSpeed = 0; 
     ySpeed = 0;
     if (preCombat) {
-      h.display(x, y, displayWidth/38.4, displayHeight/21.6); 
+      h.display(x, y, displayWidth/38.4, displayHeight/21.6,heartMode); 
     }
     else {
       COMBAT = true; 
