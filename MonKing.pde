@@ -40,7 +40,6 @@ class MonKing extends Boss{
         displayCount = 0; 
         monkey = loadImage("MonKing1.png"); 
       }
-      monkey.resize(monkey.width*W/700, monkey.height*W/700);
       image(monkey,W/2.35,H/8.5);
       displayCount += 1; 
     }

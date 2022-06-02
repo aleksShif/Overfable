@@ -1,6 +1,5 @@
 PImage entranceScene, cliffEntranceScene, forestScene, forestScrollScene, snowyScene, snowyScrollScene, prim, secon;
 PImage TeddyJr; 
-TrapHeart th;
 Heart h, item;
 Monster m;
 Screen s; 
