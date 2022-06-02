@@ -11,7 +11,7 @@ public class Player{
   int xSpeed = displayWidth / 192;
   int ySpeed = displayHeight / 108; 
   String walkFrame = "TommyWalkDown1.png";
-  int walkStagger = 80;
+  int walkStagger = 120;
   int walkStart = 0;
   int steps; 
   boolean walking = true;
