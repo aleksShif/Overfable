@@ -8,8 +8,8 @@ public class Player{
   boolean MODE;
   float x = displayWidth/3.5;
   float y = displayHeight/1.5;
-  int xSpeed = displayWidth / 192;
-  int ySpeed = displayHeight / 108; 
+  int xSpeed = displayWidth / 160;
+  int ySpeed = displayHeight / 90; 
   String walkFrame = "TommyWalkDown1.png";
   int walkStagger = 120;
   int walkStart = 0;

@@ -24,16 +24,16 @@ class MonKing extends Boss{
     int W = displayWidth; 
     int H = displayHeight;
     PImage monkey;
-    if (displayCount <= 10){
+    if (displayCount <= 15){
         monkey = loadImage("MonKing1.png");
       }
-      else if(displayCount <= 20){
+      else if(displayCount <= 30){
         monkey = loadImage("MonKing2.png");
       }
-      else if(displayCount <= 30){
+      else if(displayCount <= 45){
         monkey = loadImage("MonKing3.png");
       }
-      else if (displayCount <= 40){
+      else if (displayCount <= 60){
         monkey = loadImage("MonKing4.png");
       }
       else{

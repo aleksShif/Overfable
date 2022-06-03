@@ -148,8 +148,8 @@ void draw() {
     fill(255);
     h.x = displayWidth / 2.13; 
     h.y = displayHeight / 1.714; 
-    tex = "* This is the first boss that the player will encounter, MonKing, and he will have multiple phases which will set apart from the regular monsters."; 
-    addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
+    //tex = "* This is the first boss that the player will encounter, MonKing, and he will have multiple phases which will set apart from the regular monsters."; 
+    //addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
     if (h.dead) {
       background(0); 
       
@@ -201,7 +201,7 @@ void draw() {
       texSiz = H/40; 
       fill(255); 
       if (mk.dead) {
-        tex = "You killed BirdLock Holmes! Why would you do that??? Okay killer, you gained " + t.exp * rounds + " EXP and " + t.gold * rounds + " GOLD. Happy?"; 
+        tex = "You killed BirdLock Holmes! Why would you do that??? Okay killer, you gained " + mk.exp * rounds + " EXP and " + mk.gold * rounds + " GOLD. Happy?"; 
         addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
       }
       else{
@@ -259,7 +259,7 @@ void draw() {
         addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
       }
       else {
-        tex = "* " + t.update[t.update.length - 1]; 
+        tex = "* " + mk.update[mk.update.length - 1]; 
         addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
       }  
     }
