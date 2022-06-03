@@ -94,6 +94,8 @@ void draw() {
     ITEM_SCREEN = false; 
     ENEMY_SCREEN = false; 
     FIGHT_SCREEN = false;
+    which = 0;  
+    enPress = false;
   }
   if (which == 0) {
       which = (int)(Math.random() * 2) + 1; 
@@ -611,9 +613,7 @@ void draw() {
     if (p.noDisplay) {
       p.display(); 
     }
-    else {
-      which = 0;  
-      enPress = false; 
+    else { 
       if (s.getScene().equals("entrance") || s.getScene().equals("cliffEntrance")) {
         if (p.x >= W - W/160) {
           p.xSpeed = 0; 
@@ -830,7 +830,6 @@ void keyPressed() {
       if (n == 1 && ((which == 2 && t.dead) || (which == 1 && b.dead))) {
         loop(); 
         notLoop = false; 
-        print("hi"); 
         background(0); 
         enPress = true; 
         COMBAT = false;

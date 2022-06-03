@@ -7,11 +7,11 @@ class Teddy extends Monster{
   ArrayList<Pellet> pellets; 
   int displayCount = 0;
   public Teddy(){
-    name = "Teddy";
-    HP = 20;
-    AT = 3;
-    exp = (int)(Math.random() * 4) + 2; 
-    gold = (int)(Math.random() * 6) + 10; 
+    String Name = "Teddy";
+    int hp = 20;
+    int at = 3;
+    int exp = (int)(Math.random() * 4) + 2; 
+    int gold = (int)(Math.random() * 6) + 10; 
     pellets = new ArrayList<Pellet>(); 
     countdown = 400; 
   }
