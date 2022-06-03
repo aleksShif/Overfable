@@ -10,14 +10,15 @@ public class Player{
   float y = displayHeight/1.5;
   int xSpeed = displayWidth / 160;
   int ySpeed = displayHeight / 90; 
-  int walkingCount = 0;
   String walkFrame = "TommyWalkDown1.png";
-  int walkStagger = 80;
+  int walkStagger = 120;
   int walkStart = 0;
   int steps; 
   boolean walking = true;
   boolean preCombat = false; 
   boolean noDisplay = false; 
+  boolean frame3UpNext = false;
+  boolean frame3DownNext = false;
   
   Player(boolean mode){
     MODE = mode;
@@ -34,7 +35,7 @@ public class Player{
     xSpeed = 0; 
     ySpeed = 0;
     if (preCombat) {
-      h.display(x, y, displayWidth/38.4, displayHeight/21.6); 
+      h.display(x, y, displayWidth/38.4, displayHeight/21.6,heartMode); 
     }
     else {
       COMBAT = true; 
@@ -60,38 +61,62 @@ public class Player{
         }
         walkStart = millis();
         if(Down){
-          if(walkingCount % 4 == 0){
+          if(!sameDirection("DOWN")){
             walkFrame = "TommyWalkDown1.png";
-          }else if(walkingCount % 4 == 1){
+          }
+          if(walkFrame == "TommyWalkDown1.png" && !frame3DownNext){
             walkFrame = "TommyWalkDown2.png";
-          }else if(walkingCount % 4 == 2){
+          }
+          else if(walkFrame == "TommyWalkDown2.png"){
             walkFrame = "TommyWalkDown1.png";
-          }else{
+            frame3DownNext = true;
+          }
+          else if(walkFrame == "TommyWalkDown1.png" && frame3DownNext){
             walkFrame = "TommyWalkDown3.png";
+          }
+          else if(walkFrame == "TommyWalkDown3.png"){
+            walkFrame = "TommyWalkDown1.png";
+            frame3DownNext = false;
           }
         }
         else if(Up){
-          if(walkingCount % 4 == 0){
+          if(!sameDirection("UP")){
             walkFrame = "TommyWalkUp1.png";
-          }else if(walkingCount % 4 == 1){
+          }
+          if(walkFrame == "TommyWalkUp1.png" && !frame3UpNext){
             walkFrame = "TommyWalkUp2.png";
-          }else if(walkingCount % 4 == 2){
+          }
+          else if(walkFrame == "TommyWalkUp2.png"){
             walkFrame = "TommyWalkUp1.png";
-          }else{
+            frame3UpNext = true;
+          }
+          else if(walkFrame == "TommyWalkUp1.png" && frame3UpNext){
             walkFrame = "TommyWalkUp3.png";
+          }
+          else if(walkFrame == "TommyWalkUp3.png"){
+            walkFrame = "TommyWalkUp1.png";
+            frame3UpNext = false;
           }
         }
         else if(Left){
-          if(walkingCount % 2 == 0){
-             walkFrame = "TommyWalkRight1.png";
-          }else{
+          if(!sameDirection("LEFT")){
+            walkFrame = "TommyWalkRight1.png";
+          }
+          if(walkFrame == "TommyWalkRight2.png"){
+            walkFrame = "TommyWalkRight1.png";
+          }
+          else if(walkFrame == "TommyWalkRight1.png"){
             walkFrame = "TommyWalkRight2.png";
           }
         }
         else if(Right){
-          if(walkingCount % 2 == 0){
-             walkFrame = "TommyWalkLeft1.png";
-          }else{
+          if(!sameDirection("RIGHT")){
+            walkFrame = "TommyWalkLeft1.png";
+          }
+          if(walkFrame == "TommyWalkLeft2.png"){
+            walkFrame = "TommyWalkLeft1.png";
+          }
+          else if(walkFrame == "TommyWalkLeft1.png"){
             walkFrame = "TommyWalkLeft2.png";
           }
         }
@@ -111,10 +136,31 @@ public class Player{
       //  }
       //}
       protagonist = loadImage(walkFrame);
-      walkingCount++;
       protagonist.resize(protagonist.width * displayWidth/2800, protagonist.height * displayWidth/2800); 
       image(protagonist, x, y); 
+      
+      //textSize(20);
+      //text("walking?: " + walking, x,y);  DEBUGGING CODE
+
+      //text("START: " + (millis() - walkStart),x,y-20);  DEBUGGING CODE
+      //text("FRAME: " + walkFrame,x,y-40);
      }
+  }
+  
+  boolean sameDirection(String direction){// accepts UP, DOWN, LEFT, RIGHT
+    if(walkFrame == "TommyWalkDown2.png" || walkFrame == "TommyWalkDown1.png" || walkFrame == "TommyWalkDown3.png"){
+      return (direction == "DOWN");
+    }
+    else if(walkFrame == "TommyWalkUp2.png" || walkFrame == "TommyWalkUp1.png" || walkFrame == "TommyWalkUp3.png"){
+      return (direction == "UP");
+    }
+    else if(walkFrame == "TommyWalkRight2.png" || walkFrame == "TommyWalkRight1.png"){
+      return (direction == "LEFT");
+    }
+    else if(walkFrame == "TommyWalkLeft2.png" || walkFrame == "TommyWalkLeft1.png"){
+      return (direction == "RIGHT");
+    }
+    return false;
   }
   
   void move() {
@@ -134,7 +180,9 @@ public class Player{
       x += xSpeed;
       walking = true;  
     }
-    else{walking = false;}
+    if(!(Up || Down || Left || Right)){
+      walking = false;
+    }
   }
   
   int getHP(){
