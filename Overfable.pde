@@ -32,10 +32,11 @@ float texSiz;
 boolean justLeft = false; 
 boolean justRight = false; 
 boolean scroll = false; 
+boolean notLoop = false; 
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
 boolean arrowPress = false; 
-boolean enPress = true;
+boolean enPress = false;
 boolean switchItem = false;
 boolean COMBAT = false; 
 boolean ITEM_SCREEN = false; 
@@ -87,6 +88,13 @@ void setup() {
 void draw() {     
   int W = displayWidth; 
   int H = displayHeight;
+  if (!COMBAT) {
+    TEXT_SCREEN = false; 
+    SPEECH_SCREEN = false; 
+    ITEM_SCREEN = false; 
+    ENEMY_SCREEN = false; 
+    FIGHT_SCREEN = false;
+  }
   if (which == 0) {
       which = (int)(Math.random() * 2) + 1; 
       if (which == 1) {
@@ -579,7 +587,7 @@ void draw() {
       else {
         tex = "* " + b.update[b.update.length - 1]; 
         addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
-      }  
+      }
     }
     
     h.xSpeed = W/160; 
@@ -604,6 +612,8 @@ void draw() {
       p.display(); 
     }
     else {
+      which = 0;  
+      enPress = false; 
       if (s.getScene().equals("entrance") || s.getScene().equals("cliffEntrance")) {
         if (p.x >= W - W/160) {
           p.xSpeed = 0; 
@@ -814,26 +824,22 @@ void keyPressed() {
       }
     }
     else if (TEXT_SCREEN) {
-      if (n > 1) {
+      if (n > 1 && COMBAT) {
         n = tex.length(); 
-        loop();
-        n = 1; 
       }
-      if ((which == 2 && t.dead) || (which == 1 && b.dead)) {
+      if (n == 1 && ((which == 2 && t.dead) || (which == 1 && b.dead))) {
+        loop(); 
+        notLoop = false; 
+        print("hi"); 
         background(0); 
-        which = 0; 
+        enPress = true; 
         COMBAT = false;
-        TEXT_SCREEN = false; 
-        SPEECH_SCREEN = false; 
-        ITEM_SCREEN = false; 
-        ENEMY_SCREEN = false; 
-        FIGHT_SCREEN = false;
         rounds = 0; 
         p.xSpeed = displayWidth / 160; 
         p.ySpeed = displayHeight / 90;
         p.noDisplay = false; 
-        } 
-      else { 
+       } 
+      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead)) && COMBAT) { 
         TEXT_SCREEN = false;
         SPEECH_SCREEN = true; 
         ENEMY_SCREEN = true; 
@@ -844,6 +850,7 @@ void keyPressed() {
           b.countdown = 400;
         }
         loop();
+        notLoop = false; 
       }
     }
     else if (SPEECH_SCREEN) {
@@ -858,20 +865,21 @@ void keyPressed() {
         }
       }
     }
-    else{
+    else if (COMBAT){
       if (n > 1) {
-        n = tex.length();  
-        loop(); 
+        n = tex.length();   
         enPress = false; 
        }
-      else if (!enPress && !ENEMY_SCREEN && !TEXT_SCREEN) {
+      if (n == 1 && !enPress && !ENEMY_SCREEN && !TEXT_SCREEN && COMBAT) {
         if (cFirst == color(216, 110, 28)) {
           loop(); 
+          notLoop = false; 
           ITEM_SCREEN = true;
           FIGHT_SCREEN = false; 
         }
         else if (cFirst == color(229, 209, 19)) {
           loop(); 
+          notLoop = false; 
           FIGHT_SCREEN = true; 
           ITEM_SCREEN = false; 
         }
@@ -930,11 +938,13 @@ void addText(String t, float wInc, float upBounds, float leftBounds, float right
     stagger = 3; 
   }
   if (n > t.length()) {
-    n = 1; 
     noLoop(); 
+    n = 1; 
+    notLoop = true; 
     if (SPEECH_SCREEN) {
       SPEECH_SCREEN = false; 
       loop(); 
+      notLoop = false; 
     }
   }
 }
