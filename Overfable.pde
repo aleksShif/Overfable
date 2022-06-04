@@ -50,7 +50,7 @@ color cSec;
 Controller keyboardInput;
 
 void setup() { 
-  COMBAT = false; 
+  COMBAT = true; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(displayWidth, displayHeight);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
@@ -100,7 +100,9 @@ void draw() {
   if (which == 0) {
       which = (int)(Math.random() * 2) + 1; 
       if (which == 1) {
-        b = new Teddy(); 
+        //b = new Teddy(); 
+        which = 2; 
+        t = new BirdLock(); 
       }
       else if (which == 2) {
         t = new BirdLock();
@@ -288,21 +290,43 @@ void draw() {
         }
         if (attack == 1) {
           t.attack1(hawkPhase);
-          if(hawkPhase < 15){
-            t.moveHawk(W/100,W/200);
+          if(hawkPhase < 30){
+            t.moveHawk(W/165,W/200);
           }
-          else if(hawkPhase < 30){
-            t.moveHawk(W/100,-W/200);
+          else if(hawkPhase < 38){
+            t.moveHawk(W/150,W/275);
+          }
+          else if (hawkPhase < 40){
+            t.moveHawk(W/130, 0);
+          }
+          else if (hawkPhase < 48) {
+            t.moveHawk(W/150, -W/200);
+          }
+          else {
+            t.moveHawk(W/165, -W/275);
           }
           hawkPhase++;
           h.damaged(t.getHawkson());
-          if(hawkPhase >= 30){
+          if (h.getCurrentHP() <= 0) {
+            h.dead = true;
+            }
+          if(millis() - h.getHitTime() > 1500){
+            h.setInv(false);
+            }
+          if(hawkPhase >= 65){
             attack = 0;
             hawkPhase = 0;
-            ENEMY_SCREEN = false;
-            t.resetHawk();
-            t.currentSentence = " "; 
-            enPress = false; 
+            if (!t.getTurn()) {
+              t.setTurn(true);
+              t.setHawkY(displayHeight/2.7);
+            }
+            else {
+              t.setTurn(false);
+              t.resetHawk();
+              ENEMY_SCREEN = false;
+              t.currentSentence = " "; 
+              enPress = false; 
+            }
           }
         }
         

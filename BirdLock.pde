@@ -1,18 +1,24 @@
 class BirdLock extends Monster{
   int countdown;
   boolean at2 = false;
-  String[] dialogue = {"The game is afoot", "Intriguing", "Aha! It was you!"};
-  String[] update = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};  
+  String[] actionOrder; 
+  String[] dialogue; 
+  String[] update; 
   String currentSentence = " "; 
-  ArrayList<BirdPellet> pellets; 
-  Hawkson hawk = new Hawkson();
+  ArrayList<Pellet> pellets; 
   int displayCount = 0;
   public BirdLock(){
-    name = "BirdLock";
-    HP = 20;
-    AT = 3;
-    exp = (int)(Math.random() * 4) + 2; 
-    gold = (int)(Math.random() * 6) + 10;
+    super("BirdLock", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>()); 
+    setExp((int)(Math.random() * 6) + 2); 
+    setGold((int)(Math.random() * 8) + 10); 
+    String[] aO = {"placeholder"}; 
+    setAO(aO); 
+    String[] d = {"The game is afoot", "Intriguing", "Aha! It was you!"};
+    setDialogue(d); 
+    String[] u = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};
+    setUpdate(u); 
+    setHawk(new Pellet("Hawkson1.png")); 
+    countdown = 400;
   }
   void display(){
     int W = displayWidth; 
@@ -74,7 +80,7 @@ class BirdLock extends Monster{
   }
   
   void moveHawk(float X, float Y){
-    hawk.move(X,Y);
+    hawk.moveHawk(X,Y);
   }
   
   boolean attack2(BirdPellet bp0, BirdPellet bp1, BirdPellet bp2, BirdPellet bp3, BirdPellet bp4, BirdPellet b5){
@@ -138,7 +144,34 @@ class BirdLock extends Monster{
     return hawk;
   }
   
+  boolean getTurn() {
+    return hawk.turn; 
+  }
   void resetHawk(){
     hawk.reset();
+  }
+  void setExp(int e) {
+    exp = e; 
+  }
+  void setGold(int g) {
+    gold = g;
+  }
+  void setAO(String[] aO) {
+    actionOrder = aO;
+  }
+  void setDialogue(String[] d) {
+    dialogue = d;
+  }
+  void setUpdate(String[] u) {
+    update = u;
+  }
+  void setHawk(Pellet p) {
+    hawk = p;
+  }
+  void setTurn(boolean t) {
+    hawk.turn = t; 
+  }
+  void setHawkY(float y_) {
+    hawk.y = y_;
   }
 }

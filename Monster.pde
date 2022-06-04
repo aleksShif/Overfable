@@ -1,4 +1,5 @@
 public class Monster{
+  Pellet hawk; 
   int HP;
   int AT;
   int gold;
@@ -13,15 +14,7 @@ public class Monster{
   String[] actionOrder;
   String[] dialogue; 
   String[] update; 
-  ArrayList<Damageable> pellets; 
-    //int countdown; 
-  //boolean at2 = false;
-  //String[] dialogue = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
-  //String[] update = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"};  
-  //String currentSentence = " "; 
-  //ArrayList<Pellet> pellets; 
-  //int displayCount = 0;
-  
+  ArrayList<Pellet> pellets; 
   
   public Monster(){
     name = "Dummy";
@@ -31,16 +24,17 @@ public class Monster{
     gold = (int)(Math.random() * 6) + 10; 
  
   }
-  public Monster(String Name, int hp, int at, boolean a, String[] aO, String[] d, String[] u, ArrayList<Damageable> pel){
+  public Monster(String Name, int hp, int at, int g, int e, boolean a, String[] aO, String[] d, String[] u, ArrayList<Pellet> pel){
     name = Name;
     HP = hp;
     AT = at;
+    gold = g; 
+    exp = e; 
     at2 = a; 
     actionOrder = aO; 
     dialogue = d; 
     update = u; 
     pellets = pel;
- 
   }
   void damaged(int a){
     HP -= a;
@@ -49,5 +43,16 @@ public class Monster{
   int getHP(){
     return HP;
   }
-  
+  int getExp() {
+    return exp;
+  }
+  int getGold() {
+    return gold;
+  }
+  void setExp(int e) {
+    exp = e; 
+  }
+  void setGold(int g) {
+    gold = g; 
+  }
 }

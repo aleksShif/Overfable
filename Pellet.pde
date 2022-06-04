@@ -1,10 +1,21 @@
 public class Pellet extends Damageable{
+  PImage hawk; 
+  String filename; 
   String side; 
   float size;
   boolean isAt1 = false; 
+  boolean turn = false; 
   int immobileTime = 0; 
   int xSpeed, ySpeed; 
   
+  Pellet(String file){
+    setAT(6);
+    setHitboxX(displayWidth/30.476);
+    setHitboxY(displayHeight/15.652);
+    setX(displayWidth/2.7);
+    setY(displayHeight/2.7); 
+    filename = file; 
+  }
   Pellet(int at, float X, float Y, float Size){
     size = Size;
     setX(X);
@@ -47,12 +58,86 @@ public class Pellet extends Damageable{
     }
   }
   
+  void display(int phase){
+    if(phase < 30){
+      if (turn) {
+        filename = "Hawkson1rev.png"; 
+      }
+      else {
+        filename = "Hawkson1.png";
+      }
+      hawk = loadImage(filename);
+      hawk.resize(hawk.width * 2, hawk.height * 2);
+      image(hawk,x,y);
+    }
+    else if(phase < 35){
+      if (turn) {
+        filename = "Hawkson2rev.png"; 
+      }
+      else {
+        filename = "Hawkson2.png";
+      }      
+      hawk = loadImage(filename);
+      hawk.resize(hawk.width * 2, hawk.height * 2);
+      image(hawk,x,y);
+    }
+    else if(phase < 40){
+      if (turn) {
+        filename = "Hawkson3rev.png"; 
+      }
+      else {
+        filename = "Hawkson3.png";
+      }      
+      hawk = loadImage(filename);
+      hawk.resize(hawk.width * 2, hawk.height * 2);
+      image(hawk,x,y);
+    }
+    else if(phase < 45){
+      if (turn) {
+        filename = "Hawkson4rev.png"; 
+      }
+      else {
+        filename = "Hawkson4.png";
+      }      
+      hawk = loadImage(filename);
+      hawk.resize(hawk.width * 2, hawk.height * 2);
+      image(hawk,x,y);
+    }
+    else{
+      if (turn) {
+        filename = "Hawkson5rev.png"; 
+      }
+      else {
+        filename = "Hawkson5.png";
+      }     
+      hawk = loadImage(filename);
+      hawk.resize(hawk.width * 2, hawk.height * 2);
+      image(hawk,x,y);
+    }
+  }
+  
   void setSide(String s) {
     side = s; 
   }
   
   String getSide() {
     return side; 
+  }
+  
+  void moveHawk(float X, float Y){
+    if (turn) {
+      x-=X;
+      y+=Y;
+    }
+    else {
+      x+=X;
+      y+=Y;
+    }
+  }
+  
+  void reset(){
+    x = displayWidth/2.7;
+    y = displayHeight/2.7;
   }
   //void move(float X, float Y){
   //  setX(x+X);
