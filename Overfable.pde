@@ -479,7 +479,7 @@ void draw() {
     }
     h.move(); 
   }
-  else if (COMBAT && which == 1) { //TEDDY 
+  else if (COMBAT) {
     fightSetup();
     if (h.dead) {
       fightDead();
@@ -491,7 +491,12 @@ void draw() {
       fightFight();
     }
     else if (TEXT_SCREEN) {
-      fightText(b);
+      if(which == 1){
+        fightText(b);
+      }
+      else if(which == 2){
+        fightText(t);
+      }
     }
     else if (ENEMY_SCREEN) {
       stroke(255); 
@@ -502,26 +507,17 @@ void draw() {
       if(which == 1){
         fightEnemyTeddy(b);
       }
+      else if(which == 2){
+        fightEnemyBirdLock(t);
+      }
     }
     else{
-      stroke(255); 
-      strokeWeight(20); 
-      noFill(); 
-      rect(W/16, H/2.4, W/1.14, H/2.57);
-      textSize(H/40);
-      texSiz = H/40; 
-      fill(255);
-      h.x = displayWidth / 2.13; 
-      h.y = displayHeight / 1.714; 
-      if (rounds < b.update.length) {
-        String temp = b.update[rounds];
-        tex = "* " + temp; 
-        addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
+      if(which == 1){
+        fightElse(b);
       }
-      else {
-        tex = "* " + b.update[b.update.length - 1]; 
-        addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
-      }  
+      else if(which == 2){
+        fightElse(t);
+      }
     }
     
     h.xSpeed = W/160; 
@@ -906,8 +902,79 @@ void fightEnemyTeddy(Teddy ted){
     }
   }
 }
+   
+    
+void fightEnemyBirdLock(BirdLock bir){
+  int W = displayWidth;
+  int H = displayHeight;
+  if (SPEECH_SCREEN) {
+    if (bir.currentSentence == " ") {
+      int randSen = (int)(Math.random() * 3); 
+      bir.currentSentence = bir.dialogue[randSen]; 
+     }
+    noStroke(); 
+    fill(255);
+    textSize(H/85);
+    texSiz = H/85;
+    rect(W/1.7297, H/4.737, W/5.818, H/6, 10, 10, 10, 10);  
+    triangle(W/1.768, H/3.396, W/1.7297, H/3.529, W/1.7297, H/3.273); 
+    fill(0);  
+    addText(bir.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
+  }
+  
+  else if (!SPEECH_SCREEN) {
+    if (attack == 0) {
+      //attack = (int)(Math.random() * 2) + 1;
+      attack = 1;
+    }
+    if (attack == 1) {
+      bir.attack1(hawkPhase);
+      if(hawkPhase < 15){
+        bir.moveHawk(W/100,W/200);
+      }
+      else if(hawkPhase < 30){
+        bir.moveHawk(W/100,-W/200);
+      }
+      hawkPhase++;
+      h.damaged(bir.getHawkson());
+      if(hawkPhase >= 30){
+        attack = 0;
+        hawkPhase = 0;
+        ENEMY_SCREEN = false;
+        bir.resetHawk();
+        bir.currentSentence = " "; 
+        enPress = false; 
+      }
+    }
+    if (!ENEMY_SCREEN) {
+      rounds += 1; 
+    }
+  }
+}
     
 
+void fightElse(Monster mon){
+  int W = displayWidth;
+  int H = displayHeight;
+  stroke(255); 
+  strokeWeight(20); 
+  noFill(); 
+  rect(W/16, H/2.4, W/1.14, H/2.57);
+  textSize(H/40);
+  texSiz = H/40; 
+  fill(255);
+  h.x = displayWidth / 2.13; 
+  h.y = displayHeight / 1.714; 
+  if (rounds < mon.update.length) {
+    String temp = mon.update[rounds];
+    tex = "* " + temp; 
+    addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
+  }
+  else {
+    tex = "* " + b.update[b.update.length - 1]; 
+    addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
+  }
+}
 
 
 void keyPressed() {
