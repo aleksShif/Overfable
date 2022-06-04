@@ -71,7 +71,7 @@ void setup() {
   s = new Screen("entrance", 15); 
   h = new Heart(displayWidth / 2.13, displayHeight / 1.714);
   TeddyJr = loadImage("TeddyJr.png");
-  TeddyJr.resize((int)(displayWidth/4.571), (int)(displayHeight/2.25)); 
+  TeddyJr.resize(TeddyJr.width, TeddyJr.height); 
   item = new Heart(displayWidth / 3.902, displayHeight / 1.111);
   p = new Player(true);
   m = new Monster(); 
@@ -775,7 +775,7 @@ void draw() {
         else {
           if (s.getScene().equals("entrance")) {      
             image(entranceScene, 0, 0);
-            image(TeddyJr, W/32, H/2.25); 
+            image(TeddyJr, W/7.9, H/1.5); 
           }
           else if (s.getScene().equals("cliffEntrance")) {
             image(cliffEntranceScene, 0, 0); 
