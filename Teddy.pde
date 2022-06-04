@@ -162,11 +162,11 @@ class Teddy extends Monster{
      }
     }
   
-  boolean attack2(Pellet p0, Pellet p1, Pellet p2, Pellet p3, Pellet p4){
+  boolean attack2(Pellet p0, Pellet p1, Pellet p2, Pellet p3, Pellet p4, Pellet p5, Pellet p6, Pellet p7){
     at2 = true;
     int W = displayWidth; 
     int H = displayHeight;    
-    if(p0.inside() || p1.inside() || p2.inside() || p3.inside() || p4.inside()){
+    if(p0.inside() || p1.inside() || p2.inside() || p3.inside() || p4.inside()|| p5.inside() || p6.inside() || p7.inside()){
       if(p0.inside()){
         for(int i = 0; i < 8; i++){
           p0.move(0,1);
@@ -192,6 +192,21 @@ class Teddy extends Monster{
           p4.move(0,1);
         }
       }
+      if(p5.inside()){
+        for(int i = 0; i < 8; i++){
+          p5.move(0,1);
+        }
+      }
+      if(p6.inside()){
+        for(int i = 0; i < 8; i++){
+          p6.move(0,1);
+        }
+      }
+      if(p7.inside()){
+        for(int i = 0; i < 8; i++){
+          p7.move(0,1);
+        }
+      }
       if(p0.inside()){
         p0.display();
       }
@@ -206,6 +221,15 @@ class Teddy extends Monster{
       }
       if(p4.inside()){
         p4.display();
+      }
+      if(p5.inside()){
+        p5.display();
+      }
+      if(p6.inside()){
+        p6.display();
+      }
+      if(p7.inside()){
+        p7.display();
       }
       return true;
     }else{

@@ -12,6 +12,9 @@ Pellet p1;
 Pellet p2;
 Pellet p3;
 Pellet p4;
+Pellet p5;
+Pellet p6;
+Pellet p7;
 BirdPellet bp0;
 BirdPellet bp1;
 BirdPellet bp2;
@@ -82,6 +85,9 @@ void setup() {
   p2 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
   p3 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
   p4 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+  p5 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+  p6 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
+  p7 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
   fullScreen();   
 }
 
@@ -658,7 +664,7 @@ void draw() {
         }
      
         else if (attack == 2) {
-          if(!b.attack2(p0,p1,p2,p3,p4)){
+          if(!b.attack2(p0,p1,p2,p3,p4,p5,p6,p7)){
             p0.setX((float)(Math.random() * W/2.46 + W/3.36));
             p0.setY(H/2.3);
             p1.setX((float)(Math.random() * W/2.46 + W/3.36));
@@ -669,6 +675,12 @@ void draw() {
             p3.setY(H/2.3);
             p4.setX((float)(Math.random() * W/2.46 + W/3.36));
             p4.setY(H/2.3);
+            p5.setX((float)(Math.random() * W/2.46 + W/3.36));
+            p5.setY(H/2.3);
+            p6.setX((float)(Math.random() * W/2.46 + W/3.36));
+            p6.setY(H/2.3);
+            p7.setX((float)(Math.random() * W/2.46 + W/3.36));
+            p7.setY(H/2.3);
             count++;
           }
           h.damaged(p0);
@@ -676,6 +688,9 @@ void draw() {
           h.damaged(p2);
           h.damaged(p3);
           h.damaged(p4);
+          h.damaged(p5);
+          h.damaged(p6);
+          h.damaged(p7);
           if(millis() - h.getHitTime() > 800){
             h.setInv(false);
           }
