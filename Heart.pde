@@ -220,6 +220,14 @@ public class Heart {
         inv = true;
         hitTime = millis(); 
       }
+      lowerEdgeH = h.y + h.hitboxY;
+      upperEdgeD = j.sharkFin.y+ 2*j.sharkFin.hitboxY + displayHeight/200;
+      if (!(lowerEdgeH < upperEdgeD) && !inv){
+        currentHP -= j.getSharkFin().getAT() - 3;
+        currentHP += p.getDF();
+        inv = true;
+        hitTime = millis(); 
+      }
     }
     else {
       if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){

@@ -26,7 +26,6 @@ public class Pellet extends Damageable{
     setY(Y); 
     filename = file; 
     fill(255);
-    rect(x-hX, y - hY, 2*hX, 2*hY);
   }
   
   Pellet(String file, boolean hM) {

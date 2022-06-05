@@ -56,6 +56,8 @@ class Jaws extends Monster{
   void attack1(){
     at2 = false;
     sharkFin.displayFin();
+    fill(255);
+    rect(displayWidth/3.36, sharkFin.y+ 2*sharkFin.hitboxY + displayHeight/200, displayWidth/2.46, displayHeight/2.4 + displayHeight/2.57 - sharkFin.y - 2*sharkFin.hitboxY );
   }
   
     void setExp(int e) {
