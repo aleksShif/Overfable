@@ -718,6 +718,8 @@ void keyPressed() {
     Left = true;  
   }
   if (keyCode == RIGHT && !arrowPress && !enPress && COMBAT) { 
+    loop();
+    notLoop = false; 
     keyHeld = false; 
     arrowPress = true; 
     color tempF = cFirst; 
@@ -726,6 +728,8 @@ void keyPressed() {
     cSec = tempF;
   }
   if (keyCode == LEFT && arrowPress && !enPress && COMBAT) {
+    loop(); 
+    notLoop = false;
     keyHeld = false; 
     arrowPress = false; 
     color tempF = cFirst; 
@@ -806,7 +810,7 @@ void keyPressed() {
         n = tex.length();   
         enPress = false; 
        }
-      if (n == 1 && !enPress && !ENEMY_SCREEN && !TEXT_SCREEN && COMBAT) {
+      if (n == 1 && !enPress && !ENEMY_SCREEN && !TEXT_SCREEN && COMBAT) { 
         if (cFirst == color(216, 110, 28)) {
           loop(); 
           notLoop = false; 

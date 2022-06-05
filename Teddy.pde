@@ -13,8 +13,6 @@ class Teddy extends Monster{
     String[] u = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"};
     setUpdate(u); 
     countdown = 400; 
-    String[] temp = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"}; 
-    update = temp;
   }
   void display(){
     int W = displayWidth; 
