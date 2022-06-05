@@ -181,7 +181,7 @@ public class Pellet extends Damageable{
         smokeGlass.resize((int)(smokeGlass.width*1.1+20), (int)(smokeGlass.height*1.1+20));
       }
       image(smokeGlass, x+70, y-65);
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6, 0); 
+      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
     }
     else if (phase < 260) {
       heartIm = false; 
@@ -225,7 +225,7 @@ public class Pellet extends Damageable{
       image(smokeGlass, x+20, y-100);
       setHitboxX(smokeGlass.width - 250); 
       setHitboxY(smokeGlass.height - 350); 
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6, 0); 
+      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
     }
     else if (phase < 280) {
       setX(displayWidth/2.336);
@@ -261,6 +261,10 @@ public class Pellet extends Damageable{
   void reset(){
     x = displayWidth/2.7;
     y = displayHeight/2.7;
+  }
+  
+  boolean getHeartIM(){
+    return heartIm;
   }
   //void move(float X, float Y){
   //  setX(x+X);

@@ -16,8 +16,15 @@ Pellet p4;
 Pellet p5;
 Pellet p6;
 Pellet p7;
+BirdPellet bp0;
+BirdPellet bp1;
+BirdPellet bp2;
+BirdPellet bp3;
+BirdPellet bp4;
+BirdPellet bp5;
 //move to class 
 int heartMode = 0;
+int hawkPhase = 1;
 int which = 0; 
 int count = 0;
 int attack = 0; 
@@ -30,11 +37,10 @@ float texSiz;
 boolean justLeft = false; 
 boolean justRight = false; 
 boolean scroll = false; 
-boolean notLoop = false; 
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
 boolean arrowPress = false; 
-boolean enPress = false;
+boolean enPress = true;
 boolean switchItem = false;
 boolean COMBAT = false; 
 boolean ITEM_SCREEN = false; 
@@ -45,9 +51,12 @@ boolean ENEMY_SCREEN = false;
 String tex;
 color cFirst; 
 color cSec; 
+Controller keyboardInput;
+
+
 
 void setup() { 
-  COMBAT = false; 
+  COMBAT = true; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(displayWidth, displayHeight);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
@@ -85,12 +94,14 @@ void setup() {
   fullScreen();   
 }
 
+
+
 void draw() {     
   int W = displayWidth; 
   int H = displayHeight;
   if (which == 0) {
     which = (int)(Math.random() * 3) + 1; 
-    which = 3;
+    which = 3; //DELETE LATER DELETE LATER
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -133,7 +144,7 @@ void draw() {
       rect(W/3.36, H/2.4, W/2.46, H/2.57);
       h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode);  
       if (s.getScene().equals("cliffEntrance")){
-       
+        
       }
       else if(which == 1){
         fightEnemyTeddy(b);
@@ -142,7 +153,7 @@ void draw() {
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
-         fightEnemyJaws(j);
+        fightEnemyJaws(j);
       }
     }
     else{
@@ -158,7 +169,8 @@ void draw() {
       else if(which == 3){
         fightElse(j);
       }
-    }  //<>//
+    }
+    
     h.xSpeed = W/160; 
     h.ySpeed = H/90; 
     if (s.getScene().equals("cliffEntrance")){
@@ -175,7 +187,7 @@ void draw() {
     }
     if (h.x >= W/1.51) {
       h.x = W/1.52; 
-    } //<>//
+    }
     if (h.x <= W/3.27) {
       h.x = W/3.25; 
     }
@@ -186,19 +198,12 @@ void draw() {
       h.y = H/2.33; 
     }
     h.move(); 
-  }
+    }
   else if (!COMBAT) {
-    TEXT_SCREEN = false; 
-    SPEECH_SCREEN = false; 
-    ITEM_SCREEN = false; 
-    ENEMY_SCREEN = false; 
-    FIGHT_SCREEN = false;
-    which = 0;  
-    enPress = false;
     if (p.noDisplay) {
       p.display(); 
     }
-    else { 
+    else {
       if (s.getScene().equals("entrance") || s.getScene().equals("cliffEntrance")) {
         if (p.x >= W - W/160) {
           p.xSpeed = 0; 
@@ -390,6 +395,8 @@ void fightSetup(){
   }
 }
 
+
+
 void fightDead(){
   int W = displayWidth;
   int H = displayHeight;
@@ -405,6 +412,8 @@ void fightDead(){
    texSiz = H/20; 
    text("GAME OVER", W/2.667, H/9);     
 }
+
+
 
 void fightItem(){
   int W = displayWidth;
@@ -506,7 +515,7 @@ void fightEnemyTeddy(Teddy ted){
         ted.currentSentence = " ";
         ted.countdown = 400;
         attack = 0;  
-        ted.pellets = new ArrayList<Pellet>();  
+        ted.pellets = new ArrayList<Pellet>(); 
         enPress = false; 
       }
     }
@@ -578,57 +587,32 @@ void fightEnemyBirdLock(BirdLock bir){
   
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
-      attack = (int)(Math.random() * 2) + 1;
+      //attack = (int)(Math.random() * 2) + 1;
+      attack = 1;
     }
     if (attack == 1) {
-          bir.attack1();
-          h.damaged(bir.getHawkson());
-          if (h.getCurrentHP() <= 0) {
-            h.dead = true;
-            }
-          if(millis() - h.getHitTime() > 1500){
-            h.setInv(false);
-            }
-          if(bir.phase >= 65){
-            if (!bir.getTurn()) {
-              bir.phase = 0;
-              bir.setTurn(true);
-              bir.setHawkY(displayHeight/2.7);
-            }
-            else {
-              attack = 0;
-              bir.phase = 0;
-              bir.setTurn(false);
-              bir.resetHawk();
-              ENEMY_SCREEN = false;
-              bir.currentSentence = " "; 
-              enPress = false; 
-            }
-          }
-        }
-    else if (attack == 2) {
-      t.attack2();
-      if (t.phase >= 135 && t.phase < 260) {
-        h.damaged(t.getSmoke());
+      bir.attack1(hawkPhase);
+      if(hawkPhase < 15){
+        bir.moveHawk(W/100,W/200);
       }
-      if (h.getCurrentHP() <= 0) {
-        h.dead = true;
-       }
-      if(millis() - h.getHitTime() > 1500){
-        h.setInv(false);
-       }
-      if (t.phase >= 280) {
-        attack = 0; 
-        t.phase = 0; 
+      else if(hawkPhase < 30){
+        bir.moveHawk(W/100,-W/200);
+      }
+      hawkPhase++;
+      h.damaged(bir.getHawkson());
+      if(hawkPhase >= 30){
+        attack = 0;
+        hawkPhase = 0;
         ENEMY_SCREEN = false;
-        t.currentSentence = " ";
-        enPress = false;
+        bir.resetHawk();
+        bir.currentSentence = " "; 
+        enPress = false; 
       }
     }
     if (!ENEMY_SCREEN) {
       rounds += 1; 
     }
-   }
+  }
 }
     
 void fightEnemyJaws(Jaws jaw){
@@ -684,7 +668,7 @@ void fightElse(Monster mon){
     addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
   }
   else {
-    tex = "* " + mon.update[mon.update.length - 1]; 
+    tex = "* " + b.update[b.update.length - 1]; 
     addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
   }
 }
@@ -755,21 +739,26 @@ void keyPressed() {
       }
     }
     else if (TEXT_SCREEN) {
-      if (n > 1 && COMBAT) {
+      if (n > 1) {
         n = tex.length(); 
+        loop();
+        n = 1; 
       }
       if ((which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead)) {
-        loop(); 
-        notLoop = false; 
         background(0); 
-        enPress = true; 
+        which = 0; 
         COMBAT = false;
+        TEXT_SCREEN = false; 
+        SPEECH_SCREEN = false; 
+        ITEM_SCREEN = false; 
+        ENEMY_SCREEN = false; 
+        FIGHT_SCREEN = false;
         rounds = 0; 
         p.xSpeed = displayWidth / 160; 
         p.ySpeed = displayHeight / 90;
         p.noDisplay = false; 
-       } 
-      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead)) && COMBAT) { 
+        } 
+      else { 
         TEXT_SCREEN = false;
         SPEECH_SCREEN = true; 
         ENEMY_SCREEN = true; 
@@ -782,7 +771,6 @@ void keyPressed() {
           j.countdown = 400;
         }
         loop();
-        notLoop = false; 
       }
     }
     else if (SPEECH_SCREEN) {
@@ -801,21 +789,20 @@ void keyPressed() {
         }
       }
     }
-    else if (COMBAT){
+    else{
       if (n > 1) {
-        n = tex.length();   
+        n = tex.length();  
+        loop(); 
         enPress = false; 
        }
-      if (n == 1 && !enPress && !ENEMY_SCREEN && !TEXT_SCREEN && COMBAT) {
+      else if (!enPress && !ENEMY_SCREEN && !TEXT_SCREEN) {
         if (cFirst == color(216, 110, 28)) {
           loop(); 
-          notLoop = false; 
           ITEM_SCREEN = true;
           FIGHT_SCREEN = false; 
         }
         else if (cFirst == color(229, 209, 19)) {
           loop(); 
-          notLoop = false; 
           FIGHT_SCREEN = true; 
           ITEM_SCREEN = false; 
         }
@@ -878,13 +865,11 @@ void addText(String t, float wInc, float upBounds, float leftBounds, float right
     stagger = 3; 
   }
   if (n > t.length()) {
-    noLoop(); 
     n = 1; 
-    notLoop = true; 
+    noLoop(); 
     if (SPEECH_SCREEN) {
       SPEECH_SCREEN = false; 
       loop(); 
-      notLoop = false; 
     }
   }
 }
