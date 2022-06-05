@@ -190,20 +190,30 @@ public class Heart {
     float rightEdgeD = d.getX() + d.getHitboxX();
     float lowerEdgeD = d.getY() + d.getHitboxY();
     float upperEdgeD = d.getY() - d.getHitboxY();
-    if (t.getFile().equals("bigGlass.png")) {
-      if ((lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
-        currentHP -= d.getAT();
-        currentHP += p.getDF();
-        inv = true;
-        hitTime = millis(); 
+    if(COMBAT && which == 2){
+      if (t.getFile().equals("bigGlass.png")) {
+        if ((lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+          currentHP -= d.getAT();
+          currentHP += p.getDF();
+          inv = true;
+          hitTime = millis(); 
+        }
+      }
+      else {
+        if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+          currentHP -= d.getAT();
+          currentHP += p.getDF();
+          inv = true;
+          hitTime = millis(); 
+        }
       }
     }
-    else {
+    else{
       if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
-        currentHP -= d.getAT();
-        currentHP += p.getDF();
-        inv = true;
-        hitTime = millis(); 
+          currentHP -= d.getAT();
+          currentHP += p.getDF();
+          inv = true;
+          hitTime = millis(); 
       }
     }
   }

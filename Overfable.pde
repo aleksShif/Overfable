@@ -103,7 +103,6 @@ void draw() {
   }
   if (which == 0) {
     which = (int)(Math.random() * 3) + 1; 
-    which = 3; //DELETE LATER DELETE LATER
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -694,7 +693,7 @@ void fightElse(Monster mon){
     addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
   }
   else {
-    tex = "* " + b.update[b.update.length - 1]; 
+    tex = "* " + mon.update[mon.update.length - 1]; 
     addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
   }
 }

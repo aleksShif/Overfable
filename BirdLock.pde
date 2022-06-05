@@ -3,7 +3,6 @@ class BirdLock extends Monster{
   boolean at2 = false;
   String[] actionOrder; 
   String[] dialogue; 
-  String[] update; 
   String currentSentence = " "; 
   ArrayList<Pellet> pellets; 
   int displayCount = 0;

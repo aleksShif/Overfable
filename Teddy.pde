@@ -1,11 +1,7 @@
 class Teddy extends Monster{
   int countdown; 
   boolean at2 = false;
-  String currentSentence = " "; 
   String[] actionOrder; 
-  String[] dialogue;
-  String[] update;
-  ArrayList<Pellet> pellets; 
   int displayCount = 0;
   public Teddy(){
     super("Teddy", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>()); 
