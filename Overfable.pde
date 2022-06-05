@@ -44,12 +44,9 @@ boolean ENEMY_SCREEN = false;
 String tex;
 color cFirst; 
 color cSec; 
-Controller keyboardInput;
-
-
 
 void setup() { 
-  COMBAT = true; 
+  COMBAT = false; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(displayWidth, displayHeight);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
@@ -87,20 +84,9 @@ void setup() {
   fullScreen();   
 }
 
-
-
 void draw() {     
   int W = displayWidth; 
   int H = displayHeight;
-  if (!COMBAT) {
-    TEXT_SCREEN = false; 
-    SPEECH_SCREEN = false; 
-    ITEM_SCREEN = false; 
-    ENEMY_SCREEN = false; 
-    FIGHT_SCREEN = false;
-    which = 0;  
-    enPress = false;
-  }
   if (which == 0) {
     which = (int)(Math.random() * 2) + 1; 
     if (which == 1) {
@@ -158,7 +144,7 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-    } //<>//
+    }
     h.xSpeed = W/160; 
     h.ySpeed = H/90; 
     if (s.getScene().equals("cliffEntrance")){
@@ -172,7 +158,7 @@ void draw() {
     }
     if (h.x >= W/1.51) {
       h.x = W/1.52; 
-    }
+    } //<>//
     if (h.x <= W/3.27) {
       h.x = W/3.25; 
     }
@@ -184,8 +170,14 @@ void draw() {
     }
     h.move(); 
   }
-}
   else if (!COMBAT) {
+    TEXT_SCREEN = false; 
+    SPEECH_SCREEN = false; 
+    ITEM_SCREEN = false; 
+    ENEMY_SCREEN = false; 
+    FIGHT_SCREEN = false;
+    which = 0;  
+    enPress = false;
     if (p.noDisplay) {
       p.display(); 
     }
@@ -380,8 +372,6 @@ void fightSetup(){
   }
 }
 
-
-
 void fightDead(){
   int W = displayWidth;
   int H = displayHeight;
@@ -397,8 +387,6 @@ void fightDead(){
    texSiz = H/20; 
    text("GAME OVER", W/2.667, H/9);     
 }
-
-
 
 void fightItem(){
   int W = displayWidth;
@@ -500,7 +488,7 @@ void fightEnemyTeddy(Teddy ted){
         ted.currentSentence = " ";
         ted.countdown = 400;
         attack = 0;  
-        ted.pellets = new ArrayList<Pellet>(); 
+        ted.pellets = new ArrayList<Pellet>();  
         enPress = false; 
       }
     }
@@ -575,27 +563,27 @@ void fightEnemyBirdLock(BirdLock bir){
       attack = (int)(Math.random() * 2) + 1;
     }
     if (attack == 1) {
-          t.attack1();
-          h.damaged(t.getHawkson());
+          bir.attack1();
+          h.damaged(bir.getHawkson());
           if (h.getCurrentHP() <= 0) {
             h.dead = true;
             }
           if(millis() - h.getHitTime() > 1500){
             h.setInv(false);
             }
-          if(t.phase >= 65){
-            if (!t.getTurn()) {
-              t.phase = 0;
-              t.setTurn(true);
-              t.setHawkY(displayHeight/2.7);
+          if(bir.phase >= 65){
+            if (!bir.getTurn()) {
+              bir.phase = 0;
+              bir.setTurn(true);
+              bir.setHawkY(displayHeight/2.7);
             }
             else {
               attack = 0;
-              t.phase = 0;
-              t.setTurn(false);
-              t.resetHawk();
+              bir.phase = 0;
+              bir.setTurn(false);
+              bir.resetHawk();
               ENEMY_SCREEN = false;
-              t.currentSentence = " "; 
+              bir.currentSentence = " "; 
               enPress = false; 
             }
           }
@@ -644,7 +632,7 @@ void fightElse(Monster mon){
     addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
   }
   else {
-    tex = "* " + b.update[b.update.length - 1]; 
+    tex = "* " + mon.update[mon.update.length - 1]; 
     addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
   }
 }
