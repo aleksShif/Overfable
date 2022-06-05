@@ -107,190 +107,6 @@ void draw() {
       t = new BirdLock();
     }
   }
-  if (COMBAT && s.getScene().equals("cliffEntrance")) {
-    heartMode = 1;
-    background(0); 
-    fill(255); 
-    PFont font = createFont("undertale-attack-font.ttf", H/40); 
-    textFont(font); 
-    text("TOMMY WOLF", W/16, H/1.16); 
-    text("LV " + p.getLV(), W/4, H/1.16); 
-    textSize(H/60); 
-    texSiz = H/60;
-    text("HP", W/2.46, H/1.16); 
-    noStroke(); 
-    fill(223, 252, 8); 
-    float max = W / 49.2; 
-    rect(W/2.29, H/1.2, (max / p.getHP()) * h.getCurrentHP(), H/36);
-    fill(255, 0, 0); 
-    rect(W/2.29 + (max / p.getHP()) * h.getCurrentHP(), H/1.2, W/49.2 - (max / p.getHP()) * h.getCurrentHP(), H/36); 
-    fill(255); 
-    textSize(H/40); 
-    texSiz = H/40; 
-    text(h.getCurrentHP() + " / " + p.getHP(), W/2.1, H/1.16); 
-    noFill(); 
-    rect(W/3.36, H/2.4, W/2.46, H/2.57);
-    stroke(cFirst); 
-    strokeWeight(10); 
-    rect(W/4, H/1.125, W/6.4, H/12);
-    stroke(cSec); 
-    rect(W/1.6, H/1.125, W/6.4, H/12);
-    textSize(H/30); 
-    texSiz = H/30; 
-    fill(cFirst);
-    text("FIGHT", W/3.46, H/1.05);
-    fill(cSec);
-    text("ITEM", W/1.46, H/1.05); 
-    set(2125, 1710, #D86E1C);
-    if (arrowPress && !ITEM_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
-      item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6,heartMode);
-    }
-    else if (!arrowPress && !ITEM_SCREEN && !FIGHT_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
-      item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6,heartMode);
-    }
-    mk.display(); 
-    stroke(255); 
-    strokeWeight(20); 
-    noFill(); 
-    textSize(H/40);
-    texSiz = H/40; 
-    fill(255);
-    h.x = displayWidth / 2.13; 
-    h.y = displayHeight / 1.714; 
-    //tex = "* This is the first boss that the player will encounter, MonKing, and he will have multiple phases which will set apart from the regular monsters."; 
-    //addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
-    if (h.dead) {
-      background(0); 
-      
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
-      if(millis() - h.getHitTime() > 1500){
-        h.setInv(false);
-       }
-      
-      if (!h.inv) {
-        h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
-      }
-       
-       textSize(H/20); 
-       texSiz = H/20; 
-       text("GAME OVER", W/2.667, H/9);     
-    }
-    else if (ITEM_SCREEN) { 
-      stroke(255); 
-      strokeWeight(20); 
-      noFill(); 
-      rect(W/16, H/2.4, W/1.14, H/2.57);
-      textSize(H/40); 
-      texSiz = H/40; 
-      fill(255); 
-      text("           * Butterscotch Pie", W/12.8, H/2); 
-      text("           * Steak", W/12.8, H/1.714); 
-      if (!switchItem) {
-        item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6,heartMode);
-      }
-      else{item.display(W/10.667, H/1.865, displayWidth/38.4, displayHeight/21.6,heartMode);}
-    }
-    else if (FIGHT_SCREEN) { 
-      stroke(255); 
-      strokeWeight(20); 
-      noFill(); 
-      rect(W/16, H/2.4, W/1.14, H/2.57);
-      textSize(H/40); 
-      texSiz = H/40; 
-      fill(255); 
-      text("           * Fart", W/12.8, H/2);
-      item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6,heartMode);
-    }
-    else if (TEXT_SCREEN) {
-      stroke(255);
-      strokeWeight(20);
-      noFill(); 
-      rect(W/16, H/2.4, W/1.14, H/2.57);
-      textSize(H/40); 
-      texSiz = H/40; 
-      fill(255); 
-      if (mk.dead) {
-        tex = "You killed BirdLock Holmes! Why would you do that??? Okay killer, you gained " + mk.exp * rounds + " EXP and " + mk.gold * rounds + " GOLD. Happy?"; 
-        addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
-      }
-      else{
-        tex = "You farted on BirdLock Holmes! It was so foul that it dealt damage! Dealt " + p.getAT() + " AT and BirdLock now has " + mk.getHP() + " HP left."; 
-        addText(tex, W/53.333, H/2.4, W/16, W/1.063);
-      }
-    }
-    else if (ENEMY_SCREEN) {
-      stroke(255); 
-      strokeWeight(20); 
-      noFill(); 
-      rect(W/3.36, H/2.4, W/2.46, H/2.57);
-  
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode);
-      stroke(237, 245, 7);
-      strokeWeight(2);
-      line(W/3.01, H/1.99, W/1.5, H/1.99);
-      line(W/3.01, H/1.65, W/1.5, H/1.65);
-      line(W/3.01, H/1.39, W/1.5, H/1.39);
-      
-      if (SPEECH_SCREEN) {
-        if (mk.currentSentence == " ") {
-          int randSen = (int)(Math.random() * 3); 
-          mk.currentSentence = mk.dialogue[randSen]; 
-         }
-        noStroke(); 
-        fill(255);
-        textSize(H/85);
-        texSiz = H/85;
-        rect(W/1.7297, H/4.737, W/5.818, H/6, 10, 10, 10, 10);  
-        triangle(W/1.768, H/3.396, W/1.7297, H/3.529, W/1.7297, H/3.273); 
-        fill(0);  
-        addText(mk.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
-      }
-      
-      else if (!SPEECH_SCREEN) {
-        if (!ENEMY_SCREEN) {
-          rounds += 1; 
-        }
-      }
-    }
-    else{
-      stroke(255); 
-      strokeWeight(20); 
-      noFill(); 
-      rect(W/16, H/2.4, W/1.14, H/2.57);
-      textSize(H/40);
-      texSiz = H/40; 
-      fill(255);
-      h.x = displayWidth / 2.13; 
-      h.y = displayHeight / 1.714; 
-      if (rounds < mk.update.length) {
-        String temp = mk.update[rounds];
-        tex = "* " + temp; 
-        addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
-      }
-      else {
-        tex = "* " + mk.update[mk.update.length - 1]; 
-        addText(tex, W/53.333, H/2.4, W/16, W/1.063);  
-      }  
-    }
-    
-    h.xSpeed = W/160; 
-    h.ySpeed = H/90; 
-    mk.display(); 
-    if (h.x >= W/1.51) {
-      h.x = W/1.52; 
-    }
-    if (h.x <= W/3.27) {
-      h.x = W/3.25; 
-    }
-    if (h.y >= H/1.35) {
-      h.y = H/1.37;
-    }
-    if (h.y <= H/2.35) {
-      h.y = H/2.33; 
-    }
-    h.move(); 
-  }
-  
   else if (COMBAT) {
     fightSetup();
     if (h.dead) {
@@ -303,7 +119,10 @@ void draw() {
       fightFight();
     }
     else if (TEXT_SCREEN) {
-      if(which == 1){
+      if (s.getScene().equals("cliffEntrance")){
+        fightText(mk);
+      }
+      else if(which == 1){
         fightText(b);
       }
       else if(which == 2){
@@ -316,7 +135,10 @@ void draw() {
       noFill(); 
       rect(W/3.36, H/2.4, W/2.46, H/2.57);
       h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode);  
-      if(which == 1){
+      if (s.getScene().equals("cliffEntrance")){
+        
+      }
+      else if(which == 1){
         fightEnemyTeddy(b);
       }
       else if(which == 2){
@@ -324,7 +146,10 @@ void draw() {
       }
     }
     else{
-      if(which == 1){
+      if (s.getScene().equals("cliffEntrance")){
+        fightElse(mk); 
+      }
+      else if(which == 1){
         fightElse(b);
       }
       else if(which == 2){
@@ -334,7 +159,10 @@ void draw() {
     
     h.xSpeed = W/160; 
     h.ySpeed = H/90; 
-    if(which == 1){
+    if (s.getScene().equals("cliffEntrance")){
+      mk.display();
+    }
+    else if(which == 1){
       b.display();
     }
     else if(which == 2){
@@ -782,7 +610,6 @@ void fightElse(Monster mon){
   fill(255);
   h.x = displayWidth / 2.13; 
   h.y = displayHeight / 1.714; 
-  println(mon.getName());
   if (rounds < mon.update.length) {
     String temp = mon.update[rounds];
     tex = "* " + temp; 

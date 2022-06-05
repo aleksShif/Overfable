@@ -1,4 +1,4 @@
-public class Boss {
+public class Boss extends Monster{
   int HP;
   int AT;
   int gold;
@@ -9,7 +9,6 @@ public class Boss {
   String name;
   String currentSentence = " "; 
   String[] dialogue; 
-  String[] update; 
   
   public Boss(){
     name = "Advanced Dummy";

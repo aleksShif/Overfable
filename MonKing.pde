@@ -10,7 +10,6 @@ class MonKing extends Boss{
   String name;
   String currentSentence = " "; 
   String[] dialogue = {"The game is afoot", "Intriguing", "Aha! It was you!"};
-  String[] update = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};  
   
   public MonKing(){
     name = "MonKing";
@@ -18,7 +17,8 @@ class MonKing extends Boss{
     AT = 4;
     exp = (int)(Math.random() * 10) + 2; 
     gold = (int)(Math.random() * 12) + 10; 
- 
+    String[] temp = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};  
+    update = temp;
   }
   void display(){
     int W = displayWidth; 
