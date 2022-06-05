@@ -1,11 +1,12 @@
 public class Monster{
-  Pellet hawk; 
+  Pellet hawk, smokeGlass; 
   int HP;
   int AT;
   int gold;
   int exp;
   int countdown;
   int hurtTime = 0;
+  int phase = 0; 
   boolean hurt = false;
   boolean at2; 
   boolean dead = false; 

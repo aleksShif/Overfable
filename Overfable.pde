@@ -12,14 +12,7 @@ Pellet p1;
 Pellet p2;
 Pellet p3;
 Pellet p4;
-BirdPellet bp0;
-BirdPellet bp1;
-BirdPellet bp2;
-BirdPellet bp3;
-BirdPellet bp4;
-BirdPellet bp5;
 //move to class 
-int hawkPhase = 1;
 int which = 0; 
 int count = 0;
 int attack = 0; 
@@ -285,27 +278,26 @@ void draw() {
       
       else if (!SPEECH_SCREEN) {
         if (attack == 0) {
-          //attack = (int)(Math.random() * 2) + 1;
-          attack = 1;
+          attack = (int)(Math.random() * 2) + 1;
         }
         if (attack == 1) {
-          t.attack1(hawkPhase);
-          if(hawkPhase < 30){
-            t.moveHawk(W/165,W/200);
-          }
-          else if(hawkPhase < 38){
-            t.moveHawk(W/150,W/275);
-          }
-          else if (hawkPhase < 40){
-            t.moveHawk(W/130, 0);
-          }
-          else if (hawkPhase < 48) {
-            t.moveHawk(W/150, -W/200);
-          }
-          else {
-            t.moveHawk(W/165, -W/275);
-          }
-          hawkPhase++;
+          t.attack1();
+          //if(hawkPhase < 30){
+          //  t.moveHawk(W/165,W/200);
+          //}
+          //else if(hawkPhase < 38){
+          //  t.moveHawk(W/150,W/275);
+          //}
+          //else if (hawkPhase < 40){
+          //  t.moveHawk(W/130, 0);
+          //}
+          //else if (hawkPhase < 48) {
+          //  t.moveHawk(W/150, -W/200);
+          //}
+          //else {
+          //  t.moveHawk(W/165, -W/275);
+          //}
+          //hawkPhase++;
           h.damaged(t.getHawkson());
           if (h.getCurrentHP() <= 0) {
             h.dead = true;
@@ -313,14 +305,15 @@ void draw() {
           if(millis() - h.getHitTime() > 1500){
             h.setInv(false);
             }
-          if(hawkPhase >= 65){
-            attack = 0;
-            hawkPhase = 0;
+          if(t.phase >= 65){
             if (!t.getTurn()) {
+              t.phase = 0;
               t.setTurn(true);
               t.setHawkY(displayHeight/2.7);
             }
             else {
+              attack = 0;
+              t.phase = 0;
               t.setTurn(false);
               t.resetHawk();
               ENEMY_SCREEN = false;
@@ -329,40 +322,25 @@ void draw() {
             }
           }
         }
-        
-        //else if (attack == 2) {
-        //  if(!t.attack2(bp0,bp1,bp2,bp3,bp4,bp5)){
-        //    bp0.setX(W/3.3);
-        //    bp0.setY((float)(Math.random() * H/2.57 + H/2.4));
-        //    bp1.setX(W/3.3);
-        //    bp1.setY((float)(Math.random() * H/2.57 + H/2.4));
-        //    bp2.setX(W/3.3);
-        //    bp2.setY((float)(Math.random() * H/2.57 + H/2.4));
-        //    bp3.setX(W/3.3);
-        //    bp3.setY((float)(Math.random() * H/2.57 + H/2.4));
-        //    bp4.setX(W/3.3);
-        //    bp4.setY((float)(Math.random() * H/2.57 + H/2.4));
-        //    bp5.setX(W/3.3);
-        //    bp5.setY((float)(Math.random() * H/2.57 + H/2.4));
-        //    count++;
-        //  }
-        //  h.damaged(bp0);
-        //  h.damaged(bp1);
-        //  h.damaged(bp2);
-        //  h.damaged(bp3);
-        //  h.damaged(bp4);
-        //  if(millis() - h.getHitTime() > 800){
-        //    h.setInv(false);
-        //  }
-        //  if(count >= 5){
-        //    ENEMY_SCREEN = false;
-        //    t.currentSentence = " ";
-        //    attack = 0; 
-        //    count = 0;
-        //    enPress = false; 
-        //    t.at2 = false;
-        //  } 
-        //}
+        else if (attack == 2) {
+          t.attack2();
+          if (t.phase >= 135 && t.phase < 260) {
+            h.damaged(t.getSmoke());
+          }
+          if (h.getCurrentHP() <= 0) {
+            h.dead = true;
+           }
+          if(millis() - h.getHitTime() > 1500){
+            h.setInv(false);
+           }
+          if (t.phase >= 280) {
+            attack = 0; 
+            t.phase = 0; 
+            ENEMY_SCREEN = false;
+            t.currentSentence = " ";
+            enPress = false;
+          }
+        }
         if (!ENEMY_SCREEN) {
           rounds += 1; 
         }
