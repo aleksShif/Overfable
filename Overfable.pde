@@ -90,7 +90,6 @@ void draw() {
   int H = displayHeight;
   if (which == 0) {
     which = (int)(Math.random() * 3) + 1; 
-    which = 3;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -159,7 +158,7 @@ void draw() {
         fightElse(j);
       }
     }  //<>//
-    h.xSpeed = W/160; 
+    h.xSpeed = W/160;  //<>//
     h.ySpeed = H/90; 
     if (s.getScene().equals("cliffEntrance")){
       mk.display();

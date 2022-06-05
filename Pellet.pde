@@ -10,12 +10,12 @@ public class Pellet extends Damageable{
   int immobileTime = 0; 
   int xSpeed, ySpeed; 
   
-  Pellet(String file){
-    setAT(6);
-    setHitboxX(displayWidth/30.476);
-    setHitboxY(displayHeight/15.652);
-    setX(displayWidth/2.7);
-    setY(displayHeight/2.7); 
+  Pellet(String file, float hX, float hY, float X, float Y, int at){
+    setAT(at);
+    setHitboxX(hX);
+    setHitboxY(hY);
+    setX(X);
+    setY(Y); 
     filename = file; 
   }
   Pellet(String file, boolean hM) {
@@ -140,35 +140,35 @@ public class Pellet extends Damageable{
       filename = "smoke2.png";
       smokeGlass = loadImage(filename); 
       smokeGlass.resize(smokeGlass.width/2, smokeGlass.height/2); 
-      image(smokeGlass, x-30, y+40);
+      image(smokeGlass, x-W/106.667, y+H/45);
     }
     else if (phase < 42) {
       heartIm = true;      
       filename = "smoke3.png"; 
       smokeGlass = loadImage(filename); 
       smokeGlass.resize(smokeGlass.width/2, smokeGlass.height/2);  
-      image(smokeGlass, x-33, y-50);
+      image(smokeGlass, x-W/96.9697, y-H/36);
     }
     else if (phase < 48) {
       heartIm = true;      
       filename = "smoke4.png";
       smokeGlass = loadImage(filename); 
       smokeGlass.resize(smokeGlass.width/2, smokeGlass.height/2); 
-      image(smokeGlass, x-37, y-60);
+      image(smokeGlass, x-W/86.486, y-H/30);
     }
     else if (phase < 54) {
       heartIm = true;      
       filename = "smoke5.png";
       smokeGlass = loadImage(filename); 
       smokeGlass.resize(smokeGlass.width/2, smokeGlass.height/2);  
-      image(smokeGlass, x-55, y-78);
+      image(smokeGlass, x-W/58.182, y-H/23.077);
     }
     else if (phase < 125) {
       heartIm = true;      
       filename = "smoke6.png";
       smokeGlass = loadImage(filename); 
       smokeGlass.resize(smokeGlass.width/2, smokeGlass.height/2);   
-      image(smokeGlass, x-37, y-58);
+      image(smokeGlass, x-W/86.486, y-H/31.034);
     }
     else if (phase < 135) {
       heartIm = true;      
@@ -178,7 +178,7 @@ public class Pellet extends Damageable{
         smokeGlass.resize((int)(smokeGlass.width*1.1), (int)(smokeGlass.height*1.1));
       }
       else if (phase >= 130 && phase < 135) {
-        smokeGlass.resize((int)(smokeGlass.width*1.1+20), (int)(smokeGlass.height*1.1+20));
+        smokeGlass.resize((int)(smokeGlass.width*1.1+W/160), (int)(smokeGlass.height*1.1+H/90));
       }
       image(smokeGlass, x+70, y-65);
       h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
@@ -188,43 +188,41 @@ public class Pellet extends Damageable{
       filename = "bigGlass.png";
       smokeGlass = loadImage(filename); 
       if (phase >= 160 && phase < 170) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - 20), (int)(smokeGlass.height * 1.8 - 20));        
+        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/160), (int)(smokeGlass.height * 1.8 - H/90));        
       }
       else if (phase >= 170 && phase < 180) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - 40), (int)(smokeGlass.height * 1.8 - 40));       
+        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/80), (int)(smokeGlass.height * 1.8 - H/45));       
       }
       else if (phase >= 180 && phase < 190) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - 60), (int)(smokeGlass.height * 1.8 - 60));        
+        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/53.333), (int)(smokeGlass.height * 1.8 - H/30));        
       }
       else if (phase >= 190 && phase < 200) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - 80), (int)(smokeGlass.height * 1.8 - 80));
-        setHitboxX(smokeGlass.width);
-        setHitboxY(smokeGlass.height);        
+        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/40), (int)(smokeGlass.height * 1.8 - H/22.5));        
       }
       else if (phase >= 200 && phase < 210) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - 100), (int)(smokeGlass.height * 1.8 - 100));        
+        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/32), (int)(smokeGlass.height * 1.8 - H/18));        
       }
       else if (phase >= 210 && phase < 220) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - 130), (int)(smokeGlass.height * 1.8 - 130));        
+        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/24.615), (int)(smokeGlass.height * 1.8 - H/13.846));        
       } 
       else if (phase >= 220 && phase < 230) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - 160), (int)(smokeGlass.height * 1.8 - 160));        
+        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/20), (int)(smokeGlass.height * 1.8 - H/11.25));        
       }
       else if (phase >= 230 && phase < 240) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - 180), (int)(smokeGlass.height * 1.8 - 180));       
+        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/17.778), (int)(smokeGlass.height * 1.8 - H/10));       
       } 
       else if (phase >= 240 && phase < 250) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - 200), (int)(smokeGlass.height * 1.8 - 200));        
+        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/16), (int)(smokeGlass.height * 1.8 - H/9));        
       }
       else if (phase >= 250 && phase < 260) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - 230), (int)(smokeGlass.height * 1.8 - 230));        
+        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/13.913), (int)(smokeGlass.height * 1.8 - H/7.826));        
       }       
       else {
         smokeGlass.resize((int)(smokeGlass.width * 1.8), (int)(smokeGlass.height * 1.8));
       }
-      image(smokeGlass, x+20, y-100);
-      setHitboxX(smokeGlass.width - 250); 
-      setHitboxY(smokeGlass.height - 350); 
+      image(smokeGlass, x+W/160, y-H/18);
+      setHitboxX(smokeGlass.width - W/12.8); 
+      setHitboxY(smokeGlass.height - H/5.143); 
       h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
     }
     else if (phase < 280) {
