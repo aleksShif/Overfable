@@ -209,6 +209,18 @@ public class Heart {
         }
       }
     }
+    else if(COMBAT && which == 3 && !j.at2){
+      leftEdgeD = d.getX();
+      rightEdgeD = d.getX() + 2 * d.getHitboxX();
+      lowerEdgeD = d.getY() + 2 * d.getHitboxY();
+      upperEdgeD = d.getY();
+      if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+        currentHP -= d.getAT();
+        currentHP += p.getDF();
+        inv = true;
+        hitTime = millis(); 
+      }
+    }
     else {
       if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
         currentHP -= d.getAT();

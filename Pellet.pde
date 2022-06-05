@@ -12,7 +12,6 @@ public class Pellet extends Damageable{
   int immobileTime = 0; 
   int xSpeed, ySpeed;
   int count = 0;
-  float Y = displayHeight/1.5;
   float X = displayWidth/3.36;
   boolean right = true;
   boolean up = true;
@@ -26,6 +25,8 @@ public class Pellet extends Damageable{
     setX(X);
     setY(Y); 
     filename = file; 
+    fill(255);
+    rect(x-hX, y - hY, 2*hX, 2*hY);
   }
   
   Pellet(String file, boolean hM) {
@@ -245,35 +246,35 @@ public class Pellet extends Damageable{
   void displayFin(){
     if(right){
       fin = loadImage("JawsFin1.png");
-      X += displayWidth/300;
+      x += displayWidth/300;
     }
     else{
       fin = loadImage("JawsFin2.png");
-      X -= displayWidth/300;
+      x -= displayWidth/300;
     }    
     fin.resize(fin.width, fin.height);
     if(count % 20 == 0){
       if(up){
-        Y -= displayHeight/100;
+        y -= displayHeight/100;
       }
       else{
-        Y += displayHeight/100;
+        y += displayHeight/100;
       }
     }
-    if(X > displayWidth/1.6 && right){
+    if(x > displayWidth/1.6 && right){
       right = false;
     }
-    if(X < displayWidth/3.36 && !right){
+    if(x < displayWidth/3.36 && !right){
       right = true;
     }
-    if(Y < displayHeight/2.4){
+    if(y < displayHeight/2.4){
       up = false;
     }
-    if(Y > displayHeight/1.5 && !up){
+    if(y > displayHeight/1.5 && !up){
       finFinished = true;
     }
     count++;
-    image(fin,X,Y);
+    image(fin,x,y);
   }
   
   void setSide(String s) {
