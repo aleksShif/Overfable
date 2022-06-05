@@ -8,6 +8,11 @@ public class Heart {
   float hitboxX, hitboxY;   
   int hitTime;
   int combatFlash = 10; 
+  final int NORM = 0;
+  final int TRAP = 1;
+  final int SHOOT = 2;
+  final int GRAVITY = 3;
+  int mode = NORM;
   
   public Heart(float x_, float y_) {
     dead = false; 
@@ -15,6 +20,13 @@ public class Heart {
     x = x_; 
     y = y_; 
     currentHP = 20;
+    hitboxX = 10;
+    hitboxY = 5;
+  }
+  public Heart() {
+    dead = false; 
+    inv = false;
+    currentHP = getCurrentHP();
     hitboxX = 10;
     hitboxY = 5;
   }
@@ -26,15 +38,30 @@ public class Heart {
     return hitboxY;
   }
   
-  void display(float x, float y, float varW, float varH) {
+  void display(float x, float y, float varW, float varH, int Mode) {
     if(inv && (millis() - hitTime) % 2 == 0){
-      fill(255,0,0,75);
+      if(Mode == 0){
+        fill(255,0,0,75);
+      }
+      else if(Mode == 1){
+        fill(237, 245, 7);
+      }
     }
     else if(p.preCombat && h.combatFlash > 0) {
-      fill(255, 0, 0, 75); 
+      if(Mode == 0){
+        fill(255,0,0,75);
+      }      
+      else if(Mode == 1){
+        fill(237, 245, 7);
+      }
       combatFlash -= 1; 
     }else{
-      fill(255, 0, 0);
+      if(Mode == 0){
+        fill(255, 0, 0);
+      }
+      else if(Mode == 1){
+        fill(237, 245, 7);
+      }
     }
     noStroke();
     if (dead && !inv) {

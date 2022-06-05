@@ -50,6 +50,9 @@ public class Monster{
   int getGold() {
     return gold;
   }
+  String getName(){
+    return name;
+  }
   void setExp(int e) {
     exp = e; 
   }
