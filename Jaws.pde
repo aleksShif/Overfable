@@ -17,7 +17,7 @@ class Jaws extends Monster{
     String[] u = {"Indiana Jaws dances to Jaws music", "Indiana Jaws dances to Indiana Jones music", "Indiana Jaws licks his lips"}; 
     setUpdate(u); 
     countdown = 400; 
-    setSharkFin(new Pellet("sharkFin.png", displayWidth/30.476, displayHeight/15.652, displayWidth/2.7, displayHeight/2.7, 6));
+    setSharkFin(new Pellet("sharkFin.png", displayWidth/25.859, displayHeight/16.162, displayWidth/3.36, displayHeight/1.5, 6)); //file, hbx, hby, x, y
   }
   
   void display(){
@@ -54,7 +54,10 @@ class Jaws extends Monster{
   }
  
   void attack1(){
+    at2 = false;
     sharkFin.displayFin();
+    fill(255);
+    rect(displayWidth/3.36, sharkFin.y+ 2*sharkFin.hitboxY + displayHeight/200, displayWidth/2.46, displayHeight/2.4 + displayHeight/2.57 - sharkFin.y - 2*sharkFin.hitboxY );
   }
   
     void setExp(int e) {
