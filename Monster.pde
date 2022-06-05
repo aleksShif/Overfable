@@ -1,5 +1,5 @@
 public class Monster{
-  Pellet hawk, smokeGlass, sharkFin; 
+  Pellet hawk, smokeGlass, sharkFin, katana; 
   int HP;
   int AT;
   int gold;

@@ -1,6 +1,7 @@
 public class Pellet extends Damageable{
   PImage hawk; 
   PImage smokeGlass; 
+  PImage katana;
   String filename; 
   String side; 
   float size;

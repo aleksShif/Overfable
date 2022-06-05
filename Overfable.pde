@@ -590,7 +590,7 @@ void fightEnemyBirdLock(BirdLock bir){
       attack = (int)(Math.random() * 2) + 1;
     }
     if (attack == 1) {
-          bir.attack1();
+          t.attack1();
           h.damaged(bir.getHawkson());
           if (h.getCurrentHP() <= 0) {
             h.dead = true;
@@ -627,6 +627,7 @@ void fightEnemyBirdLock(BirdLock bir){
         h.setInv(false);
        }
       if (bir.phase >= 280) {
+        bir.setFile("smoke1.png");
         attack = 0; 
         bir.phase = 0; 
         ENEMY_SCREEN = false;
@@ -727,6 +728,8 @@ void keyPressed() {
     Left = true;  
   }
   if (keyCode == RIGHT && !arrowPress && !enPress && COMBAT) { 
+    loop();
+    notLoop = false; 
     keyHeld = false; 
     arrowPress = true; 
     color tempF = cFirst; 
@@ -735,6 +738,8 @@ void keyPressed() {
     cSec = tempF;
   }
   if (keyCode == LEFT && arrowPress && !enPress && COMBAT) {
+    loop(); 
+    notLoop = false;
     keyHeld = false; 
     arrowPress = false; 
     color tempF = cFirst; 
@@ -815,7 +820,7 @@ void keyPressed() {
         n = tex.length();   
         enPress = false; 
        }
-      if (n == 1 && !enPress && !ENEMY_SCREEN && !TEXT_SCREEN && COMBAT) {
+      if (n == 1 && !enPress && !ENEMY_SCREEN && !TEXT_SCREEN && COMBAT) { 
         if (cFirst == color(216, 110, 28)) {
           loop(); 
           notLoop = false; 
