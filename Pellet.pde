@@ -3,6 +3,7 @@ public class Pellet extends Damageable{
   PImage smokeGlass; 
   PImage katana;
   PImage hat; 
+  PImage fin;
   String filename; 
   String side; 
   float size;
@@ -11,7 +12,13 @@ public class Pellet extends Damageable{
   boolean turn = false;
   boolean next = false; 
   int immobileTime = 0; 
-  int xSpeed, ySpeed; 
+  int xSpeed, ySpeed;
+  int count = 0;
+  float X = displayWidth/3.36;
+  boolean right = true;
+  boolean up = true;
+  boolean finFinished = false;
+
   
   Pellet(String file, float hX, float hY, float X, float Y, int at){
     setAT(at);
@@ -20,6 +27,7 @@ public class Pellet extends Damageable{
     setX(X);
     setY(Y); 
     filename = file; 
+    fill(255);
   }
   
   Pellet(String file, boolean hM) {
@@ -250,6 +258,40 @@ public class Pellet extends Damageable{
       image(katana, x, y); 
     }
   }
+
+  void displayFin(){
+    if(right){
+      fin = loadImage("JawsFin1.png");
+      x += displayWidth/300;
+    }
+    else{
+      fin = loadImage("JawsFin2.png");
+      x -= displayWidth/300;
+    }    
+    fin.resize(fin.width, fin.height);
+    if(count % 20 == 0){
+      if(up){
+        y -= displayHeight/100;
+      }
+      else{
+        y += displayHeight/100;
+      }
+    }
+    if(x > displayWidth/1.6 && right){
+      right = false;
+    }
+    if(x < displayWidth/3.36 && !right){
+      right = true;
+    }
+    if(y < displayHeight/2.4){
+      up = false;
+    }
+    if(y > displayHeight/1.5 && !up){
+      finFinished = true;
+    }
+    count++;
+    image(fin,x,y);
+  }
   
   void setSide(String s) {
     side = s; 
@@ -273,6 +315,10 @@ public class Pellet extends Damageable{
   void move(float X, float Y){
     x += X; 
     y += Y; 
+  }
+  
+  boolean getFinFinished(){
+    return finFinished;
   }
   
   void reset(){

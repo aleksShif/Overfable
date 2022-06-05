@@ -193,6 +193,8 @@ void draw() {
       h.x = W/1.52; 
     } 
     if (h.x <= W/3.27) {
+    } 
+    if (h.x <= W/3.27) {
       h.x = W/3.25; 
     }
     if (h.y >= H/1.35) {
@@ -670,8 +672,21 @@ void fightEnemyJaws(Jaws jaw){
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
     }
+    attack = 1;
     if (attack == 1) {
-      
+      j.attack1();
+      h.damaged(jaw.getSharkFin());
+      if (h.getCurrentHP() <= 0) {
+        h.dead = true;
+       }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      if(j.getFinFinished()){
+        attack = 0;
+        ENEMY_SCREEN = false;
+        enPress = false; 
+      }
     }
     else if(attack == 2){
     
@@ -964,9 +979,3 @@ void addText(String t, float wInc, float upBounds, float leftBounds, float right
     }
   }
 }
-
-
-
-//void swordSymbol() {
-//  for (int i = 
-//}
