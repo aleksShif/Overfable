@@ -158,7 +158,7 @@ void draw() {
         fightElse(j);
       }
     }  
-    h.xSpeed = W/160;  //<>//
+    h.xSpeed = W/160; 
     h.ySpeed = H/90; 
     if (s.getScene().equals("cliffEntrance")){
       mk.display();
