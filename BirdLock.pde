@@ -2,7 +2,6 @@ class BirdLock extends Monster{
   int countdown;
   boolean at2 = false;
   String[] dialogue = {"The game is afoot", "Intriguing", "Aha! It was you!"};
-  String[] update = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};  
   String currentSentence = " "; 
   ArrayList<BirdPellet> pellets; 
   Hawkson hawk = new Hawkson();
@@ -13,6 +12,8 @@ class BirdLock extends Monster{
     AT = 3;
     exp = (int)(Math.random() * 4) + 2; 
     gold = (int)(Math.random() * 6) + 10;
+    String[] temp = {"The game is afoot", "Intriguing", "Aha! It was you!"};
+    update = temp;
   }
   void display(){
     int W = displayWidth; 
