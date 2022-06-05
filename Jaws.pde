@@ -48,9 +48,13 @@ class Jaws extends Monster{
   void setSharkFin(Pellet p){
     sharkFin = p;
   }
+  
+  Pellet getSharkFin(){
+    return sharkFin;
+  }
  
   void attack1(){
-    
+    sharkFin.displayFin();
   }
   
     void setExp(int e) {
@@ -70,5 +74,8 @@ class Jaws extends Monster{
   }
   void setUpdate(String[] u) {
     update = u;
+  }
+  boolean getFinFinished(){
+    return sharkFin.getFinFinished();
   }
 }
