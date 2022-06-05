@@ -181,7 +181,7 @@ public class Pellet extends Damageable{
       else if (phase >= 130 && phase < 135) {
         smokeGlass.resize((int)(smokeGlass.width*1.1+W/160), (int)(smokeGlass.height*1.1+H/90));
       }
-      image(smokeGlass, x+70, y-65);
+      image(smokeGlass, x+W/45.714, y-H/27.692);
       h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
     }
     else if (phase < 260) {
