@@ -6,7 +6,7 @@ class Teddy extends Monster{
   ArrayList<Pellet> pellets; 
   int displayCount = 0;
   public Teddy(){
-    name = "Teddy";
+    name = "Teddy Grizzlevelt";
     HP = 20;
     AT = 3;
     exp = (int)(Math.random() * 4) + 2; 

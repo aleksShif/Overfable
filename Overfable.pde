@@ -7,6 +7,7 @@ Player p;
 Teddy b; 
 BirdLock t;
 MonKing mk; 
+Jaws j;
 Pellet p0;
 Pellet p1;
 Pellet p2;
@@ -55,7 +56,7 @@ Controller keyboardInput;
 
 
 void setup() { 
-  COMBAT = false; 
+  COMBAT = true; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(displayWidth, displayHeight);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
@@ -99,12 +100,16 @@ void draw() {
   int W = displayWidth; 
   int H = displayHeight;
   if (which == 0) {
-    which = (int)(Math.random() * 2) + 1; 
+    which = (int)(Math.random() * 3) + 1; 
+    which = 3; //DELETE LATER DELETE LATER
     if (which == 1) {
       b = new Teddy(); 
     }
     else if (which == 2) {
       t = new BirdLock();
+    }
+    else if(which == 3){
+      j = new Jaws();
     }
   }
   else if (COMBAT) {
@@ -128,6 +133,9 @@ void draw() {
       else if(which == 2){
         fightText(t);
       }
+      else if(which == 3){
+        fightText(j);
+      }
     }
     else if (ENEMY_SCREEN) {
       stroke(255); 
@@ -144,6 +152,9 @@ void draw() {
       else if(which == 2){
         fightEnemyBirdLock(t);
       }
+      else if(which == 3){
+         fightEnemyJaws(j);
+      }
     }
     else{
       if (s.getScene().equals("cliffEntrance")){
@@ -154,6 +165,9 @@ void draw() {
       }
       else if(which == 2){
         fightElse(t);
+      }
+      else if(which == 3){
+        fightElse(j);
       }
     }
     
@@ -168,6 +182,9 @@ void draw() {
     else if(which == 2){
       t.display();
     }
+    else if(which == 3){
+      j.display();
+    }
     if (h.x >= W/1.51) {
       h.x = W/1.52; 
     }
@@ -181,7 +198,7 @@ void draw() {
       h.y = H/2.33; 
     }
     h.move(); 
-  }
+    }
   else if (!COMBAT) {
     if (p.noDisplay) {
       p.display(); 
@@ -330,6 +347,7 @@ void draw() {
       }
     }
   }
+
 
 
 
@@ -597,6 +615,40 @@ void fightEnemyBirdLock(BirdLock bir){
   }
 }
     
+void fightEnemyJaws(Jaws jaw){
+  int W = displayWidth;
+  int H = displayHeight;
+  if (SPEECH_SCREEN) {
+    if (jaw.currentSentence == " ") {
+      int randSen = (int)(Math.random() * 3); 
+      jaw.currentSentence = jaw.dialogue[randSen]; 
+     }
+    noStroke(); 
+    fill(255);
+    textSize(H/85);
+    texSiz = H/85;
+    rect(W/1.7297, H/4.737, W/5.818, H/6, 10, 10, 10, 10);  
+    triangle(W/1.768, H/3.396, W/1.7297, H/3.529, W/1.7297, H/3.273); 
+    fill(0);  
+    addText(jaw.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
+  }
+  
+  else if (!SPEECH_SCREEN) {
+    if (attack == 0) {
+      attack = (int)(Math.random() * 2) + 1;
+    }
+    if (attack == 1) {
+      
+    }
+    else if(attack == 2){
+    
+    }
+    if (!ENEMY_SCREEN) {
+      rounds += 1; 
+    }
+  }
+}
+    
 
 void fightElse(Monster mon){
   int W = displayWidth;
@@ -692,7 +744,7 @@ void keyPressed() {
         loop();
         n = 1; 
       }
-      if ((which == 2 && t.dead) || (which == 1 && b.dead)) {
+      if ((which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead)) {
         background(0); 
         which = 0; 
         COMBAT = false;
@@ -715,6 +767,8 @@ void keyPressed() {
         }
         else if (which == 1) {
           b.countdown = 400;
+        }else if (which == 3){
+          j.countdown = 400;
         }
         loop();
       }
@@ -728,6 +782,10 @@ void keyPressed() {
         else if (which == 1) {
           n = b.currentSentence.length(); 
           b.countdown = 400;
+        }
+        else if (which == 3) {
+          n = j.currentSentence.length(); 
+          j.countdown = 400;
         }
       }
     }
