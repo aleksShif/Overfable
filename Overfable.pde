@@ -5,9 +5,9 @@ Monster m;
 Screen s; 
 Player p;
 Teddy b; 
+Jaws j;
 BirdLock t;
 MonKing mk; 
-Jaws j;
 Pellet p0;
 Pellet p1;
 Pellet p2;
@@ -157,8 +157,13 @@ void draw() {
       else if(which == 3){
         fightElse(j);
       }
+<<<<<<< HEAD
     }  //<>//
     h.xSpeed = W/160;  //<>// //<>//
+=======
+    }  
+    h.xSpeed = W/160; 
+>>>>>>> cf0cde99fc8d364b1e910dd68cce1497b00643fd
     h.ySpeed = H/90; 
     if (s.getScene().equals("cliffEntrance")){
       mk.display();
@@ -174,8 +179,13 @@ void draw() {
     }
     if (h.x >= W/1.51) {
       h.x = W/1.52; 
+<<<<<<< HEAD
     } //<>//
     if (h.x <= W/3.27) { //<>//
+=======
+    } 
+    if (h.x <= W/3.27) {
+>>>>>>> cf0cde99fc8d364b1e910dd68cce1497b00643fd
       h.x = W/3.25; 
     }
     if (h.y >= H/1.35) {
@@ -606,9 +616,9 @@ void fightEnemyBirdLock(BirdLock bir){
           }
         }
     else if (attack == 2) {
-      t.attack2();
-      if (t.phase >= 135 && t.phase < 260) {
-        h.damaged(t.getSmoke());
+      bir.attack2();
+      if (bir.phase >= 135 && bir.phase < 260) {
+        h.damaged(bir.getSmoke());
       }
       if (h.getCurrentHP() <= 0) {
         h.dead = true;
@@ -616,11 +626,11 @@ void fightEnemyBirdLock(BirdLock bir){
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
        }
-      if (t.phase >= 280) {
+      if (bir.phase >= 280) {
         attack = 0; 
-        t.phase = 0; 
+        bir.phase = 0; 
         ENEMY_SCREEN = false;
-        t.currentSentence = " ";
+        bir.currentSentence = " ";
         enPress = false;
       }
     }
