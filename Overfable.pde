@@ -580,7 +580,7 @@ void fightEnemyBirdLock(BirdLock bir){
       attack = (int)(Math.random() * 2) + 1;
     }
     if (attack == 1) {
-          bir.attack1();
+          t.attack1();
           h.damaged(bir.getHawkson());
           if (h.getCurrentHP() <= 0) {
             h.dead = true;
@@ -617,6 +617,7 @@ void fightEnemyBirdLock(BirdLock bir){
         h.setInv(false);
        }
       if (bir.phase >= 280) {
+        bir.setFile("smoke1.png");
         attack = 0; 
         bir.phase = 0; 
         ENEMY_SCREEN = false;

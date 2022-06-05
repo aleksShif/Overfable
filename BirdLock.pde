@@ -162,6 +162,9 @@ class BirdLock extends Monster{
   void setHawk(Pellet p) {
     hawk = p;
   }
+  void setFile(String f) {
+    smokeGlass.filename = f; 
+  }
   void setSmokeGlass(Pellet p) {
     smokeGlass = p;
   }

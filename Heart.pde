@@ -200,6 +200,14 @@ public class Heart {
           hitTime = millis(); 
         }
       }
+      else {
+        if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+          currentHP -= d.getAT();
+          currentHP += p.getDF();
+          inv = true;
+          hitTime = millis(); 
+        }
+      }
     }
     else {
       if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
