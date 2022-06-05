@@ -5,9 +5,9 @@ Monster m;
 Screen s; 
 Player p;
 Teddy b; 
+Jaws j;
 BirdLock t;
 MonKing mk; 
-Jaws j;
 Pellet p0;
 Pellet p1;
 Pellet p2;
@@ -47,7 +47,7 @@ color cFirst;
 color cSec; 
 
 void setup() { 
-  COMBAT = false; 
+  COMBAT = true; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(displayWidth, displayHeight);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
@@ -158,7 +158,7 @@ void draw() {
         fightElse(j);
       }
     }  //<>//
-    h.xSpeed = W/160;  //<>//
+    h.xSpeed = W/160;  //<>// //<>//
     h.ySpeed = H/90; 
     if (s.getScene().equals("cliffEntrance")){
       mk.display();
