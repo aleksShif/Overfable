@@ -234,6 +234,10 @@ public class Pellet extends Damageable{
     }
   }
   
+  void displayFin(){
+    
+  }
+  
   void setSide(String s) {
     side = s; 
   }
@@ -251,6 +255,10 @@ public class Pellet extends Damageable{
       x+=X;
       y+=Y;
     }
+  }
+  
+  void moveFin(float Y){
+    y+=Y;
   }
   
   void moveSmoke(float X, float Y){
