@@ -1,16 +1,21 @@
 public class Monster{
+  Pellet hawk, smokeGlass; 
   int HP;
   int AT;
   int gold;
   int exp;
-  String name;
-  boolean hurt = false;
+  int countdown;
   int hurtTime = 0;
+  int phase = 0; 
+  boolean hurt = false;
+  boolean at2; 
   boolean dead = false; 
+  String name;
+  String currentSentence = " "; 
   String[] actionOrder;
   String[] dialogue; 
   String[] update; 
-  String currentSentence = " "; 
+  ArrayList<Pellet> pellets; 
   
   public Monster(){
     name = "Dummy";
@@ -20,13 +25,17 @@ public class Monster{
     gold = (int)(Math.random() * 6) + 10; 
  
   }
-  public Monster(String Name, int hp, int at){
+  public Monster(String Name, int hp, int at, int g, int e, boolean a, String[] aO, String[] d, String[] u, ArrayList<Pellet> pel){
     name = Name;
     HP = hp;
     AT = at;
-    exp = (int)(Math.random() * 4) + 2; 
-    gold = (int)(Math.random() * 6) + 10;
- 
+    gold = g; 
+    exp = e; 
+    at2 = a; 
+    actionOrder = aO; 
+    dialogue = d; 
+    update = u; 
+    pellets = pel;
   }
   void damaged(int a){
     HP -= a;
@@ -35,5 +44,19 @@ public class Monster{
   int getHP(){
     return HP;
   }
-  
+  int getExp() {
+    return exp;
+  }
+  int getGold() {
+    return gold;
+  }
+  String getName(){
+    return name;
+  }
+  void setExp(int e) {
+    exp = e; 
+  }
+  void setGold(int g) {
+    gold = g; 
+  }
 }

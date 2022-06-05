@@ -1,19 +1,25 @@
 class Teddy extends Monster{
   int countdown; 
   boolean at2 = false;
-  String[] dialogue = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
-  String[] update = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"};  
   String currentSentence = " "; 
+  String[] actionOrder; 
+  String[] dialogue;
+  String[] update;
   ArrayList<Pellet> pellets; 
   int displayCount = 0;
   public Teddy(){
-    name = "Teddy";
-    HP = 20;
-    AT = 3;
-    exp = (int)(Math.random() * 4) + 2; 
-    gold = (int)(Math.random() * 6) + 10; 
-    pellets = new ArrayList<Pellet>(); 
+    super("Teddy", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>()); 
+    setExp((int)(Math.random() * 4) + 2); 
+    setGold((int)(Math.random() * 6) + 10); 
+    String[] aO = {"placeholder"}; 
+    setAO(aO); 
+    String[] d = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
+    setDialogue(d); 
+    String[] u = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"};
+    setUpdate(u); 
     countdown = 400; 
+    String[] temp = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"}; 
+    update = temp;
   }
   void display(){
     int W = displayWidth; 
@@ -107,7 +113,7 @@ class Teddy extends Monster{
     }
     displayCount++;
   }
-    void attack1(){
+  void attack1(){
     int W = displayWidth; 
     int H = displayHeight; 
     if (countdown % 50 == 0) {
@@ -160,13 +166,35 @@ class Teddy extends Monster{
        }
       }
      }
-    }
+     //if (countdown < 400) {      
+     //  for (int i = 0; i < pellets.size(); i++) {         
+     //    Pellet p = pellets.get(i); 
+     //    p.display(); 
+     //    h.damaged(p);
+     //    if (h.getCurrentHP() <= 0) {
+     //      h.dead = true;
+     //      break; 
+     //    }
+     //    if(millis() - h.getHitTime() > 1500){
+     //      h.setInv(false);
+     //    }
+     //   }
+     // }
+     //if (countdown <= 0) {
+     //  ENEMY_SCREEN = false;
+     //  currentSentence = " ";
+     //  countdown = 400;
+     //  attack = 0;  
+     //  pellets = new ArrayList<Pellet>(); 
+     //  enPress = false; 
+     //}
+   }
   
-  boolean attack2(Pellet p0, Pellet p1, Pellet p2, Pellet p3, Pellet p4){
+  boolean attack2(Pellet p0, Pellet p1, Pellet p2, Pellet p3, Pellet p4, Pellet p5, Pellet p6, Pellet p7){
     at2 = true;
     int W = displayWidth; 
     int H = displayHeight;    
-    if(p0.inside() || p1.inside() || p2.inside() || p3.inside() || p4.inside()){
+    if(p0.inside() || p1.inside() || p2.inside() || p3.inside() || p4.inside()|| p5.inside() || p6.inside() || p7.inside()){
       if(p0.inside()){
         for(int i = 0; i < 8; i++){
           p0.move(0,1);
@@ -192,6 +220,21 @@ class Teddy extends Monster{
           p4.move(0,1);
         }
       }
+      if(p5.inside()){
+        for(int i = 0; i < 8; i++){
+          p5.move(0,1);
+        }
+      }
+      if(p6.inside()){
+        for(int i = 0; i < 8; i++){
+          p6.move(0,1);
+        }
+      }
+      if(p7.inside()){
+        for(int i = 0; i < 8; i++){
+          p7.move(0,1);
+        }
+      }
       if(p0.inside()){
         p0.display();
       }
@@ -207,9 +250,33 @@ class Teddy extends Monster{
       if(p4.inside()){
         p4.display();
       }
+      if(p5.inside()){
+        p5.display();
+      }
+      if(p6.inside()){
+        p6.display();
+      }
+      if(p7.inside()){
+        p7.display();
+      }
       return true;
     }else{
       return false;
     }
+  }
+  void setExp(int e) {
+    exp = e; 
+  }
+  void setGold(int g) {
+    gold = g;
+  }
+  void setAO(String[] aO) {
+    actionOrder = aO;
+  }
+  void setDialogue(String[] d) {
+    dialogue = d;
+  }
+  void setUpdate(String[] u) {
+    update = u;
   }
 }

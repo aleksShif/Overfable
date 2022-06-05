@@ -1,18 +1,27 @@
 class BirdLock extends Monster{
   int countdown;
   boolean at2 = false;
-  String[] dialogue = {"The game is afoot", "Intriguing", "Aha! It was you!"};
-  String[] update = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};  
+  String[] actionOrder; 
+  String[] dialogue; 
+  String[] update; 
   String currentSentence = " "; 
-  ArrayList<BirdPellet> pellets; 
-  Hawkson hawk = new Hawkson();
+  ArrayList<Pellet> pellets; 
   int displayCount = 0;
+  int phase; 
   public BirdLock(){
-    name = "BirdLock";
-    HP = 20;
-    AT = 3;
-    exp = (int)(Math.random() * 4) + 2; 
-    gold = (int)(Math.random() * 6) + 10;
+    super("BirdLock", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>()); 
+    setExp((int)(Math.random() * 6) + 2); 
+    setGold((int)(Math.random() * 8) + 10); 
+    String[] aO = {"placeholder"}; 
+    setAO(aO); 
+    String[] d = {"The game is afoot", "Intriguing", "Aha! It was you!"};
+    setDialogue(d); 
+    String[] u = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};
+    setUpdate(u); 
+    setHawk(new Pellet("Hawkson1.png")); 
+    setSmokeGlass(new Pellet("smoke1.png", false)); 
+    setPhase(0);
+    countdown = 400;
   }
   void display(){
     int W = displayWidth; 
@@ -69,76 +78,101 @@ class BirdLock extends Monster{
     displayCount++;
   }
   
-  void attack1(int phase){
+  void attack1(){
+    int W = displayWidth;
+    int H = displayHeight; 
     hawk.display(phase);
+    if(phase < 30){
+      moveHawk(W/165,W/200);
+      }
+    else if(phase < 38){
+      moveHawk(W/150,W/275);
+    }
+    else if (phase < 40){
+      moveHawk(W/130, 0);
+    }
+    else if (phase < 48) {
+      moveHawk(W/150, -W/200);
+    }
+    else {
+      moveHawk(W/165, -W/275);
+    }
+    phase++;
   }
   
   void moveHawk(float X, float Y){
-    hawk.move(X,Y);
+    hawk.moveHawk(X,Y);
   }
   
-  boolean attack2(BirdPellet bp0, BirdPellet bp1, BirdPellet bp2, BirdPellet bp3, BirdPellet bp4, BirdPellet b5){
-                  //rect(W/3.36, H/2.4, W/2.46, H/2.57);
-    if(bp0.inside() || bp1.inside() || bp2.inside() || bp3.inside() || bp4.inside() || bp5.inside()){
-      if(bp0.inside()){
-        for(int i = 0; i < 8; i++){
-          bp0.move(1,0);
-        }
-      }
-      if(bp1.inside()){
-        for(int i = 0; i < 8; i++){
-          bp1.move(1,0);
-        }
-      }
-      if(bp2.inside()){
-        for(int i = 0; i < 8; i++){
-          bp2.move(1,0);
-        }
-      }
-      if(bp3.inside()){
-        for(int i = 0; i < 8; i++){
-          bp3.move(1,0);
-        }
-      }
-      if(bp4.inside()){
-        for(int i = 0; i < 8; i++){
-          bp4.move(1,0);
-        }
-      }
-      if(bp5.inside()){
-        for(int i = 0; i < 8; i++){
-          bp5.move(1,0);
-        }
-      }
-      if(bp0.inside()){
-        bp0.display();
-      }
-      if(bp1.inside()){
-        bp1.display();
-      }
-      if(bp2.inside()){
-        bp2.display();
-      }
-      if(bp3.inside()){
-        bp3.display();
-      }
-      if(bp4.inside()){
-        bp4.display();
-      }
-      if(bp5.inside()){
-        bp5.display();
-      }
-      return true;
-    }else{
-      return false;
+  void attack2(){
+    int W = displayWidth;
+    int H = displayHeight; 
+    displayCount = 9; 
+    smokeGlass.displaySmoke(phase);
+    if (phase >= 54 && phase < 84) {
+      moveSmoke(-W/200, H/200); 
     }
+    else if (phase >= 84 && phase < 90) {
+      moveSmoke(0, H/200); 
+    }
+    else if (phase >= 90 && phase < 125) {
+      moveSmoke(W/250, H/120); 
+    }
+    phase++; 
+  }
+  
+  void moveSmoke(float X, float Y) {
+    smokeGlass.moveSmoke(X, Y); 
   }
   
   Damageable getHawkson(){
     return hawk;
   }
   
+  Damageable getSmoke(){
+    return smokeGlass;
+  }
+  
+  boolean getTurn() {
+    return hawk.turn; 
+  }
+  boolean getHeartIM() {
+    return smokeGlass.heartIm;
+  }
+  String getFile() {
+    return smokeGlass.filename; 
+  }
   void resetHawk(){
     hawk.reset();
+  }
+  void setExp(int e) {
+    exp = e; 
+  }
+  void setGold(int g) {
+    gold = g;
+  }
+  void setAO(String[] aO) {
+    actionOrder = aO;
+  }
+  void setDialogue(String[] d) {
+    dialogue = d;
+  }
+  void setUpdate(String[] u) {
+    update = u;
+  }
+  void setHawk(Pellet p) {
+    hawk = p;
+  }
+  void setSmokeGlass(Pellet p) {
+    smokeGlass = p;
+  }
+  void setTurn(boolean t) {
+    hawk.turn = t; 
+  }
+  void setPhase(int p) {
+    phase = p;
+  }
+  void setHawkY(float y_) {
+    hawk.y = y_;
   }
 }
