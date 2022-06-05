@@ -13,7 +13,7 @@ class BirdLock extends Monster{
     setDialogue(d); 
     String[] u = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};
     setUpdate(u); 
-    setHawk(new Pellet("Hawkson1.png")); 
+    setHawk(new Pellet("Hawkson1.png", displayWidth/30.476, displayHeight/15.652, displayWidth/2.7, displayHeight/2.7, 6)); 
     setSmokeGlass(new Pellet("smoke1.png", false)); 
     setPhase(0);
     countdown = 400;
