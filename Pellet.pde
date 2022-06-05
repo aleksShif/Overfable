@@ -18,6 +18,7 @@ public class Pellet extends Damageable{
     setY(Y); 
     filename = file; 
   }
+  
   Pellet(String file, boolean hM) {
     setAT(5); 
     setX(displayWidth/2.336);
@@ -47,7 +48,7 @@ public class Pellet extends Damageable{
     xSpeed = 0; 
     ySpeed = 0; 
   }
-  
+    
   void display(){
     int W = displayWidth; 
     int H = displayHeight; 
