@@ -2,12 +2,14 @@ public class Pellet extends Damageable{
   PImage hawk; 
   PImage smokeGlass; 
   PImage katana;
+  PImage hat; 
   String filename; 
   String side; 
   float size;
   boolean isAt1 = false; 
   boolean heartIm = false; 
-  boolean turn = false; 
+  boolean turn = false;
+  boolean next = false; 
   int immobileTime = 0; 
   int xSpeed, ySpeed; 
   
@@ -234,6 +236,21 @@ public class Pellet extends Damageable{
     }
   }
   
+  void displayKatana() {
+    int W = displayWidth;
+    int H = displayHeight;
+    katana = loadImage(filename);
+    if (filename.equals("katana.png")) {
+      katana.resize(katana.width, katana.height);  
+    }
+    if (next == true && f.countdown % 10 != 0 && f.countdown % 10 > 5) { 
+      image(katana, x, y - H/180); 
+    }
+    else {
+      image(katana, x, y); 
+    }
+  }
+  
   void setSide(String s) {
     side = s; 
   }
@@ -251,9 +268,9 @@ public class Pellet extends Damageable{
       x+=X;
       y+=Y;
     }
-  }
+  }  
   
-  void moveSmoke(float X, float Y){
+  void move(float X, float Y){
     x += X; 
     y += Y; 
   }
