@@ -10,14 +10,15 @@ public class Pellet extends Damageable{
   int immobileTime = 0; 
   int xSpeed, ySpeed; 
   
-  Pellet(String file){
-    setAT(6);
-    setHitboxX(displayWidth/30.476);
-    setHitboxY(displayHeight/15.652);
-    setX(displayWidth/2.7);
-    setY(displayHeight/2.7); 
+  Pellet(String file, float hbx, float hby, float X, float Y, int AT){
+    setAT(AT);
+    setHitboxX(hbx);
+    setHitboxY(hby);
+    setX(X);
+    setY(Y); 
     filename = file; 
   }
+  
   Pellet(String file, boolean hM) {
     setAT(5); 
     setX(displayWidth/2.336);
@@ -47,7 +48,7 @@ public class Pellet extends Damageable{
     xSpeed = 0; 
     ySpeed = 0; 
   }
-  
+    
   void display(){
     int W = displayWidth; 
     int H = displayHeight; 
