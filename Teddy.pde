@@ -2,7 +2,6 @@ class Teddy extends Monster{
   int countdown; 
   boolean at2 = false;
   String[] dialogue = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
-  String[] update = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"};  
   String currentSentence = " "; 
   ArrayList<Pellet> pellets; 
   int displayCount = 0;
@@ -14,6 +13,8 @@ class Teddy extends Monster{
     gold = (int)(Math.random() * 6) + 10; 
     pellets = new ArrayList<Pellet>(); 
     countdown = 400; 
+    String[] temp = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"}; 
+    update = temp;
   }
   void display(){
     int W = displayWidth; 

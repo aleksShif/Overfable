@@ -35,5 +35,10 @@ public class Monster{
   int getHP(){
     return HP;
   }
+  void display(){
+  }
+  String getName(){
+    return name;
+  }
   
 }
