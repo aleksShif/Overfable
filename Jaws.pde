@@ -24,24 +24,54 @@ class Jaws extends Monster{
     int W = displayWidth; 
     int H = displayHeight;
     PImage jaws;
-    if (displayCount <= 10){
-      jaws = loadImage("Jaws1.png");
+    if(dead){
+      jaws = loadImage("JawsDead.png");
+      jaws.resize(jaws.width*W/450, jaws.height*W/450);
+      image(jaws,W/2.45,H/8.5);
     }
-    else if(displayCount <= 20){
-      jaws = loadImage("Jaws2.png");
-    }
-    else if(displayCount <= 30){
-      jaws = loadImage("Jaws3.png");
-    }
-    else if(displayCount <= 40){
-      jaws = loadImage("Jaws4.png");
+    else if(hurt){
+      jaws = loadImage("JawsHurt.png");
+      jaws.resize(jaws.width*W/450, jaws.height*W/450);
+      hurtTime++;
+      if(hurtTime >= 60){
+        hurt = false;
+        hurtTime = 0;
+      }
+      else if(hurtTime <= 10){
+        image(jaws,W/2.4,H/8.5); 
+      }else if(hurtTime <= 20){
+        image(jaws,W/2.45,H/8.5);
+      }else if(hurtTime <= 30){
+        image(jaws,W/2.5,H/8.5);
+      }
+      else if(hurtTime <= 40){
+        image(jaws,W/2.45,H/8.5); 
+      }else if(hurtTime <= 50){
+        image(jaws,W/2.4,H/8.5);
+      }else if(hurtTime <= 60){
+        image(jaws,W/2.45,H/8.5);
+      }
     }
     else{
-      displayCount = 0;
-      jaws = loadImage("Jaws4.png");
+      if (displayCount <= 10){
+        jaws = loadImage("Jaws1.png");
+      }
+      else if(displayCount <= 20){
+        jaws = loadImage("Jaws2.png");
+      }
+      else if(displayCount <= 30){
+        jaws = loadImage("Jaws3.png");
+      }
+      else if(displayCount <= 40){
+        jaws = loadImage("Jaws4.png");
+      }
+      else{
+        displayCount = 0;
+        jaws = loadImage("Jaws4.png");
+      }
+      jaws.resize(jaws.width*W/450, jaws.height*W/450);
+      image(jaws,W/2.45,H/8.5);
     }
-    jaws.resize(jaws.width*W/450, jaws.height*W/450);
-    image(jaws,W/2.45,H/8.5);
     displayCount++;
   }
   

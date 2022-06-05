@@ -158,7 +158,7 @@ void draw() {
       else if(which == 3){
         fightElse(j);
       }
-    } //<>// //<>// //<>// //<>//
+    } //<>// //<>// //<>// //<>// //<>// //<>//
     h.xSpeed = W/160; 
     h.ySpeed = H/90; 
     if (s.getScene().equals("cliffEntrance")){
@@ -175,8 +175,8 @@ void draw() {
     }
     if (h.x >= W/1.51) {
       h.x = W/1.52; 
-    } //<>// //<>//
-    if (h.x <= W/3.27) { //<>// //<>//
+    } //<>// //<>// //<>//
+    if (h.x <= W/3.27) { //<>// //<>// //<>//
       h.x = W/3.25; 
     }
     if (h.y >= H/1.35) {
@@ -714,6 +714,9 @@ void keyPressed() {
     else if (which == 2) {
       t.dead = true; 
     }
+    else if (which == 3) {
+      j.dead = true; 
+    }
   }
   if (keyCode == 87 && !h.dead) {
     //keyHeld = true; 
@@ -771,6 +774,14 @@ void keyPressed() {
           b.dead = true; 
         }
       }
+      else if (which == 3) {
+        j.damaged(p.getAT());
+        j.countdown = 3; 
+        if (j.getHP() <= 0) {
+          j.HP = 0; 
+          j.dead = true; 
+        }
+      }
     }
     else if (TEXT_SCREEN) {
       if (n > 1 && COMBAT) {
@@ -787,7 +798,7 @@ void keyPressed() {
         p.ySpeed = displayHeight / 90;
         p.noDisplay = false; 
        } 
-      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead)) && COMBAT) { 
+      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead) || !(which == 3 && j.dead)) && COMBAT) { 
         TEXT_SCREEN = false;
         SPEECH_SCREEN = true; 
         ENEMY_SCREEN = true; 
