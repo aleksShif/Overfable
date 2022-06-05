@@ -1,15 +1,10 @@
 class BirdLock extends Monster{
   int countdown;
-  boolean at2 = false;
-  String[] actionOrder; 
-  String[] dialogue; 
-  String[] update; 
-  String currentSentence = " "; 
-  ArrayList<Pellet> pellets; 
+  boolean at2 = false; 
   int displayCount = 0;
   int phase; 
   public BirdLock(){
-    super("BirdLock", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>()); 
+    super("BirdLock Holmes", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>()); 
     setExp((int)(Math.random() * 6) + 2); 
     setGold((int)(Math.random() * 8) + 10); 
     String[] aO = {"placeholder"}; 
@@ -23,6 +18,7 @@ class BirdLock extends Monster{
     setPhase(0);
     countdown = 400;
   }
+  
   void display(){
     int W = displayWidth; 
     int H = displayHeight;
@@ -150,6 +146,9 @@ class BirdLock extends Monster{
   }
   void setGold(int g) {
     gold = g;
+  }
+  void setPel(ArrayList<Pellet> p) {
+    pellets = p;
   }
   void setAO(String[] aO) {
     actionOrder = aO;

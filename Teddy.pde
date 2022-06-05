@@ -1,11 +1,6 @@
 class Teddy extends Monster{
   int countdown; 
   boolean at2 = false;
-  String currentSentence = " "; 
-  String[] actionOrder; 
-  String[] dialogue;
-  String[] update;
-  ArrayList<Pellet> pellets; 
   int displayCount = 0;
   public Teddy(){
     super("Teddy", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>()); 
@@ -265,18 +260,18 @@ class Teddy extends Monster{
     }
   }
   void setExp(int e) {
-    exp = e; 
+    super.exp = e; 
   }
   void setGold(int g) {
-    gold = g;
+    super.gold = g;
   }
   void setAO(String[] aO) {
-    actionOrder = aO;
+    super.actionOrder = aO;
   }
   void setDialogue(String[] d) {
-    dialogue = d;
+    super.dialogue = d;
   }
   void setUpdate(String[] u) {
-    update = u;
+    super.update = u;
   }
 }
