@@ -42,4 +42,8 @@ class Jaws extends Monster{
     image(jaws,W/2.45,H/8.5);
     displayCount++;
   }
+ 
+  void attack1(){
+    
+  }
 }

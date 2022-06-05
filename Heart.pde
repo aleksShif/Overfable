@@ -165,10 +165,20 @@ public class Heart {
   }
   
   void move() {
-    if (Up) {y -= ySpeed;}
-    if (Down) {y += ySpeed;}
-    if (Right) {x -= xSpeed;}
-    if (Left) {x += xSpeed;}
+    if(COMBAT && which == 2){
+      if (!t.getHeartIM()) {
+        if (Up) {y -= ySpeed;}
+        if (Down) {y += ySpeed;}
+        if (Right) {x -= xSpeed;}
+        if (Left) {x += xSpeed;}
+      }
+    }
+    else{
+      if (Up) {y -= ySpeed;}
+      if (Down) {y += ySpeed;}
+      if (Right) {x -= xSpeed;}
+      if (Left) {x += xSpeed;}
+    }
   }
   
   void damaged(Damageable d){
@@ -180,11 +190,21 @@ public class Heart {
     float rightEdgeD = d.getX() + d.getHitboxX();
     float lowerEdgeD = d.getY() + d.getHitboxY();
     float upperEdgeD = d.getY() - d.getHitboxY();
-    if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
-      currentHP -= d.getAT();
-      currentHP += p.getDF();
-      inv = true;
-      hitTime = millis(); 
+    if (t.getFile().equals("bigGlass.png")) {
+      if ((lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+        currentHP -= d.getAT();
+        currentHP += p.getDF();
+        inv = true;
+        hitTime = millis(); 
+      }
+    }
+    else {
+      if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+        currentHP -= d.getAT();
+        currentHP += p.getDF();
+        inv = true;
+        hitTime = millis(); 
+      }
     }
   }
   

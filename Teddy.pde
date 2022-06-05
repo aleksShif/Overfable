@@ -1,17 +1,22 @@
 class Teddy extends Monster{
   int countdown; 
   boolean at2 = false;
-  String[] dialogue = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
   String currentSentence = " "; 
+  String[] actionOrder; 
+  String[] dialogue;
+  String[] update;
   ArrayList<Pellet> pellets; 
   int displayCount = 0;
   public Teddy(){
-    name = "Teddy Grizzlevelt";
-    HP = 20;
-    AT = 3;
-    exp = (int)(Math.random() * 4) + 2; 
-    gold = (int)(Math.random() * 6) + 10; 
-    pellets = new ArrayList<Pellet>(); 
+    super("Teddy", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>()); 
+    setExp((int)(Math.random() * 4) + 2); 
+    setGold((int)(Math.random() * 6) + 10); 
+    String[] aO = {"placeholder"}; 
+    setAO(aO); 
+    String[] d = {"Oh dear, that seems to have hurt me", "You'll regret that sir", "Is that supposed to hurt me?"};
+    setDialogue(d); 
+    String[] u = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"};
+    setUpdate(u); 
     countdown = 400; 
     String[] temp = {"Teddy Grizzlevelt bows to you cordially", "Mr. Grizzlevelt anxiously awaits your next move", "Teddy doesn't want to fight anymore"}; 
     update = temp;
@@ -108,7 +113,7 @@ class Teddy extends Monster{
     }
     displayCount++;
   }
-    void attack1(){
+  void attack1(){
     int W = displayWidth; 
     int H = displayHeight; 
     if (countdown % 50 == 0) {
@@ -161,7 +166,29 @@ class Teddy extends Monster{
        }
       }
      }
-    }
+     //if (countdown < 400) {      
+     //  for (int i = 0; i < pellets.size(); i++) {         
+     //    Pellet p = pellets.get(i); 
+     //    p.display(); 
+     //    h.damaged(p);
+     //    if (h.getCurrentHP() <= 0) {
+     //      h.dead = true;
+     //      break; 
+     //    }
+     //    if(millis() - h.getHitTime() > 1500){
+     //      h.setInv(false);
+     //    }
+     //   }
+     // }
+     //if (countdown <= 0) {
+     //  ENEMY_SCREEN = false;
+     //  currentSentence = " ";
+     //  countdown = 400;
+     //  attack = 0;  
+     //  pellets = new ArrayList<Pellet>(); 
+     //  enPress = false; 
+     //}
+   }
   
   boolean attack2(Pellet p0, Pellet p1, Pellet p2, Pellet p3, Pellet p4, Pellet p5, Pellet p6, Pellet p7){
     at2 = true;
@@ -236,5 +263,20 @@ class Teddy extends Monster{
     }else{
       return false;
     }
+  }
+  void setExp(int e) {
+    exp = e; 
+  }
+  void setGold(int g) {
+    gold = g;
+  }
+  void setAO(String[] aO) {
+    actionOrder = aO;
+  }
+  void setDialogue(String[] d) {
+    dialogue = d;
+  }
+  void setUpdate(String[] u) {
+    update = u;
   }
 }
