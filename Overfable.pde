@@ -47,7 +47,7 @@ color cFirst;
 color cSec; 
 
 void setup() { 
-  COMBAT = false; 
+  COMBAT = true; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(displayWidth, displayHeight);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
@@ -90,6 +90,7 @@ void draw() {
   int H = displayHeight;
   if (which == 0) {
     which = (int)(Math.random() * 3) + 1; 
+    which = 3;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -157,13 +158,8 @@ void draw() {
       else if(which == 3){
         fightElse(j);
       }
-<<<<<<< HEAD
-    }  //<>//
-    h.xSpeed = W/160;  //<>// //<>//
-=======
-    }  
+    } //<>// //<>//
     h.xSpeed = W/160; 
->>>>>>> cf0cde99fc8d364b1e910dd68cce1497b00643fd
     h.ySpeed = H/90; 
     if (s.getScene().equals("cliffEntrance")){
       mk.display();
@@ -179,13 +175,8 @@ void draw() {
     }
     if (h.x >= W/1.51) {
       h.x = W/1.52; 
-<<<<<<< HEAD
     } //<>//
     if (h.x <= W/3.27) { //<>//
-=======
-    } 
-    if (h.x <= W/3.27) {
->>>>>>> cf0cde99fc8d364b1e910dd68cce1497b00643fd
       h.x = W/3.25; 
     }
     if (h.y >= H/1.35) {
@@ -677,6 +668,7 @@ void fightEnemyJaws(Jaws jaw){
     
 
 void fightElse(Monster mon){
+  println(mon.getName());
   int W = displayWidth;
   int H = displayHeight;
   stroke(255); 
@@ -902,9 +894,3 @@ void addText(String t, float wInc, float upBounds, float leftBounds, float right
     }
   }
 }
-
-
-
-//void swordSymbol() {
-//  for (int i = 
-//}

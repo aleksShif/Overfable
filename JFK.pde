@@ -19,6 +19,22 @@ class JFK extends Monster {
   }
   
   void display() {
+    int W = displayWidth; 
+    int H = displayHeight;
+    PImage jfk;
+    if (displayCount <= 10){
+      jfk = loadImage("JFK1.png");
+    }
+    else if(displayCount <= 20){
+      jfk = loadImage("JFK2.png");
+    }
+    else{
+      displayCount = 0;
+      jfk = loadImage("JFK1.png");
+    }
+    jfk.resize(jfk.width*W/450, jfk.height*W/450);
+    image(jfk,W/2.45,H/8.5);
+    displayCount++;
   }
   
   void setExp(int e) {
