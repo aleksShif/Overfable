@@ -654,9 +654,9 @@ void fightEnemyJaws(Jaws jaw){
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
     }
-    attack = 1;
+    attack = 2;//DELETE LATER
     if (attack == 1) {
-      j.attack1();
+      jaw.attack1();
       h.damaged(jaw.getSharkFin());
       if (h.getCurrentHP() <= 0) {
         h.dead = true;
@@ -664,14 +664,26 @@ void fightEnemyJaws(Jaws jaw){
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
       }
-      if(j.getFinFinished()){
+      if(jaw.getFinFinished()){
         attack = 0;
         ENEMY_SCREEN = false;
         enPress = false; 
       }
     }
     else if(attack == 2){
-    
+      jaw.attack2();
+      h.damaged(jaw.getSharkFin());
+      if (h.getCurrentHP() <= 0) {
+        h.dead = true;
+       }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      if(jaw.getWhipFinished()){
+        attack = 0;
+        ENEMY_SCREEN = false;
+        enPress = false; 
+      }
     }
     if (!ENEMY_SCREEN) {
       rounds += 1; 
