@@ -262,19 +262,19 @@ public class Pellet extends Damageable{
   void displayFin(){
     if(right){
       fin = loadImage("JawsFin1.png");
-      x += displayWidth/300;
+      x += displayWidth/270;
     }
     else{
       fin = loadImage("JawsFin2.png");
-      x -= displayWidth/300;
+      x -= displayWidth/270;
     }    
     fin.resize(fin.width, fin.height);
     if(count % 20 == 0){
       if(up){
-        y -= displayHeight/100;
+        y -= displayHeight/90;
       }
       else{
-        y += displayHeight/100;
+        y += displayHeight/90;
       }
     }
     if(x > displayWidth/1.6 && right){

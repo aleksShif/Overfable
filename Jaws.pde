@@ -5,6 +5,11 @@ class Jaws extends Monster{
   String currentSentence = " "; 
   ArrayList<Pellet> pellets; 
   int displayCount = 0;
+  float rectX = displayWidth/3.36;
+  float rectY = displayHeight/2.46;
+  float rectInc = displayWidth/180;
+  boolean right = true;
+  boolean whipFinished = false;
   
   public Jaws(){
     super("Indiana Jaws", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>());
@@ -24,24 +29,68 @@ class Jaws extends Monster{
     int W = displayWidth; 
     int H = displayHeight;
     PImage jaws;
-    if (displayCount <= 10){
-      jaws = loadImage("Jaws1.png");
+    if(dead){
+      jaws = loadImage("JawsDead.png");
+      jaws.resize(jaws.width*W/450, jaws.height*W/450);
+      image(jaws,W/2.45,H/8.5);
     }
-    else if(displayCount <= 20){
-      jaws = loadImage("Jaws2.png");
-    }
-    else if(displayCount <= 30){
-      jaws = loadImage("Jaws3.png");
-    }
-    else if(displayCount <= 40){
-      jaws = loadImage("Jaws4.png");
+    else if(hurt){
+      jaws = loadImage("JawsHurt.png");
+      jaws.resize(jaws.width*W/450, jaws.height*W/450);
+      hurtTime++;
+      if(hurtTime >= 60){
+        hurt = false;
+        hurtTime = 0;
+      }
+      else if(hurtTime <= 10){
+        image(jaws,W/2.4,H/8.5); 
+      }else if(hurtTime <= 20){
+        image(jaws,W/2.45,H/8.5);
+      }else if(hurtTime <= 30){
+        image(jaws,W/2.5,H/8.5);
+      }
+      else if(hurtTime <= 40){
+        image(jaws,W/2.45,H/8.5); 
+      }else if(hurtTime <= 50){
+        image(jaws,W/2.4,H/8.5);
+      }else if(hurtTime <= 60){
+        image(jaws,W/2.45,H/8.5);
+      }
     }
     else{
-      displayCount = 0;
-      jaws = loadImage("Jaws4.png");
+      if(at2){
+        if(displayCount <= 10){
+          jaws = loadImage("JawsWhip1.png");
+        }
+        else if(displayCount <= 20){
+          jaws = loadImage("JawsWhip2.png");
+        }
+        else{
+          jaws = loadImage("JawsWhip1.png");
+          displayCount = 0;
+        }
+      }
+      else{
+        if (displayCount <= 10){
+          jaws = loadImage("Jaws1.png");
+        }
+        else if(displayCount <= 20){
+          jaws = loadImage("Jaws2.png");
+        }
+        else if(displayCount <= 30){
+          jaws = loadImage("Jaws3.png");
+        }
+        else if(displayCount <= 40){
+          jaws = loadImage("Jaws4.png");
+        }
+        else{
+          displayCount = 0;
+          jaws = loadImage("Jaws4.png");
+        }
+      }
+      jaws.resize(jaws.width*W/450, jaws.height*W/450);
+      image(jaws,W/2.45,H/8.5);
     }
-    jaws.resize(jaws.width*W/450, jaws.height*W/450);
-    image(jaws,W/2.45,H/8.5);
     displayCount++;
   }
   
@@ -58,6 +107,25 @@ class Jaws extends Monster{
     sharkFin.displayFin();
     fill(255);
     rect(displayWidth/3.36, sharkFin.y+ 2*sharkFin.hitboxY + displayHeight/200, displayWidth/2.46, displayHeight/2.4 + displayHeight/2.57 - sharkFin.y - 2*sharkFin.hitboxY );
+  }
+  
+  void attack2(){
+    at2 = true;
+    fill(255);
+    rect(rectX, rectY, displayWidth/80, displayHeight/3.5);
+    rectX += rectInc;
+    if(rectX >= displayWidth/3.36 + displayWidth/2.5 && right){
+      rectInc *= -1;
+      right = false;
+    }
+    if(rectX <= displayWidth/3.36 && !right){
+      rectX = displayWidth/3.36;
+      whipFinished = true;
+    }
+  }
+  
+  boolean getWhipFinished(){
+    return whipFinished;
   }
   
     void setExp(int e) {
