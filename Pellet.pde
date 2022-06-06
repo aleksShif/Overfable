@@ -293,6 +293,50 @@ public class Pellet extends Damageable{
     image(fin,x,y);
   }
   
+  void displayHat(int phase) {
+    int W = displayWidth;
+    int H = displayHeight;
+    hat = loadImage(filename);
+    hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
+    image(hat, x, y); 
+    if (phase < 10 || (phase >= 40 && phase < 50)) {
+      filename = "hat.png";
+      if (phase < 10) {
+        move(20, -15);
+      }
+      else if (phase >= 40) {
+        move(-20, 15);
+      }
+    }
+    else if (phase < 20 || (phase >= 50 && phase < 60)) {
+      filename = "hat2.png";
+      if (phase < 20) {
+        move(20, 0);
+      }
+      else if (phase >= 50) {
+        move(-20, 0);
+      }
+    }
+    else if (phase < 30 || (phase >= 60 && phase < 70)) {
+      filename = "hat3.png";
+      if (phase < 30) {
+        move(20, 15);
+      }
+      else if (phase >= 60) {
+        move(-20, -15);
+      }
+    }
+    else if (phase < 40 || (phase >= 70 && phase < 80)) {
+      filename = "hat4.png";
+      if (phase < 40) {
+        move(0, 15);
+      }
+      else if (phase >= 70) {
+        move(0, -15);
+      }
+    }
+  }
+  
   void setSide(String s) {
     side = s; 
   }

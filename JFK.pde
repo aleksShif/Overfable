@@ -13,7 +13,7 @@ class JFK extends Monster {
     setDialogue(d); 
     String[] u = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};
     setUpdate(u); 
-    setHat(new Pellet("Hawkson1.png", displayWidth/30.476, displayHeight/15.652, displayWidth/2.7, displayHeight/2.7, 6));
+    setHat(new Pellet("hat.png", displayWidth/22.857, displayHeight/6.923, displayWidth/2.909, displayHeight/2.25, 6));
     setPhase(0);    
     countdown = 400;
   }
@@ -88,6 +88,13 @@ class JFK extends Monster {
   }
   
   void attack2(){
+    hat.displayHat(phase);
+    phase++;
+    if (phase >= 80 && count < 3) {
+      setPhase(0);
+      count += 1;
+    }
+  }
   Damageable getHat() {
     return hat;
   }

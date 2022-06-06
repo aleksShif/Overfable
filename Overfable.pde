@@ -718,7 +718,7 @@ void fightEnemyJFK(JFK fox) {
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
-      attack = 1; 
+      attack = 2; 
     }
     if (attack == 1) {
       f.attack1();
@@ -744,7 +744,22 @@ void fightEnemyJFK(JFK fox) {
       }
     }
     else if(attack == 2){
-    
+      f.attack2();
+      h.damaged(f.getHat());      
+      if (h.getCurrentHP() <= 0) {
+          h.dead = true;
+      }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      if (f.phase >= 80) {
+        ENEMY_SCREEN = false;
+        f.currentSentence = " ";
+        f.count = 0;
+        f.phase = 0; 
+        attack = 0;  
+        enPress = false;        
+      }
     }
     if (!ENEMY_SCREEN) {
       rounds += 1; 
