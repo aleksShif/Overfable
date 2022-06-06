@@ -173,21 +173,23 @@ void draw() {
       }
     }  
     h.xSpeed = W/160; 
-    h.ySpeed = H/90; 
-    if (s.getScene().equals("cliffEntrance")){
-      mk.display();
-    }
-    else if(which == 1){
-      b.display();
-    }
-    else if(which == 2){
-      t.display();
-    }
-    else if(which == 3){
-      j.display();
-    }
-    else if(which == 4){
-      f.display();
+    h.ySpeed = H/90;
+    if (!h.dead) {
+      if (s.getScene().equals("cliffEntrance")){
+        mk.display();
+      }
+      else if(which == 1){
+        b.display();
+      }
+      else if(which == 2){
+        t.display();
+      }
+      else if(which == 3){
+        j.display();
+      }
+      else if(which == 4){
+        f.display();
+      }
     }
     if (h.x >= W/1.51) {
       h.x = W/1.52; 

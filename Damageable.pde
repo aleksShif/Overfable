@@ -1,6 +1,7 @@
 public class Damageable{
   int AT;
   float hitboxX, hitboxY, xSpeed, ySpeed, x, y;
+  String filename; 
   
   public Damageable(){
     AT = 3;

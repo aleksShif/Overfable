@@ -4,7 +4,7 @@ public class Pellet extends Damageable{
   PImage katana;
   PImage hat; 
   PImage fin;
-  String filename; 
+  //String filename; 
   String side; 
   float size;
   boolean isAt1 = false; 
@@ -296,45 +296,71 @@ public class Pellet extends Damageable{
   void displayHat(int phase) {
     int W = displayWidth;
     int H = displayHeight;
-    hat = loadImage(filename);
-    hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
-    image(hat, x, y); 
     if (phase < 10 || (phase >= 40 && phase < 50)) {
       filename = "hat.png";
+      hat = loadImage(filename);
+      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
+      setHitboxX(hat.width);
+      setHitboxY(hat.height);
       if (phase < 10) {
         move(20, -15);
+        image(hat, x, y);        
       }
       else if (phase >= 40) {
         move(-20, 15);
+        image(hat, x, y);
       }
     }
     else if (phase < 20 || (phase >= 50 && phase < 60)) {
       filename = "hat2.png";
+      hat = loadImage(filename);
+      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
+      setHitboxX(hat.width);
+      setHitboxY(hat.height);      
       if (phase < 20) {
         move(20, 0);
+        image(hat, x, y);
       }
       else if (phase >= 50) {
         move(-20, 0);
+        image(hat, x, y);
       }
     }
     else if (phase < 30 || (phase >= 60 && phase < 70)) {
       filename = "hat3.png";
+      hat = loadImage(filename);
+      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
+      setHitboxX(hat.width);
+      setHitboxY(hat.height);      
       if (phase < 30) {
         move(20, 15);
+        image(hat, x, y);
       }
       else if (phase >= 60) {
         move(-20, -15);
+        image(hat, x, y);
       }
     }
     else if (phase < 40 || (phase >= 70 && phase < 80)) {
       filename = "hat4.png";
+      hat = loadImage(filename);
+      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
+      setHitboxX(hat.width);
+      setHitboxY(hat.height);
       if (phase < 40) {
         move(0, 15);
+        image(hat, x, y);
       }
       else if (phase >= 70) {
         move(0, -15);
+        image(hat, x, y);
       }
     }
+      //strokeWeight(5);
+      //stroke(255);
+      //noFill();
+      //rect(getX(), getY(), getHitboxX(), getHitboxY()); 
+      //text(getX() + ", " + getY(), getX(), getY());
   }
   
   void setSide(String s) {

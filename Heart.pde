@@ -190,6 +190,15 @@ public class Heart {
     float rightEdgeD = d.getX() + d.getHitboxX();
     float lowerEdgeD = d.getY() + d.getHitboxY();
     float upperEdgeD = d.getY() - d.getHitboxY();
+    //if (d.filename != null) {
+    //  topLeft = d.getY() ; 
+    //  lowerLeft = d.getY() + d.getHitboxY();
+    //  topRight = d.getY();
+    //}
+    strokeWeight(5);
+    stroke(255);
+    noFill();
+    rect(d.getX(), d.getY(), upperEdgeD, leftEdgeD);
 
     if(COMBAT && which == 2){
       if (t.getFile().equals("bigGlass.png")) {
