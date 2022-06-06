@@ -2,14 +2,23 @@ public class Pellet extends Damageable{
   PImage hawk; 
   PImage smokeGlass; 
   PImage katana;
-  String filename; 
+  PImage hat; 
+  PImage fin;
+  //String filename; 
   String side; 
   float size;
   boolean isAt1 = false; 
   boolean heartIm = false; 
-  boolean turn = false; 
+  boolean turn = false;
+  boolean next = false; 
   int immobileTime = 0; 
-  int xSpeed, ySpeed; 
+  int xSpeed, ySpeed;
+  int count = 0;
+  float X = displayWidth/3.36;
+  boolean right = true;
+  boolean up = true;
+  boolean finFinished = false;
+
   
   Pellet(String file, float hX, float hY, float X, float Y, int at){
     setAT(at);
@@ -18,6 +27,7 @@ public class Pellet extends Damageable{
     setX(X);
     setY(Y); 
     filename = file; 
+    fill(255);
   }
   
   Pellet(String file, boolean hM) {
@@ -234,6 +244,125 @@ public class Pellet extends Damageable{
     }
   }
   
+  void displayKatana() {
+    int W = displayWidth;
+    int H = displayHeight;
+    katana = loadImage(filename);
+    if (filename.equals("katana.png")) {
+      katana.resize(katana.width, katana.height);  
+    }
+    if (next == true && f.countdown % 10 != 0 && f.countdown % 10 > 5) { 
+      image(katana, x, y - H/180); 
+    }
+    else {
+      image(katana, x, y); 
+    }
+  }
+
+  void displayFin(){
+    if(right){
+      fin = loadImage("JawsFin1.png");
+      x += displayWidth/300;
+    }
+    else{
+      fin = loadImage("JawsFin2.png");
+      x -= displayWidth/300;
+    }    
+    fin.resize(fin.width, fin.height);
+    if(count % 20 == 0){
+      if(up){
+        y -= displayHeight/100;
+      }
+      else{
+        y += displayHeight/100;
+      }
+    }
+    if(x > displayWidth/1.6 && right){
+      right = false;
+    }
+    if(x < displayWidth/3.36 && !right){
+      right = true;
+    }
+    if(y < displayHeight/2.4){
+      up = false;
+    }
+    if(y > displayHeight/1.5 && !up){
+      finFinished = true;
+    }
+    count++;
+    image(fin,x,y);
+  }
+  
+  void displayHat(int phase) {
+    int W = displayWidth;
+    int H = displayHeight;
+    if (phase < 10 || (phase >= 40 && phase < 50)) {
+      filename = "hat.png";
+      hat = loadImage(filename);
+      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
+      setHitboxX(hat.width);
+      setHitboxY(hat.height);
+      if (phase < 10) {
+        move(20, -15);
+        image(hat, x, y);        
+      }
+      else if (phase >= 40) {
+        move(-20, 15);
+        image(hat, x, y);
+      }
+    }
+    else if (phase < 20 || (phase >= 50 && phase < 60)) {
+      filename = "hat2.png";
+      hat = loadImage(filename);
+      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
+      setHitboxX(hat.width);
+      setHitboxY(hat.height);      
+      if (phase < 20) {
+        move(20, 0);
+        image(hat, x, y);
+      }
+      else if (phase >= 50) {
+        move(-20, 0);
+        image(hat, x, y);
+      }
+    }
+    else if (phase < 30 || (phase >= 60 && phase < 70)) {
+      filename = "hat3.png";
+      hat = loadImage(filename);
+      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
+      setHitboxX(hat.width);
+      setHitboxY(hat.height);      
+      if (phase < 30) {
+        move(20, 15);
+        image(hat, x, y);
+      }
+      else if (phase >= 60) {
+        move(-20, -15);
+        image(hat, x, y);
+      }
+    }
+    else if (phase < 40 || (phase >= 70 && phase < 80)) {
+      filename = "hat4.png";
+      hat = loadImage(filename);
+      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
+      setHitboxX(hat.width);
+      setHitboxY(hat.height);
+      if (phase < 40) {
+        move(0, 15);
+        image(hat, x, y);
+      }
+      else if (phase >= 70) {
+        move(0, -15);
+        image(hat, x, y);
+      }
+    }
+      //strokeWeight(5);
+      //stroke(255);
+      //noFill();
+      //rect(getX(), getY(), getHitboxX(), getHitboxY()); 
+      //text(getX() + ", " + getY(), getX(), getY());
+  }
+  
   void setSide(String s) {
     side = s; 
   }
@@ -251,11 +380,15 @@ public class Pellet extends Damageable{
       x+=X;
       y+=Y;
     }
-  }
+  }  
   
-  void moveSmoke(float X, float Y){
+  void move(float X, float Y){
     x += X; 
     y += Y; 
+  }
+  
+  boolean getFinFinished(){
+    return finFinished;
   }
   
   void reset(){

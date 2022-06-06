@@ -118,7 +118,7 @@ class BirdLock extends Monster{
   }
   
   void moveSmoke(float X, float Y) {
-    smokeGlass.moveSmoke(X, Y); 
+    smokeGlass.move(X, Y); 
   }
   
   Damageable getHawkson(){

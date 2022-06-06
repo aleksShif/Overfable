@@ -190,6 +190,15 @@ public class Heart {
     float rightEdgeD = d.getX() + d.getHitboxX();
     float lowerEdgeD = d.getY() + d.getHitboxY();
     float upperEdgeD = d.getY() - d.getHitboxY();
+    //if (d.filename != null) {
+    //  topLeft = d.getY() ; 
+    //  lowerLeft = d.getY() + d.getHitboxY();
+    //  topRight = d.getY();
+    //}
+    strokeWeight(5);
+    stroke(255);
+    noFill();
+    rect(d.getX(), d.getY(), upperEdgeD, leftEdgeD);
 
     if(COMBAT && which == 2){
       if (t.getFile().equals("bigGlass.png")) {
@@ -207,6 +216,26 @@ public class Heart {
           inv = true;
           hitTime = millis(); 
         }
+      }
+    }
+    else if(COMBAT && which == 3 && !j.at2){
+      leftEdgeD = d.getX();
+      rightEdgeD = d.getX() + 2 * d.getHitboxX();
+      lowerEdgeD = d.getY() + 2 * d.getHitboxY();
+      upperEdgeD = d.getY();
+      if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+        currentHP -= d.getAT();
+        currentHP += p.getDF();
+        inv = true;
+        hitTime = millis(); 
+      }
+      lowerEdgeH = h.y + h.hitboxY;
+      upperEdgeD = j.sharkFin.y+ 2*j.sharkFin.hitboxY + displayHeight/200;
+      if (!(lowerEdgeH < upperEdgeD) && !inv){
+        currentHP -= j.getSharkFin().getAT() - 3;
+        currentHP += p.getDF();
+        inv = true;
+        hitTime = millis(); 
       }
     }
     else {

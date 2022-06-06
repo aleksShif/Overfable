@@ -6,6 +6,7 @@ Screen s;
 Player p;
 Teddy b; 
 Jaws j;
+JFK f;
 BirdLock t;
 MonKing mk; 
 Pellet p0;
@@ -47,7 +48,7 @@ color cFirst;
 color cSec; 
 
 void setup() { 
-  COMBAT = false; 
+  COMBAT = true; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(displayWidth, displayHeight);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
@@ -89,7 +90,8 @@ void draw() {
   int W = displayWidth; 
   int H = displayHeight;
   if (which == 0) {
-    which = (int)(Math.random() * 3) + 1; 
+    which = (int)(Math.random() * 4) + 1; 
+    which = 4;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -98,6 +100,9 @@ void draw() {
     }
     else if(which == 3){
       j = new Jaws();
+    }
+    else if (which == 4){
+      f = new JFK();
     }
   }
   else if (COMBAT) {
@@ -124,6 +129,9 @@ void draw() {
       else if(which == 3){
         fightText(j);
       }
+      else if(which == 4){
+        fightText(f);
+      }
     }
     else if (ENEMY_SCREEN) {
       stroke(255); 
@@ -143,6 +151,9 @@ void draw() {
       else if(which == 3){
          fightEnemyJaws(j);
       }
+      else if(which == 4){
+        fightEnemyJFK(f);
+      }
     }
     else{
       if (s.getScene().equals("cliffEntrance")){
@@ -157,35 +168,35 @@ void draw() {
       else if(which == 3){
         fightElse(j);
       }
-<<<<<<< HEAD
-    }  //<>//
-    h.xSpeed = W/160;  //<>// //<>//
-=======
+      else if(which == 4){
+        fightElse(f);
+      }
     }  
     h.xSpeed = W/160; 
->>>>>>> cf0cde99fc8d364b1e910dd68cce1497b00643fd
-    h.ySpeed = H/90; 
-    if (s.getScene().equals("cliffEntrance")){
-      mk.display();
-    }
-    else if(which == 1){
-      b.display();
-    }
-    else if(which == 2){
-      t.display();
-    }
-    else if(which == 3){
-      j.display();
+    h.ySpeed = H/90;
+    if (!h.dead) {
+      if (s.getScene().equals("cliffEntrance")){
+        mk.display();
+      }
+      else if(which == 1){
+        b.display();
+      }
+      else if(which == 2){
+        t.display();
+      }
+      else if(which == 3){
+        j.display();
+      }
+      else if(which == 4){
+        f.display();
+      }
     }
     if (h.x >= W/1.51) {
       h.x = W/1.52; 
-<<<<<<< HEAD
-    } //<>//
-    if (h.x <= W/3.27) { //<>//
-=======
     } 
     if (h.x <= W/3.27) {
->>>>>>> cf0cde99fc8d364b1e910dd68cce1497b00643fd
+    } 
+    if (h.x <= W/3.27) {
       h.x = W/3.25; 
     }
     if (h.y >= H/1.35) {
@@ -663,8 +674,21 @@ void fightEnemyJaws(Jaws jaw){
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
     }
+    attack = 1;
     if (attack == 1) {
-      
+      j.attack1();
+      h.damaged(jaw.getSharkFin());
+      if (h.getCurrentHP() <= 0) {
+        h.dead = true;
+       }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      if(j.getFinFinished()){
+        attack = 0;
+        ENEMY_SCREEN = false;
+        enPress = false; 
+      }
     }
     else if(attack == 2){
     
@@ -673,6 +697,76 @@ void fightEnemyJaws(Jaws jaw){
       rounds += 1; 
     }
   }
+}
+
+void fightEnemyJFK(JFK fox) {
+  int W = displayWidth;
+  int H = displayHeight;
+  if (SPEECH_SCREEN) {
+    if (fox.currentSentence == " ") {
+      int randSen = (int)(Math.random() * 3); 
+      fox.currentSentence = fox.dialogue[randSen]; 
+     }
+    noStroke(); 
+    fill(255);
+    textSize(H/85);
+    texSiz = H/85;
+    rect(W/1.7297, H/4.737, W/5.818, H/6, 10, 10, 10, 10);  
+    triangle(W/1.768, H/3.396, W/1.7297, H/3.529, W/1.7297, H/3.273); 
+    fill(0);  
+    addText(fox.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
+  }
+  
+  else if (!SPEECH_SCREEN) {
+    if (attack == 0) {
+      attack = (int)(Math.random() * 2) + 1;
+      attack = 2; 
+    }
+    if (attack == 1) {
+      f.attack1();
+      for (int i = 0; i < f.pellets.size(); i++) {
+        Pellet kat = f.pellets.get(i); 
+        h.damaged(kat);
+        if (h.getCurrentHP() <= 0) {
+            h.dead = true;
+        }
+        if(millis() - h.getHitTime() > 1500){
+          h.setInv(false);
+        }
+      }
+      f.countdown--; 
+      if (f.countdown <= 0) {
+        ENEMY_SCREEN = false;
+        f.currentSentence = " ";
+        f.countdown = 400;
+        f.count = 0;
+        attack = 0;  
+        f.pellets = new ArrayList<Pellet>();  
+        enPress = false; 
+      }
+    }
+    else if(attack == 2){
+      f.attack2();
+      h.damaged(f.getHat());      
+      if (h.getCurrentHP() <= 0) {
+          h.dead = true;
+      }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      if (f.phase >= 80) {
+        ENEMY_SCREEN = false;
+        f.currentSentence = " ";
+        f.count = 0;
+        f.phase = 0; 
+        attack = 0;  
+        enPress = false;        
+      }
+    }
+    if (!ENEMY_SCREEN) {
+      rounds += 1; 
+    }
+  }  
 }
     
 
@@ -772,7 +866,7 @@ void keyPressed() {
       if (n > 1 && COMBAT) {
         n = tex.length(); 
       }
-      if ((which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead)) {
+      if (n == 1 && (which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead)) {
         loop(); 
         notLoop = false; 
         background(0); 
@@ -902,9 +996,3 @@ void addText(String t, float wInc, float upBounds, float leftBounds, float right
     }
   }
 }
-
-
-
-//void swordSymbol() {
-//  for (int i = 
-//}
