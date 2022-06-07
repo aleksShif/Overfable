@@ -31,12 +31,12 @@ class Jaws extends Monster{
     PImage jaws;
     if(dead){
       jaws = loadImage("JawsDead.png");
-      jaws.resize(jaws.width*W/450, jaws.height*W/450);
+      jaws.resize(jaws.width*W/1750, jaws.height*W/1750);
       image(jaws,W/2.45,H/8.5);
     }
     else if(hurt){
       jaws = loadImage("JawsHurt.png");
-      jaws.resize(jaws.width*W/450, jaws.height*W/450);
+      jaws.resize(jaws.width*W/1750, jaws.height*W/1750);
       hurtTime++;
       if(hurtTime >= 60){
         hurt = false;
@@ -88,7 +88,7 @@ class Jaws extends Monster{
           jaws = loadImage("Jaws4.png");
         }
       }
-      jaws.resize(jaws.width*W/450, jaws.height*W/450);
+      jaws.resize(jaws.width*W/1750, jaws.height*W/1750);
       image(jaws,W/2.45,H/8.5);
     }
     displayCount++;
