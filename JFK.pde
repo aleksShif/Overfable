@@ -32,7 +32,7 @@ class JFK extends Monster {
       displayCount = 0;
       jfk = loadImage("JFK1.png");
     }
-    jfk.resize(jfk.width*W/450, jfk.height*W/450);
+    jfk.resize(jfk.width*W/1750, jfk.height*W/1750);
     image(jfk,W/2.45,H/8.5);
     displayCount++;
   }
