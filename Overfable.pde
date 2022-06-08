@@ -95,7 +95,7 @@ void draw() {
   int H = ourDisplayY;
   if (which == 0) {
     which = (int)(Math.random() * 4) + 1; 
-    which = 2;
+    which = 4;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -411,7 +411,7 @@ void fightSetup(){
   strokeWeight(10); 
   rect(W/4, H/1.125, W/6.4, H/12);
   stroke(cSec); 
-  rect(W/1.6, H/1.125, W/6.4, H/12);
+    rect(W/1.6, H/1.125, W/6.4, H/12);
   textSize(H/30); 
   texSiz = H/30; 
   fill(cFirst);
