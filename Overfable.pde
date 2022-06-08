@@ -25,8 +25,8 @@ int attack = 0;
 int rounds = 0; 
 int n = 1; 
 int stagger = 5;
-int ourDisplayX = 1600;
-int ourDisplayY = 900; 
+int ourDisplayX = 1400;
+int ourDisplayY = 800; 
 int LimgShift = (int)(-1 * (ourDisplayX/71.111)); 
 int RimgShift = (int)(ourDisplayX/71.111); 
 float texSiz; 
@@ -50,7 +50,7 @@ color cFirst;
 color cSec; 
 
 void setup() { 
-  size(1600, 900); 
+  size(1400, 800); 
   COMBAT = true; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(ourDisplayX, ourDisplayY);
@@ -94,7 +94,7 @@ void draw() {
   int H = ourDisplayY;
   if (which == 0) {
     which = (int)(Math.random() * 4) + 1; 
-    which = 4;
+    which = 3;
     if (which == 1) {
       b = new Teddy(); 
     }

@@ -25,7 +25,7 @@ class BirdLock extends Monster{
     PImage bird;
     if(dead){
        bird = loadImage("BirdLock7.png");
-       bird.resize(bird.width*W/900, bird.height*W/900);
+       bird.resize(bird.width, bird.height);
        image(bird,W/2.55,H/20); 
     }
     else if(hurt){
