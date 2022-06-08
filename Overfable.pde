@@ -7,6 +7,7 @@ Player p;
 Teddy b; 
 Jaws j;
 JFK f;
+Snake k;
 BirdLock t;
 MonKing mk; 
 Pellet p0;
@@ -107,6 +108,9 @@ void draw() {
     else if (which == 4){
       f = new JFK();
     }
+    else if (which == 5){
+      k = new Snake();
+    }
   }
   else if (COMBAT) {
     fightSetup();
@@ -135,6 +139,9 @@ void draw() {
       else if(which == 4){
         fightText(f);
       }
+      else if(which == 5){
+        fightText(k);
+      }
     }
     else if (ENEMY_SCREEN) {
       stroke(255); 
@@ -154,8 +161,11 @@ void draw() {
       else if(which == 3){
          fightEnemyJaws(j);
       }
-      else if(which == 4){
+      else if(which == 4){ //<>// //<>//
         fightEnemyJFK(f);
+      }
+      else if(which == 5){
+        fightEnemySnake(k);
       }
     }
     else{
@@ -168,11 +178,14 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){
-        fightElse(j);
+      else if(which == 3){ //<>//
+        fightElse(j); //<>//
       }
       else if(which == 4){
         fightElse(f);
+      }
+      else if(which == 5){
+        fightElse(k);
       }
     } 
     h.xSpeed = W/160; 
@@ -192,6 +205,9 @@ void draw() {
       }
       else if(which == 4){
         f.display();
+      }
+      else if(which == 5){
+        k.display();
       }
     }
     if (h.x >= W/1.51) {
@@ -675,7 +691,6 @@ void fightEnemyJaws(Jaws jaw){
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
     }
-    attack = 2;//DELETE LATER
     if (attack == 1) {
       jaw.attack1();
       h.damaged(jaw.getSharkFin());
@@ -733,7 +748,6 @@ void fightEnemyJFK(JFK fox) {
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
-      attack = 2; 
     }
     if (attack == 1) {
       f.attack1();
@@ -775,6 +789,41 @@ void fightEnemyJFK(JFK fox) {
         attack = 0;  
         enPress = false;        
       }
+    }
+    if (!ENEMY_SCREEN) {
+      rounds += 1; 
+    }
+  }  
+}
+
+
+void fightEnemySnake(Snake sna) {
+  int W = displayWidth;
+  int H = displayHeight;
+  if (SPEECH_SCREEN) {
+    if (sna.currentSentence == " ") {
+      int randSen = (int)(Math.random() * 3); 
+      sna.currentSentence = sna.dialogue[randSen]; 
+     }
+    noStroke(); 
+    fill(255);
+    textSize(H/85);
+    texSiz = H/85;
+    rect(W/1.7297, H/4.737, W/5.818, H/6, 10, 10, 10, 10);  
+    triangle(W/1.768, H/3.396, W/1.7297, H/3.529, W/1.7297, H/3.273); 
+    fill(0);  
+    addText(sna.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
+  }
+  
+  else if (!SPEECH_SCREEN) {
+    if (attack == 0) {
+      attack = (int)(Math.random() * 2) + 1;
+    }
+    if (attack == 1) {
+      
+    }
+    else if(attack == 2){
+      
     }
     if (!ENEMY_SCREEN) {
       rounds += 1; 
