@@ -261,6 +261,25 @@ public class Heart {
     rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
   }
   
+  
+  void damaged(Damageable d, float leftEdgeD, float rightEdgeD, float lowerEdgeD, float upperEdgeD){
+    float leftEdgeH = x + hitboxX;
+    float rightEdgeH = x + 2 * hitboxX;
+    float lowerEdgeH = y + hitboxY;
+    float upperEdgeH = y - hitboxY;
+    if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+        currentHP -= d.getAT();
+        currentHP += p.getDF();
+        inv = true;
+        hitTime = millis(); 
+    }
+    strokeWeight(5);
+    stroke(255);
+    noFill();
+    rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
+  }
+  
+  
   int getHitTime(){
     return hitTime;
   }
