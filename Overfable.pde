@@ -94,7 +94,7 @@ void draw() {
   int H = ourDisplayY;
   if (which == 0) {
     which = (int)(Math.random() * 4) + 1; 
-    which = 4;
+    which = 2;
     if (which == 1) {
       b = new Teddy(); 
     }
