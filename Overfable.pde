@@ -95,7 +95,7 @@ void draw() {
   int H = ourDisplayY;
   if (which == 0) {
     which = (int)(Math.random() * 4) + 1; 
-    which = 4;
+    which = 2;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -161,7 +161,7 @@ void draw() {
       else if(which == 3){
          fightEnemyJaws(j);
       }
-      else if(which == 4){ //<>// //<>//
+      else if(which == 4){ //<>// //<>// //<>//
         fightEnemyJFK(f);
       }
       else if(which == 5){
@@ -178,8 +178,8 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){ //<>//
-        fightElse(j); //<>//
+      else if(which == 3){ //<>// //<>//
+        fightElse(j); //<>// //<>//
       }
       else if(which == 4){
         fightElse(f);
@@ -619,7 +619,8 @@ void fightEnemyBirdLock(BirdLock bir){
     }
     if (attack == 1) {
           t.attack1();
-          h.damaged(bir.getHawkson());
+          Damageable temp = bir.getHawkson(); 
+          h.damaged(temp, bir.temp.x, bir.temp.hawk.width, bir.temp.y, bir.temp);
           if (h.getCurrentHP() <= 0) {
             h.dead = true;
             }
