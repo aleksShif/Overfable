@@ -21,8 +21,8 @@ class MonKing extends Boss{
     update = temp;
   }
   void display(){
-    int W = displayWidth; 
-    int H = displayHeight;
+    int W = ourDisplayX; 
+    int H = ourDisplayY;
     PImage monkey;
     if (displayCount <= 15){
         monkey = loadImage("MonKing1.png");

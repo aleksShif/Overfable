@@ -13,19 +13,19 @@ class BirdLock extends Monster{
     setDialogue(d); 
     String[] u = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};
     setUpdate(u); 
-    setHawk(new Pellet("Hawkson1.png", displayWidth/30.476, displayHeight/15.652, displayWidth/2.7, displayHeight/2.7, 6)); 
+    setHawk(new Pellet("Hawkson1.png", ourDisplayX/30.476, ourDisplayY/15.652, ourDisplayX/2.7, ourDisplayY/2.7, 6)); 
     setSmokeGlass(new Pellet("smoke1.png", false)); 
     setPhase(0);
     countdown = 400;
   }
   
   void display(){
-    int W = displayWidth; 
-    int H = displayHeight;
+    int W = ourDisplayX; 
+    int H = ourDisplayY;
     PImage bird;
     if(dead){
        bird = loadImage("BirdLock7.png");
-       bird.resize(bird.width*W/900, bird.height*W/900);
+       bird.resize(bird.width, bird.height);
        image(bird,W/2.55,H/20); 
     }
     else if(hurt){
@@ -75,8 +75,8 @@ class BirdLock extends Monster{
   }
   
   void attack1(){
-    int W = displayWidth;
-    int H = displayHeight; 
+    int W = ourDisplayX;
+    int H = ourDisplayY; 
     hawk.display(phase);
     if(phase < 30){
       moveHawk(W/165,W/200);
@@ -101,8 +101,8 @@ class BirdLock extends Monster{
   }
   
   void attack2(){
-    int W = displayWidth;
-    int H = displayHeight; 
+    int W = ourDisplayX;
+    int H = ourDisplayY; 
     displayCount = 9; 
     smokeGlass.displaySmoke(phase);
     if (phase >= 54 && phase < 84) {
