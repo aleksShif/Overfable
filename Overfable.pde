@@ -95,7 +95,7 @@ void draw() {
   int H = ourDisplayY;
   if (which == 0) {
     which = (int)(Math.random() * 4) + 1; 
-    which = 4;
+    which = 3;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -691,6 +691,7 @@ void fightEnemyJaws(Jaws jaw){
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
     }
+    attack = 2
     if (attack == 1) {
       jaw.attack1();
       h.damaged(jaw.getSharkFin());

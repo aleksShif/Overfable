@@ -5,9 +5,9 @@ class Jaws extends Monster{
   String currentSentence = " "; 
   ArrayList<Pellet> pellets; 
   int displayCount = 0;
-  float rectX = displayWidth/3.36;
-  float rectY = displayHeight/2.46;
-  float rectInc = displayWidth/180;
+  float rectX = ourDisplayX/3.36;
+  float rectY = ourDisplayY/2.46;
+  float rectInc = 10;
   boolean right = true;
   boolean whipFinished = false;
   
@@ -112,14 +112,14 @@ class Jaws extends Monster{
   void attack2(){
     at2 = true;
     fill(255);
-    rect(rectX, rectY, displayWidth/80, displayHeight/3.5);
+    rect(rectX, rectY, 15, 260);
     rectX += rectInc;
-    if(rectX >= displayWidth/3.36 + displayWidth/2.5 && right){
+    if(rectX >= ourDisplayX/3.36 + ourDisplayX/2.5 && right){
       rectInc *= -1;
       right = false;
     }
-    if(rectX <= displayWidth/3.36 && !right){
-      rectX = displayWidth/3.36;
+    if(rectX <= ourDisplayX/3.36 && !right){
+      rectX = ourDisplayX/3.36;
       whipFinished = true;
     }
   }
