@@ -300,8 +300,8 @@ public class Pellet extends Damageable{
       filename = "hat.png";
       hat = loadImage(filename);
       hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
-      setHitboxX(hat.width);
-      setHitboxY(hat.height);
+      setHitboxX(hat.width/2);
+      setHitboxY(hat.height/2);
       if (phase < 10) {
         move(20, -15);
         image(hat, x, y);        
@@ -315,8 +315,8 @@ public class Pellet extends Damageable{
       filename = "hat2.png";
       hat = loadImage(filename);
       hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
-      setHitboxX(hat.width);
-      setHitboxY(hat.height);      
+      setHitboxX(hat.width/2);
+      setHitboxY(hat.height/2);      
       if (phase < 20) {
         move(20, 0);
         image(hat, x, y);
@@ -330,8 +330,8 @@ public class Pellet extends Damageable{
       filename = "hat3.png";
       hat = loadImage(filename);
       hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
-      setHitboxX(hat.width);
-      setHitboxY(hat.height);      
+      setHitboxX(hat.width/2);
+      setHitboxY(hat.height/2);      
       if (phase < 30) {
         move(20, 15);
         image(hat, x, y);
@@ -345,8 +345,8 @@ public class Pellet extends Damageable{
       filename = "hat4.png";
       hat = loadImage(filename);
       hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
-      setHitboxX(hat.width);
-      setHitboxY(hat.height);
+      setHitboxX(hat.width/2);
+      setHitboxY(hat.height/2);
       if (phase < 40) {
         move(0, 15);
         image(hat, x, y);
