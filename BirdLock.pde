@@ -25,13 +25,13 @@ class BirdLock extends Monster{
     PImage bird;
     if(dead){
        bird = loadImage("BirdLock7.png");
-       bird.resize(bird.width*W/900, bird.height*W/900);
+       bird.resize((int)(bird.width * 1.8), (int)(bird.height * 1.8));
        image(bird,W/2.55,H/20); 
     }
     else if(hurt){
       bird = loadImage("BirdLock6.png");
       hurtTime++;
-      bird.resize(bird.width*W/900, bird.height*W/900);
+      bird.resize((int)(bird.width * 1.8), (int)(bird.height * 1.8));
       if(hurtTime >= 60){
         hurt = false;
         hurtTime = 0;
@@ -68,7 +68,7 @@ class BirdLock extends Monster{
         displayCount = 0;
         bird = loadImage("BirdLock5.png");
       }
-      bird.resize(bird.width*W/900, bird.height*W/900);
+      bird.resize((int)(bird.width * 1.8), (int)(bird.height * 1.8));
       image(bird,W/2.55,H/20); 
     }
     displayCount++;
