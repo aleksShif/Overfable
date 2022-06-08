@@ -78,7 +78,7 @@ class JFK extends Monster {
           }
           else if ((countdown - 1) % 20 == 0 && kat.next) {
             kat.filename = "katana.png";
-            kat.move(0, (H/3.5) * -1);
+            kat.move(0, (H/3.9) * -1);
             kat.setHitboxX(W/188.235);
             kat.setHitboxY(H/3.396); 
           }

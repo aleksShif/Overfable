@@ -252,7 +252,7 @@ public class Pellet extends Damageable{
     int H = ourDisplayY;
     katana = loadImage(filename);
     if (filename.equals("katana.png")) {
-      katana.resize(katana.width/2, katana.height - 120);
+      katana.resize(katana.width/2, katana.height - 200);
     }
     else {
       katana.resize(katana.width/2, katana.height - 50);   

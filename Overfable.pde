@@ -95,7 +95,7 @@ void draw() {
   int H = ourDisplayY;
   if (which == 0) {
     which = (int)(Math.random() * 4) + 1; 
-    which = 2;
+    which = 4;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -748,7 +748,7 @@ void fightEnemyJFK(JFK fox) {
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
-      attack = 1;
+      attack = 2;
     }
     if (attack == 1) {
       f.attack1();
