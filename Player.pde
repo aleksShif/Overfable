@@ -6,10 +6,10 @@ public class Player{
   int LV = 0;
   int EXP = 0;
   boolean MODE;
-  float x = displayWidth/3.5;
-  float y = displayHeight/1.5;
-  int xSpeed = displayWidth / 160;
-  int ySpeed = displayHeight / 90; 
+  float x = ourDisplayX/3.5;
+  float y = ourDisplayY/1.5;
+  int xSpeed = ourDisplayX / 160;
+  int ySpeed = ourDisplayY / 90; 
   String walkFrame = "TommyWalkDown1.png";
   int walkStagger = 120;
   int walkStart = 0;
@@ -35,7 +35,7 @@ public class Player{
     xSpeed = 0; 
     ySpeed = 0;
     if (preCombat) {
-      h.display(x, y, displayWidth/38.4, displayHeight/21.6,heartMode); 
+      h.display(x, y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode); 
     }
     else {
       COMBAT = true; 
@@ -54,7 +54,7 @@ public class Player{
           if (!s.getScene().equals("entrance")) {
             steps += 1; 
           }
-          if (steps % 100 == 0 && p.x < displayWidth - displayWidth/160 && p.x > displayWidth/160 && !s.getScene().equals("entrance")) {
+          if (steps % 100 == 0 && p.x < ourDisplayX - ourDisplayX/160 && p.x > ourDisplayX/160 && !s.getScene().equals("entrance")) {
             p.noDisplay = true; 
             enterCombat(); 
           }
@@ -136,7 +136,7 @@ public class Player{
       //  }
       //}
       protagonist = loadImage(walkFrame);
-      protagonist.resize(protagonist.width * displayWidth/2800, protagonist.height * displayWidth/2800); 
+      protagonist.resize(protagonist.width * ourDisplayX/2800, protagonist.height * ourDisplayX/2800); 
       image(protagonist, x, y); 
       
       //textSize(20);

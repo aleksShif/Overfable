@@ -13,14 +13,14 @@ class JFK extends Monster {
     setDialogue(d); 
     String[] u = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};
     setUpdate(u); 
-    setHat(new Pellet("hat.png", displayWidth/22.857, displayHeight/6.923, displayWidth/2.909, displayHeight/2.25, 6));
+    setHat(new Pellet("hat.png", ourDisplayX/22.857, ourDisplayY/6.923, ourDisplayX/2.909, ourDisplayY/2.25, 6));
     setPhase(0);    
     countdown = 400;
   }
   
   void display() {
-    int W = displayWidth; 
-    int H = displayHeight;
+    int W = ourDisplayX; 
+    int H = ourDisplayY;
     PImage jfk;
     if (displayCount <= 10){
       jfk = loadImage("JFK1.png");
@@ -38,8 +38,8 @@ class JFK extends Monster {
   }
   
   void attack1(){
-    int W = displayWidth;
-    int H = displayHeight; 
+    int W = ourDisplayX;
+    int H = ourDisplayY; 
     for (int i = 0; i < 9; i++){
       if (countdown == 400) {
         Pellet kat = new Pellet("hiddenKatana.png", W/188.235, H/30, W/3.636 + (i*(W/21.333)), H/1.429, 5);

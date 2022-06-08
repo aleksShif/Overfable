@@ -1,7 +1,7 @@
 public class Heart {
   float x,y;  
-  int xSpeed = displayWidth / 160;
-  int ySpeed = displayHeight / 90; 
+  int xSpeed = ourDisplayX / 160;
+  int ySpeed = ourDisplayY / 90; 
   boolean inv; 
   boolean dead;
   int currentHP; 
@@ -230,7 +230,7 @@ public class Heart {
         hitTime = millis(); 
       }
       lowerEdgeH = h.y + h.hitboxY;
-      upperEdgeD = j.sharkFin.y+ 2*j.sharkFin.hitboxY + displayHeight/200;
+      upperEdgeD = j.sharkFin.y+ 2*j.sharkFin.hitboxY + ourDisplayY/200;
       if (!(lowerEdgeH < upperEdgeD) && !inv){
         currentHP -= j.getSharkFin().getAT() - 3;
         currentHP += p.getDF();
