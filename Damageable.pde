@@ -1,6 +1,7 @@
 public class Damageable{
   int AT;
   float hitboxX, hitboxY, xSpeed, ySpeed, x, y;
+  String filename; 
   
   public Damageable(){
     AT = 3;
@@ -54,8 +55,7 @@ public class Damageable{
   }
   
   boolean inside(){
-    return x > displayWidth/3.36 && x < displayWidth/3.36 + displayWidth/2.46 && y > displayHeight/2.4 && y < displayHeight/2.4 + displayHeight/2.57;
+    return x > ourDisplayX/3.36 && x < ourDisplayX/3.36 + ourDisplayX/2.46 && y > ourDisplayY/2.4 && y < ourDisplayY/2.4 + ourDisplayY/2.57;
           //rect(W/3.36, H/2.4, W/2.46, H/2.57);
-
   }
 }
