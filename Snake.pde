@@ -28,12 +28,12 @@ class Snake extends Monster{
     PImage snake;
     if(dead){
       snake = loadImage("SnakeDead.png");
-      snake.resize(snake.width*W/1750, snake.height*W/1750);
+      snake.resize(snake.width*W/1850, snake.height*W/1850);
       image(snake,W/2.55,H/22.2);
     }
     else if(hurt){
       snake = loadImage("SnakeHurt.png");
-      snake.resize(snake.width*W/1750, snake.height*W/1750);
+      snake.resize(snake.width*W/1850, snake.height*W/1850);
       hurtTime++;
       if(hurtTime >= 60){
         hurt = false;
@@ -65,7 +65,7 @@ class Snake extends Monster{
         displayCount = 0;
         snake = loadImage("Snake1.png");
       }
-      snake.resize(snake.width*W/1750, snake.height*W/1750);
+      snake.resize(snake.width*W/1850, snake.height*W/1850);
       image(snake,W/2.55,H/22.2);
     }
     displayCount++;
