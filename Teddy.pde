@@ -15,8 +15,8 @@ class Teddy extends Monster{
     countdown = 400; 
   }
   void display(){
-    int W = displayWidth; 
-    int H = displayHeight;
+    int W = ourDisplayX; 
+    int H = ourDisplayY;
     PImage bear;
     if(dead){
        bear = loadImage("FancyBear5.png");
@@ -107,8 +107,8 @@ class Teddy extends Monster{
     displayCount++;
   }
   void attack1(){
-    int W = displayWidth; 
-    int H = displayHeight; 
+    int W = ourDisplayX; 
+    int H = ourDisplayY; 
     if (countdown % 50 == 0) {
       for (int i = 0; i < 2; i++) {
         float X = (float)(Math.random() * W/2.56 + W/3.282); 
@@ -185,8 +185,8 @@ class Teddy extends Monster{
   
   boolean attack2(Pellet p0, Pellet p1, Pellet p2, Pellet p3, Pellet p4, Pellet p5, Pellet p6, Pellet p7){
     at2 = true;
-    int W = displayWidth; 
-    int H = displayHeight;    
+    int W = ourDisplayX; 
+    int H = ourDisplayY;    
     if(p0.inside() || p1.inside() || p2.inside() || p3.inside() || p4.inside()|| p5.inside() || p6.inside() || p7.inside()){
       if(p0.inside()){
         for(int i = 0; i < 8; i++){

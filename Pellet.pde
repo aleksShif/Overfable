@@ -14,7 +14,7 @@ public class Pellet extends Damageable{
   int immobileTime = 0; 
   int xSpeed, ySpeed;
   int count = 0;
-  float X = displayWidth/3.36;
+  float X = ourDisplayX/3.36;
   boolean right = true;
   boolean up = true;
   boolean finFinished = false;
@@ -32,8 +32,8 @@ public class Pellet extends Damageable{
   
   Pellet(String file, boolean hM) {
     setAT(5); 
-    setX(displayWidth/2.336);
-    setY(displayHeight/12);  
+    setX(ourDisplayX/2.336);
+    setY(ourDisplayY/12);  
     heartIm = hM; 
     filename = file;
   }
@@ -42,8 +42,8 @@ public class Pellet extends Damageable{
     setX(X);
     setY(Y);
     setAT(at);
-    setHitboxX(displayWidth/150);
-    setHitboxY(displayWidth/90);
+    setHitboxX(ourDisplayX/150);
+    setHitboxY(ourDisplayX/90);
   }
   
   Pellet(boolean _isAt1, int at, float X, float Y){
@@ -61,8 +61,8 @@ public class Pellet extends Damageable{
   }
     
   void display(){
-    int W = displayWidth; 
-    int H = displayHeight; 
+    int W = ourDisplayX; 
+    int H = ourDisplayY; 
     if (isAt1) {
       fill(255);
       noStroke();
@@ -75,7 +75,7 @@ public class Pellet extends Damageable{
     else {
       fill(255);
       ellipseMode(RADIUS);
-      ellipse(getX(),getY(), size * displayWidth/150, size * displayWidth/90);
+      ellipse(getX(),getY(), size * ourDisplayX/150, size * ourDisplayX/90);
     }
   }
   
@@ -138,8 +138,8 @@ public class Pellet extends Damageable{
   }
   
   void displaySmoke(int phase) {
-    int W = displayWidth;
-    int H = displayHeight;
+    int W = ourDisplayX;
+    int H = ourDisplayY;
     if (phase < 30) {
       heartIm = true; 
       filename = "smoke1.png";
@@ -193,7 +193,7 @@ public class Pellet extends Damageable{
         smokeGlass.resize((int)(smokeGlass.width*1.1+W/160), (int)(smokeGlass.height*1.1+H/90));
       }
       image(smokeGlass, x+W/45.714, y-H/27.692);
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
+      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode); 
     }
     else if (phase < 260) {
       heartIm = false; 
@@ -235,18 +235,18 @@ public class Pellet extends Damageable{
       image(smokeGlass, x+W/160, y-H/18);
       setHitboxX(smokeGlass.width - W/12.8); 
       setHitboxY(smokeGlass.height - H/5.143); 
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
+      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode); 
     }
     else if (phase < 280) {
-      setX(displayWidth/2.336);
-      setY(displayHeight/12);
+      setX(ourDisplayX/2.336);
+      setY(ourDisplayY/12);
       filename = " "; 
     }
   }
   
   void displayKatana() {
-    int W = displayWidth;
-    int H = displayHeight;
+    int W = ourDisplayX;
+    int H = ourDisplayY;
     katana = loadImage(filename);
     if (filename.equals("katana.png")) {
       katana.resize(katana.width, katana.height);  
@@ -262,31 +262,31 @@ public class Pellet extends Damageable{
   void displayFin(){
     if(right){
       fin = loadImage("JawsFin1.png");
-      x += displayWidth/300;
+      x += ourDisplayX/300;
     }
     else{
       fin = loadImage("JawsFin2.png");
-      x -= displayWidth/300;
+      x -= ourDisplayX/300;
     }    
     fin.resize(fin.width, fin.height);
     if(count % 20 == 0){
       if(up){
-        y -= displayHeight/100;
+        y -= ourDisplayY/100;
       }
       else{
-        y += displayHeight/100;
+        y += ourDisplayY/100;
       }
     }
-    if(x > displayWidth/1.6 && right){
+    if(x > ourDisplayX/1.6 && right){
       right = false;
     }
-    if(x < displayWidth/3.36 && !right){
+    if(x < ourDisplayX/3.36 && !right){
       right = true;
     }
-    if(y < displayHeight/2.4){
+    if(y < ourDisplayY/2.4){
       up = false;
     }
-    if(y > displayHeight/1.5 && !up){
+    if(y > ourDisplayY/1.5 && !up){
       finFinished = true;
     }
     count++;
@@ -294,8 +294,8 @@ public class Pellet extends Damageable{
   }
   
   void displayHat(int phase) {
-    int W = displayWidth;
-    int H = displayHeight;
+    int W = ourDisplayX;
+    int H = ourDisplayY;
     if (phase < 10 || (phase >= 40 && phase < 50)) {
       filename = "hat.png";
       hat = loadImage(filename);
@@ -392,8 +392,8 @@ public class Pellet extends Damageable{
   }
   
   void reset(){
-    x = displayWidth/2.7;
-    y = displayHeight/2.7;
+    x = ourDisplayX/2.7;
+    y = ourDisplayY/2.7;
   }
   
   boolean getHeartIM(){

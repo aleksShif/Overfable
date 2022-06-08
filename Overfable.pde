@@ -25,8 +25,10 @@ int attack = 0;
 int rounds = 0; 
 int n = 1; 
 int stagger = 5;
-int LimgShift = (int)(-1 * (displayWidth/71.111)); 
-int RimgShift = (int)(displayWidth/71.111); 
+int ourDisplayX = 1600;
+int ourDisplayY = 900; 
+int LimgShift = (int)(-1 * (ourDisplayX/71.111)); 
+int RimgShift = (int)(ourDisplayX/71.111); 
 float texSiz; 
 boolean justLeft = false; 
 boolean justRight = false; 
@@ -48,33 +50,34 @@ color cFirst;
 color cSec; 
 
 void setup() { 
+  size(1600, 900); 
   COMBAT = true; 
   entranceScene = loadImage("pixil-frame-1.png");
-  entranceScene.resize(displayWidth, displayHeight);
+  entranceScene.resize(ourDisplayX, ourDisplayY);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
-  forestScene.resize(displayWidth, displayHeight); 
+  forestScene.resize(ourDisplayX, ourDisplayY); 
   prim = forestScene;
   forestScrollScene = loadImage("pixil-frame-0 (3).png"); 
-  forestScrollScene.resize(displayWidth, displayHeight); 
+  forestScrollScene.resize(ourDisplayX, ourDisplayY); 
   secon = forestScrollScene; 
   snowyScene = loadImage("pixil-frame-2.png"); 
-  snowyScene.resize(displayWidth, displayHeight); 
+  snowyScene.resize(ourDisplayX, ourDisplayY); 
   snowyScrollScene = loadImage("pixil-frame-2.png");
-  snowyScrollScene.resize(displayWidth, displayHeight); 
+  snowyScrollScene.resize(ourDisplayX, ourDisplayY); 
   cliffEntranceScene = loadImage("pixil-frame-3.png");
-  cliffEntranceScene.resize(displayWidth, displayHeight); 
+  cliffEntranceScene.resize(ourDisplayX, ourDisplayY); 
   s = new Screen("entrance", 15); 
-  h = new Heart(displayWidth / 2.13, displayHeight / 1.714);
+  h = new Heart(ourDisplayX / 2.13, ourDisplayY / 1.714);
   TeddyJr = loadImage("TeddyJr.png");
   TeddyJr.resize(TeddyJr.width, TeddyJr.height); 
-  item = new Heart(displayWidth / 3.902, displayHeight / 1.111);
+  item = new Heart(ourDisplayX / 3.902, ourDisplayY / 1.111);
   p = new Player(true);
   m = new Monster(); 
   mk = new MonKing(); 
   cFirst = color(229, 209, 19);  
   cSec = color(216, 110, 28);
-  int W = displayWidth; 
-  int H = displayHeight; 
+  int W = ourDisplayX; 
+  int H = ourDisplayY; 
   p0 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
   p1 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
   p2 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
@@ -83,12 +86,12 @@ void setup() {
   p5 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
   p6 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
   p7 = new Pellet(2, (float)Math.random() * W/2.46 + W/3.36,H/2.3,0.5);
-  fullScreen();   
+  //fullScreen();   
 }
 
 void draw() {     
-  int W = displayWidth; 
-  int H = displayHeight;
+  int W = ourDisplayX; 
+  int H = ourDisplayY;
   if (which == 0) {
     which = (int)(Math.random() * 4) + 1; 
     which = 4;
@@ -138,7 +141,7 @@ void draw() {
       strokeWeight(20); 
       noFill(); 
       rect(W/3.36, H/2.4, W/2.46, H/2.57);
-      h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode);  
+      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);  
       if (s.getScene().equals("cliffEntrance")){
        
       }
@@ -367,8 +370,8 @@ void draw() {
 
 
 void fightSetup(){
-  int W = displayWidth;
-  int H = displayHeight;
+  int W = ourDisplayX;
+  int H = ourDisplayY;
   background(0); 
   fill(255); 
   PFont font = createFont("undertale-attack-font.ttf", H/40); 
@@ -403,23 +406,23 @@ void fightSetup(){
   text("ITEM", W/1.46, H/1.05); 
   set(2125, 1710, #D86E1C);
   if (arrowPress && !ITEM_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
-    item.display(W/1.576, H/1.111, displayWidth/38.4, displayHeight/21.6,heartMode);
+    item.display(W/1.576, H/1.111, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);
   }
   else if (!arrowPress && !ITEM_SCREEN && !FIGHT_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
-    item.display(item.x, item.y, displayWidth/38.4, displayHeight/21.6,heartMode);
+    item.display(item.x, item.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);
   }
 }
 
 void fightDead(){
-  int W = displayWidth;
-  int H = displayHeight;
+  int W = ourDisplayX;
+  int H = ourDisplayY;
   background(0); 
-  h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
+  h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode); 
   if(millis() - h.getHitTime() > 1500){
     h.setInv(false);
    }
   if (!h.inv) {
-    h.display(h.x, h.y, displayWidth/38.4, displayHeight/21.6,heartMode); 
+    h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode); 
   }
    textSize(H/20); 
    texSiz = H/20; 
@@ -427,8 +430,8 @@ void fightDead(){
 }
 
 void fightItem(){
-  int W = displayWidth;
-  int H = displayHeight;
+  int W = ourDisplayX;
+  int H = ourDisplayY;
   stroke(255); 
   strokeWeight(20); 
   noFill(); 
@@ -439,15 +442,15 @@ void fightItem(){
   text("           * Butterscotch Pie", W/12.8, H/2); 
   text("           * Steak", W/12.8, H/1.714); 
   if (!switchItem) {
-    item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6,heartMode);
+    item.display(W/10.667, H/2.209, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);
   }
-  else{item.display(W/10.667, H/1.865, displayWidth/38.4, displayHeight/21.6,heartMode);}
+  else{item.display(W/10.667, H/1.865, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);}
 }
 
 
 void fightFight(){
-  int W = displayWidth;
-  int H = displayHeight;
+  int W = ourDisplayX;
+  int H = ourDisplayY;
   stroke(255); 
   strokeWeight(20); 
   noFill(); 
@@ -456,13 +459,13 @@ void fightFight(){
   texSiz = H/40; 
   fill(255); 
   text("           * Fart", W/12.8, H/2);
-  item.display(W/10.667, H/2.209, displayWidth/38.4, displayHeight/21.6,heartMode);
+  item.display(W/10.667, H/2.209, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);
 }
 
 
 void fightText(Monster mon){
-  int W = displayWidth;
-  int H = displayHeight;
+  int W = ourDisplayX;
+  int H = ourDisplayY;
   stroke(255);
   strokeWeight(20);
   noFill(); 
@@ -483,8 +486,8 @@ void fightText(Monster mon){
 
 
 void fightEnemyTeddy(Teddy ted){
-  int W = displayWidth;
-  int H = displayHeight;
+  int W = ourDisplayX;
+  int H = ourDisplayY;
   if (SPEECH_SCREEN) {
     if (ted.currentSentence == " ") {
       int randSen = (int)(Math.random() * 3); 
@@ -579,8 +582,8 @@ void fightEnemyTeddy(Teddy ted){
    
     
 void fightEnemyBirdLock(BirdLock bir){
-  int W = displayWidth;
-  int H = displayHeight;
+  int W = ourDisplayX;
+  int H = ourDisplayY;
   if (SPEECH_SCREEN) {
     if (bir.currentSentence == " ") {
       int randSen = (int)(Math.random() * 3); 
@@ -613,7 +616,7 @@ void fightEnemyBirdLock(BirdLock bir){
             if (!bir.getTurn()) {
               bir.phase = 0;
               bir.setTurn(true);
-              bir.setHawkY(displayHeight/2.7);
+              bir.setHawkY(ourDisplayY/2.7);
             }
             else {
               attack = 0;
@@ -653,8 +656,8 @@ void fightEnemyBirdLock(BirdLock bir){
 }
     
 void fightEnemyJaws(Jaws jaw){
-  int W = displayWidth;
-  int H = displayHeight;
+  int W = ourDisplayX;
+  int H = ourDisplayY;
   if (SPEECH_SCREEN) {
     if (jaw.currentSentence == " ") {
       int randSen = (int)(Math.random() * 3); 
@@ -700,8 +703,8 @@ void fightEnemyJaws(Jaws jaw){
 }
 
 void fightEnemyJFK(JFK fox) {
-  int W = displayWidth;
-  int H = displayHeight;
+  int W = ourDisplayX;
+  int H = ourDisplayY;
   if (SPEECH_SCREEN) {
     if (fox.currentSentence == " ") {
       int randSen = (int)(Math.random() * 3); 
@@ -771,8 +774,8 @@ void fightEnemyJFK(JFK fox) {
     
 
 void fightElse(Monster mon){
-  int W = displayWidth;
-  int H = displayHeight;
+  int W = ourDisplayX;
+  int H = ourDisplayY;
   stroke(255); 
   strokeWeight(20); 
   noFill(); 
@@ -780,8 +783,8 @@ void fightElse(Monster mon){
   textSize(H/40);
   texSiz = H/40; 
   fill(255);
-  h.x = displayWidth / 2.13; 
-  h.y = displayHeight / 1.714; 
+  h.x = ourDisplayX / 2.13; 
+  h.y = ourDisplayY / 1.714; 
   if (rounds < mon.update.length) {
     String temp = mon.update[rounds];
     tex = "* " + temp; 
@@ -873,8 +876,8 @@ void keyPressed() {
         enPress = true; 
         COMBAT = false;
         rounds = 0; 
-        p.xSpeed = displayWidth / 160; 
-        p.ySpeed = displayHeight / 90;
+        p.xSpeed = ourDisplayX / 160; 
+        p.ySpeed = ourDisplayY / 90;
         p.noDisplay = false; 
        } 
       else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead)) && COMBAT) { 
@@ -967,8 +970,8 @@ void keyReleased() {
 
 
 void addText(String t, float wInc, float upBounds, float leftBounds, float rightBounds) {
-  int W = displayWidth;
-  int H = displayHeight;
+  int W = ourDisplayX;
+  int H = ourDisplayY;
   float w_ = leftBounds + W/32;
   float h_ = upBounds + H/18;  
   for (int i = 0; i < n; i++) { 

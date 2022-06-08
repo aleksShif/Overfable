@@ -17,12 +17,12 @@ class Jaws extends Monster{
     String[] u = {"Indiana Jaws dances to Jaws music", "Indiana Jaws dances to Indiana Jones music", "Indiana Jaws licks his lips"}; 
     setUpdate(u); 
     countdown = 400; 
-    setSharkFin(new Pellet("sharkFin.png", displayWidth/25.859, displayHeight/16.162, displayWidth/3.36, displayHeight/1.5, 6)); //file, hbx, hby, x, y
+    setSharkFin(new Pellet("sharkFin.png", ourDisplayX/25.859, ourDisplayY/16.162, ourDisplayX/3.36, ourDisplayY/1.5, 6)); //file, hbx, hby, x, y
   }
   
   void display(){
-    int W = displayWidth; 
-    int H = displayHeight;
+    int W = ourDisplayX; 
+    int H = ourDisplayY;
     PImage jaws;
     if (displayCount <= 10){
       jaws = loadImage("Jaws1.png");
@@ -57,7 +57,7 @@ class Jaws extends Monster{
     at2 = false;
     sharkFin.displayFin();
     fill(255);
-    rect(displayWidth/3.36, sharkFin.y+ 2*sharkFin.hitboxY + displayHeight/200, displayWidth/2.46, displayHeight/2.4 + displayHeight/2.57 - sharkFin.y - 2*sharkFin.hitboxY );
+    rect(ourDisplayX/3.36, sharkFin.y+ 2*sharkFin.hitboxY + ourDisplayY/200, ourDisplayX/2.46, ourDisplayY/2.4 + ourDisplayY/2.57 - sharkFin.y - 2*sharkFin.hitboxY );
   }
   
     void setExp(int e) {
