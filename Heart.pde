@@ -195,10 +195,7 @@ public class Heart {
     //  lowerLeft = d.getY() + d.getHitboxY();
     //  topRight = d.getY();
     //}
-    strokeWeight(5);
-    stroke(255);
-    noFill();
-    rect(d.getX(), d.getY(), upperEdgeD, leftEdgeD);
+    
 
     if(COMBAT && which == 2){
       if (t.getFile().equals("bigGlass.png")) {
@@ -258,6 +255,10 @@ public class Heart {
         hitTime = millis(); 
       }
     }
+    strokeWeight(5);
+    stroke(255);
+    noFill();
+    rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
   }
   
   int getHitTime(){
