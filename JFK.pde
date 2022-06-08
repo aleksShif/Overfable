@@ -42,7 +42,7 @@ class JFK extends Monster {
     int H = ourDisplayY; 
     for (int i = 0; i < 9; i++){
       if (countdown == 400) {
-        Pellet kat = new Pellet("hiddenKatana.png", W/188.235, H/30, W/3.636 + (i*(W/21.333)), H/1.429, 5);
+        Pellet kat = new Pellet("hiddenKatana.png", W/188.235, H/30, W/3.82 + (i*(W/21.333)), H/1.6, 5);
         pellets.add(kat);
       }
       else{
@@ -71,8 +71,8 @@ class JFK extends Monster {
           kat.displayKatana();
           if ((countdown - 2) % 20 == 0 && (countdown - 2) % 40 != 0){
             kat.filename = "hiddenKatana.png"; 
-            kat.setX(W/3.636 + (i*(W/21.333)));
-            kat.setY(H/1.429); 
+            kat.setX(W/3.82 + (i*(W/21.333)));
+            kat.setY(H/1.6); 
             kat.setHitboxX(W/188.235);
             kat.setHitboxY(H/30); 
           }
@@ -97,6 +97,9 @@ class JFK extends Monster {
   }
   Damageable getHat() {
     return hat;
+  }
+  PImage getImg() {
+    return hat.hat;   
   }
   void setExp(int e) {
     exp = e; 

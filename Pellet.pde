@@ -27,6 +27,9 @@ public class Pellet extends Damageable{
     setX(X);
     setY(Y); 
     filename = file; 
+    if (filename.equals("hiddenKatana.png")) {
+      katana = loadImage(filename);     
+    }
     fill(255);
   }
   
@@ -88,7 +91,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson1.png";
       }
       hawk = loadImage(filename);
-      hawk.resize(hawk.width * 2, hawk.height * 2);
+      hawk.resize(hawk.width, hawk.height);
       image(hawk,x,y);
     }
     else if(phase < 35){
@@ -99,7 +102,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson2.png";
       }      
       hawk = loadImage(filename);
-      hawk.resize(hawk.width * 2, hawk.height * 2);
+      hawk.resize(hawk.width, hawk.height);
       image(hawk,x,y);
     }
     else if(phase < 40){
@@ -110,7 +113,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson3.png";
       }      
       hawk = loadImage(filename);
-      hawk.resize(hawk.width * 2, hawk.height * 2);
+      hawk.resize(hawk.width, hawk.height);
       image(hawk,x,y);
     }
     else if(phase < 45){
@@ -121,7 +124,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson4.png";
       }      
       hawk = loadImage(filename);
-      hawk.resize(hawk.width * 2, hawk.height * 2);
+      hawk.resize(hawk.width, hawk.height);
       image(hawk,x,y);
     }
     else{
@@ -132,7 +135,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson5.png";
       }     
       hawk = loadImage(filename);
-      hawk.resize(hawk.width * 2, hawk.height * 2);
+      hawk.resize(hawk.width, hawk.height);
       image(hawk,x,y);
     }
   }
@@ -249,7 +252,10 @@ public class Pellet extends Damageable{
     int H = ourDisplayY;
     katana = loadImage(filename);
     if (filename.equals("katana.png")) {
-      katana.resize(katana.width, katana.height);  
+      katana.resize(katana.width/2, katana.height - 120);
+    }
+    else {
+      katana.resize(katana.width/2, katana.height - 50);   
     }
     if (next == true && f.countdown % 10 != 0 && f.countdown % 10 > 5) { 
       image(katana, x, y - H/180); 

@@ -95,7 +95,7 @@ void draw() {
   int H = ourDisplayY;
   if (which == 0) {
     which = (int)(Math.random() * 4) + 1; 
-    which = 4;
+    which = 2;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -748,13 +748,13 @@ void fightEnemyJFK(JFK fox) {
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
-      attack = 2;
+      attack = 1;
     }
     if (attack == 1) {
       f.attack1();
       for (int i = 0; i < f.pellets.size(); i++) {
         Pellet kat = f.pellets.get(i); 
-        h.damaged(kat);
+        h.damaged(kat, kat.x+65, kat.x + kat.katana.width-65, kat.y + kat.katana.height, kat.y);
         if (h.getCurrentHP() <= 0) {
             h.dead = true;
         }
@@ -775,7 +775,7 @@ void fightEnemyJFK(JFK fox) {
     }
     else if(attack == 2){
       f.attack2();
-      h.damaged(f.getHat());      
+      h.damaged(f.getHat(), f.getHat().x, f.getHat().x + f.getImg().width, f.getHat().y + f.getImg().height, f.getHat().y);      
       if (h.getCurrentHP() <= 0) {
           h.dead = true;
       }
