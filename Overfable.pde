@@ -616,7 +616,7 @@ void fightEnemyBirdLock(BirdLock bir){
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
-      attack = 1;
+      attack = 2;
     }
     if (attack == 1) {
           t.attack1();
@@ -647,7 +647,7 @@ void fightEnemyBirdLock(BirdLock bir){
     else if (attack == 2) {
       bir.attack2();
       if (bir.phase >= 135 && bir.phase < 260) {
-        h.damaged(bir.getSmoke());
+        h.damaged(bir.getSmoke(), bir.smokeGlass.x+50, bir.smokeGlass.x+50 + bir.smokeGlass.smokeGlass.width-130, bir.smokeGlass.y-20 + bir.smokeGlass.smokeGlass.height-100, bir.smokeGlass.y-20);
       }
       if (h.getCurrentHP() <= 0) {
         h.dead = true;
@@ -655,7 +655,7 @@ void fightEnemyBirdLock(BirdLock bir){
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
        }
-      if (bir.phase >= 280) {
+      if (bir.phase >= 280 && !h.inv) {
         bir.setFile("smoke1.png");
         attack = 0; 
         bir.phase = 0; 
