@@ -690,8 +690,8 @@ void fightEnemyJaws(Jaws jaw){
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
+      attack = 2;
     }
-    attack = 2
     if (attack == 1) {
       jaw.attack1();
       h.damaged(jaw.getSharkFin());
@@ -705,6 +705,8 @@ void fightEnemyJaws(Jaws jaw){
         attack = 0;
         ENEMY_SCREEN = false;
         enPress = false; 
+        jaw.currentSentence = " "; 
+        jaw.phase = 0;
       }
     }
     else if(attack == 2){
@@ -720,6 +722,8 @@ void fightEnemyJaws(Jaws jaw){
         attack = 0;
         ENEMY_SCREEN = false;
         enPress = false; 
+        jaw.currentSentence = " "; 
+        jaw.phase = 0;
       }
     }
     if (!ENEMY_SCREEN) {
