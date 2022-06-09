@@ -95,7 +95,7 @@ void draw() {
   int H = ourDisplayY;
   if (which == 0) {
     which = (int)(Math.random() * 4) + 1; 
-    which = 4;
+    which = 5;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -822,9 +822,29 @@ void fightEnemySnake(Snake sna) {
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
+      attack = 1; 
     }
     if (attack == 1) {
-      
+      k.attack1();
+      for (int i = 0; i < k.pellets.size(); i++) {
+        Pellet snak = k.pellets.get(i); 
+        //h.damaged(snak, snak.x+65, snak.x + snak.katana.width-65, snak.y + snak.katana.height, snak.y);
+        if (h.getCurrentHP() <= 0) {
+            h.dead = true;
+        }
+        if(millis() - h.getHitTime() > 1500){
+          h.setInv(false);
+        }
+      } 
+      if (k.countdown <= 0) {
+        ENEMY_SCREEN = false;
+        k.currentSentence = " ";
+        k.countdown = 400;
+        k.phase = 0;
+        attack = 0;  
+        k.pellets = new ArrayList<Pellet>();  
+        enPress = false; 
+      }      
     }
     else if(attack == 2){
       

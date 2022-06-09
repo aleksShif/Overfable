@@ -4,6 +4,7 @@ public class Pellet extends Damageable{
   PImage katana;
   PImage hat; 
   PImage fin;
+  PImage snake; 
   //String filename; 
   String side; 
   float size;
@@ -303,8 +304,6 @@ public class Pellet extends Damageable{
   }
   
   void displayHat(int phase) {
-    int W = ourDisplayX;
-    int H = ourDisplayY;
     if (count > 1) {
       filename = filename.substring(0, 3) + count + ".png";  
     }
@@ -326,55 +325,16 @@ public class Pellet extends Damageable{
       }
       image(hat, x, y);        
     }
-    //else if (phase < 40) {
-    //  hat = loadImage(filename);
-    //  hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
-    //  setHitboxX(hat.width/2);
-    //  setHitboxY(hat.height/2);      
-    //  if (phase < 20) {
-    //    move(20, 0);
-    //    image(hat, x, y);
-    //  }
-    //  else if (phase >= 50) {
-    //    move(-20, 0);
-    //    image(hat, x, y);
-    //  }
-    //}
-    //else if (phase < 30 || (phase >= 60 && phase < 70)) {
-    //  filename = "hat3.png";
-    //  hat = loadImage(filename);
-    //  hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
-    //  setHitboxX(hat.width/2);
-    //  setHitboxY(hat.height/2);      
-    //  if (phase < 30) {
-    //    move(20, 15);
-    //    image(hat, x, y);
-    //  }
-    //  else if (phase >= 60) {
-    //    move(-20, -15);
-    //    image(hat, x, y);
-    //  }
-    //}
-    //else if (phase < 40 || (phase >= 70 && phase < 80)) {
-    //  filename = "hat4.png";
-    //  hat = loadImage(filename);
-    //  hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
-    //  setHitboxX(hat.width/2);
-    //  setHitboxY(hat.height/2);
-    //  if (phase < 40) {
-    //    move(0, 15);
-    //    image(hat, x, y);
-    //  }
-    //  else if (phase >= 70) {
-    //    move(0, -15);
-    //    image(hat, x, y);
-    //  }
-    //}
-      //strokeWeight(5);
-      //stroke(255);
-      //noFill();
-      //rect(getX(), getY(), getHitboxX(), getHitboxY()); 
-      //text(getX() + ", " + getY(), getX(), getY());
+  }
+  
+  void displaySnake(int phase) {
+    if (phase % 2 != 0) {
+      snake = loadImage("miniSnake.png");     
+    }
+    else {
+      snake = loadImage("miniSnake2.png");
+    }
+    image(snake, x, y); 
   }
   
   void setSide(String s) {

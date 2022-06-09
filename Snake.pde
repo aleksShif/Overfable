@@ -1,10 +1,9 @@
 class Snake extends Monster{
   int countdown; 
   boolean at2 = false;
-  String[] dialogue = {"Nom nom nom", "*eating noises*", "Throw me the idol!"};
   String currentSentence = " "; 
-  ArrayList<Pellet> pellets; 
   int displayCount = 0;
+  int phase = 0; 
   float rectX = displayWidth/3.36;
   float rectY = displayHeight/2.46;
   float rectInc = displayWidth/180;
@@ -18,7 +17,8 @@ class Snake extends Monster{
     String[] d = {"Nom nom nom", "*eating noises*", "Throw me the idol!"};
     setDialogue(d); 
     String[] u = {"Indiana snake dances to snake music", "Indiana snake dances to Indiana Jones music", "Indiana snake licks his lips"}; 
-    setUpdate(u); 
+    setUpdate(u);
+    //setSnake(new Pellet("miniSnake.png", ourDisplayX/30.476, ourDisplayY/15.652, ourDisplayX/2.7, ourDisplayY/2.7, 6)); 
     countdown = 400; 
   }
   
@@ -73,15 +73,59 @@ class Snake extends Monster{
  
 
   void attack1(){
-
+    PImage basket;
+    if (phase < 15) {
+      if (phase < 5) {
+        basket = loadImage("basket.png"); 
+      }
+      else if (phase < 10) {
+        basket = loadImage("basket2.png");
+      }
+      else {
+        basket = loadImage("basket3.png");
+      }
+      image(basket, 300, 400);
+    }
+    else {
+      basket = loadImage("basket3.png");
+      image(basket, 300, 400);
+      for (int i = 0; i < 15; i++){
+        if (countdown == 400) {
+          Pellet snak = new Pellet("miniSnake.png", 20, 20, 300, 400, 2);
+          pellets.add(snak);     
+          snak.displaySnake(phase); 
+        }
+        else {
+          Pellet snak = pellets.get(i); 
+          snak.displaySnake(phase); 
+          int yDir = -2; 
+          int xDir = 2; 
+          int temp = (int)(Math.random() * 2); 
+          if (temp == 0) {
+            xDir = -2;
+          }
+          else {
+            xDir = 2;
+          }
+          snak.move(xDir, yDir);           
+        }
+      }
+      countdown -= 1; 
+    }
+    phase += 1; 
   }
   
   void attack2(){
 
   }
  
-  
-    void setExp(int e) {
+  void setSnake(Pellet p) {
+    snake = p;
+  }
+  void setPhase(int p) {
+    phase = p;
+  }
+  void setExp(int e) {
     exp = e; 
   }
   void setGold(int g) {
