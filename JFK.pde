@@ -36,16 +36,16 @@ class JFK extends Monster {
         hurtTime = 0;
       }
       else if(hurtTime <= 10){
-        image(jfk,W/2.45,H/9.99);
+        image(jfk,W/2.4,H/9.99);
       }else if(hurtTime <= 20){
         image(jfk,W/2.45,H/9.99);
       }else if(hurtTime <= 30){
-        image(jfk,W/2.45,H/9.99);
+        image(jfk,W/2.5,H/9.99);
       }
       else if(hurtTime <= 40){
         image(jfk,W/2.45,H/9.99);
       }else if(hurtTime <= 50){
-        image(jfk,W/2.45,H/9.99);
+        image(jfk,W/2.4,H/9.99);
       }else if(hurtTime <= 60){
         image(jfk,W/2.45,H/9.99);
       }
