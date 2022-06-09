@@ -616,11 +616,11 @@ void fightEnemyBirdLock(BirdLock bir){
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
+      attack = 1;
     }
     if (attack == 1) {
           t.attack1();
-          Damageable temp = bir.getHawkson(); 
-          h.damaged(temp, bir.temp.x, bir.temp.hawk.width, bir.temp.y, bir.temp);
+          h.damaged(bir.getHawkson(), bir.hawk.x, bir.hawk.x + bir.hawk.hawk.width, bir.hawk.y + bir.hawk.hawk.height, bir.hawk.y);
           if (h.getCurrentHP() <= 0) {
             h.dead = true;
             }

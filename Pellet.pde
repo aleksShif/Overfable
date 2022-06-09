@@ -30,6 +30,9 @@ public class Pellet extends Damageable{
     if (filename.equals("hiddenKatana.png")) {
       katana = loadImage(filename);     
     }
+    if (filename.equals("Hawkson1.png")) {
+      hawk = loadImage(filename);
+    }
     fill(255);
   }
   
@@ -91,7 +94,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson1.png";
       }
       hawk = loadImage(filename);
-      hawk.resize(hawk.width, hawk.height);
+      hawk.resize((int)(hawk.width*1.5), (int)(hawk.height*1.5));
       image(hawk,x,y);
     }
     else if(phase < 35){
@@ -102,7 +105,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson2.png";
       }      
       hawk = loadImage(filename);
-      hawk.resize(hawk.width, hawk.height);
+      hawk.resize((int)(hawk.width*1.5), (int)(hawk.height*1.5));
       image(hawk,x,y);
     }
     else if(phase < 40){
@@ -113,7 +116,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson3.png";
       }      
       hawk = loadImage(filename);
-      hawk.resize(hawk.width, hawk.height);
+      hawk.resize((int)(hawk.width*1.5), (int)(hawk.height*1.5));
       image(hawk,x,y);
     }
     else if(phase < 45){
@@ -124,7 +127,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson4.png";
       }      
       hawk = loadImage(filename);
-      hawk.resize(hawk.width, hawk.height);
+      hawk.resize((int)(hawk.width*1.5), (int)(hawk.height*1.5));
       image(hawk,x,y);
     }
     else{
@@ -135,7 +138,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson5.png";
       }     
       hawk = loadImage(filename);
-      hawk.resize(hawk.width, hawk.height);
+      hawk.resize((int)(hawk.width*1.5), (int)(hawk.height*1.5));
       image(hawk,x,y);
     }
   }
