@@ -236,8 +236,8 @@ public class Heart {
       }
     }
     else if(COMBAT && which == 3 && j.at2){
-      leftEdgeD = j.rectX-5;
-      rightEdgeD = j.rectX + 5;
+      leftEdgeD = j.rectX;
+      rightEdgeD = j.rectX + 15;
       lowerEdgeD = j.rectY +250;
       upperEdgeD = j.rectY;
       if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
