@@ -20,9 +20,9 @@ class Blackbeak extends Monster{
     setGold((int)(Math.random() * 8) + 10); 
     String[] aO = {"placeholder"}; 
     setAO(aO); 
-    String[] d = {"Nom nom nom", "*eating noises*", "Throw me the idol!"};
+    String[] d = {"Ahoy scurvy dog!", "Arrgh, you'll never find me booty!", "Shiver me timbers!"};
     setDialogue(d); 
-    String[] u = {"Indiana pengs dances to pengs music", "Indiana pengs dances to Indiana Jones music", "Indiana pengs licks his lips"}; 
+    String[] u = {"Blackbeak and Blackbill ambush you.", "Blackbill battens down the hatches.", "Blackbill gets the plank ready for you to walk."}; 
     setUpdate(u); 
     countdown = 400; 
     setCannon(new Pellet("Cannon.png", 50, 50, canX, canY, 2)); //file, hbx, hby, x, y
