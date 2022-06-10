@@ -94,8 +94,8 @@ void draw() {
   int W = ourDisplayX; 
   int H = ourDisplayY;
   if (which == 0) {
-    which = (int)(Math.random() * 4) + 1; 
-    which = 5;
+    which = (int)(Math.random() * 5) + 1; 
+    which = 3;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -691,6 +691,7 @@ void fightEnemyJaws(Jaws jaw){
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
+      attack = 2;
     }
     if (attack == 1) {
       jaw.attack1();
@@ -705,6 +706,8 @@ void fightEnemyJaws(Jaws jaw){
         attack = 0;
         ENEMY_SCREEN = false;
         enPress = false; 
+        jaw.currentSentence = " "; 
+        jaw.phase = 0;
       }
     }
     else if(attack == 2){
@@ -720,6 +723,8 @@ void fightEnemyJaws(Jaws jaw){
         attack = 0;
         ENEMY_SCREEN = false;
         enPress = false; 
+        jaw.currentSentence = " "; 
+        jaw.phase = 0;
       }
     }
     if (!ENEMY_SCREEN) {
@@ -893,6 +898,12 @@ void keyPressed() {
     else if (which == 3) {
       j.dead = true; 
     }
+    else if (which == 4) {
+      f.dead = true; 
+    }
+    else if (which == 5) {
+      k.dead = true; 
+    }
   }
   if (keyCode == 87 && !h.dead) {
     //keyHeld = true; 
@@ -958,12 +969,28 @@ void keyPressed() {
           j.dead = true; 
         }
       }
+      else if (which == 4) {
+        f.damaged(p.getAT());
+        f.countdown = 3; 
+        if (f.getHP() <= 0) {
+          f.HP = 0; 
+          f.dead = true; 
+        }
+      }
+      else if (which == 5) {
+        k.damaged(p.getAT());
+        k.countdown = 3; 
+        if (k.getHP() <= 0) {
+          k.HP = 0; 
+          k.dead = true; 
+        }
+      }
     }
     else if (TEXT_SCREEN) {
       if (n > 1 && COMBAT) {
         n = tex.length(); 
       }
-      if (n == 1 && (which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead)) {
+      if (n == 1 && (which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead) || (which == 4 && f.dead) || (which == 5 && k.dead)) {
         loop(); 
         notLoop = false; 
         background(0); 
@@ -974,7 +1001,7 @@ void keyPressed() {
         p.ySpeed = ourDisplayY / 90;
         p.noDisplay = false; 
        } 
-      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead) || !(which == 3 && j.dead)) && COMBAT) { 
+      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead) || !(which == 3 && j.dead) || !(which == 4 && f.dead) || !(which == 5 && k.dead)) && COMBAT) { 
         TEXT_SCREEN = false;
         SPEECH_SCREEN = true; 
         ENEMY_SCREEN = true; 
@@ -985,6 +1012,11 @@ void keyPressed() {
           b.countdown = 400;
         }else if (which == 3){
           j.countdown = 400;
+        }
+        else if (which == 4) {
+          f.countdown = 400;
+        }else if (which == 5){
+          k.countdown = 400;
         }
         loop();
         notLoop = false; 
@@ -1003,6 +1035,14 @@ void keyPressed() {
         else if (which == 3) {
           n = j.currentSentence.length(); 
           j.countdown = 400;
+        }
+        else if (which == 4) {
+          n = f.currentSentence.length(); 
+          f.countdown = 400;
+        }
+        else if (which == 5) {
+          n = k.currentSentence.length(); 
+          k.countdown = 400;
         }
       }
     }

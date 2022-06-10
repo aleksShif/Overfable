@@ -5,9 +5,9 @@ class Jaws extends Monster{
   String currentSentence = " "; 
   ArrayList<Pellet> pellets; 
   int displayCount = 0;
-  float rectX = displayWidth/3.36;
-  float rectY = displayHeight/2.46;
-  float rectInc = displayWidth/180;
+  float rectX = ourDisplayX/3.36 - 500;
+  float rectY = ourDisplayY/2.46;
+  float rectInc = 10;
   boolean right = true;
   boolean whipFinished = false;
   
@@ -23,6 +23,7 @@ class Jaws extends Monster{
     setUpdate(u); 
     countdown = 400; 
     setSharkFin(new Pellet("sharkFin.png", ourDisplayX/25.859, ourDisplayY/16.162, ourDisplayX/3.36, ourDisplayY/1.5, 6)); //file, hbx, hby, x, y
+    setSharkWhip(new Pellet("JawsWhipL.png", 7.5, 130, rectX, rectY, 6)); //file, hbx, hby, x, y
   }
   
   void display(){
@@ -101,27 +102,28 @@ class Jaws extends Monster{
   Pellet getSharkFin(){
     return sharkFin;
   }
+  
+  void setSharkWhip(Pellet p){
+    sharkWhip = p;
+  }
+  
+  Pellet getSharkWhip(){
+    return sharkWhip;
+  }
  
   void attack1(){
     at2 = false;
     sharkFin.displayFin();
-    fill(255);
-    rect(ourDisplayX/3.36, sharkFin.y+ 2*sharkFin.hitboxY + ourDisplayY/200, ourDisplayX/2.46, ourDisplayY/2.4 + ourDisplayY/2.57 - sharkFin.y - 2*sharkFin.hitboxY );
+    //fill(255);
+    //rect(ourDisplayX/3.36, sharkFin.y+ 2*sharkFin.hitboxY + ourDisplayY/200, ourDisplayX/2.46, ourDisplayY/2.4 + ourDisplayY/2.57 - sharkFin.y - 2*sharkFin.hitboxY );
   }
   
   void attack2(){
     at2 = true;
-    fill(255);
-    rect(rectX, rectY, displayWidth/80, displayHeight/3.5);
-    rectX += rectInc;
-    if(rectX >= displayWidth/3.36 + displayWidth/2.5 && right){
-      rectInc *= -1;
-      right = false;
-    }
-    if(rectX <= displayWidth/3.36 && !right){
-      rectX = displayWidth/3.36;
-      whipFinished = true;
-    }
+    sharkWhip.displayWhip();
+    //fill(255);
+    //rect(rectX, rectY, 15, 260);
+    
   }
   
   boolean getWhipFinished(){

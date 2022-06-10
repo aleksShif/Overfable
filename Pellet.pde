@@ -1,11 +1,12 @@
 public class Pellet extends Damageable{
   PImage hawk; 
   PImage smokeGlass; 
+  PImage fin;
+  PImage whip;  
   PImage katana;
   PImage hat; 
-  PImage fin;
   PImage snake; 
-  //String filename; 
+  String filename; 
   String side; 
   float size;
   boolean isAt1 = false; 
@@ -301,6 +302,37 @@ public class Pellet extends Damageable{
     }
     count++;
     image(fin,x,y);
+  }
+  
+  void displayWhip(){
+    if(count < 10){
+      whip = loadImage("JawsWhipR.png");
+    }
+    else if(count < 20){
+      whip = loadImage("JawsWhipC.png");
+    }
+    else if(count < 30){
+      whip = loadImage("JawsWhipL.png");
+    }
+    else if(count <40){
+      whip = loadImage("JawsWhipC.png");
+    }
+    else{
+      whip = loadImage("JawsWhipR.png");
+      count = 0;
+    }
+    j.rectX += j.rectInc;
+    if(j.rectX >= ourDisplayX/3.36 + ourDisplayX/2.5 - 540 && j.right){
+      j.rectInc *= -1;
+      j.right = false;
+    }
+    if(j.rectX <= ourDisplayX/3.36 - 460 && !j.right){
+      j.rectX = ourDisplayX/3.36-460;
+      j.whipFinished = true;
+    }
+    count++;
+    whip.resize(whip.width*5, whip.height*2);
+    image(whip, j.rectX, j.rectY);    
   }
   
   void displayHat(int phase) {

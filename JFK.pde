@@ -11,7 +11,7 @@ class JFK extends Monster {
     setAO(aO); 
     String[] d = {"The game is afoot", "Intriguing", "Aha! It was you!"};
     setDialogue(d); 
-    String[] u = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};
+    String[] u = {"JFK Holmes studies you", "JFK pulls out a magnifying glass", "JFK has cracked the case"};
     setUpdate(u); 
     setHat(new Pellet("hat.png", 50, 50, 200, 250, 6));
     setPhase(0);    
@@ -22,19 +22,49 @@ class JFK extends Monster {
     int W = ourDisplayX; 
     int H = ourDisplayY;
     PImage jfk;
-    if (displayCount <= 10){
-      jfk = loadImage("JFK1.png");
+    if(dead){
+       jfk = loadImage("JFKDead.png");
+       jfk.resize((int)(jfk.width *0.85), (int)(jfk.height *0.85));
+       image(jfk,W/2.45,H/9.99);
     }
-    else if(displayCount <= 20){
-      jfk = loadImage("JFK2.png");
+    else if(hurt){
+      jfk = loadImage("JFKHurt.png");
+      hurtTime++;
+      jfk.resize((int)(jfk.width *0.85), (int)(jfk.height *0.85));
+      if(hurtTime >= 60){
+        hurt = false;
+        hurtTime = 0;
+      }
+      else if(hurtTime <= 10){
+        image(jfk,W/2.4,H/9.99);
+      }else if(hurtTime <= 20){
+        image(jfk,W/2.45,H/9.99);
+      }else if(hurtTime <= 30){
+        image(jfk,W/2.5,H/9.99);
+      }
+      else if(hurtTime <= 40){
+        image(jfk,W/2.45,H/9.99);
+      }else if(hurtTime <= 50){
+        image(jfk,W/2.4,H/9.99);
+      }else if(hurtTime <= 60){
+        image(jfk,W/2.45,H/9.99);
+      }
     }
     else{
-      displayCount = 0;
-      jfk = loadImage("JFK1.png");
+      if (displayCount <= 10){
+        jfk = loadImage("JFK1.png");
+      }
+      else if(displayCount <= 20){
+        jfk = loadImage("JFK2.png");
+      }
+      else{
+        displayCount = 0;
+        jfk = loadImage("JFK1.png");
+      }
+      jfk.resize((int)(jfk.width *0.85), (int)(jfk.height *0.85));
+      image(jfk,W/2.45,H/9.99);
+      displayCount++;
     }
-    jfk.resize((int)(jfk.width *0.85), (int)(jfk.height *0.85));
-    image(jfk,W/2.45,H/9.99);
-    displayCount++;
   }
   
   void attack1(){
