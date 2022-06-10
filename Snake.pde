@@ -24,8 +24,8 @@ class Snake extends Monster{
   }
   
   void display(){
-    int W = displayWidth; 
-    int H = displayHeight;
+    int W = ourDisplayX; 
+    int H = ourDisplayY;
     PImage snake;
     if(dead){
       snake = loadImage("SnakeDead.png");
@@ -98,6 +98,8 @@ class Snake extends Monster{
         if (countdown % 20 == 0) {
           if (!released) {
             Pellet snak = new Pellet("miniSnake.png", 20, 20, 540, 390, 2);
+            snak.setXSpeed(0);
+            snak.setYSpeed(0);
             pellets.add(snak);     
             snak.displaySnake(phase); 
             released = true; 
@@ -119,7 +121,9 @@ class Snake extends Monster{
               }
             }
             snak.move(snak.xSpeed, snak.ySpeed);  
+            print("  |" + snak.xSpeed + " " + snak.ySpeed + "|  ");
             snak.inside(2); 
+            print("  |" + snak.xSpeed + " " + snak.ySpeed + "|  ");
             released = false; 
           }
         }

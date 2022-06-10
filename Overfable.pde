@@ -95,7 +95,7 @@ void draw() {
   int H = ourDisplayY;
   if (which == 0) {
     which = (int)(Math.random() * 5) + 1; 
-    which = 3;
+    which = 5;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -616,7 +616,6 @@ void fightEnemyBirdLock(BirdLock bir){
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
-      attack = 2;
     }
     if (attack == 1) {
           t.attack1();
@@ -691,7 +690,6 @@ void fightEnemyJaws(Jaws jaw){
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
-      attack = 2;
     }
     if (attack == 1) {
       jaw.attack1();
@@ -754,7 +752,6 @@ void fightEnemyJFK(JFK fox) {
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
-      attack = 2;
     }
     if (attack == 1) {
       f.attack1();

@@ -55,13 +55,19 @@ public class Damageable{
   void setY(float Y){
     y = Y;
   }
+  void setXSpeed(float x_) {
+    xSpeed = x_;
+  }
+  void setYSpeed(float y_) {
+    ySpeed = y_; 
+  }
 
   boolean inside() {
     return (x > ourDisplayX/3.36 && x < ourDisplayX/3.36 + ourDisplayX/2.46 && y > ourDisplayY/2.4 && y < ourDisplayY/2.4 + ourDisplayY/2.57);
   }
 
   void inside(int filler){
-    if (!(x > ourDisplayX/3.36 && x < ourDisplayX/3.36 + ourDisplayX/2.46 && y > ourDisplayY/2.4 && y < ourDisplayY/2.4 + ourDisplayY/2.57)) {
+    if (x <= ourDisplayX/3.36 || x >= ourDisplayX/3.36 + ourDisplayX/2.46 || y <= ourDisplayY/2.4 || y >= ourDisplayY/2.4 + ourDisplayY/2.57) {
      if (x <= ourDisplayX/3.36) {
        xSpeed *= -1;   
      }
