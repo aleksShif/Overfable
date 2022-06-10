@@ -13,6 +13,20 @@ class Blackbeak extends Monster{
   float cbx = 500;
   float cby = 550;
   float cbyv = 5;
+  final float downY = ourDisplayY/2.4;
+  final float rightX = ourDisplayX/3.36;
+  final float upY = ourDisplayY/2.4 + ourDisplayY/2.57;
+  final float leftX = ourDisplayX/3.36 + ourDisplayX/2.46;
+  final float midX = ourDisplayX/3.36 + ourDisplayX/2.46/2;
+  final float midY = ourDisplayY/2.4 + ourDisplayY/2.57/2;
+  float downy = ourDisplayY/2.4;
+  float rightx = ourDisplayX/3.36;
+  float upy = ourDisplayY/2.4 + ourDisplayY/2.57;
+  float leftx = ourDisplayX/3.36 + ourDisplayX/2.46;
+  float midx = ourDisplayX/3.36 + ourDisplayX/2.46/2;
+  float midy = ourDisplayY/2.4 + ourDisplayY/2.57/2;
+  boolean diagonal = false;
+   //rect(W/3.36, H/2.4, W/2.46, H/2.57);
   
   public Blackbeak(){
     super("Blackbeak and Blackbill", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>());
@@ -27,6 +41,14 @@ class Blackbeak extends Monster{
     countdown = 400; 
     setCannon(new Pellet("Cannon.png", 50, 50, canX, canY, 2)); //file, hbx, hby, x, y
     setCBall(new Pellet("Cannonball.png", 30, 30, canX, canY, 4)); //file, hbx, hby, x, y
+    setCutlassUp(new Pellet("CutlassUp.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassDown(new Pellet("CutlassDown.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassLeft(new Pellet("CutlassLeft.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassRight(new Pellet("CutlassRight.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassUpleft(new Pellet("CutlassUpleft.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassUpright(new Pellet("CutlassUpright.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassDownright(new Pellet("CutlassDownright.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassDownleft(new Pellet("CutlassDownleft.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
   }
   
   void display(){
@@ -85,7 +107,13 @@ class Blackbeak extends Monster{
   }
   
   void attack2(){
-
+    if(!diagonal){
+      cutlassUp.display(1);
+      cutlassDown.display(2);
+      cutlassRight.display(3);
+      cutlassLeft.display(4);
+      
+    }
   }
  
   void setCannon(Pellet p){
@@ -102,6 +130,70 @@ class Blackbeak extends Monster{
   
   Damageable getCBall(){
     return cball;
+  }
+  
+  void setCutlassUp(Pellet p){
+    cutlassUp = p;
+  }
+  
+  Damageable getCutlassUp(){
+    return cutlassUp;
+  }
+  
+  void setCutlassDown(Pellet p){
+    cutlassDown = p;
+  }
+  
+  Damageable getCutlassDown(){
+    return cutlassDown;
+  }
+  
+  void setCutlassLeft(Pellet p){
+    cutlassLeft = p;
+  }
+  
+  Damageable getCutlassLeft(){
+    return cutlassRight;
+  }
+  
+  void setCutlassRight(Pellet p){
+    cutlassUpright = p;
+  }
+  
+  Damageable getCutlassRight(){
+    return cutlassUpright;
+  }
+  
+  void setCutlassUpright(Pellet p){
+    cutlassUpleft = p;
+  }
+  
+  Damageable getCutlassUpright(){
+    return cutlassDownleft;
+  }
+  
+  void setCutlassUpleft(Pellet p){
+    cutlassDownright= p;
+  }
+  
+  Damageable getCutlassUpleft(){
+    return cutlassDownleft;
+  }
+  
+  void setCutlassDownleft(Pellet p){
+    cutlassDownleft = p;
+  }
+  
+  Damageable getCutlassDownleft(){
+    return cutlassDownright;
+  }
+  
+  void setCutlassDownright(Pellet p){
+    cutlassDownright = p;
+  }
+  
+  Damageable getCutlassDownright(){
+    return cutlassDownright;
   }
   
   void setExp(int e) {

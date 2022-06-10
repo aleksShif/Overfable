@@ -7,6 +7,7 @@ public class Pellet extends Damageable{
   PImage whip;
   PImage cannon;
   PImage cball;
+  PImage cutlass;
   //String filename; 
   String side; 
   float size;
@@ -463,6 +464,41 @@ public class Pellet extends Damageable{
        bb.cbx = 500;
        bb.cby = bb.canY;
        bb.cbyv = 5;
+    }
+  }
+  
+  void displayCutlass(int d){//1 = up, 2 = down, 3 = right, 4 = left, 5 = upright, 6 = upleft, 7 = downright, 8 = downleft
+    if(d == 1){
+      cutlass = loadImage("CutlassUp.png");
+      image(cutlass, bb.midx, bb.upy);
+    }
+    else if(d == 2){
+      cutlass = loadImage("CutlassDown.png");
+      image(cutlass, bb.midx, bb.downy);
+    }
+    else if(d == 3){
+      cutlass = loadImage("CutlassRight.png");
+      image(cutlass, bb.rightx, bb.midy);
+    }
+    else if(d == 4){
+      cutlass = loadImage("CutlassLeft.png");
+      image(cutlass, bb.leftx, bb.midy);
+    }
+    else if(d == 5){
+      cutlass = loadImage("CutlassUpright.png");
+      image(cutlass, bb.rightx, bb.upy);
+    }
+    else if(d == 6){
+      cutlass = loadImage("CutlassUpleft.png");
+      image(cutlass, bb.leftx, bb.upy);
+    }
+    else if(d == 7){
+      cutlass = loadImage("CutlassDownright.png");
+      image(cutlass, bb.rightx, bb.downy);
+    }
+    else if(d == 8){
+      cutlass = loadImage("CutlassDownleft.png");
+      image(cutlass, bb.leftx, bb.downy);
     }
   }
   
