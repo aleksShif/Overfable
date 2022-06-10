@@ -1,5 +1,5 @@
 public class Monster{
-  Pellet hawk, smokeGlass, sharkFin, sharkWhip, katana, hat, cannon; 
+  Pellet hawk, smokeGlass, sharkFin, sharkWhip, katana, hat, cannon, cball; 
   int HP;
   int AT;
   int gold;

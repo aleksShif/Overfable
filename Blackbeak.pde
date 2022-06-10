@@ -10,6 +10,9 @@ class Blackbeak extends Monster{
   float rectInc = displayWidth/180;
   float canX = 420;
   float canY = 540;
+  float cbx = 500;
+  float cby = 550;
+  float cbyv = 5;
   
   public Blackbeak(){
     super("Blackbeak and Blackbill", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>());
@@ -23,6 +26,7 @@ class Blackbeak extends Monster{
     setUpdate(u); 
     countdown = 400; 
     setCannon(new Pellet("Cannon.png", 50, 50, canX, canY, 2)); //file, hbx, hby, x, y
+    setCBall(new Pellet("Cannonball.png", 30, 30, canX, canY, 4)); //file, hbx, hby, x, y
   }
   
   void display(){
@@ -77,6 +81,7 @@ class Blackbeak extends Monster{
 
   void attack1(){
     cannon.displayCannon();
+    cball.displayCBall();
   }
   
   void attack2(){
@@ -91,6 +96,13 @@ class Blackbeak extends Monster{
     return cannon;
   }
  
+  void setCBall(Pellet p){
+    cball = p;
+  }
+  
+  Damageable getCBall(){
+    return cball;
+  }
   
   void setExp(int e) {
     exp = e; 

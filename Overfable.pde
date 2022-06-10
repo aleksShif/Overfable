@@ -844,9 +844,8 @@ void fightEnemyBlackbeak(Blackbeak bla) {
     attack = 1;
     if (attack == 1) {
       bla.attack1();
-      PImage can = loadImage("Cannon1.png");
-      //h.damaged(bla.getCannon(),bla.cannon.x,bla.cannon.x + can.width,bla.cannon.y, bla.cannon.y+can.height);
       h.damaged(bla.getCannon());
+      h.damaged(bla.getCBall());
       bla.countdown--;
       if (h.getCurrentHP() <= 0) {
           h.dead = true;

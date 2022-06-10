@@ -6,6 +6,7 @@ public class Pellet extends Damageable{
   PImage fin;
   PImage whip;
   PImage cannon;
+  PImage cball;
   //String filename; 
   String side; 
   float size;
@@ -436,7 +437,7 @@ public class Pellet extends Damageable{
     if(bb.canY <= ourDisplayY/2.4 && upCan){
       upCan = false;
     }
-    else if(bb.canY >= ourDisplayY/2.4 + 210 && !upCan){
+    else if(bb.canY >= ourDisplayY/2.4 + 240 && !upCan){
       upCan = true;
     }
     if(upCan){
@@ -447,6 +448,22 @@ public class Pellet extends Damageable{
     }
     X = bb.canX;
     y = bb.canY;
+  }
+  
+  void displayCBall(){
+    cball = loadImage("Cannonball.png");
+    cball.resize((int)(cball.width*0.1), (int)(cball.height*0.1));
+    x=bb.cbx;
+    y=bb.cby;
+    image(cball,x,y);
+    bb.cbx += 15;
+    bb.cby -= bb.cbyv;
+    bb.cbyv -= 0.4;
+    if(!inside()){
+       bb.cbx = 500;
+       bb.cby = bb.canY;
+       bb.cbyv = 5;
+    }
   }
   
   void setSide(String s) {
