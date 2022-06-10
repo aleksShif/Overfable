@@ -52,8 +52,8 @@ class Blackbeak extends Monster{
   }
   
   void display(){
-    int W = displayWidth; 
-    int H = displayHeight;
+    int W = ourDisplayX; 
+    int H = ourDisplayY;
     PImage pengs;
     if(dead){
       pengs = loadImage("PenguinsDead.png");

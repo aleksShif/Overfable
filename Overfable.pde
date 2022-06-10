@@ -95,7 +95,7 @@ void draw() {
   int W = ourDisplayX; 
   int H = ourDisplayY;
   if (which == 0) {
-    which = (int)(Math.random() * 5) + 1; 
+    which = (int)(Math.random() * 6) + 1; 
     which = 6;
     if (which == 1) {
       b = new Teddy(); 
