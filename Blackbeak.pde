@@ -87,7 +87,7 @@ class Blackbeak extends Monster{
     cannon = p;
   }
   
-  Pellet getCannon(){
+  Damageable getCannon(){
     return cannon;
   }
  

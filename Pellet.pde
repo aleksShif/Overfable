@@ -34,6 +34,9 @@ public class Pellet extends Damageable{
     if (filename.equals("hiddenKatana.png")) {
       katana = loadImage(filename);     
     }
+    else if (filename.equals("Cannon1.png")) {
+      cannon = loadImage(filename);     
+    }
     fill(255);
   }
   

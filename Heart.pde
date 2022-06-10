@@ -245,11 +245,11 @@ public class Heart {
         hitTime = millis(); 
       }
     }
-    else if(which == 6 && d.filename == "Cannon.png"){
+    else if(COMBAT && which == 6 && d.filename == "Cannon.png"){
       leftEdgeD = bb.canX+10;
       rightEdgeD = bb.canX + 100;
-      lowerEdgeD = bb.canY+20;
-      upperEdgeD = bb.canY + 80;
+      lowerEdgeD = bb.canY+80;
+      upperEdgeD = bb.canY + 20;
       if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
         currentHP -= d.getAT();
         currentHP += p.getDF();
