@@ -471,34 +471,82 @@ public class Pellet extends Damageable{
     if(d == 1){
       cutlass = loadImage("CutlassUp.png");
       image(cutlass, bb.midx, bb.upy);
+      bb.upy-=5;
+      if(!(bb.cutlassUp.inside())){
+        bb.diagonal = true;
+        bb.upy = bb.upY;
+      }
     }
     else if(d == 2){
       cutlass = loadImage("CutlassDown.png");
       image(cutlass, bb.midx, bb.downy);
+      bb.downy+=5;
+      if(!(bb.cutlassDown.inside())){
+        bb.diagonal = true;
+        bb.downy = bb.downY;
+      }
     }
     else if(d == 3){
       cutlass = loadImage("CutlassRight.png");
       image(cutlass, bb.rightx, bb.midy);
+      bb.rightx+=5;
+      if(!(bb.cutlassRight.inside())){
+        bb.diagonal = true;
+        bb.rightx = bb.rightX;
+      }
     }
     else if(d == 4){
       cutlass = loadImage("CutlassLeft.png");
       image(cutlass, bb.leftx, bb.midy);
+      bb.leftx-=5;
+      if(!(bb.cutlassLeft.inside())){
+        bb.diagonal = true;
+        bb.leftx = bb.leftX;
+      }
     }
     else if(d == 5){
       cutlass = loadImage("CutlassUpright.png");
       image(cutlass, bb.rightx, bb.upy);
+      bb.rightx+=5;
+      bb.upy-=5;
+      if(!(bb.cutlassUpright.inside())){
+        bb.diagonal = true;
+        bb.upy = bb.upY;
+        bb.rightx = bb.rightX;
+      }
     }
     else if(d == 6){
       cutlass = loadImage("CutlassUpleft.png");
       image(cutlass, bb.leftx, bb.upy);
+      bb.leftx-=5;
+      bb.upy-=5;
+      if(!(bb.cutlassUpleft.inside())){
+        bb.diagonal = true;
+        bb.upy = bb.upY;
+        bb.leftx = bb.leftX;
+      }
     }
     else if(d == 7){
       cutlass = loadImage("CutlassDownright.png");
       image(cutlass, bb.rightx, bb.downy);
+      bb.rightx+=5;
+      bb.downy+=5;
+      if(!(bb.cutlassDownright.inside())){
+        bb.diagonal = true;
+        bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
+      }
     }
     else if(d == 8){
       cutlass = loadImage("CutlassDownleft.png");
       image(cutlass, bb.leftx, bb.downy);
+      bb.leftx-=5;
+      bb.downy+=5;
+      if(!(bb.cutlassDownleft.inside())){
+        bb.diagonal = true;
+        bb.downy = bb.downY;
+        bb.leftx = bb.leftX;
+      }
     }
   }
   

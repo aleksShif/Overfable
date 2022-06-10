@@ -108,11 +108,16 @@ class Blackbeak extends Monster{
   
   void attack2(){
     if(!diagonal){
-      cutlassUp.display(1);
-      cutlassDown.display(2);
-      cutlassRight.display(3);
-      cutlassLeft.display(4);
-      
+      cutlassUp.displayCutlass(1);
+      cutlassDown.displayCutlass(2);
+      cutlassRight.displayCutlass(3);
+      cutlassLeft.displayCutlass(4);
+    }
+    else{
+      cutlassUpright.displayCutlass(5);
+      cutlassUpleft.displayCutlass(6);
+      cutlassDownleft.displayCutlass(8);
+      cutlassDownright.displayCutlass(7);
     }
   }
  

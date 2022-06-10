@@ -841,7 +841,7 @@ void fightEnemyBlackbeak(Blackbeak bla) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
     }
-    attack = 1;
+    attack = 2;
     if (attack == 1) {
       bla.attack1();
       h.damaged(bla.getCannon());
