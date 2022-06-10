@@ -194,9 +194,7 @@ public class Heart {
     //  topLeft = d.getY() ; 
     //  lowerLeft = d.getY() + d.getHitboxY();
     //  topRight = d.getY();
-    //}
-    
-
+    //}          
     if(COMBAT && which == 2){
       if (t.getFile().equals("bigGlass.png")) {
         if ((lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
@@ -240,6 +238,18 @@ public class Heart {
       rightEdgeD = j.rectX + 530;
       lowerEdgeD = j.rectY +250;
       upperEdgeD = j.rectY;
+      if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+        currentHP -= d.getAT();
+        currentHP += p.getDF();
+        inv = true;
+        hitTime = millis(); 
+      }
+    }
+    else if(which == 6 && d.filename == "Cannon.png"){
+      leftEdgeD = bb.canX+10;
+      rightEdgeD = bb.canX + 100;
+      lowerEdgeD = bb.canY+20;
+      upperEdgeD = bb.canY + 80;
       if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
         currentHP -= d.getAT();
         currentHP += p.getDF();

@@ -5,6 +5,7 @@ public class Pellet extends Damageable{
   PImage hat; 
   PImage fin;
   PImage whip;
+  PImage cannon;
   //String filename; 
   String side; 
   float size;
@@ -19,6 +20,8 @@ public class Pellet extends Damageable{
   boolean right = true;
   boolean up = true;
   boolean finFinished = false;
+  boolean upCan = true;
+  String name;
 
   
   Pellet(String file, float hX, float hY, float X, float Y, int at){
@@ -399,6 +402,48 @@ public class Pellet extends Damageable{
       //noFill();
       //rect(getX(), getY(), getHitboxX(), getHitboxY()); 
       //text(getX() + ", " + getY(), getX(), getY());
+  }
+  
+  void displayCannon(){
+    if(count < 15){
+      cannon = loadImage("Cannon1.png");
+    }
+    else if (count < 30){
+      cannon = loadImage("Cannon2.png");
+    }
+    else if (count < 45){
+      cannon = loadImage("Cannon3.png");
+    }
+    else if (count < 60){
+      cannon = loadImage("Cannon4.png");
+    }
+    else if (count < 75){
+      cannon = loadImage("Cannon5.png");
+    }
+    else if (count < 90){
+      cannon = loadImage("Cannon6.png");
+    }
+    else{
+      cannon = loadImage("Cannon1.png");
+      count = 0;
+    }
+    cannon.resize((int)(cannon.width * 2.1),(int)(cannon.height * 2.1));
+    image(cannon, bb.canX, bb.canY);
+    count++;
+    if(bb.canY <= ourDisplayY/2.4 && upCan){
+      upCan = false;
+    }
+    else if(bb.canY >= ourDisplayY/2.4 + 210 && !upCan){
+      upCan = true;
+    }
+    if(upCan){
+      bb.canY -= 5;
+    }
+    else{
+      bb.canY += 5;
+    }
+    X = bb.canX;
+    y = bb.canY;
   }
   
   void setSide(String s) {
