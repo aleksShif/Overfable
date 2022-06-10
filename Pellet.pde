@@ -334,6 +334,7 @@ public class Pellet extends Damageable{
     else {
       snake = loadImage("miniSnake2.png");
     }
+    snake.resize(snake.width/5, snake.height/5);     
     image(snake, x, y); 
   }
   

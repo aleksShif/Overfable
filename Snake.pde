@@ -1,6 +1,7 @@
 class Snake extends Monster{
   int countdown; 
   boolean at2 = false;
+  boolean released = false;
   String currentSentence = " "; 
   int displayCount = 0;
   int phase = 0; 
@@ -84,30 +85,43 @@ class Snake extends Monster{
       else {
         basket = loadImage("basket3.png");
       }
-      image(basket, 300, 400);
+      basket.resize(basket.width/4, basket.height/4); 
+      image(basket, 470, 370);
     }
     else {
-      basket = loadImage("basket3.png");
-      image(basket, 300, 400);
+      if (phase < 25) {
+        basket = loadImage("basket3.png");
+        basket.resize(basket.width/4, basket.height/4); 
+        image(basket, 470, 370);
+      }
       for (int i = 0; i < 15; i++){
-        if (countdown == 400) {
-          Pellet snak = new Pellet("miniSnake.png", 20, 20, 300, 400, 2);
-          pellets.add(snak);     
-          snak.displaySnake(phase); 
+        if (countdown % 20 == 0) {
+          if (!released) {
+            Pellet snak = new Pellet("miniSnake.png", 20, 20, 540, 390, 2);
+            pellets.add(snak);     
+            snak.displaySnake(phase); 
+            released = true; 
+          }
         }
         else {
-          Pellet snak = pellets.get(i); 
-          snak.displaySnake(phase); 
-          int yDir = -2; 
-          int xDir = 2; 
-          int temp = (int)(Math.random() * 2); 
-          if (temp == 0) {
-            xDir = -2;
+          if (i < pellets.size()) {
+            Pellet snak = pellets.get(i); 
+            snak.displaySnake(phase); 
+            if (snak.xSpeed == 0 || snak.ySpeed == 0) {
+              snak.ySpeed = -20; 
+              snak.xSpeed = 20; 
+              int temp = (int)(Math.random() * 2); 
+              if (temp == 0) {
+                snak.xSpeed = -20;
+              }
+              else {
+                snak.xSpeed = 20;
+              }
+            }
+            snak.move(snak.xSpeed, snak.ySpeed);  
+            snak.inside(2); 
+            released = false; 
           }
-          else {
-            xDir = 2;
-          }
-          snak.move(xDir, yDir);           
         }
       }
       countdown -= 1; 
