@@ -470,81 +470,125 @@ public class Pellet extends Damageable{
   void displayCutlass(int d){//1 = up, 2 = down, 3 = right, 4 = left, 5 = upright, 6 = upleft, 7 = downright, 8 = downleft
     if(d == 1){
       cutlass = loadImage("CutlassUp.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
       image(cutlass, bb.midx, bb.upy);
-      bb.upy-=5;
-      if(!(bb.cutlassUp.inside())){
+      x = bb.midx;
+      y = bb.upy;
+      bb.upy-=10;
+      if(!(bb.cutlassUp.inside()) && y < ourDisplayY/2){
         bb.diagonal = true;
         bb.upy = bb.upY;
+        bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
       }
     }
     else if(d == 2){
       cutlass = loadImage("CutlassDown.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
       image(cutlass, bb.midx, bb.downy);
-      bb.downy+=5;
-      if(!(bb.cutlassDown.inside())){
+      x = bb.midx;
+      y = bb.downy;
+      bb.downy+=10;
+      if(!(bb.cutlassDown.inside()) && y > ourDisplayY/2){
         bb.diagonal = true;
+        bb.upy = bb.upY;
         bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
       }
     }
     else if(d == 3){
       cutlass = loadImage("CutlassRight.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
       image(cutlass, bb.rightx, bb.midy);
-      bb.rightx+=5;
-      if(!(bb.cutlassRight.inside())){
+      x = bb.rightx;
+      y = bb.midy;
+      bb.rightx+=10;
+      if(!(bb.cutlassRight.inside()) && x > ourDisplayX/2){
         bb.diagonal = true;
+        bb.upy = bb.upY;
+        bb.downy = bb.downY;
         bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
       }
     }
     else if(d == 4){
       cutlass = loadImage("CutlassLeft.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
       image(cutlass, bb.leftx, bb.midy);
-      bb.leftx-=5;
-      if(!(bb.cutlassLeft.inside())){
+      x = bb.leftx;
+      y = bb.midy;
+      bb.leftx-=10;
+      if(!(bb.cutlassLeft.inside()) && x < ourDisplayX/2){
         bb.diagonal = true;
+        bb.upy = bb.upY;
+        bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
         bb.leftx = bb.leftX;
       }
     }
     else if(d == 5){
       cutlass = loadImage("CutlassUpright.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
       image(cutlass, bb.rightx, bb.upy);
-      bb.rightx+=5;
-      bb.upy-=5;
-      if(!(bb.cutlassUpright.inside())){
-        bb.diagonal = true;
+      x = bb.rightx;
+      y = bb.upy;
+      bb.rightx+=3;
+      bb.upy-=3;
+      if(!(bb.cutlassUpright.inside()) && y < ourDisplayY/2){
+        bb.diagonal = false;
         bb.upy = bb.upY;
+        bb.downy = bb.downY;
         bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
       }
     }
     else if(d == 6){
       cutlass = loadImage("CutlassUpleft.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
       image(cutlass, bb.leftx, bb.upy);
-      bb.leftx-=5;
-      bb.upy-=5;
-      if(!(bb.cutlassUpleft.inside())){
-        bb.diagonal = true;
+      x = bb.leftx;
+      y = bb.upy;
+      bb.leftx-=3;
+      bb.upy-=3;
+      if(!(bb.cutlassUpleft.inside()) && y < ourDisplayY/2){
+        bb.diagonal = false;
         bb.upy = bb.upY;
+        bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
         bb.leftx = bb.leftX;
       }
     }
     else if(d == 7){
       cutlass = loadImage("CutlassDownright.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
       image(cutlass, bb.rightx, bb.downy);
-      bb.rightx+=5;
-      bb.downy+=5;
-      if(!(bb.cutlassDownright.inside())){
-        bb.diagonal = true;
+      x = bb.rightx;
+      y = bb.downy;
+      bb.rightx+=3;
+      bb.downy+=3;
+      if(!(bb.cutlassDownright.inside()) && y > ourDisplayY/2){
+        bb.diagonal = false;
+        bb.upy = bb.upY;
         bb.downy = bb.downY;
         bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
       }
     }
     else if(d == 8){
       cutlass = loadImage("CutlassDownleft.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
       image(cutlass, bb.leftx, bb.downy);
-      bb.leftx-=5;
-      bb.downy+=5;
-      if(!(bb.cutlassDownleft.inside())){
-        bb.diagonal = true;
+      x = bb.leftx;
+      y = bb.downy;
+      bb.leftx-=3;
+      bb.downy+=3;
+      if(!(bb.cutlassDownleft.inside()) && y > ourDisplayY/2){
+        bb.diagonal = false;
+        bb.upy = bb.upY;
         bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
         bb.leftx = bb.leftX;
       }
     }

@@ -161,14 +161,14 @@ void draw() {
       }
       else if(which == 1){
         fightEnemyTeddy(b);
-      } //<>//
+      } //<>// //<>//
       else if(which == 2){
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
          fightEnemyJaws(j);
       }
-      else if(which == 4){ //<>// //<>//
+      else if(which == 4){ //<>// //<>// //<>//
         fightEnemyJFK(f);
       }
       else if(which == 5){
@@ -178,8 +178,8 @@ void draw() {
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>//
-      if (s.getScene().equals("cliffEntrance")){ //<>//
+    else{ //<>// //<>//
+      if (s.getScene().equals("cliffEntrance")){ //<>// //<>//
         fightElse(mk); 
       }
       else if(which == 1){
@@ -188,8 +188,8 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){ //<>//
-        fightElse(j); //<>//
+      else if(which == 3){ //<>// //<>//
+        fightElse(j); //<>// //<>//
       }
       else if(which == 4){
         fightElse(f);
@@ -853,7 +853,7 @@ void fightEnemyBlackbeak(Blackbeak bla) {
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
       }
-      if(bb.countdown == 0){
+      if(bla.countdown == 0){
         ENEMY_SCREEN = false;
         bla.currentSentence = " ";
         bla.countdown = 400;
@@ -863,7 +863,49 @@ void fightEnemyBlackbeak(Blackbeak bla) {
       }
     }
     else if(attack == 2){
-      
+      bla.attack2();
+      //PImage u = loadImage("CutlassUp.png");
+      //PImage d = loadImage("CutlassDown.png");
+      //PImage r = loadImage("CutlassRight.png");
+      //PImage l = loadImage("CutlassLeft.png");
+      //PImage ur = loadImage("CutlassUpright.png");
+      //PImage ul = loadImage("CutlassUpleft.png");
+      //PImage dr = loadImage("CutlassDownright.png");
+      //PImage dl = loadImage("CutlassDownleft.png");
+      //h.damaged(bla.getCutlassUp(),bla.getCutlassUp().x, bla.getCutlassUp().x + u.width, bla.getCutlassUp().y, bla.getCutlassUp().y + u.height);
+      //h.damaged(bla.getCutlassDown(), bla.getCutlassDown().x, bla.getCutlassDown().x + d.width, bla.getCutlassDown().y, bla.getCutlassDown().y + d.height);
+      //h.damaged(bla.getCutlassRight(), bla.getCutlassRight().x, bla.getCutlassRight().x + r.width, bla.getCutlassRight().y, bla.getCutlassRight().y + r.height);
+      //h.damaged(bla.getCutlassLeft(), bla.getCutlassLeft().x, bla.getCutlassLeft().x + l.width, bla.getCutlassLeft().y, bla.getCutlassLeft().y + l.height);
+      //h.damaged(bla.getCutlassUpright(), bla.getCutlassUpright().x, bla.getCutlassUpright().x + ur.width, bla.getCutlassUpright().y, bla.getCutlassUpright().y + ur.height);
+      //h.damaged(bla.getCutlassUpleft(), bla.getCutlassUpleft().x, bla.getCutlassUpleft().x + ul.width, bla.getCutlassUpleft().y, bla.getCutlassUpleft().y + ul.height);
+      //h.damaged(bla.getCutlassDownright(), bla.getCutlassDownright().x, bla.getCutlassDownright().x + dr.width, bla.getCutlassDownright().y, bla.getCutlassDownright().y + dr.height);
+      //h.damaged(bla.getCutlassDownleft(), bla.getCutlassDownleft().x, bla.getCutlassDownleft().x + dl.width, bla.getCutlassDownleft().y, bla.getCutlassDownleft().y + dl.height);
+      if(bla.diagonal){
+        h.damaged(bla.getCutlassUpright());
+        h.damaged(bla.getCutlassUpleft());
+        h.damaged(bla.getCutlassDownright());
+        h.damaged(bla.getCutlassDownleft());
+      }else{
+        h.damaged(bla.getCutlassUp());
+        h.damaged(bla.getCutlassDown());
+        h.damaged(bla.getCutlassRight());
+        h.damaged(bla.getCutlassLeft());
+      }
+      bla.countdown--;
+      if (h.getCurrentHP() <= 0) {
+          h.dead = true;
+      }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      if(bla.countdown == 0){
+        ENEMY_SCREEN = false;
+        bla.currentSentence = " ";
+        bla.countdown = 400;
+        attack = 0;  
+        bla.pellets = new ArrayList<Pellet>();  
+        enPress = false; 
+      }
     }
     if (!ENEMY_SCREEN) {
       rounds += 1; 

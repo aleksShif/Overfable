@@ -15,16 +15,16 @@ class Blackbeak extends Monster{
   float cbyv = 5;
   final float downY = ourDisplayY/2.4;
   final float rightX = ourDisplayX/3.36;
-  final float upY = ourDisplayY/2.4 + ourDisplayY/2.57;
-  final float leftX = ourDisplayX/3.36 + ourDisplayX/2.46;
-  final float midX = ourDisplayX/3.36 + ourDisplayX/2.46/2;
-  final float midY = ourDisplayY/2.4 + ourDisplayY/2.57/2;
+  final float upY = ourDisplayY/2.4 + ourDisplayY/2.57-100;
+  final float leftX = ourDisplayX/3.36 + ourDisplayX/2.46-100;
+  final float midX = ourDisplayX/2-80;
+  final float midY = ourDisplayY/2.4 + ourDisplayY/2.57/2 - 50;
   float downy = ourDisplayY/2.4;
   float rightx = ourDisplayX/3.36;
-  float upy = ourDisplayY/2.4 + ourDisplayY/2.57;
-  float leftx = ourDisplayX/3.36 + ourDisplayX/2.46;
-  float midx = ourDisplayX/3.36 + ourDisplayX/2.46/2;
-  float midy = ourDisplayY/2.4 + ourDisplayY/2.57/2;
+  float upy = ourDisplayY/2.4 + ourDisplayY/2.57-100;
+  float leftx = ourDisplayX/3.36 + ourDisplayX/2.46-100;
+  float midx = ourDisplayX/2-80;
+  float midy = ourDisplayY/2.4 + ourDisplayY/2.57/2 - 50;
   boolean diagonal = false;
    //rect(W/3.36, H/2.4, W/2.46, H/2.57);
   
@@ -41,14 +41,14 @@ class Blackbeak extends Monster{
     countdown = 400; 
     setCannon(new Pellet("Cannon.png", 50, 50, canX, canY, 2)); //file, hbx, hby, x, y
     setCBall(new Pellet("Cannonball.png", 30, 30, canX, canY, 4)); //file, hbx, hby, x, y
-    setCutlassUp(new Pellet("CutlassUp.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
-    setCutlassDown(new Pellet("CutlassDown.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
-    setCutlassLeft(new Pellet("CutlassLeft.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
-    setCutlassRight(new Pellet("CutlassRight.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
-    setCutlassUpleft(new Pellet("CutlassUpleft.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
-    setCutlassUpright(new Pellet("CutlassUpright.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
-    setCutlassDownright(new Pellet("CutlassDownright.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
-    setCutlassDownleft(new Pellet("CutlassDownleft.png", 30, 30, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassUp(new Pellet("CutlassUp.png", 20, 60, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassDown(new Pellet("CutlassDown.png", 20, 60, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassLeft(new Pellet("CutlassLeft.png", 60, 20, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassRight(new Pellet("CutlassRight.png", 60, 20, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassUpleft(new Pellet("CutlassUpleft.png", 45, 45, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassUpright(new Pellet("CutlassUpright.png", 45, 45, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassDownright(new Pellet("CutlassDownright.png", 45, 45, canX, canY, 3)); //file, hbx, hby, x, y
+    setCutlassDownleft(new Pellet("CutlassDownleft.png", 45, 45, canX, canY, 3)); //file, hbx, hby, x, y
   }
   
   void display(){
@@ -137,6 +137,7 @@ class Blackbeak extends Monster{
     return cball;
   }
   
+  
   void setCutlassUp(Pellet p){
     cutlassUp = p;
   }
@@ -144,6 +145,7 @@ class Blackbeak extends Monster{
   Damageable getCutlassUp(){
     return cutlassUp;
   }
+  
   
   void setCutlassDown(Pellet p){
     cutlassDown = p;
@@ -153,45 +155,51 @@ class Blackbeak extends Monster{
     return cutlassDown;
   }
   
+  
   void setCutlassLeft(Pellet p){
     cutlassLeft = p;
   }
   
   Damageable getCutlassLeft(){
-    return cutlassRight;
+    return cutlassLeft;
   }
   
+  
   void setCutlassRight(Pellet p){
-    cutlassUpright = p;
+    cutlassRight = p;
   }
   
   Damageable getCutlassRight(){
-    return cutlassUpright;
+    return cutlassRight;
   }
   
+  
   void setCutlassUpright(Pellet p){
-    cutlassUpleft = p;
+    cutlassUpright = p;
   }
   
   Damageable getCutlassUpright(){
-    return cutlassDownleft;
+    return cutlassUpright;
   }
   
+  
   void setCutlassUpleft(Pellet p){
-    cutlassDownright= p;
+    cutlassUpleft= p;
   }
   
   Damageable getCutlassUpleft(){
-    return cutlassDownleft;
+    return cutlassUpleft;
   }
+  
   
   void setCutlassDownleft(Pellet p){
     cutlassDownleft = p;
   }
   
   Damageable getCutlassDownleft(){
-    return cutlassDownright;
+    return cutlassDownleft;
   }
+  
   
   void setCutlassDownright(Pellet p){
     cutlassDownright = p;
