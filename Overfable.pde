@@ -161,14 +161,14 @@ void draw() {
       }
       else if(which == 1){
         fightEnemyTeddy(b);
-      } //<>// //<>//
+      } //<>// //<>// //<>//
       else if(which == 2){
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
          fightEnemyJaws(j);
       }
-      else if(which == 4){ //<>// //<>// //<>//
+      else if(which == 4){ //<>// //<>// //<>// //<>//
         fightEnemyJFK(f);
       }
       else if(which == 5){
@@ -178,8 +178,8 @@ void draw() {
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>// //<>//
-      if (s.getScene().equals("cliffEntrance")){ //<>// //<>//
+    else{ //<>// //<>// //<>//
+      if (s.getScene().equals("cliffEntrance")){ //<>// //<>// //<>//
         fightElse(mk); 
       }
       else if(which == 1){
@@ -188,8 +188,8 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){ //<>// //<>//
-        fightElse(j); //<>// //<>//
+      else if(which == 3){ //<>// //<>// //<>//
+        fightElse(j); //<>// //<>// //<>//
       }
       else if(which == 4){
         fightElse(f);
@@ -706,7 +706,6 @@ void fightEnemyJaws(Jaws jaw){
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
-      attack = 2;
     }
     if (attack == 1) {
       jaw.attack1();
@@ -769,7 +768,6 @@ void fightEnemyJFK(JFK fox) {
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
-      attack = 2;
     }
     if (attack == 1) {
       f.attack1();
@@ -841,7 +839,6 @@ void fightEnemyBlackbeak(Blackbeak bla) {
     if (attack == 0) {
       attack = (int)(Math.random() * 2) + 1;
     }
-    attack = 2;
     if (attack == 1) {
       bla.attack1();
       h.damaged(bla.getCannon());
