@@ -1,5 +1,5 @@
 class Teddy extends Monster{
-  int countdown; 
+  int countdown;  
   boolean at2 = false;
   int displayCount = 0;
   public Teddy(){
@@ -159,28 +159,6 @@ class Teddy extends Monster{
        }
       }
      }
-     //if (countdown < 400) {      
-     //  for (int i = 0; i < pellets.size(); i++) {         
-     //    Pellet p = pellets.get(i); 
-     //    p.display(); 
-     //    h.damaged(p);
-     //    if (h.getCurrentHP() <= 0) {
-     //      h.dead = true;
-     //      break; 
-     //    }
-     //    if(millis() - h.getHitTime() > 1500){
-     //      h.setInv(false);
-     //    }
-     //   }
-     // }
-     //if (countdown <= 0) {
-     //  ENEMY_SCREEN = false;
-     //  currentSentence = " ";
-     //  countdown = 400;
-     //  attack = 0;  
-     //  pellets = new ArrayList<Pellet>(); 
-     //  enPress = false; 
-     //}
    }
   
   boolean attack2(Pellet p0, Pellet p1, Pellet p2, Pellet p3, Pellet p4, Pellet p5, Pellet p6, Pellet p7){

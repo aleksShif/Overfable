@@ -1,5 +1,5 @@
 class Jaws extends Monster{
-  int countdown; 
+  int countdown;  
   boolean at2 = false;
   String[] dialogue = {"Nom nom nom", "*eating noises*", "Throw me the idol!"};
   String currentSentence = " "; 

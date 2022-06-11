@@ -5,7 +5,8 @@ public class Pellet extends Damageable{
   PImage whip;  
   PImage katana;
   PImage hat; 
-  PImage snake; 
+  PImage finalSnake; 
+  PImage snake, snake2, snake3, snake4, snake5, snake6, snake7, snake8; 
   String filename; 
   String side; 
   float size;
@@ -14,7 +15,6 @@ public class Pellet extends Damageable{
   boolean turn = false;
   boolean next = false; 
   int immobileTime = 0; 
-  int xSpeed, ySpeed;
   int count = 0;
   float X = ourDisplayX/3.36;
   boolean right = true;
@@ -34,6 +34,25 @@ public class Pellet extends Damageable{
     }
     if (filename.equals("Hawkson1.png")) {
       hawk = loadImage(filename);
+    }
+    if (filename.equals("miniSnake.png")) {
+      snake = loadImage(filename);
+      snake.resize(snake.width/6, snake.height/6); 
+      snake2 = loadImage("miniSnake2.png");
+      snake2.resize(snake2.width/6, snake2.height/6); 
+      snake3 = loadImage("miniSnake3.png");
+      snake3.resize(snake3.width/6, snake3.height/6);       
+      snake4 = loadImage("miniSnake4.png");
+      snake4.resize(snake4.width/6, snake4.height/6);
+      snake5 = loadImage("miniSnake5.png");
+      snake5.resize(snake5.width/6, snake5.height/6);
+      snake6 = loadImage("miniSnake6.png");
+      snake6.resize(snake6.width/6, snake6.height/6);
+      snake7 = loadImage("miniSnake7.png");
+      snake7.resize(snake7.width/6, snake7.height/6);
+      snake8 = loadImage("miniSnake8.png");
+      snake8.resize(snake8.width/6, snake8.height/6);
+      finalSnake = snake; 
     }
     fill(255);
   }
@@ -359,15 +378,8 @@ public class Pellet extends Damageable{
     }
   }
   
-  void displaySnake(int phase) {
-    if (phase % 2 != 0) {
-      snake = loadImage("miniSnake.png");     
-    }
-    else {
-      snake = loadImage("miniSnake2.png");
-    }
-    snake.resize(snake.width/5, snake.height/5);     
-    image(snake, x, y); 
+  void displaySnake() {
+    image(finalSnake, x, y); 
   }
   
   void setSide(String s) {

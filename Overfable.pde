@@ -821,36 +821,35 @@ void fightEnemySnake(Snake sna) {
     addText(sna.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
   }
   
-  else if (!SPEECH_SCREEN) {
-    if (attack == 0) {
-      attack = (int)(Math.random() * 2) + 1;
-      attack = 1; 
-    }
-    if (attack == 1) {
-      k.attack1();
-      for (int i = 0; i < k.pellets.size(); i++) {
-        Pellet snak = k.pellets.get(i); 
-        //h.damaged(snak, snak.x+65, snak.x + snak.katana.width-65, snak.y + snak.katana.height, snak.y);
-        if (h.getCurrentHP() <= 0) {
+  else if (!SPEECH_SCREEN) {   
+    k.attack1();
+    if(k.phase >= 15) {
+      if (sna.countdown < 400) {
+        for (int i = 0; i < sna.pellets.size(); i++) {
+          Pellet snak = sna.pellets.get(i); 
+          snak.displaySnake(); 
+          h.damaged(snak, snak.x+75, snak.x + snak.finalSnake.width-80, snak.y + snak.finalSnake.height-65, snak.y+75);
+          if (h.getCurrentHP() <= 0) {
             h.dead = true;
+            break; 
+          }
+          if(millis() - h.getHitTime() > 1500){
+            h.setInv(false);
+          }
         }
-        if(millis() - h.getHitTime() > 1500){
-          h.setInv(false);
-        }
-      } 
-      if (k.countdown <= 0) {
-        ENEMY_SCREEN = false;
-        k.currentSentence = " ";
-        k.countdown = 400;
-        k.phase = 0;
-        attack = 0;  
-        k.pellets = new ArrayList<Pellet>();  
-        enPress = false; 
-      }      
+      }
+      sna.countdown -= 1;  
     }
-    else if(attack == 2){
-      
-    }
+    sna.phase += 1; 
+    if (k.countdown <= 0) {
+      ENEMY_SCREEN = false;
+      k.currentSentence = " ";
+      k.countdown = 200;
+      k.phase = 0;
+      attack = 0;  
+      k.pellets = new ArrayList<Pellet>();  
+      enPress = false; 
+    }      
     if (!ENEMY_SCREEN) {
       rounds += 1; 
     }

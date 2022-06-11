@@ -1,5 +1,5 @@
 class JFK extends Monster {
-  int countdown; 
+  int countdown;  
   int displayCount = 0;
   int phase;
   int count = 0;
