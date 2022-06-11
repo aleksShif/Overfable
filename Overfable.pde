@@ -7,6 +7,7 @@ Player p;
 Teddy b; 
 Jaws j;
 JFK f;
+Blackbeak bb;
 Snake k;
 BirdLock t;
 MonKing mk; 
@@ -94,8 +95,8 @@ void draw() {
   int W = ourDisplayX; 
   int H = ourDisplayY;
   if (which == 0) {
-    which = (int)(Math.random() * 4) + 1; 
-    which = 3;
+    which = (int)(Math.random() * 6) + 1; 
+    which = 6;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -110,6 +111,9 @@ void draw() {
     }
     else if (which == 5){
       k = new Snake();
+    }
+    else if (which == 6){
+      bb = new Blackbeak();
     }
   }
   else if (COMBAT) {
@@ -142,6 +146,9 @@ void draw() {
       else if(which == 5){
         fightText(k);
       }
+      else if(which == 6){
+        fightText(bb);
+      }
     }
     else if (ENEMY_SCREEN) {
       stroke(255); 
@@ -154,22 +161,25 @@ void draw() {
       }
       else if(which == 1){
         fightEnemyTeddy(b);
-      }
+      } //<>// //<>//
       else if(which == 2){
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
          fightEnemyJaws(j);
       }
-      else if(which == 4){ //<>// //<>//
+      else if(which == 4){ //<>// //<>// //<>//
         fightEnemyJFK(f);
       }
       else if(which == 5){
         fightEnemySnake(k);
       }
+      else if(which == 6){
+        fightEnemyBlackbeak(bb);
+      }
     }
-    else{
-      if (s.getScene().equals("cliffEntrance")){
+    else{ //<>// //<>//
+      if (s.getScene().equals("cliffEntrance")){ //<>// //<>//
         fightElse(mk); 
       }
       else if(which == 1){
@@ -178,14 +188,17 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){ //<>//
-        fightElse(j); //<>//
+      else if(which == 3){ //<>// //<>//
+        fightElse(j); //<>// //<>//
       }
       else if(which == 4){
         fightElse(f);
       }
       else if(which == 5){
         fightElse(k);
+      }
+      else if(which == 6){
+        fightElse(bb);
       }
     } 
     h.xSpeed = W/160; 
@@ -208,6 +221,9 @@ void draw() {
       }
       else if(which == 5){
         k.display();
+      }
+      else if(which == 6){
+        bb.display();
       }
     }
     if (h.x >= W/1.51) {
@@ -803,6 +819,101 @@ void fightEnemyJFK(JFK fox) {
 }
 
 
+void fightEnemyBlackbeak(Blackbeak bla) {
+  int W = displayWidth;
+  int H = displayHeight;
+  if (SPEECH_SCREEN) {
+    if (bla.currentSentence == " ") {
+      int randSen = (int)(Math.random() * 3); 
+      bla.currentSentence = bla.dialogue[randSen]; 
+     }
+    noStroke(); 
+    fill(255);
+    textSize(H/85);
+    texSiz = H/85;
+    rect(W/1.7297, H/4.737, W/5.818, H/6, 10, 10, 10, 10);  
+    triangle(W/1.768, H/3.396, W/1.7297, H/3.529, W/1.7297, H/3.273); 
+    fill(0);  
+    addText(bla.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
+  }
+  
+  else if (!SPEECH_SCREEN) {
+    if (attack == 0) {
+      attack = (int)(Math.random() * 2) + 1;
+    }
+    attack = 2;
+    if (attack == 1) {
+      bla.attack1();
+      h.damaged(bla.getCannon());
+      h.damaged(bla.getCBall());
+      bla.countdown--;
+      if (h.getCurrentHP() <= 0) {
+          h.dead = true;
+      }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      if(bla.countdown == 0){
+        ENEMY_SCREEN = false;
+        bla.currentSentence = " ";
+        bla.countdown = 400;
+        attack = 0;  
+        bla.pellets = new ArrayList<Pellet>();  
+        enPress = false; 
+      }
+    }
+    else if(attack == 2){
+      bla.attack2();
+      //PImage u = loadImage("CutlassUp.png");
+      //PImage d = loadImage("CutlassDown.png");
+      //PImage r = loadImage("CutlassRight.png");
+      //PImage l = loadImage("CutlassLeft.png");
+      //PImage ur = loadImage("CutlassUpright.png");
+      //PImage ul = loadImage("CutlassUpleft.png");
+      //PImage dr = loadImage("CutlassDownright.png");
+      //PImage dl = loadImage("CutlassDownleft.png");
+      //h.damaged(bla.getCutlassUp(),bla.getCutlassUp().x, bla.getCutlassUp().x + u.width, bla.getCutlassUp().y, bla.getCutlassUp().y + u.height);
+      //h.damaged(bla.getCutlassDown(), bla.getCutlassDown().x, bla.getCutlassDown().x + d.width, bla.getCutlassDown().y, bla.getCutlassDown().y + d.height);
+      //h.damaged(bla.getCutlassRight(), bla.getCutlassRight().x, bla.getCutlassRight().x + r.width, bla.getCutlassRight().y, bla.getCutlassRight().y + r.height);
+      //h.damaged(bla.getCutlassLeft(), bla.getCutlassLeft().x, bla.getCutlassLeft().x + l.width, bla.getCutlassLeft().y, bla.getCutlassLeft().y + l.height);
+      //h.damaged(bla.getCutlassUpright(), bla.getCutlassUpright().x, bla.getCutlassUpright().x + ur.width, bla.getCutlassUpright().y, bla.getCutlassUpright().y + ur.height);
+      //h.damaged(bla.getCutlassUpleft(), bla.getCutlassUpleft().x, bla.getCutlassUpleft().x + ul.width, bla.getCutlassUpleft().y, bla.getCutlassUpleft().y + ul.height);
+      //h.damaged(bla.getCutlassDownright(), bla.getCutlassDownright().x, bla.getCutlassDownright().x + dr.width, bla.getCutlassDownright().y, bla.getCutlassDownright().y + dr.height);
+      //h.damaged(bla.getCutlassDownleft(), bla.getCutlassDownleft().x, bla.getCutlassDownleft().x + dl.width, bla.getCutlassDownleft().y, bla.getCutlassDownleft().y + dl.height);
+      if(bla.diagonal){
+        h.damaged(bla.getCutlassUpright());
+        h.damaged(bla.getCutlassUpleft());
+        h.damaged(bla.getCutlassDownright());
+        h.damaged(bla.getCutlassDownleft());
+      }else{
+        h.damaged(bla.getCutlassUp());
+        h.damaged(bla.getCutlassDown());
+        h.damaged(bla.getCutlassRight());
+        h.damaged(bla.getCutlassLeft());
+      }
+      bla.countdown--;
+      if (h.getCurrentHP() <= 0) {
+          h.dead = true;
+      }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      if(bla.countdown == 0){
+        ENEMY_SCREEN = false;
+        bla.currentSentence = " ";
+        bla.countdown = 400;
+        attack = 0;  
+        bla.pellets = new ArrayList<Pellet>();  
+        enPress = false; 
+      }
+    }
+    if (!ENEMY_SCREEN) {
+      rounds += 1; 
+    }
+  }  
+}
+
+
 void fightEnemySnake(Snake sna) {
   int W = displayWidth;
   int H = displayHeight;
@@ -880,6 +991,9 @@ void keyPressed() {
     }
     else if (which == 5) {
       k.dead = true; 
+    }
+    else if (which == 6) {
+      bb.dead = true; 
     }
   }
   if (keyCode == 87 && !h.dead) {
@@ -962,12 +1076,20 @@ void keyPressed() {
           k.dead = true; 
         }
       }
+      else if (which == 6) {
+        bb.damaged(p.getAT());
+        bb.countdown = 3; 
+        if (bb.getHP() <= 0) {
+          bb.HP = 0; 
+          bb.dead = true; 
+        }
+      }
     }
     else if (TEXT_SCREEN) {
       if (n > 1 && COMBAT) {
         n = tex.length(); 
       }
-      if (n == 1 && (which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead) || (which == 4 && f.dead) || (which == 5 && k.dead)) {
+      if (n == 1 && (which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead) || (which == 4 && f.dead) || (which == 5 && k.dead) || (which == 6 && bb.dead)) {
         loop(); 
         notLoop = false; 
         background(0); 
@@ -978,7 +1100,7 @@ void keyPressed() {
         p.ySpeed = ourDisplayY / 90;
         p.noDisplay = false; 
        } 
-      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead) || !(which == 3 && j.dead) || !(which == 4 && f.dead) || !(which == 5 && k.dead)) && COMBAT) { 
+      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead) || !(which == 3 && j.dead) || !(which == 4 && f.dead) || !(which == 5 && k.dead) || !(which == 6 && bb.dead)) && COMBAT) { 
         TEXT_SCREEN = false;
         SPEECH_SCREEN = true; 
         ENEMY_SCREEN = true; 
@@ -994,6 +1116,9 @@ void keyPressed() {
           f.countdown = 400;
         }else if (which == 5){
           k.countdown = 400;
+        }
+        else if (which == 6){
+          bb.countdown = 400;
         }
         loop();
         notLoop = false; 
@@ -1020,6 +1145,10 @@ void keyPressed() {
         else if (which == 5) {
           n = k.currentSentence.length(); 
           k.countdown = 400;
+        }
+        else if (which == 6) {
+          n = bb.currentSentence.length(); 
+          bb.countdown = 400;
         }
       }
     }

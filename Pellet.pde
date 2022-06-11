@@ -5,6 +5,9 @@ public class Pellet extends Damageable{
   PImage hat; 
   PImage fin;
   PImage whip;
+  PImage cannon;
+  PImage cball;
+  PImage cutlass;
   //String filename; 
   String side; 
   float size;
@@ -19,6 +22,8 @@ public class Pellet extends Damageable{
   boolean right = true;
   boolean up = true;
   boolean finFinished = false;
+  boolean upCan = true;
+  String name;
 
   
   Pellet(String file, float hX, float hY, float X, float Y, int at){
@@ -30,6 +35,9 @@ public class Pellet extends Damageable{
     filename = file; 
     if (filename.equals("hiddenKatana.png")) {
       katana = loadImage(filename);     
+    }
+    else if (filename.equals("Cannon1.png")) {
+      cannon = loadImage(filename);     
     }
     fill(255);
   }
@@ -399,6 +407,191 @@ public class Pellet extends Damageable{
       //noFill();
       //rect(getX(), getY(), getHitboxX(), getHitboxY()); 
       //text(getX() + ", " + getY(), getX(), getY());
+  }
+  
+  void displayCannon(){
+    if(count < 15){
+      cannon = loadImage("Cannon1.png");
+    }
+    else if (count < 30){
+      cannon = loadImage("Cannon2.png");
+    }
+    else if (count < 45){
+      cannon = loadImage("Cannon3.png");
+    }
+    else if (count < 60){
+      cannon = loadImage("Cannon4.png");
+    }
+    else if (count < 75){
+      cannon = loadImage("Cannon5.png");
+    }
+    else if (count < 90){
+      cannon = loadImage("Cannon6.png");
+    }
+    else{
+      cannon = loadImage("Cannon1.png");
+      count = 0;
+    }
+    cannon.resize((int)(cannon.width * 2.1),(int)(cannon.height * 2.1));
+    image(cannon, bb.canX, bb.canY);
+    count++;
+    if(bb.canY <= ourDisplayY/2.4 && upCan){
+      upCan = false;
+    }
+    else if(bb.canY >= ourDisplayY/2.4 + 240 && !upCan){
+      upCan = true;
+    }
+    if(upCan){
+      bb.canY -= 5;
+    }
+    else{
+      bb.canY += 5;
+    }
+    X = bb.canX;
+    y = bb.canY;
+  }
+  
+  void displayCBall(){
+    cball = loadImage("Cannonball.png");
+    cball.resize((int)(cball.width*0.1), (int)(cball.height*0.1));
+    x=bb.cbx;
+    y=bb.cby;
+    image(cball,x,y);
+    bb.cbx += 15;
+    bb.cby -= bb.cbyv;
+    bb.cbyv -= 0.4;
+    if(!inside()){
+       bb.cbx = 500;
+       bb.cby = bb.canY;
+       bb.cbyv = 5;
+    }
+  }
+  
+  void displayCutlass(int d){//1 = up, 2 = down, 3 = right, 4 = left, 5 = upright, 6 = upleft, 7 = downright, 8 = downleft
+    if(d == 1){
+      cutlass = loadImage("CutlassUp.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
+      image(cutlass, bb.midx, bb.upy);
+      x = bb.midx;
+      y = bb.upy;
+      bb.upy-=10;
+      if(!(bb.cutlassUp.inside()) && y < ourDisplayY/2){
+        bb.diagonal = true;
+        bb.upy = bb.upY;
+        bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
+      }
+    }
+    else if(d == 2){
+      cutlass = loadImage("CutlassDown.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
+      image(cutlass, bb.midx, bb.downy);
+      x = bb.midx;
+      y = bb.downy;
+      bb.downy+=10;
+      if(!(bb.cutlassDown.inside()) && y > ourDisplayY/2){
+        bb.diagonal = true;
+        bb.upy = bb.upY;
+        bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
+      }
+    }
+    else if(d == 3){
+      cutlass = loadImage("CutlassRight.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
+      image(cutlass, bb.rightx, bb.midy);
+      x = bb.rightx;
+      y = bb.midy;
+      bb.rightx+=10;
+      if(!(bb.cutlassRight.inside()) && x > ourDisplayX/2){
+        bb.diagonal = true;
+        bb.upy = bb.upY;
+        bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
+      }
+    }
+    else if(d == 4){
+      cutlass = loadImage("CutlassLeft.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
+      image(cutlass, bb.leftx, bb.midy);
+      x = bb.leftx;
+      y = bb.midy;
+      bb.leftx-=10;
+      if(!(bb.cutlassLeft.inside()) && x < ourDisplayX/2){
+        bb.diagonal = true;
+        bb.upy = bb.upY;
+        bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
+      }
+    }
+    else if(d == 5){
+      cutlass = loadImage("CutlassUpright.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
+      image(cutlass, bb.rightx, bb.upy);
+      x = bb.rightx;
+      y = bb.upy;
+      bb.rightx+=3;
+      bb.upy-=3;
+      if(!(bb.cutlassUpright.inside()) && y < ourDisplayY/2){
+        bb.diagonal = false;
+        bb.upy = bb.upY;
+        bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
+      }
+    }
+    else if(d == 6){
+      cutlass = loadImage("CutlassUpleft.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
+      image(cutlass, bb.leftx, bb.upy);
+      x = bb.leftx;
+      y = bb.upy;
+      bb.leftx-=3;
+      bb.upy-=3;
+      if(!(bb.cutlassUpleft.inside()) && y < ourDisplayY/2){
+        bb.diagonal = false;
+        bb.upy = bb.upY;
+        bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
+      }
+    }
+    else if(d == 7){
+      cutlass = loadImage("CutlassDownright.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
+      image(cutlass, bb.rightx, bb.downy);
+      x = bb.rightx;
+      y = bb.downy;
+      bb.rightx+=3;
+      bb.downy+=3;
+      if(!(bb.cutlassDownright.inside()) && y > ourDisplayY/2){
+        bb.diagonal = false;
+        bb.upy = bb.upY;
+        bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
+      }
+    }
+    else if(d == 8){
+      cutlass = loadImage("CutlassDownleft.png");
+      cutlass.resize((int)(cutlass.width*0.4), (int)(cutlass.height*0.4));
+      image(cutlass, bb.leftx, bb.downy);
+      x = bb.leftx;
+      y = bb.downy;
+      bb.leftx-=3;
+      bb.downy+=3;
+      if(!(bb.cutlassDownleft.inside()) && y > ourDisplayY/2){
+        bb.diagonal = false;
+        bb.upy = bb.upY;
+        bb.downy = bb.downY;
+        bb.rightx = bb.rightX;
+        bb.leftx = bb.leftX;
+      }
+    }
   }
   
   void setSide(String s) {

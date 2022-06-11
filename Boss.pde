@@ -5,10 +5,10 @@ public class Boss extends Monster{
   int exp;
   int phase;
   boolean dead = false;
-  boolean hurt = false; 
+  boolean hurt = false;
   String name;
-  String currentSentence = " "; 
-  String[] dialogue; 
+  String currentSentence = " ";
+  String[] dialogue;
   
   public Boss(){
     name = "Advanced Dummy";
