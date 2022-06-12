@@ -245,6 +245,18 @@ public class Heart {
         hitTime = millis(); 
       }
     }
+    else if(COMBAT && which == 7 && attack == 3){
+      leftEdgeD = j.rectX + 470;
+      rightEdgeD = j.rectX + 530;
+      lowerEdgeD = j.rectY +250;
+      upperEdgeD = j.rectY;
+      if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+        currentHP -= d.getAT();
+        currentHP += p.getDF();
+        inv = true;
+        hitTime = millis(); 
+      }
+    }
     else if(COMBAT && which == 6 && d.filename.equals("Cannon.png")){
       leftEdgeD = bb.canX+10;
       rightEdgeD = bb.canX + 100;

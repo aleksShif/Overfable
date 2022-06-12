@@ -30,6 +30,7 @@ public class Pellet extends Damageable{
   boolean finFinished = false;
   boolean upCan = true;
   String name;
+  float bx, by;
 
   
   Pellet(String file, float hX, float hY, float X, float Y, int at){
@@ -638,10 +639,8 @@ public class Pellet extends Damageable{
     }
   }
   
-  void displayBranch(boolean left){
-    if(left){
-      if(filename == "");
-    }
+  void displayBranch(){
+    
   }
   //rect(W/3.36, H/2.4, W/2.46, H/2.57);
 

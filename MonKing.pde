@@ -19,7 +19,7 @@ class MonKing extends Boss{
     //setSmokeGlass(new Pellet("smoke1.png", false)); 
     setPhase(0);
     setCycle(2);
-    countdown = 400;
+    countdown = 400;  
     setBranch1(new Pellet("BranchL1.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
     setBranch2(new Pellet("CutlassDown.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
     setBranch3(new Pellet("CutlassLeft.png", 60, 20, X, Y, 3)); //file, hbx, hby, x, y
@@ -276,6 +276,14 @@ class MonKing extends Boss{
     f.attack2();
     j.attack2(); 
     if (j.whipFinished && f.phase < 40) {
+      j.whipFinished = false;
+      j.setSharkFin(new Pellet("sharkFin.png", ourDisplayX/25.859, ourDisplayY/16.162, ourDisplayX/3.36, ourDisplayY/1.5, 6)); //file, hbx, hby, x, y
+      j.setSharkWhip(new Pellet("JawsWhipL.png", 7.5, 130, j.rectX, j.rectY, 6)); //file, hbx, hby, x, y       
+      j.rectX = j.rectx;
+      j.rectY = j.recty;
+      j.right = true;
+      j.whipFinished = false;     
+      j.rectInc = 10;
       j.whipFinished = false; 
       j.phase = 0; 
       j.sharkWhip.count = 0; 
