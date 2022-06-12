@@ -42,6 +42,11 @@ class MonKing extends Boss{
       displayCount += 1; 
     }
     
+    //branch updown
+    //banana be thrown
+    //monkey falling
+    //sword + cannon
+    //crying + fin
     void attack1() {
       
     }
@@ -186,4 +191,4 @@ class MonKing extends Boss{
   void setPhase(int p) {
     phase = p;
   }    
- }
+}

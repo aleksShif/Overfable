@@ -167,14 +167,14 @@ void draw() {
       }
       else if(which == 1){
         fightEnemyTeddy(b);
-      } //<>// //<>// //<>// //<>//
+      } //<>// //<>// //<>// //<>// //<>// //<>//
       else if(which == 2){
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
          fightEnemyJaws(j);
       }
-      else if(which == 4){
+      else if(which == 4){ //<>//
         fightEnemyJFK(f);
       }
       else if(which == 5){
@@ -184,8 +184,8 @@ void draw() {
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>// //<>// //<>// //<>//
-      if (s.getScene().equals("cliffEntrance") || which == 7){ //<>// //<>// //<>// //<>//
+    else{ //<>//
+      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>//
         fightElse(mk); 
       }
       else if(which == 1){
@@ -194,8 +194,8 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){ //<>// //<>// //<>//
-        fightElse(j); //<>// //<>// //<>//
+      else if(which == 3){  //<>//
+        fightElse(j);  //<>//
       }
       else if(which == 4){
         fightElse(f);
@@ -433,7 +433,7 @@ void fightSetup(){
   strokeWeight(10); 
   rect(W/4, H/1.125, W/6.4, H/12);
   stroke(cSec); 
-    rect(W/1.6, H/1.125, W/6.4, H/12);
+  rect(W/1.6, H/1.125, W/6.4, H/12);
   textSize(H/30); 
   texSiz = H/30; 
   fill(cFirst);
