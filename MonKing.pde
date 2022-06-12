@@ -128,10 +128,13 @@ class MonKing extends Boss{
     }      
   }
   void attack3() {
-    if (!j.whipFinished) {
-      f.attack2();
-    }
+    f.attack2();
     j.attack2(); 
+    if (j.whipFinished && f.phase < 40) {
+      j.whipFinished = false; 
+      j.phase = 0; 
+      j.sharkWhip.count = 0; 
+    }
   }
   void attack4() {
     if(!b.attack2(p0,p1,p2,p3,p4,p5,p6,p7) && count < 5){

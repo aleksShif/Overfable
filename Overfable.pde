@@ -96,7 +96,7 @@ void draw() {
   int H = ourDisplayY;
   if (which == 0) {
     which = (int)(Math.random() * 7) + 1;
-    which = 7; 
+    which = 3; 
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -923,7 +923,7 @@ void fightEnemyMonKing(MonKing mon) {
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 5) + 1;
-      attack = 4; 
+      attack = 3; 
     }
     if (attack == 1) {
       
@@ -963,25 +963,27 @@ void fightEnemyMonKing(MonKing mon) {
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
       }
-      h.damaged(j.getSharkFin());
+      h.damaged(j.getSharkWhip(), j.sharkWhip.x+65, j.sharkWhip.x + j.sharkWhip.whip.width, j.sharkWhip.y + j.sharkWhip.whip.height, j.sharkWhip.y+65);
       if (h.getCurrentHP() <= 0) {
         h.dead = true;
        }
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
       }
-      if(j.getWhipFinished() || f.phase >= 40){
+      if(f.phase >= 40){
         attack = 0;
         ENEMY_SCREEN = false;
         enPress = false; 
         j.currentSentence = " "; 
         f.currentSentence = " "; 
+        mon.currentSentence = " "; 
         j.phase = 0;
         f.phase = 0;
         j.sharkWhip.count = 0; 
         f.count = 0;
         f.hat.count = 0;  
-        f.setTurn(false);                
+        f.setTurn(false);
+        j.whipFinished = false; 
       }      
     }
     else if (attack == 4) {
@@ -999,7 +1001,7 @@ void fightEnemyMonKing(MonKing mon) {
           h.setInv(false);
         }
       }
-      h.damaged(j.getSharkFin());
+      h.damaged(j.getSharkFin(), j.sharkFin.x+45, j.sharkFin.x + j.sharkFin.fin.width - 20, j.sharkFin.y+30 + j.sharkFin.fin.height, j.sharkFin.y+30);
       if (h.getCurrentHP() <= 0) {
         h.dead = true;
        }
@@ -1013,7 +1015,8 @@ void fightEnemyMonKing(MonKing mon) {
         count = 0; 
         b.at2 = false; 
         j.currentSentence = " ";
-        b.currentSentence = " "; 
+        b.currentSentence = " ";
+        mon.currentSentence = " "; 
         j.phase = 0;
       }           
     }
