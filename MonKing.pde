@@ -1,7 +1,27 @@
 class MonKing extends Boss{
   int countdown; 
   int displayCount = 0; 
-
+  float L1y = ourDisplayY/2.4 - 50;
+  float L2y = L1y + 90;
+  float L3y = L1y + 180;
+  float R1y = L1y;
+  float R2y = L2y;
+  float R3y = L3y;
+  float L1Y = ourDisplayY/2.4 - 50;
+  float L2Y = L1y + 90;
+  float L3Y = L1y + 180;
+  float R1Y = L1y;
+  float R2Y = L2y;
+  float R3Y = L3y;
+  float Lx = ourDisplayX/3.36;
+  float Rx = ourDisplayX/3.36 + ourDisplayX/2.46 - 225;
+  float LX = ourDisplayX/3.36;
+  float RX = ourDisplayX/3.36 + ourDisplayX/2.46 - 225;
+  boolean falling = false;
+  float X = ourDisplayX/2.35;
+  float Y = 0;
+  int numFalls = 0;
+  //rect(W/3.36, H/2.4, W/2.46, H/2.57);
   public MonKing(){
     super("Monking", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>()); 
     setExp((int)(Math.random() * 6) + 2); 
@@ -16,7 +36,6 @@ class MonKing extends Boss{
     //setSmokeGlass(new Pellet("smoke1.png", false)); 
     setPhase(0);
     countdown = 400;
-    
     setBranch1(new Pellet("BranchL1.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
     setBranch2(new Pellet("BranchL2.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
     setBranch3(new Pellet("BranchL3.png", 60, 20, X, Y, 3)); //file, hbx, hby, x, y
@@ -29,7 +48,8 @@ class MonKing extends Boss{
     int W = ourDisplayX; 
     int H = ourDisplayY;
     PImage monkey;
-    if (displayCount <= 15){
+    if(!falling){
+      if (displayCount <= 15){
         monkey = loadImage("MonKing1.png");
       }
       else if(displayCount <= 30){
@@ -49,6 +69,35 @@ class MonKing extends Boss{
       image(monkey,W/2.35,H/8.5);
       displayCount += 1; 
     }
+    else{
+      if(displayCount > 20 && displayCount <= 30){
+        monkey = loadImage("MonFalling1.png");
+        monkey.resize(monkey.width * 1, monkey.height * 1);
+        image(monkey,X,Y);
+        Y += 10;
+      }
+      else if(displayCount > 30 && displayCount <= 40){
+        monkey = loadImage("MonFalling2.png");
+        monkey.resize(monkey.width * 1, monkey.height * 1);
+        image(monkey,X,Y);
+        Y += 10;
+      }
+      else if(displayCount > 40){
+        displayCount = 21;
+        monkey = loadImage("MonFalling1.png");
+        monkey.resize(monkey.width * 1, monkey.height * 1);
+        image(monkey,X,Y);
+        Y += 10;
+      }
+      displayCount++;
+      if(Y > ourDisplayY){
+        Y = 0;
+        X = (float)(Math.random() * (ourDisplayX/2.46-85)) + ourDisplayX/3.36;
+        numFalls++;
+      }
+    }
+  }
+
     
     //branch updown
     //banana be thrown
@@ -229,6 +278,10 @@ class MonKing extends Boss{
       count++;
       }
     j.attack1(); 
+  }
+  
+  void attack5(){
+    falling = true;
   }
    
   void setExp(int e) {

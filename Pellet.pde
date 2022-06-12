@@ -13,8 +13,12 @@ public class Pellet extends Damageable{
   PImage cannon;
   PImage cball;
   PImage cutlass;
-  PImage branchL1, branchR1, branchL2, branchR2, branchL3, branchR3;  
-  
+  PImage branchL1 = loadImage("BranchL1.png"); 
+  PImage branchR1 = loadImage("BranchR2.png");
+  PImage branchL2 = loadImage("BranchL2.png");
+  PImage branchR2 = loadImage("BranchR2.png");
+  PImage branchL3 = loadImage("BranchL3.png");
+  PImage branchR3 = loadImage("BranchR3.png");
   //String filename;
   String side; 
   float size;
@@ -30,6 +34,7 @@ public class Pellet extends Damageable{
   boolean finFinished = false;
   boolean upCan = true;
   String name;
+  int ranum = 3;
   float bx, by;
 
   
@@ -640,7 +645,61 @@ public class Pellet extends Damageable{
   }
   
   void displayBranch(){
-    
+    //if(ranum == 1){
+    //  mk.Lx = mk.LX;
+    //}
+    //else{
+    //  mk.Rx = mk.RX;
+    //}
+    //ranum = (int)(Math.random() * 2) + 1;
+    //if(ranum == 1){
+    //  mk.Lx += 5;
+    //}
+    //else{
+    //  mk.Rx -= 5;
+    //}
+    if(filename == "BranchL1.png"){
+      image(branchL1, mk.Lx, mk.L1y);
+      mk.L1y += 5;
+      if(mk.L1y > 550){
+        mk.L1y = mk.L1Y;
+      }
+    }
+    else if(filename == "BranchL2.png"){
+      image(branchL1, mk.Lx, mk.L2y);
+      mk.L2y += 5;
+      if(mk.L2y > 550){
+        mk.L2y = mk.L1Y;
+      }
+    }
+    else if(filename == "BranchL3.png"){
+      image(branchL1, mk.Lx, mk.L3y);
+      mk.L3y += 5;
+      if(mk.L3y > 550){
+        mk.L3y = mk.L1Y;
+      }
+    }
+    else if(filename == "BranchR1.png"){
+      image(branchR1, mk.Rx, mk.R1y);
+      mk.R1y -= 5;
+      if(mk.R1y < 330){
+        mk.R1y = mk.R3Y;
+      }
+    }
+    else if(filename == "BranchR2.png"){
+      image(branchR2, mk.Rx, mk.R2y);
+      mk.R2y -= 5;
+      if(mk.R2y < 330){
+        mk.R2y = mk.R3Y;
+      }
+    }
+    else if(filename == "BranchR3.png"){
+      image(branchR3, mk.Rx, mk.R3y);
+      mk.R3y -= 5;
+      if(mk.R3y < 330){
+        mk.R3y = mk.R3Y;
+      }
+    }
   }
   //rect(W/3.36, H/2.4, W/2.46, H/2.57);
 
