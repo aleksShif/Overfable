@@ -29,14 +29,14 @@ class Blackbeak extends Monster{
    //rect(W/3.36, H/2.4, W/2.46, H/2.57);
   
   public Blackbeak(){
-    super("Blackbeak and Blackbill", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>());
+    super("Captain Jack Swimmer and Blackbeak", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>());
     setExp((int)(Math.random() * 6) + 2); 
     setGold((int)(Math.random() * 8) + 10); 
     String[] aO = {"placeholder"}; 
     setAO(aO); 
     String[] d = {"Ahoy scurvy dog!", "Arrgh, you'll never find me booty!", "Shiver me timbers!"};
     setDialogue(d); 
-    String[] u = {"Blackbeak and Blackbill ambush you.", "Blackbill battens down the hatches.", "Blackbill gets the plank ready for you to walk."}; 
+    String[] u = {"Captain Jack Swimmer and Blackbeak ambush you.", "Captain Jack Swimmer battens down the hatches.", "Blackbeak gets the plank ready for you to walk."}; 
     setUpdate(u); 
     countdown = 400; 
     setCannon(new Pellet("Cannon.png", 50, 50, canX, canY, 2)); //file, hbx, hby, x, y
