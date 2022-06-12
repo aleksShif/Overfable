@@ -9,9 +9,9 @@ class JFK extends Monster {
     setGold((int)(Math.random() * 8) + 10); 
     String[] aO = {"placeholder"}; 
     setAO(aO); 
-    String[] d = {"The game is afoot", "Intriguing", "Aha! It was you!"};
+    String[] d = {"VOTE JFK 1964", "What a fine day to write in a topless car", "For honor"};
     setDialogue(d); 
-    String[] u = {"JFK Holmes studies you", "JFK pulls out a magnifying glass", "JFK has cracked the case"};
+    String[] u = {"John Fox Kennedy tries to win your vote unsuccessfully", "Fox Kennedy adjusts his samurai hat nervously", "John Fox Kennedy sharpens his katana"};
     setUpdate(u); 
     setHat(new Pellet("hat.png", 50, 50, 200, 250, 6));
     setPhase(0);    

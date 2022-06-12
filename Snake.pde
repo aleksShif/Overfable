@@ -15,11 +15,10 @@ class Snake extends Monster{
     setGold((int)(Math.random() * 8) + 10); 
     String[] aO = {"placeholder"}; 
     setAO(aO); 
-    String[] d = {"Nom nom nom", "*eating noises*", "Throw me the idol!"};
+    String[] d = {"Ssssssssssss", "Take thissssssss", "Je suis Parissss de Paris"};
     setDialogue(d); 
-    String[] u = {"Indiana snake dances to snake music", "Indiana snake dances to Indiana Jones music", "Indiana snake licks his lips"}; 
+    String[] u = {"Parissss slithers along to the pungi being played offscreen", "Parissss paints his greatest masterpiece. It is of himself.", "Parissss shows off his forked tongue. You're pretty impressed"}; 
     setUpdate(u);
-    //setSnake(new Pellet("miniSnake.png", ourDisplayX/30.476, ourDisplayY/15.652, ourDisplayX/2.7, ourDisplayY/2.7, 6)); 
     countdown = 400; 
   }
   
@@ -96,7 +95,6 @@ class Snake extends Monster{
       image(basket, 500, 420); 
     }
     else if (phase >= 15) {
-      print(" " + countdown + " "); 
       if (phase < 25) {
         image(bask3, 500, 420);
       }
@@ -105,8 +103,7 @@ class Snake extends Monster{
           Pellet snak = new Pellet("miniSnake.png", 20, 20, 450 + (50*i), 420, 2);
           snak.setXSpeed(0);
           snak.setYSpeed(0);
-          pellets.add(snak);      
-          print(" " + pellets.size() + " "); 
+          pellets.add(snak);       
         }
         else if (countdown < 400 && countdown % 5 == 0) {
             Pellet snak = pellets.get(i);  
