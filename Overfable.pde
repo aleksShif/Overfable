@@ -96,7 +96,7 @@ void draw() {
   int H = ourDisplayY;
   if (which == 0) {
     which = (int)(Math.random() * 7) + 1;
-    which = 3; 
+    which = 7; 
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -161,14 +161,14 @@ void draw() {
       strokeWeight(20); 
       noFill(); 
       rect(W/3.36, H/2.4, W/2.46, H/2.57);
-      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>// //<>//
+      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>// //<>// //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightEnemyMonKing(mk);  
       }
       else if(which == 1){
         fightEnemyTeddy(b);
       } //<>// //<>// //<>// //<>// //<>// //<>//
-      else if(which == 2){ //<>// //<>//
+      else if(which == 2){ //<>// //<>// //<>//
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
@@ -178,8 +178,8 @@ void draw() {
         fightEnemyJFK(f);
       }
       else if(which == 5){
-        fightEnemySnake(k); //<>// //<>//
-      } //<>// //<>//
+        fightEnemySnake(k); //<>// //<>// //<>//
+      } //<>// //<>// //<>//
       else if(which == 6){
         fightEnemyBlackbeak(bb);
       }
@@ -188,8 +188,8 @@ void draw() {
       if (s.getScene().equals("cliffEntrance") || which == 7){  //<>//
         fightElse(mk); 
       }
-      else if(which == 1){ //<>// //<>//
-        fightElse(b); //<>// //<>//
+      else if(which == 1){ //<>// //<>// //<>//
+        fightElse(b); //<>// //<>// //<>//
       }
       else if(which == 2){
         fightElse(t);
@@ -937,10 +937,10 @@ void fightEnemyMonKing(MonKing mon) {
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 5) + 1;
-      attack = 3; 
+      attack = 4; 
     }
     if (attack == 1) {
-      
+      mon.attack1();
     }
     else if(attack == 2){
       mon.attack2();
@@ -977,7 +977,7 @@ void fightEnemyMonKing(MonKing mon) {
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
       }
-      h.damaged(j.getSharkWhip(), j.sharkWhip.x+65, j.sharkWhip.x + j.sharkWhip.whip.width, j.sharkWhip.y + j.sharkWhip.whip.height, j.sharkWhip.y+65);
+      h.damaged(j.getSharkFin());
       if (h.getCurrentHP() <= 0) {
         h.dead = true;
        }
@@ -997,7 +997,14 @@ void fightEnemyMonKing(MonKing mon) {
         f.count = 0;
         f.hat.count = 0;  
         f.setTurn(false);
-        j.whipFinished = false; 
+        j.whipFinished = false;
+        j.setSharkFin(new Pellet("sharkFin.png", ourDisplayX/25.859, ourDisplayY/16.162, ourDisplayX/3.36, ourDisplayY/1.5, 6)); //file, hbx, hby, x, y
+        j.setSharkWhip(new Pellet("JawsWhipL.png", 7.5, 130, j.rectX, j.rectY, 6)); //file, hbx, hby, x, y       
+        j.rectX = j.rectx;
+        j.rectY = j.recty;
+        j.right = true;
+        j.whipFinished = false;     
+        j.rectInc = 10;
       }      
     }
     else if (attack == 4) {
@@ -1032,6 +1039,16 @@ void fightEnemyMonKing(MonKing mon) {
         b.currentSentence = " ";
         mon.currentSentence = " "; 
         j.phase = 0;
+        j.setSharkFin(new Pellet("sharkFin.png", ourDisplayX/25.859, ourDisplayY/16.162, ourDisplayX/3.36, ourDisplayY/1.5, 6)); //file, hbx, hby, x, y
+        j.setSharkWhip(new Pellet("JawsWhipL.png", 7.5, 130, j.rectX, j.rectY, 6)); //file, hbx, hby, x, y       
+        j.rectX = j.rectx;
+        j.rectY = j.recty;
+        j.right = true;
+        j.whipFinished = false;     
+        j.rectInc = 10;
+        j.whipFinished = false; 
+        j.phase = 0; 
+        j.sharkWhip.count = 0; 
       }           
     }
     if (!ENEMY_SCREEN) {
