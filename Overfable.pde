@@ -121,7 +121,8 @@ void draw() {
         j = new Jaws(); 
         f = new JFK();
         b = new Teddy();
-      }      
+      }
+    }
     fightSetup();
     if (h.dead) {
       fightDead();
@@ -166,8 +167,8 @@ void draw() {
       }
       else if(which == 1){
         fightEnemyTeddy(b);
-      }  
-      else if(which == 2){ //<>// //<>// //<>// //<>//
+      }   //<>//
+      else if(which == 2){ //<>// //<>// //<>//
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
@@ -183,9 +184,9 @@ void draw() {
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>// //<>//
+    else{ //<>// //<>// //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>//
-        fightElse(mk);  //<>//
+        fightElse(mk); 
       }
       else if(which == 1){ //<>// //<>// //<>//
         fightElse(b); //<>// //<>// //<>//
@@ -193,9 +194,9 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){  //<>// //<>//
+      else if(which == 3){  //<>// //<>// //<>//
         fightElse(j);  //<>// //<>// //<>//
-      } //<>//
+      }
       else if(which == 4){
         fightElse(f);
       }
@@ -357,7 +358,6 @@ void draw() {
             p.move(); 
           }
           else if ((p.x >= W/2 && p.walking) || (scroll)) {
-            print("bueno"); 
             scroll = true;
             if ((Up || Down) && !Right && !Left) {
               p.display();
@@ -970,8 +970,6 @@ void fightEnemyMonKing(MonKing mon) {
         attack = 5;   
       }
     }
-    print(attack); 
-    print(mon.countdown); 
     if (attack == 1) {
       mon.attack1();
     }
