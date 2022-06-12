@@ -1,5 +1,6 @@
 public class Monster{
   Pellet hawk, smokeGlass, sharkFin, sharkWhip, katana, hat, snake; 
+  Pellet cannon, cball, cutlassUp, cutlassDown, cutlassRight, cutlassLeft, cutlassUpright, cutlassUpleft, cutlassDownright, cutlassDownleft; 
   int HP;
   int AT;
   int gold;

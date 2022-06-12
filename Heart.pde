@@ -194,9 +194,7 @@ public class Heart {
     //  topLeft = d.getY() ; 
     //  lowerLeft = d.getY() + d.getHitboxY();
     //  topRight = d.getY();
-    //}
-    
-
+    //}          
     if(COMBAT && which == 2){
       if (t.getFile().equals("bigGlass.png")) {
         if ((lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
@@ -240,6 +238,44 @@ public class Heart {
       rightEdgeD = j.rectX + 530;
       lowerEdgeD = j.rectY +250;
       upperEdgeD = j.rectY;
+      if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+        currentHP -= d.getAT();
+        currentHP += p.getDF();
+        inv = true;
+        hitTime = millis(); 
+      }
+    }
+    else if(COMBAT && which == 6 && d.filename.equals("Cannon.png")){
+      leftEdgeD = bb.canX+10;
+      rightEdgeD = bb.canX + 100;
+      lowerEdgeD = bb.canY+80;
+      upperEdgeD = bb.canY + 20;
+      if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+        currentHP -= d.getAT();
+        currentHP += p.getDF();
+        inv = true;
+        hitTime = millis(); 
+      }
+    }
+    else if(COMBAT && which == 6 && d.filename.substring(0,3).equals("Cut")){
+      if(d.filename.equals("CutlassRight.png") || d.filename.equals("CutlassLeft.png")){
+        leftEdgeD = d.getX() - d.getHitboxX()+50;
+        rightEdgeD = d.getX() + d.getHitboxX()+50;
+        lowerEdgeD = d.getY() + d.getHitboxY()+55;
+        upperEdgeD = d.getY() - d.getHitboxY()+55;
+      }
+      if(d.filename.equals("CutlassUp.png") || d.filename.equals("CutlassDown.png")){
+        leftEdgeD = d.getX() - d.getHitboxX()+55;
+        rightEdgeD = d.getX() + d.getHitboxX()+55;
+        lowerEdgeD = d.getY() + d.getHitboxY()+50;
+        upperEdgeD = d.getY() - d.getHitboxY()+50;
+      }
+      else{
+        leftEdgeD = d.getX() - d.getHitboxX()+55;
+        rightEdgeD = d.getX() + d.getHitboxX()+55;
+        lowerEdgeD = d.getY() + d.getHitboxY()+55;
+        upperEdgeD = d.getY() - d.getHitboxY()+55;
+      }
       if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
         currentHP -= d.getAT();
         currentHP += p.getDF();
@@ -298,7 +334,6 @@ public class Heart {
     noFill();
     rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
   }
-  
   
   int getHitTime(){
     return hitTime;
