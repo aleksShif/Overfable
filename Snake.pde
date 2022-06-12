@@ -10,7 +10,7 @@ class Snake extends Monster{
   float rectInc = displayWidth/180;
   
   public Snake(){
-    super("Snake", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>());
+    super("Parisssss de Paris", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>());
     setExp((int)(Math.random() * 6) + 2); 
     setGold((int)(Math.random() * 8) + 10); 
     String[] aO = {"placeholder"}; 
