@@ -51,9 +51,10 @@ class MonKing extends Boss{
     //sword + cannon
     //crying + fin
     
-    void attack1(){
+  void attack1(){
       
-    }
+  }
+  
   void setBranch1(Pellet p){
     branch1 = p;
   }
