@@ -2,6 +2,7 @@ public class Boss extends Monster{
   Pellet branch1, branch2, branch3, branch4, branch5, branch6;
   int HP;
   int AT;
+  int DEF; 
   int gold;
   int exp;
   int phase;
@@ -13,19 +14,23 @@ public class Boss extends Monster{
   
   public Boss(){
     name = "Advanced Dummy";
-    HP = 40;
+    HP = 25;
     AT = 4;
     exp = (int)(Math.random() * 10) + 2; 
     gold = (int)(Math.random() * 12) + 10; 
  
   }
-  public Boss(String Name, int hp, int at){
+  public Boss(String Name, int hp, int at, int g, int e, boolean a, String[] aO, String[] d, String[] u, ArrayList<Pellet> pel){
     name = Name;
     HP = hp;
     AT = at;
-    exp = (int)(Math.random() * 4) + 2; 
-    gold = (int)(Math.random() * 6) + 10;
- 
+    gold = g; 
+    exp = e; 
+    at2 = a; 
+    actionOrder = aO; 
+    dialogue = d; 
+    update = u; 
+    pellets = pel;
   }
   void damaged(int a){
     HP -= a;
