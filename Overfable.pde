@@ -161,14 +161,14 @@ void draw() {
       strokeWeight(20); 
       noFill(); 
       rect(W/3.36, H/2.4, W/2.46, H/2.57);
-      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);  
+      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightEnemyMonKing(mk);  
       }
       else if(which == 1){
         fightEnemyTeddy(b);
       } //<>// //<>// //<>// //<>// //<>// //<>//
-      else if(which == 2){
+      else if(which == 2){ //<>//
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
@@ -178,8 +178,8 @@ void draw() {
         fightEnemyJFK(f);
       }
       else if(which == 5){
-        fightEnemySnake(k);
-      }
+        fightEnemySnake(k); //<>//
+      } //<>//
       else if(which == 6){
         fightEnemyBlackbeak(bb);
       }
@@ -188,8 +188,8 @@ void draw() {
       if (s.getScene().equals("cliffEntrance") || which == 7){  //<>//
         fightElse(mk); 
       }
-      else if(which == 1){
-        fightElse(b);
+      else if(which == 1){ //<>//
+        fightElse(b); //<>//
       }
       else if(which == 2){
         fightElse(t);

@@ -16,12 +16,12 @@ class MonKing extends Boss{
     //setSmokeGlass(new Pellet("smoke1.png", false)); 
     setPhase(0);
     countdown = 400;
-    setBranch1(new Pellet("BranchL1.png", 20, 60, canX, canY, 3)); //file, hbx, hby, x, y
-    setBranch2(new Pellet("CutlassDown.png", 20, 60, canX, canY, 3)); //file, hbx, hby, x, y
-    setBranch3(new Pellet("CutlassLeft.png", 60, 20, canX, canY, 3)); //file, hbx, hby, x, y
-    setBranch4(new Pellet("CutlassRight.png", 60, 20, canX, canY, 3)); //file, hbx, hby, x, y
-    setBranch5(new Pellet("CutlassUpleft.png", 45, 45, canX, canY, 3)); //file, hbx, hby, x, y
-    setBranch6(new Pellet("CutlassUpright.png", 45, 45, canX, canY, 3)); //file, hbx, hby, x, y
+    setBranch1(new Pellet("BranchL1.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch2(new Pellet("CutlassDown.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch3(new Pellet("CutlassLeft.png", 60, 20, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch4(new Pellet("CutlassRight.png", 60, 20, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch5(new Pellet("CutlassUpleft.png", 45, 45, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch6(new Pellet("CutlassUpright.png", 45, 45, X, Y, 3)); //file, hbx, hby, x, y
   }
   
   void display(){
@@ -103,7 +103,6 @@ class MonKing extends Boss{
     return branch6;
   }
   //Pellet branchL1, branchR1, branchL2, branchR2, branchL3, branchR3;
- }
  
  
     void attack1() {
