@@ -44,4 +44,10 @@ class MonKing extends Boss{
       image(monkey,W/2.35,H/8.5);
       displayCount += 1; 
     }
+    
+    //branch updown
+    //banana be thrown
+    //monkey falling
+    //sword + cannon
+    //crying + fin
  }

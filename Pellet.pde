@@ -10,7 +10,7 @@ public class Pellet extends Damageable{
   PImage cannon;
   PImage cball;
   PImage cutlass;
-  String filename;
+  //String filename;
   String side; 
   float size;
   boolean isAt1 = false; 

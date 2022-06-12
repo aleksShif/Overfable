@@ -161,14 +161,14 @@ void draw() {
       }
       else if(which == 1){
         fightEnemyTeddy(b);
-      } //<>// //<>// //<>// //<>//
+      } //<>// //<>// //<>// //<>// //<>//
       else if(which == 2){
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
          fightEnemyJaws(j);
       }
-      else if(which == 4){
+      else if(which == 4){ //<>//
         fightEnemyJFK(f);
       }
       else if(which == 5){
@@ -178,8 +178,8 @@ void draw() {
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>// //<>// //<>// //<>//
-      if (s.getScene().equals("cliffEntrance")){ //<>// //<>// //<>// //<>//
+    else{ //<>// //<>// //<>// //<>// //<>//
+      if (s.getScene().equals("cliffEntrance")){ //<>// //<>// //<>// //<>// //<>//
         fightElse(mk); 
       }
       else if(which == 1){
@@ -188,8 +188,8 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){ //<>// //<>// //<>//
-        fightElse(j); //<>// //<>// //<>//
+      else if(which == 3){ //<>// //<>// //<>// //<>//
+        fightElse(j); //<>// //<>// //<>// //<>//
       }
       else if(which == 4){
         fightElse(f);
