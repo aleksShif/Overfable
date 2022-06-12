@@ -1,9 +1,12 @@
 class MonKing extends Boss{
+  PImage monkey; 
+  PImage monk1, monk2, monk3, monk4, monkHurt, monkDead;
   int countdown; 
   int displayCount = 0; 
+  int setCount = 0; 
 
   public MonKing(){
-    super("Monking", 20, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>()); 
+    super("Monking", 18, 3, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>()); 
     setExp((int)(Math.random() * 6) + 2); 
     setGold((int)(Math.random() * 8) + 10); 
     String[] aO = {"placeholder"}; 
@@ -15,6 +18,7 @@ class MonKing extends Boss{
     //setHawk(new Pellet("Hawkson1.png", ourDisplayX/30.476, ourDisplayY/15.652, ourDisplayX/2.7, ourDisplayY/2.7, 6)); 
     //setSmokeGlass(new Pellet("smoke1.png", false)); 
     setPhase(0);
+    setCycle(2);
     countdown = 400;
     setBranch1(new Pellet("BranchL1.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
     setBranch2(new Pellet("CutlassDown.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
@@ -22,31 +26,109 @@ class MonKing extends Boss{
     setBranch4(new Pellet("CutlassRight.png", 60, 20, X, Y, 3)); //file, hbx, hby, x, y
     setBranch5(new Pellet("CutlassUpleft.png", 45, 45, X, Y, 3)); //file, hbx, hby, x, y
     setBranch6(new Pellet("CutlassUpright.png", 45, 45, X, Y, 3)); //file, hbx, hby, x, y
+    monk1 = loadImage("MonKing1.png"); 
+    monk1.resize((int)(monk1.width * 3), (int)(monk1.height * 3)); 
+    monk2 = loadImage("MonKing2.png");
+    monk2.resize((int)(monk2.width * 3), (int)(monk2.height * 3));         
+    monk3 = loadImage("MonKing3.png");
+    monk3.resize((int)(monk3.width * 3), (int)(monk3.height * 3));         
+    monk4 = loadImage("MonKing4.png"); 
+    monk4.resize((int)(monk4.width * 3), (int)(monk4.height * 3));         
+    monkHurt = loadImage("MonKing5.png"); 
+    monkHurt.resize((int)(monkHurt.width * 3), (int)(monkHurt.height * 3));     
+    monkDead = loadImage("MonKing6.png"); 
+    monkDead.resize((int)(monkDead.width * 3), (int)(monkDead.height * 3));     
+    monkey = monk1; 
   }
   
   void display(){
     int W = ourDisplayX; 
     int H = ourDisplayY;
-    PImage monkey;
-    if (displayCount <= 15){
-        monkey = loadImage("MonKing1.png");
+    if(dead){
+       monkey = monkDead;
+       image(monkey,W/2.45,H/9.99);
+    }
+    else if(hurt){
+      monkey = monkHurt;
+      if (cycle == 2) {
+        monkey = monkHurt;
       }
-      else if(displayCount <= 30){
-        monkey = loadImage("MonKing2.png");
+      hurtTime++;
+      if(hurtTime >= 60){
+        hurt = false;
+        hurtTime = 0;
       }
-      else if(displayCount <= 45){
-        monkey = loadImage("MonKing3.png");
+      else if(hurtTime <= 10){
+        image(monkey,W/2.4,H/9.99);
+      }else if(hurtTime <= 20){
+        image(monkey,W/2.45,H/9.99);
+      }else if(hurtTime <= 30){
+        image(monkey,W/2.5,H/9.99);
       }
-      else if (displayCount <= 60){
-        monkey = loadImage("MonKing4.png");
+      else if(hurtTime <= 40){
+        image(monkey,W/2.45,H/9.99);
+      }else if(hurtTime <= 50){
+        image(monkey,W/2.4,H/9.99);
+      }else if(hurtTime <= 60){
+        image(monkey,W/2.45,H/9.99);
       }
-      else{
-        displayCount = 0; 
-        monkey = loadImage("MonKing1.png"); 
+    }
+    else { 
+      if (cycle == 1) {
+        if (displayCount <= 15){
+            monkey = monk1;
+          }
+          else if(displayCount <= 30){
+            monkey = monk2;
+          }
+          else if(displayCount <= 45){
+            monkey = monk3;
+          }
+          else if (displayCount <= 60){
+            monkey = monk4;
+          }
+          else{
+            displayCount = 0; 
+            monkey = monk1; 
+          }
+          image(monkey,W/2.35,H/8.5);
+          displayCount += 1;
       }
-      monkey.resize(monkey.width * W/600, monkey.height * W/600);
-      image(monkey,W/2.35,H/8.5);
-      displayCount += 1; 
+      else if (cycle == 2) {
+        if (setCount == 0) {
+          monk1 = loadImage("(2)MonKing.png"); 
+          monk1.resize((int)(monk1.width / 5), (int)(monk1.height / 5));                       
+          monk2 = loadImage("(2)MonKing2.png");
+          monk2.resize((int)(monk2.width / 5), (int)(monk2.height / 5));                       
+          monk3 = loadImage("(2)MonKing3.png");
+          monk3.resize((int)(monk3.width / 5), (int)(monk3.height / 5));           
+          monk4 = loadImage("(2)MonKing4.png"); 
+          monk4.resize((int)(monk4.width / 5), (int)(monk4.height / 5));           
+          monkHurt = loadImage("(2)MonKing5.png"); 
+          monkHurt.resize((int)(monkHurt.width / 5), (int)(monkHurt.height / 5));           
+          monkey = monk1;           
+          setCount += 1; 
+        }
+        if (displayCount <= 15){
+            monkey = monk1;            
+          }
+          else if(displayCount <= 30){
+            monkey = monk2;
+          }
+          else if(displayCount <= 45){
+            monkey = monk3;
+          }
+          else if (displayCount <= 60){
+            monkey = monk4;
+          }
+          else{
+            displayCount = 0; 
+            monkey = monk1; 
+          }
+          image(monkey, 500, 35);
+          displayCount += 1;          
+        }
+      }
     }
     
     //branch updown
@@ -200,28 +282,30 @@ class MonKing extends Boss{
     }
   }
   void attack4() {
-    if(!b.attack2(p0,p1,p2,p3,p4,p5,p6,p7) && count < 5){
-      p0.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
-      p0.setY(ourDisplayY/2.3);
-      p1.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
-      p1.setY(ourDisplayY/2.3);
-      p2.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
-      p2.setY(ourDisplayY/2.3);
-      p3.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
-      p3.setY(ourDisplayY/2.3);
-      p4.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
-      p4.setY(ourDisplayY/2.3);
-      p5.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
-      p5.setY(ourDisplayY/2.3);
-      p6.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
-      p6.setY(ourDisplayY/2.3);
-      p7.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
-      p7.setY(ourDisplayY/2.3);
+    if(!b.attack2(p0,p1,p2,p3,p4,p5,p6,p7)){
+      if (count < 5 || count > 350) {
+        p0.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+        p0.setY(ourDisplayY/2.3);
+        p1.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+        p1.setY(ourDisplayY/2.3);
+        p2.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+        p2.setY(ourDisplayY/2.3);
+        p3.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+        p3.setY(ourDisplayY/2.3);
+        p4.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+        p4.setY(ourDisplayY/2.3);
+        p5.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+        p5.setY(ourDisplayY/2.3);
+        p6.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+        p6.setY(ourDisplayY/2.3);
+        p7.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+        p7.setY(ourDisplayY/2.3);
+      }
       count++;
       }
     j.attack1(); 
   }
-   
+    
   void setExp(int e) {
     exp = e; 
   }
@@ -248,5 +332,8 @@ class MonKing extends Boss{
   }
   void setPhase(int p) {
     phase = p;
-  }    
+  }
+  void setCycle(int c) {
+    cycle = c; 
+  }
 }

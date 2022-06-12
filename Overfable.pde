@@ -53,7 +53,7 @@ color cSec;
 
 void setup() { 
   size(1400, 800); 
-  COMBAT = false; 
+  COMBAT = true; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(ourDisplayX, ourDisplayY);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
@@ -97,6 +97,7 @@ void draw() {
   if (COMBAT) {
     if (which == 0) {
       which = (int)(Math.random() * 7) + 1;
+      which = 7; 
       if (which == 1) {
         b = new Teddy(); 
       }
@@ -166,8 +167,8 @@ void draw() {
       }
       else if(which == 1){
         fightEnemyTeddy(b);
-      } 
-      else if(which == 2){  //<>//
+      }  //<>//
+      else if(which == 2){ 
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
@@ -183,9 +184,9 @@ void draw() {
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>//
+    else{ //<>// //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>//
-        fightElse(mk);  //<>//
+        fightElse(mk); 
       }
       else if(which == 1){ //<>// //<>//
         fightElse(b); //<>// //<>//
@@ -193,9 +194,9 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){  //<>//
+      else if(which == 3){  //<>// //<>//
         fightElse(j);  //<>// //<>//
-      } //<>//
+      }
       else if(which == 4){
         fightElse(f);
       }
@@ -958,9 +959,20 @@ void fightEnemyMonKing(MonKing mon) {
   
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
-      attack = (int)(Math.random() * 5) + 1;
-      attack = 3; 
+      if (mk.cycle == 1) {
+        attack = (int)(Math.random() * 2) + 1;
+        attack = 2; 
+      }
+      else if (mk.cycle == 2) {
+        attack = (int)(Math.random() * 2) + 3;
+        attack = 4; 
+      }
+      else if (mk.cycle == 3) {
+        attack = 5;   
+      }
     }
+    print(attack); 
+    print(mon.countdown); 
     if (attack == 1) {
       
     }
@@ -1024,7 +1036,7 @@ void fightEnemyMonKing(MonKing mon) {
     }
     else if (attack == 4) {
       mon.attack4();
-      if (count <= 5) {
+      if (count <= 5 || count > 350) {
         h.damaged(p0);
         h.damaged(p1);
         h.damaged(p2);
@@ -1204,15 +1216,7 @@ void keyPressed() {
     if (FIGHT_SCREEN) {
       TEXT_SCREEN = true; 
       FIGHT_SCREEN = false; 
-      if (which == 2) {
-        t.damaged(p.getAT());
-        t.countdown = 3; 
-        if (t.getHP() <= 0) {
-          t.HP = 0; 
-          t.dead = true; 
-        }
-      }
-      else if (which == 1) {
+      if (which == 1) {
         b.damaged(p.getAT());
         b.countdown = 3; 
         if (b.getHP() <= 0) {
@@ -1220,6 +1224,14 @@ void keyPressed() {
           b.dead = true; 
         }
       }
+      else if (which == 2) {
+        t.damaged(p.getAT());
+        t.countdown = 3; 
+        if (t.getHP() <= 0) {
+          t.HP = 0; 
+          t.dead = true; 
+        }
+      }      
       else if (which == 3) {
         j.damaged(p.getAT());
         j.countdown = 3; 
@@ -1250,6 +1262,20 @@ void keyPressed() {
         if (bb.getHP() <= 0) {
           bb.HP = 0; 
           bb.dead = true; 
+        }
+      }
+      else if (which == 7) {
+        mk.damaged(p.getAT() - mk.getDEF()); 
+        mk.countdown = 400; 
+        if (mk.getHP() <= 0) {
+          mk.HP = 0; 
+          mk.dead = true;
+        }
+        else if (mk.getHP() >= 6 && mk.getHP() < 12) {
+          mk.cycle = 2;
+        }
+        else if (mk.getHP() < 6) {
+          mk.cycle = 3; 
         }
       }
     }

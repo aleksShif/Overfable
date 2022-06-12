@@ -5,6 +5,7 @@ public class Boss extends Monster{
   int DEF; 
   int gold;
   int exp;
+  int cycle; 
   int phase;
   boolean dead = false;
   boolean hurt = false;
@@ -20,10 +21,11 @@ public class Boss extends Monster{
     gold = (int)(Math.random() * 12) + 10; 
  
   }
-  public Boss(String Name, int hp, int at, int g, int e, boolean a, String[] aO, String[] d, String[] u, ArrayList<Pellet> pel){
+  public Boss(String Name, int hp, int at, int def, int g, int e, boolean a, String[] aO, String[] d, String[] u, ArrayList<Pellet> pel){
     name = Name;
     HP = hp;
     AT = at;
+    DEF = def; 
     gold = g; 
     exp = e; 
     at2 = a; 
@@ -38,6 +40,9 @@ public class Boss extends Monster{
   }
   int getHP(){
     return HP;
+  }
+  int getDEF() {
+    return DEF;
   }
   
 }
