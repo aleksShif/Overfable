@@ -118,9 +118,6 @@
                 snak.xSpeed = 5;
               }
             }
-            if (i == 1) {
-              print("  |" + snak.xSpeed + " "+ snak.ySpeed + "|  "); 
-            }
             snak.inside(2); 
             snak.move(snak.xSpeed, snak.ySpeed);              
             if (snak.ySpeed < 0) {

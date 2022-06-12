@@ -6,11 +6,13 @@ public class Pellet extends Damageable{
   PImage katana;
   PImage hat; 
   PImage finalSnake; 
-  PImage snake, snake2, snake3, snake4, snake5, snake6, snake7, snake8;  
+  PImage snake, snake2, snake3, snake4, snake5, snake6, snake7, snake8; 
+  PImage finalBanana;   
+  PImage banana, banana2, banana3, banana4; 
   PImage cannon;
   PImage cball;
   PImage cutlass;
-  String filename;
+  //String filename;
   String side; 
   float size;
   boolean isAt1 = false; 
@@ -40,6 +42,9 @@ public class Pellet extends Damageable{
     if (filename.equals("Hawkson1.png")) {
       hawk = loadImage(filename);
     }
+    if (filename.equals("Cannon1.png")) {
+      cannon = loadImage(filename);     
+    }    
     if (filename.equals("miniSnake.png")) {
       snake = loadImage(filename);
       snake.resize(snake.width/6, snake.height/6); 
@@ -59,8 +64,16 @@ public class Pellet extends Damageable{
       snake8.resize(snake8.width/6, snake8.height/6);
       finalSnake = snake; 
     }
-    if (filename.equals("Cannon1.png")) {
-      cannon = loadImage(filename);     
+    if (filename.equals("Banana1.png")) {
+      banana = loadImage(filename);
+      //banana.resize((int)(banana.width/1.4), (int)(banana.width/1.4)); 
+      banana2 = loadImage("Banana2.png"); 
+      //banana2.resize((int)(banana2.width/1.4), (int)(banana2.width/1.4));
+      banana3 = loadImage("Banana3.png");
+      //banana3.resize((int)(banana3.width/1.4), (int)(banana3.width/1.4));
+      banana4 = loadImage("Banana4.png");
+      //banana4.resize((int)(banana3.width/1.4), (int)(banana3.width/1.4)); 
+      finalBanana = banana; 
     }
     fill(255);
   }
@@ -572,6 +585,22 @@ public class Pellet extends Damageable{
         bb.rightx = bb.rightX;
         bb.leftx = bb.leftX;
       }
+    }
+  }
+  
+  void displayBanana(int c) {
+    image(finalBanana, x, y); 
+    if (finalBanana == banana && c % 15 == 0) {
+      finalBanana = banana2;  
+    }
+    else if (finalBanana == banana2 && c % 15 == 0) {
+      finalBanana = banana3;
+    }
+    else if (finalBanana == banana3 && c % 15 == 0) {
+      finalBanana = banana4;
+    }
+    else if (finalBanana == banana4 && c % 15 == 0) {
+      finalBanana = banana; 
     }
   }
   
