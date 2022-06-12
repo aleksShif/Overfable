@@ -161,14 +161,14 @@ void draw() {
       strokeWeight(20); 
       noFill(); 
       rect(W/3.36, H/2.4, W/2.46, H/2.57);
-      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>// //<>// //<>//
+      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>// //<>// //<>// //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightEnemyMonKing(mk);  
       }
       else if(which == 1){
         fightEnemyTeddy(b);
-      }   //<>//
-      else if(which == 2){ //<>// //<>// //<>//
+      } //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+      else if(which == 2){ //<>// //<>// //<>// //<>//
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
@@ -178,24 +178,24 @@ void draw() {
         fightEnemyJFK(f);
       }
       else if(which == 5){
-        fightEnemySnake(k); //<>// //<>// //<>//
-      } //<>// //<>// //<>//
+        fightEnemySnake(k); //<>// //<>// //<>// //<>//
+      } //<>// //<>// //<>// //<>//
       else if(which == 6){
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>// //<>// //<>//
-      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>//
+    else{ //<>// //<>// //<>// //<>//
+      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>//
         fightElse(mk); 
       }
-      else if(which == 1){ //<>// //<>// //<>//
-        fightElse(b); //<>// //<>// //<>//
+      else if(which == 1){ //<>// //<>// //<>// //<>//
+        fightElse(b); //<>// //<>// //<>// //<>//
       }
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){  //<>// //<>// //<>//
-        fightElse(j);  //<>// //<>// //<>//
+      else if(which == 3){  //<>// //<>// //<>// //<>//
+        fightElse(j);  //<>// //<>// //<>// //<>//
       }
       else if(which == 4){
         fightElse(f);
@@ -972,6 +972,24 @@ void fightEnemyMonKing(MonKing mon) {
     }
     if (attack == 1) {
       mon.attack1();
+      mk.branch1.displayBranch();
+      mk.branch2.displayBranch();
+      mk.branch3.displayBranch();
+      mk.branch4.displayBranch();
+      mk.branch5.displayBranch();
+      mk.branch6.displayBranch();
+      if (h.getCurrentHP() <= 0) {
+        h.dead = true;
+       }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      if(f.phase >= 40){
+        attack = 0;
+        ENEMY_SCREEN = false;
+        enPress = false; 
+        mon.currentSentence = " "; 
+      }
     }
     else if(attack == 2){
       mon.attack2();
@@ -1081,6 +1099,30 @@ void fightEnemyMonKing(MonKing mon) {
         j.phase = 0; 
         j.sharkWhip.count = 0; 
       }           
+    }
+    else if(attack == 5){
+      if(!mon.falling){
+        mon.displayCount = 0;
+        mon.falling = true;
+      }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      h.damaged(mk.X, mk.X + 110, mk.Y + 120, mk.Y);
+      if (h.getCurrentHP() <= 0) {
+        h.dead = true;
+       }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      if(mon.numFalls >= 5){
+          mon.falling = false;
+          attack = 0;
+          ENEMY_SCREEN = false;
+          enPress = false; 
+          count = 0; 
+          mon.currentSentence = " "; 
+      }
     }
     if (!ENEMY_SCREEN) {
       rounds += 1; 
