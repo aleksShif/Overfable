@@ -16,7 +16,14 @@ class MonKing extends Boss{
     //setSmokeGlass(new Pellet("smoke1.png", false)); 
     setPhase(0);
     countdown = 400;
+    setBranch1(new Pellet("BranchL1.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch2(new Pellet("CutlassDown.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch3(new Pellet("CutlassLeft.png", 60, 20, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch4(new Pellet("CutlassRight.png", 60, 20, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch5(new Pellet("CutlassUpleft.png", 45, 45, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch6(new Pellet("CutlassUpright.png", 45, 45, X, Y, 3)); //file, hbx, hby, x, y
   }
+  
   void display(){
     int W = ourDisplayX; 
     int H = ourDisplayY;
@@ -47,6 +54,57 @@ class MonKing extends Boss{
     //monkey falling
     //sword + cannon
     //crying + fin
+
+  void setBranch1(Pellet p){
+    branch1 = p;
+  }
+  
+  Damageable getBranch1(){
+    return branch1;
+  }
+  
+  void setBranch2(Pellet p){
+    branch2 = p;
+  }
+  
+  Damageable getBranch2(){
+    return branch2;
+  }
+  
+  void setBranch3(Pellet p){
+    branch3 = p;
+  }
+  
+  Damageable getBranch3(){
+    return branch3;
+  }
+  
+  void setBranch4(Pellet p){
+    branch4 = p;
+  }
+  
+  Damageable getBranch4(){
+    return branch4;
+  }
+  
+  void setBranch5(Pellet p){
+    branch5 = p;
+  }
+  
+  Damageable getBranch5(){
+    return branch5;
+  }
+  
+  void setBranch6(Pellet p){
+    branch6 = p;
+  }
+  
+  Damageable getBranch6(){
+    return branch6;
+  }
+  //Pellet branchL1, branchR1, branchL2, branchR2, branchL3, branchR3;
+ 
+ 
     void attack1() {
       
     }
