@@ -806,7 +806,7 @@ void fightEnemyJFK(JFK fox) {
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
       }
-      if (f.phase >= 20) {
+      if (f.phase >= 40) {
         ENEMY_SCREEN = false;
         f.currentSentence = " ";
         f.count = 0;
@@ -969,7 +969,7 @@ void fightEnemyMonKing(MonKing mon) {
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
       }
-      if(j.getWhipFinished() || f.phase > 20){
+      if(j.getWhipFinished() || f.phase >= 40){
         attack = 0;
         ENEMY_SCREEN = false;
         enPress = false; 

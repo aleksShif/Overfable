@@ -436,12 +436,12 @@ public class Pellet extends Damageable{
     if (count > 10) {
       count = 1;
     }
-    if (phase < 20) {
+    if (phase < 40) {
       if (turn) {
-        move(-35, 0);
+        move(-15, 0);
       }
       else {
-        move(35, 0);
+        move(15, 0);
       }
       image(finalHat, x, y);        
     }

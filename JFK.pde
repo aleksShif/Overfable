@@ -120,13 +120,13 @@ class JFK extends Monster {
   void attack2(){
     hat.displayHat(phase);
     phase++;
-    if (phase >= 20 && count < 3) {
+    if (phase >= 40 && count < 3) {
       setPhase(0);
       hat.turn = !hat.turn; 
       hat.setY(hat.y += 70); 
       count += 1;
     }
-    if (phase >= 20 && count == 3) {
+    if (phase >= 40 && count == 3) {
       hat.setX(200);
       hat.setY(250);
     }
