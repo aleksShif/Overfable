@@ -19,6 +19,12 @@ class MonKing extends Boss{
     gold = (int)(Math.random() * 12) + 10; 
     String[] temp = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};  
     update = temp;
+    setBranch1(new Pellet("BranchL1.png", 20, 60, canX, canY, 3)); //file, hbx, hby, x, y
+    setBranch2(new Pellet("CutlassDown.png", 20, 60, canX, canY, 3)); //file, hbx, hby, x, y
+    setBranch3(new Pellet("CutlassLeft.png", 60, 20, canX, canY, 3)); //file, hbx, hby, x, y
+    setBranch4(new Pellet("CutlassRight.png", 60, 20, canX, canY, 3)); //file, hbx, hby, x, y
+    setBranch5(new Pellet("CutlassUpleft.png", 45, 45, canX, canY, 3)); //file, hbx, hby, x, y
+    setBranch6(new Pellet("CutlassUpright.png", 45, 45, canX, canY, 3)); //file, hbx, hby, x, y
   }
   void display(){
     int W = ourDisplayX; 

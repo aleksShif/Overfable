@@ -577,9 +577,12 @@ public class Pellet extends Damageable{
     }
   }
   
-  void displayBranch(int b){
-    
+  void displayBranch(boolean left){
+    if(left){
+      if(filename == "
+    }
   }
+  //rect(W/3.36, H/2.4, W/2.46, H/2.57);
   
   void setSide(String s) {
     side = s; 
