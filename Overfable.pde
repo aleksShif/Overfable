@@ -161,14 +161,14 @@ void draw() {
       strokeWeight(20); 
       noFill(); 
       rect(W/3.36, H/2.4, W/2.46, H/2.57);
-      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>//
+      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>// //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightEnemyMonKing(mk);  
       }
       else if(which == 1){
         fightEnemyTeddy(b);
       } //<>// //<>// //<>// //<>// //<>// //<>//
-      else if(which == 2){ //<>//
+      else if(which == 2){ //<>// //<>//
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
@@ -178,8 +178,8 @@ void draw() {
         fightEnemyJFK(f);
       }
       else if(which == 5){
-        fightEnemySnake(k); //<>//
-      } //<>//
+        fightEnemySnake(k); //<>// //<>//
+      } //<>// //<>//
       else if(which == 6){
         fightEnemyBlackbeak(bb);
       }
@@ -188,8 +188,8 @@ void draw() {
       if (s.getScene().equals("cliffEntrance") || which == 7){  //<>//
         fightElse(mk); 
       }
-      else if(which == 1){ //<>//
-        fightElse(b); //<>//
+      else if(which == 1){ //<>// //<>//
+        fightElse(b); //<>// //<>//
       }
       else if(which == 2){
         fightElse(t);
@@ -728,6 +728,13 @@ void fightEnemyJaws(Jaws jaw){
         enPress = false; 
         jaw.currentSentence = " "; 
         jaw.phase = 0;
+        jaw.setSharkFin(new Pellet("sharkFin.png", ourDisplayX/25.859, ourDisplayY/16.162, ourDisplayX/3.36, ourDisplayY/1.5, 6)); //file, hbx, hby, x, y
+        jaw.setSharkWhip(new Pellet("JawsWhipL.png", 7.5, 130, jaw.rectX, jaw.rectY, 6)); //file, hbx, hby, x, y
+        jaw.rectX = jaw.rectx;
+        jaw.rectY = jaw.recty;
+        jaw.right = true;
+        jaw.whipFinished = false;
+        jaw.rectInc = 10;
       }
     }
     else if(attack == 2){
@@ -745,6 +752,13 @@ void fightEnemyJaws(Jaws jaw){
         enPress = false; 
         jaw.currentSentence = " "; 
         jaw.phase = 0;
+        jaw.setSharkFin(new Pellet("sharkFin.png", ourDisplayX/25.859, ourDisplayY/16.162, ourDisplayX/3.36, ourDisplayY/1.5, 6)); //file, hbx, hby, x, y
+        jaw.setSharkWhip(new Pellet("JawsWhipL.png", 7.5, 130, jaw.rectX, jaw.rectY, 6)); //file, hbx, hby, x, y       
+        jaw.rectX = jaw.rectx;
+        jaw.rectY = jaw.recty;
+        jaw.right = true;
+        jaw.whipFinished = false;     
+        jaw.rectInc = 10;
       }
     }
     if (!ENEMY_SCREEN) {
