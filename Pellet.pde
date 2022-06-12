@@ -1,4 +1,4 @@
-public class Pellet extends Damageable{
+public class Pellet extends Damageable{ 
   PImage hawk; 
   PImage smokeGlass; 
   PImage fin;
@@ -13,6 +13,8 @@ public class Pellet extends Damageable{
   PImage cannon;
   PImage cball;
   PImage cutlass;
+  PImage branchL1, branchR1, branchL2, branchR2, branchL3, branchR3;  
+  
   //String filename;
   String side; 
   float size;
@@ -636,6 +638,13 @@ public class Pellet extends Damageable{
     }
   }
   
+  void displayBranch(boolean left){
+    if(left){
+      if(filename == "");
+    }
+  }
+  //rect(W/3.36, H/2.4, W/2.46, H/2.57);
+
   void displayBanana(int c) {
     image(finalBanana, x, y); 
     if (finalBanana == banana && c % 15 == 0) {
@@ -670,6 +679,7 @@ public class Pellet extends Damageable{
       y+=Y;
     }
   }  
+  
   
   void move(float X, float Y){
     x += X; 
