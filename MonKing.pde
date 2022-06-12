@@ -133,6 +133,28 @@ class MonKing extends Boss{
     }
     j.attack2(); 
   }
+  void attack4() {
+    if(!b.attack2(p0,p1,p2,p3,p4,p5,p6,p7) && count < 5){
+      p0.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+      p0.setY(ourDisplayY/2.3);
+      p1.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+      p1.setY(ourDisplayY/2.3);
+      p2.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+      p2.setY(ourDisplayY/2.3);
+      p3.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+      p3.setY(ourDisplayY/2.3);
+      p4.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+      p4.setY(ourDisplayY/2.3);
+      p5.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+      p5.setY(ourDisplayY/2.3);
+      p6.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+      p6.setY(ourDisplayY/2.3);
+      p7.setX((float)(Math.random() * ourDisplayX/2.46 + ourDisplayX/3.36));
+      p7.setY(ourDisplayY/2.3);
+      count++;
+      }
+    j.attack1(); 
+  }
    
   void setExp(int e) {
     exp = e; 

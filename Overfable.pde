@@ -118,7 +118,8 @@ void draw() {
     else if (which == 7) {
       mk = new MonKing();
       j = new Jaws(); 
-      f = new JFK(); 
+      f = new JFK();
+      b = new Teddy();
     }
   }
   else if (COMBAT) {
@@ -922,7 +923,7 @@ void fightEnemyMonKing(MonKing mon) {
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 5) + 1;
-      attack = 3; 
+      attack = 4; 
     }
     if (attack == 1) {
       
@@ -982,6 +983,39 @@ void fightEnemyMonKing(MonKing mon) {
         f.hat.count = 0;  
         f.setTurn(false);                
       }      
+    }
+    else if (attack == 4) {
+      mon.attack4();
+      if (count <= 5) {
+        h.damaged(p0);
+        h.damaged(p1);
+        h.damaged(p2);
+        h.damaged(p3);
+        h.damaged(p4);
+        h.damaged(p5);
+        h.damaged(p6);
+        h.damaged(p7);
+        if(millis() - h.getHitTime() > 800){
+          h.setInv(false);
+        }
+      }
+      h.damaged(j.getSharkFin());
+      if (h.getCurrentHP() <= 0) {
+        h.dead = true;
+       }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      if(j.getFinFinished()){
+        attack = 0;
+        ENEMY_SCREEN = false;
+        enPress = false; 
+        count = 0; 
+        b.at2 = false; 
+        j.currentSentence = " ";
+        b.currentSentence = " "; 
+        j.phase = 0;
+      }           
     }
     if (!ENEMY_SCREEN) {
       rounds += 1; 
