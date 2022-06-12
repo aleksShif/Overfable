@@ -1,4 +1,4 @@
-public class Pellet extends Damageable{
+public class Pellet extends Damageable{ 
   PImage hawk; 
   PImage smokeGlass; 
   PImage fin;
@@ -10,6 +10,8 @@ public class Pellet extends Damageable{
   PImage cannon;
   PImage cball;
   PImage cutlass;
+  PImage branchL1, branchR1, branchL2, branchR2, branchL3, branchR3;  
+  
   //String filename;
   String side; 
   float size;
@@ -575,6 +577,10 @@ public class Pellet extends Damageable{
     }
   }
   
+  void displayBranch(int b){
+    
+  }
+  
   void setSide(String s) {
     side = s; 
   }
@@ -593,6 +599,7 @@ public class Pellet extends Damageable{
       y+=Y;
     }
   }  
+  
   
   void move(float X, float Y){
     x += X; 

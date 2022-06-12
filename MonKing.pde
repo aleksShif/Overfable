@@ -50,4 +50,56 @@ class MonKing extends Boss{
     //monkey falling
     //sword + cannon
     //crying + fin
+    
+    void attack1(){
+      
+    }
+  void setBranch1(Pellet p){
+    branch1 = p;
+  }
+  
+  Damageable getBranch1(){
+    return branch1;
+  }
+  
+  void setBranch2(Pellet p){
+    branch2 = p;
+  }
+  
+  Damageable getBranch2(){
+    return branch2;
+  }
+  
+  void setBranch3(Pellet p){
+    branch3 = p;
+  }
+  
+  Damageable getBranch3(){
+    return branch3;
+  }
+  
+  void setBranch4(Pellet p){
+    branch4 = p;
+  }
+  
+  Damageable getBranch4(){
+    return branch4;
+  }
+  
+  void setBranch5(Pellet p){
+    branch5 = p;
+  }
+  
+  Damageable getBranch5(){
+    return branch5;
+  }
+  
+  void setBranch6(Pellet p){
+    branch6 = p;
+  }
+  
+  Damageable getBranch6(){
+    return branch6;
+  }
+  //Pellet branchL1, branchR1, branchL2, branchR2, branchL3, branchR3;
  }
