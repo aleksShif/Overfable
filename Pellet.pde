@@ -1,10 +1,13 @@
 public class Pellet extends Damageable{
   PImage hawk; 
   PImage smokeGlass; 
+  PImage fin;
+  PImage whip;  
   PImage katana;
   PImage hat; 
-  PImage fin;
-  //String filename; 
+  PImage finalSnake; 
+  PImage snake, snake2, snake3, snake4, snake5, snake6, snake7, snake8; 
+  String filename; 
   String side; 
   float size;
   boolean isAt1 = false; 
@@ -12,7 +15,6 @@ public class Pellet extends Damageable{
   boolean turn = false;
   boolean next = false; 
   int immobileTime = 0; 
-  int xSpeed, ySpeed;
   int count = 0;
   float X = ourDisplayX/3.36;
   boolean right = true;
@@ -27,6 +29,31 @@ public class Pellet extends Damageable{
     setX(X);
     setY(Y); 
     filename = file; 
+    if (filename.equals("hiddenKatana.png")) {
+      katana = loadImage(filename);     
+    }
+    if (filename.equals("Hawkson1.png")) {
+      hawk = loadImage(filename);
+    }
+    if (filename.equals("miniSnake.png")) {
+      snake = loadImage(filename);
+      snake.resize(snake.width/6, snake.height/6); 
+      snake2 = loadImage("miniSnake2.png");
+      snake2.resize(snake2.width/6, snake2.height/6); 
+      snake3 = loadImage("miniSnake3.png");
+      snake3.resize(snake3.width/6, snake3.height/6);       
+      snake4 = loadImage("miniSnake4.png");
+      snake4.resize(snake4.width/6, snake4.height/6);
+      snake5 = loadImage("miniSnake5.png");
+      snake5.resize(snake5.width/6, snake5.height/6);
+      snake6 = loadImage("miniSnake6.png");
+      snake6.resize(snake6.width/6, snake6.height/6);
+      snake7 = loadImage("miniSnake7.png");
+      snake7.resize(snake7.width/6, snake7.height/6);
+      snake8 = loadImage("miniSnake8.png");
+      snake8.resize(snake8.width/6, snake8.height/6);
+      finalSnake = snake; 
+    }
     fill(255);
   }
   
@@ -88,7 +115,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson1.png";
       }
       hawk = loadImage(filename);
-      hawk.resize(hawk.width * 2, hawk.height * 2);
+      hawk.resize((int)(hawk.width*1.5), (int)(hawk.height*1.5));
       image(hawk,x,y);
     }
     else if(phase < 35){
@@ -99,7 +126,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson2.png";
       }      
       hawk = loadImage(filename);
-      hawk.resize(hawk.width * 2, hawk.height * 2);
+      hawk.resize((int)(hawk.width*1.5), (int)(hawk.height*1.5));
       image(hawk,x,y);
     }
     else if(phase < 40){
@@ -110,7 +137,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson3.png";
       }      
       hawk = loadImage(filename);
-      hawk.resize(hawk.width * 2, hawk.height * 2);
+      hawk.resize((int)(hawk.width*1.5), (int)(hawk.height*1.5));
       image(hawk,x,y);
     }
     else if(phase < 45){
@@ -121,7 +148,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson4.png";
       }      
       hawk = loadImage(filename);
-      hawk.resize(hawk.width * 2, hawk.height * 2);
+      hawk.resize((int)(hawk.width*1.5), (int)(hawk.height*1.5));
       image(hawk,x,y);
     }
     else{
@@ -132,7 +159,7 @@ public class Pellet extends Damageable{
         filename = "Hawkson5.png";
       }     
       hawk = loadImage(filename);
-      hawk.resize(hawk.width * 2, hawk.height * 2);
+      hawk.resize((int)(hawk.width*1.5), (int)(hawk.height*1.5));
       image(hawk,x,y);
     }
   }
@@ -144,42 +171,42 @@ public class Pellet extends Damageable{
       heartIm = true; 
       filename = "smoke1.png";
       smokeGlass = loadImage(filename); 
-      smokeGlass.resize(smokeGlass.width/2, smokeGlass.height/2);
-      image(smokeGlass, x, y+H/36); 
+      smokeGlass.resize(smokeGlass.width/4, smokeGlass.height/4);
+      image(smokeGlass, x, y+60); 
     }
     else if (phase < 36) {
       heartIm = true;      
       filename = "smoke2.png";
       smokeGlass = loadImage(filename); 
-      smokeGlass.resize(smokeGlass.width/2, smokeGlass.height/2); 
+      smokeGlass.resize(smokeGlass.width/4, smokeGlass.height/4); 
       image(smokeGlass, x-W/106.667, y+H/45);
     }
     else if (phase < 42) {
       heartIm = true;      
       filename = "smoke3.png"; 
       smokeGlass = loadImage(filename); 
-      smokeGlass.resize(smokeGlass.width/2, smokeGlass.height/2);  
+      smokeGlass.resize(smokeGlass.width/4, smokeGlass.height/4);  
       image(smokeGlass, x-W/96.9697, y-H/36);
     }
     else if (phase < 48) {
       heartIm = true;      
       filename = "smoke4.png";
       smokeGlass = loadImage(filename); 
-      smokeGlass.resize(smokeGlass.width/2, smokeGlass.height/2); 
+      smokeGlass.resize(smokeGlass.width/4, smokeGlass.height/4); 
       image(smokeGlass, x-W/86.486, y-H/30);
     }
     else if (phase < 54) {
       heartIm = true;      
       filename = "smoke5.png";
       smokeGlass = loadImage(filename); 
-      smokeGlass.resize(smokeGlass.width/2, smokeGlass.height/2);  
+      smokeGlass.resize(smokeGlass.width/4, smokeGlass.height/4);  
       image(smokeGlass, x-W/58.182, y-H/23.077);
     }
     else if (phase < 125) {
       heartIm = true;      
       filename = "smoke6.png";
       smokeGlass = loadImage(filename); 
-      smokeGlass.resize(smokeGlass.width/2, smokeGlass.height/2);   
+      smokeGlass.resize(smokeGlass.width/4, smokeGlass.height/4);   
       image(smokeGlass, x-W/86.486, y-H/31.034);
     }
     else if (phase < 135) {
@@ -187,10 +214,10 @@ public class Pellet extends Damageable{
       filename = "smallGlass.png";
       smokeGlass = loadImage(filename); 
       if (phase >= 125 && phase < 130) {
-        smokeGlass.resize((int)(smokeGlass.width*1.1), (int)(smokeGlass.height*1.1));
+        smokeGlass.resize((int)(smokeGlass.width/2), (int)(smokeGlass.height/2));
       }
       else if (phase >= 130 && phase < 135) {
-        smokeGlass.resize((int)(smokeGlass.width*1.1+W/160), (int)(smokeGlass.height*1.1+H/90));
+        smokeGlass.resize((int)(smokeGlass.width/2+W/160), (int)(smokeGlass.height/2+H/90));
       }
       image(smokeGlass, x+W/45.714, y-H/27.692);
       h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode); 
@@ -200,37 +227,37 @@ public class Pellet extends Damageable{
       filename = "bigGlass.png";
       smokeGlass = loadImage(filename); 
       if (phase >= 160 && phase < 170) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/160), (int)(smokeGlass.height * 1.8 - H/90));        
+        smokeGlass.resize((int)(smokeGlass.width / 1.1 - W/160), (int)(smokeGlass.height / 1.1 - H/90));        
       }
       else if (phase >= 170 && phase < 180) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/80), (int)(smokeGlass.height * 1.8 - H/45));       
+        smokeGlass.resize((int)(smokeGlass.width / 1.1 - W/80), (int)(smokeGlass.height / 1.1 - H/45));       
       }
       else if (phase >= 180 && phase < 190) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/53.333), (int)(smokeGlass.height * 1.8 - H/30));        
+        smokeGlass.resize((int)(smokeGlass.width / 1.1 - W/53.333), (int)(smokeGlass.height / 1.1 - H/30));        
       }
       else if (phase >= 190 && phase < 200) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/40), (int)(smokeGlass.height * 1.8 - H/22.5));        
+        smokeGlass.resize((int)(smokeGlass.width / 1.1 - W/40), (int)(smokeGlass.height / 1.1 - H/22.5));        
       }
       else if (phase >= 200 && phase < 210) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/32), (int)(smokeGlass.height * 1.8 - H/18));        
+        smokeGlass.resize((int)(smokeGlass.width / 1.1 - W/32), (int)(smokeGlass.height / 1.1 - H/18));        
       }
       else if (phase >= 210 && phase < 220) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/24.615), (int)(smokeGlass.height * 1.8 - H/13.846));        
+        smokeGlass.resize((int)(smokeGlass.width / 1.1 - W/24.615), (int)(smokeGlass.height / 1.1 - H/13.846));        
       } 
       else if (phase >= 220 && phase < 230) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/20), (int)(smokeGlass.height * 1.8 - H/11.25));        
+        smokeGlass.resize((int)(smokeGlass.width / 1.1 - W/20), (int)(smokeGlass.height / 1.1 - H/11.25));        
       }
       else if (phase >= 230 && phase < 240) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/17.778), (int)(smokeGlass.height * 1.8 - H/10));       
+        smokeGlass.resize((int)(smokeGlass.width / 1.1 - W/17.778), (int)(smokeGlass.height / 1.1 - H/10));       
       } 
       else if (phase >= 240 && phase < 250) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/16), (int)(smokeGlass.height * 1.8 - H/9));        
+        smokeGlass.resize((int)(smokeGlass.width / 1.1 - W/16), (int)(smokeGlass.height / 1.1 - H/9));        
       }
       else if (phase >= 250 && phase < 260) {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8 - W/13.913), (int)(smokeGlass.height * 1.8 - H/7.826));        
+        smokeGlass.resize((int)(smokeGlass.width / 1.1 - W/13.913), (int)(smokeGlass.height / 1.1 - H/7.826));        
       }       
       else {
-        smokeGlass.resize((int)(smokeGlass.width * 1.8), (int)(smokeGlass.height * 1.8));
+        smokeGlass.resize((int)(smokeGlass.width / 1.1), (int)(smokeGlass.height / 1.1));
       }
       image(smokeGlass, x+W/160, y-H/18);
       setHitboxX(smokeGlass.width - W/12.8); 
@@ -249,7 +276,10 @@ public class Pellet extends Damageable{
     int H = ourDisplayY;
     katana = loadImage(filename);
     if (filename.equals("katana.png")) {
-      katana.resize(katana.width, katana.height);  
+      katana.resize(katana.width/2, katana.height - 200);
+    }
+    else {
+      katana.resize(katana.width/2, katana.height - 50);   
     }
     if (next == true && f.countdown % 10 != 0 && f.countdown % 10 > 5) { 
       image(katana, x, y - H/180); 
@@ -293,74 +323,63 @@ public class Pellet extends Damageable{
     image(fin,x,y);
   }
   
+  void displayWhip(){
+    if(count < 10){
+      whip = loadImage("JawsWhipR.png");
+    }
+    else if(count < 20){
+      whip = loadImage("JawsWhipC.png");
+    }
+    else if(count < 30){
+      whip = loadImage("JawsWhipL.png");
+    }
+    else if(count <40){
+      whip = loadImage("JawsWhipC.png");
+    }
+    else{
+      whip = loadImage("JawsWhipR.png");
+      count = 0;
+    }
+    j.rectX += j.rectInc;
+    if(j.rectX >= ourDisplayX/3.36 + ourDisplayX/2.5 - 540 && j.right){
+      j.rectInc *= -1;
+      j.right = false;
+    }
+    if(j.rectX <= ourDisplayX/3.36 - 460 && !j.right){
+      j.rectX = ourDisplayX/3.36-460;
+      j.whipFinished = true;
+    }
+    count++;
+    whip.resize(whip.width*5, whip.height*2);
+    image(whip, j.rectX, j.rectY);    
+  }
+  
   void displayHat(int phase) {
-    int W = ourDisplayX;
-    int H = ourDisplayY;
-    if (phase < 10 || (phase >= 40 && phase < 50)) {
-      filename = "hat.png";
-      hat = loadImage(filename);
-      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
-      setHitboxX(hat.width);
-      setHitboxY(hat.height);
-      if (phase < 10) {
-        move(20, -15);
-        image(hat, x, y);        
-      }
-      else if (phase >= 40) {
-        move(-20, 15);
-        image(hat, x, y);
-      }
+    if (count > 1) {
+      filename = filename.substring(0, 3) + count + ".png";  
     }
-    else if (phase < 20 || (phase >= 50 && phase < 60)) {
-      filename = "hat2.png";
-      hat = loadImage(filename);
-      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
-      setHitboxX(hat.width);
-      setHitboxY(hat.height);      
-      if (phase < 20) {
-        move(20, 0);
-        image(hat, x, y);
-      }
-      else if (phase >= 50) {
-        move(-20, 0);
-        image(hat, x, y);
-      }
+    else {
+      filename = "hat.png"; 
     }
-    else if (phase < 30 || (phase >= 60 && phase < 70)) {
-      filename = "hat3.png";
-      hat = loadImage(filename);
-      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
-      setHitboxX(hat.width);
-      setHitboxY(hat.height);      
-      if (phase < 30) {
-        move(20, 15);
-        image(hat, x, y);
-      }
-      else if (phase >= 60) {
-        move(-20, -15);
-        image(hat, x, y);
-      }
+    count += 1;
+    if (count > 10) {
+      count = 1;
     }
-    else if (phase < 40 || (phase >= 70 && phase < 80)) {
-      filename = "hat4.png";
-      hat = loadImage(filename);
-      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));
-      setHitboxX(hat.width);
-      setHitboxY(hat.height);
-      if (phase < 40) {
-        move(0, 15);
-        image(hat, x, y);
+    hat = loadImage(filename);
+    hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));    
+    if (phase < 20) {
+      if (turn) {
+        move(-35, 0);
       }
-      else if (phase >= 70) {
-        move(0, -15);
-        image(hat, x, y);
+      else {
+        move(35, 0);
       }
+      image(hat, x, y);        
     }
-      //strokeWeight(5);
-      //stroke(255);
-      //noFill();
-      //rect(getX(), getY(), getHitboxX(), getHitboxY()); 
-      //text(getX() + ", " + getY(), getX(), getY());
+  }
+  
+  void displaySnake() {
+    image(finalSnake, x, y); 
   }
   
   void setSide(String s) {

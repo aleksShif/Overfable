@@ -1,5 +1,5 @@
 class JFK extends Monster {
-  int countdown; 
+  int countdown;  
   int displayCount = 0;
   int phase;
   int count = 0;
@@ -9,11 +9,11 @@ class JFK extends Monster {
     setGold((int)(Math.random() * 8) + 10); 
     String[] aO = {"placeholder"}; 
     setAO(aO); 
-    String[] d = {"The game is afoot", "Intriguing", "Aha! It was you!"};
+    String[] d = {"VOTE JFK 1964", "What a fine day to write in a topless car", "For honor"};
     setDialogue(d); 
-    String[] u = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};
+    String[] u = {"John Fox Kennedy tries to win your vote unsuccessfully", "Fox Kennedy adjusts his samurai hat nervously", "John Fox Kennedy sharpens his katana"};
     setUpdate(u); 
-    setHat(new Pellet("hat.png", ourDisplayX/22.857, ourDisplayY/6.923, ourDisplayX/2.909, ourDisplayY/2.25, 6));
+    setHat(new Pellet("hat.png", 50, 50, 200, 250, 6));
     setPhase(0);    
     countdown = 400;
   }
@@ -22,19 +22,49 @@ class JFK extends Monster {
     int W = ourDisplayX; 
     int H = ourDisplayY;
     PImage jfk;
-    if (displayCount <= 10){
-      jfk = loadImage("JFK1.png");
+    if(dead){
+       jfk = loadImage("JFKDead.png");
+       jfk.resize((int)(jfk.width *0.85), (int)(jfk.height *0.85));
+       image(jfk,W/2.45,H/9.99);
     }
-    else if(displayCount <= 20){
-      jfk = loadImage("JFK2.png");
+    else if(hurt){
+      jfk = loadImage("JFKHurt.png");
+      hurtTime++;
+      jfk.resize((int)(jfk.width *0.85), (int)(jfk.height *0.85));
+      if(hurtTime >= 60){
+        hurt = false;
+        hurtTime = 0;
+      }
+      else if(hurtTime <= 10){
+        image(jfk,W/2.4,H/9.99);
+      }else if(hurtTime <= 20){
+        image(jfk,W/2.45,H/9.99);
+      }else if(hurtTime <= 30){
+        image(jfk,W/2.5,H/9.99);
+      }
+      else if(hurtTime <= 40){
+        image(jfk,W/2.45,H/9.99);
+      }else if(hurtTime <= 50){
+        image(jfk,W/2.4,H/9.99);
+      }else if(hurtTime <= 60){
+        image(jfk,W/2.45,H/9.99);
+      }
     }
     else{
-      displayCount = 0;
-      jfk = loadImage("JFK1.png");
+      if (displayCount <= 10){
+        jfk = loadImage("JFK1.png");
+      }
+      else if(displayCount <= 20){
+        jfk = loadImage("JFK2.png");
+      }
+      else{
+        displayCount = 0;
+        jfk = loadImage("JFK1.png");
+      }
+      jfk.resize((int)(jfk.width *0.85), (int)(jfk.height *0.85));
+      image(jfk,W/2.45,H/9.99);
+      displayCount++;
     }
-    jfk.resize((int)(jfk.width *0.85), (int)(jfk.height *0.85));
-    image(jfk,W/2.45,H/9.99);
-    displayCount++;
   }
   
   void attack1(){
@@ -42,7 +72,7 @@ class JFK extends Monster {
     int H = ourDisplayY; 
     for (int i = 0; i < 9; i++){
       if (countdown == 400) {
-        Pellet kat = new Pellet("hiddenKatana.png", W/188.235, H/30, W/3.636 + (i*(W/21.333)), H/1.429, 5);
+        Pellet kat = new Pellet("hiddenKatana.png", W/188.235, H/30, W/3.82 + (i*(W/21.333)), H/1.6, 5);
         pellets.add(kat);
       }
       else{
@@ -71,14 +101,14 @@ class JFK extends Monster {
           kat.displayKatana();
           if ((countdown - 2) % 20 == 0 && (countdown - 2) % 40 != 0){
             kat.filename = "hiddenKatana.png"; 
-            kat.setX(W/3.636 + (i*(W/21.333)));
-            kat.setY(H/1.429); 
+            kat.setX(W/3.82 + (i*(W/21.333)));
+            kat.setY(H/1.6); 
             kat.setHitboxX(W/188.235);
             kat.setHitboxY(H/30); 
           }
           else if ((countdown - 1) % 20 == 0 && kat.next) {
             kat.filename = "katana.png";
-            kat.move(0, (H/3.5) * -1);
+            kat.move(0, (H/3.9) * -1);
             kat.setHitboxX(W/188.235);
             kat.setHitboxY(H/3.396); 
           }
@@ -90,13 +120,22 @@ class JFK extends Monster {
   void attack2(){
     hat.displayHat(phase);
     phase++;
-    if (phase >= 80 && count < 3) {
+    if (phase >= 20 && count < 3) {
       setPhase(0);
+      hat.turn = !hat.turn; 
+      hat.setY(hat.y += 70); 
       count += 1;
+    }
+    if (phase >= 20 && count == 3) {
+      hat.setX(200);
+      hat.setY(250);
     }
   }
   Damageable getHat() {
     return hat;
+  }
+  PImage getImg() {
+    return hat.hat;   
   }
   void setExp(int e) {
     exp = e; 
@@ -123,7 +162,7 @@ class JFK extends Monster {
     smokeGlass = p;
   }
   void setTurn(boolean t) {
-    hawk.turn = t; 
+    hat.turn = t; 
   }
   void setPhase(int p) {
     phase = p;

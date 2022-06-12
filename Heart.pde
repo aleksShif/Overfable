@@ -195,10 +195,7 @@ public class Heart {
     //  lowerLeft = d.getY() + d.getHitboxY();
     //  topRight = d.getY();
     //}
-    strokeWeight(5);
-    stroke(255);
-    noFill();
-    rect(d.getX(), d.getY(), upperEdgeD, leftEdgeD);
+    
 
     if(COMBAT && which == 2){
       if (t.getFile().equals("bigGlass.png")) {
@@ -239,9 +236,9 @@ public class Heart {
       }
     }
     else if(COMBAT && which == 3 && j.at2){
-      leftEdgeD = j.rectX;
-      rightEdgeD = j.rectX + displayWidth/80;
-      lowerEdgeD = j.rectY + displayHeight/3.5;
+      leftEdgeD = j.rectX + 470;
+      rightEdgeD = j.rectX + 530;
+      lowerEdgeD = j.rectY +250;
       upperEdgeD = j.rectY;
       if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
         currentHP -= d.getAT();
@@ -258,7 +255,50 @@ public class Heart {
         hitTime = millis(); 
       }
     }
+    strokeWeight(5);
+    stroke(255);
+    noFill();
+    rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
   }
+  
+  
+  void damaged(Damageable d, float leftEdgeD, float rightEdgeD, float lowerEdgeD, float upperEdgeD){
+    float leftEdgeH = x + hitboxX;
+    float rightEdgeH = x + 2 * hitboxX;
+    float lowerEdgeH = y + hitboxY;
+    float upperEdgeH = y - hitboxY;
+    if(COMBAT && which == 2){
+      if (t.getFile().equals("bigGlass.png")) {
+        if ((lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+          currentHP -= d.getAT();
+          currentHP += p.getDF();
+          inv = true;
+          hitTime = millis(); 
+        }
+      }
+      else {
+        if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+          currentHP -= d.getAT();
+          currentHP += p.getDF();
+          inv = true;
+          hitTime = millis(); 
+        }
+      }
+    } 
+    else {
+      if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+          currentHP -= d.getAT();
+          currentHP += p.getDF();
+          inv = true;
+          hitTime = millis(); 
+      }
+    }
+    strokeWeight(5);
+    stroke(255);
+    noFill();
+    rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
+  }
+  
   
   int getHitTime(){
     return hitTime;

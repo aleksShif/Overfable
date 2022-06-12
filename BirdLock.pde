@@ -1,5 +1,5 @@
 class BirdLock extends Monster{
-  int countdown;
+  int countdown; 
   boolean at2 = false; 
   int displayCount = 0;
   int phase; 

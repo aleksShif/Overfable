@@ -94,8 +94,8 @@ void draw() {
   int W = ourDisplayX; 
   int H = ourDisplayY;
   if (which == 0) {
-    which = (int)(Math.random() * 4) + 1; 
-    which = 2;
+    which = (int)(Math.random() * 5) + 1; 
+    which = 5;
     if (which == 1) {
       b = new Teddy(); 
     }
@@ -161,7 +161,7 @@ void draw() {
       else if(which == 3){
          fightEnemyJaws(j);
       }
-      else if(which == 4){ //<>// //<>//
+      else if(which == 4){ //<>// //<>// //<>//
         fightEnemyJFK(f);
       }
       else if(which == 5){
@@ -178,8 +178,8 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){ //<>//
-        fightElse(j); //<>//
+      else if(which == 3){ //<>// //<>//
+        fightElse(j); //<>// //<>//
       }
       else if(which == 4){
         fightElse(f);
@@ -411,7 +411,7 @@ void fightSetup(){
   strokeWeight(10); 
   rect(W/4, H/1.125, W/6.4, H/12);
   stroke(cSec); 
-  rect(W/1.6, H/1.125, W/6.4, H/12);
+    rect(W/1.6, H/1.125, W/6.4, H/12);
   textSize(H/30); 
   texSiz = H/30; 
   fill(cFirst);
@@ -619,7 +619,7 @@ void fightEnemyBirdLock(BirdLock bir){
     }
     if (attack == 1) {
           t.attack1();
-          h.damaged(bir.getHawkson());
+          h.damaged(bir.getHawkson(), bir.hawk.x, bir.hawk.x + bir.hawk.hawk.width, bir.hawk.y + bir.hawk.hawk.height, bir.hawk.y);
           if (h.getCurrentHP() <= 0) {
             h.dead = true;
             }
@@ -646,7 +646,7 @@ void fightEnemyBirdLock(BirdLock bir){
     else if (attack == 2) {
       bir.attack2();
       if (bir.phase >= 135 && bir.phase < 260) {
-        h.damaged(bir.getSmoke());
+        h.damaged(bir.getSmoke(), bir.smokeGlass.x+50, bir.smokeGlass.x+50 + bir.smokeGlass.smokeGlass.width-130, bir.smokeGlass.y-20 + bir.smokeGlass.smokeGlass.height-100, bir.smokeGlass.y-20);
       }
       if (h.getCurrentHP() <= 0) {
         h.dead = true;
@@ -654,7 +654,7 @@ void fightEnemyBirdLock(BirdLock bir){
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
        }
-      if (bir.phase >= 280) {
+      if (bir.phase >= 280 && !h.inv) {
         bir.setFile("smoke1.png");
         attack = 0; 
         bir.phase = 0; 
@@ -704,6 +704,8 @@ void fightEnemyJaws(Jaws jaw){
         attack = 0;
         ENEMY_SCREEN = false;
         enPress = false; 
+        jaw.currentSentence = " "; 
+        jaw.phase = 0;
       }
     }
     else if(attack == 2){
@@ -719,6 +721,8 @@ void fightEnemyJaws(Jaws jaw){
         attack = 0;
         ENEMY_SCREEN = false;
         enPress = false; 
+        jaw.currentSentence = " "; 
+        jaw.phase = 0;
       }
     }
     if (!ENEMY_SCREEN) {
@@ -753,7 +757,7 @@ void fightEnemyJFK(JFK fox) {
       f.attack1();
       for (int i = 0; i < f.pellets.size(); i++) {
         Pellet kat = f.pellets.get(i); 
-        h.damaged(kat);
+        h.damaged(kat, kat.x+65, kat.x + kat.katana.width-65, kat.y + kat.katana.height, kat.y);
         if (h.getCurrentHP() <= 0) {
             h.dead = true;
         }
@@ -774,20 +778,22 @@ void fightEnemyJFK(JFK fox) {
     }
     else if(attack == 2){
       f.attack2();
-      h.damaged(f.getHat());      
+      h.damaged(f.getHat(), f.getHat().x+140, f.getHat().x+140 + f.getImg().width-280, f.getHat().y+120 + f.getImg().height-280, f.getHat().y+120);      
       if (h.getCurrentHP() <= 0) {
           h.dead = true;
       }
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
       }
-      if (f.phase >= 80) {
+      if (f.phase >= 20) {
         ENEMY_SCREEN = false;
         f.currentSentence = " ";
         f.count = 0;
+        f.hat.count = 0; 
         f.phase = 0; 
         attack = 0;  
-        enPress = false;        
+        enPress = false;  
+        f.setTurn(false); 
       }
     }
     if (!ENEMY_SCREEN) {
@@ -815,16 +821,35 @@ void fightEnemySnake(Snake sna) {
     addText(sna.currentSentence, W/160, H/4.737, W/1.7297, W/1.333);
   }
   
-  else if (!SPEECH_SCREEN) {
-    if (attack == 0) {
-      attack = (int)(Math.random() * 2) + 1;
+  else if (!SPEECH_SCREEN) {   
+    k.attack1();
+    if(k.phase >= 15) {
+      if (sna.countdown < 400) {
+        for (int i = 0; i < sna.pellets.size(); i++) {
+          Pellet snak = sna.pellets.get(i); 
+          snak.displaySnake(); 
+          h.damaged(snak, snak.x+75, snak.x + snak.finalSnake.width-80, snak.y + snak.finalSnake.height-65, snak.y+75);
+          if (h.getCurrentHP() <= 0) {
+            h.dead = true;
+            break; 
+          }
+          if(millis() - h.getHitTime() > 1500){
+            h.setInv(false);
+          }
+        }
+      }
+      sna.countdown -= 1;  
     }
-    if (attack == 1) {
-      
-    }
-    else if(attack == 2){
-      
-    }
+    sna.phase += 1; 
+    if (k.countdown <= 0) {
+      ENEMY_SCREEN = false;
+      k.currentSentence = " ";
+      k.countdown = 200;
+      k.phase = 0;
+      attack = 0;  
+      k.pellets = new ArrayList<Pellet>();  
+      enPress = false; 
+    }      
     if (!ENEMY_SCREEN) {
       rounds += 1; 
     }
@@ -868,6 +893,12 @@ void keyPressed() {
     }
     else if (which == 3) {
       j.dead = true; 
+    }
+    else if (which == 4) {
+      f.dead = true; 
+    }
+    else if (which == 5) {
+      k.dead = true; 
     }
   }
   if (keyCode == 87 && !h.dead) {
@@ -934,12 +965,28 @@ void keyPressed() {
           j.dead = true; 
         }
       }
+      else if (which == 4) {
+        f.damaged(p.getAT());
+        f.countdown = 3; 
+        if (f.getHP() <= 0) {
+          f.HP = 0; 
+          f.dead = true; 
+        }
+      }
+      else if (which == 5) {
+        k.damaged(p.getAT());
+        k.countdown = 3; 
+        if (k.getHP() <= 0) {
+          k.HP = 0; 
+          k.dead = true; 
+        }
+      }
     }
     else if (TEXT_SCREEN) {
       if (n > 1 && COMBAT) {
         n = tex.length(); 
       }
-      if (n == 1 && (which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead)) {
+      if (n == 1 && (which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead) || (which == 4 && f.dead) || (which == 5 && k.dead)) {
         loop(); 
         notLoop = false; 
         background(0); 
@@ -950,7 +997,7 @@ void keyPressed() {
         p.ySpeed = ourDisplayY / 90;
         p.noDisplay = false; 
        } 
-      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead) || !(which == 3 && j.dead)) && COMBAT) { 
+      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead) || !(which == 3 && j.dead) || !(which == 4 && f.dead) || !(which == 5 && k.dead)) && COMBAT) { 
         TEXT_SCREEN = false;
         SPEECH_SCREEN = true; 
         ENEMY_SCREEN = true; 
@@ -961,6 +1008,11 @@ void keyPressed() {
           b.countdown = 400;
         }else if (which == 3){
           j.countdown = 400;
+        }
+        else if (which == 4) {
+          f.countdown = 400;
+        }else if (which == 5){
+          k.countdown = 400;
         }
         loop();
         notLoop = false; 
@@ -979,6 +1031,14 @@ void keyPressed() {
         else if (which == 3) {
           n = j.currentSentence.length(); 
           j.countdown = 400;
+        }
+        else if (which == 4) {
+          n = f.currentSentence.length(); 
+          f.countdown = 400;
+        }
+        else if (which == 5) {
+          n = k.currentSentence.length(); 
+          k.countdown = 400;
         }
       }
     }
