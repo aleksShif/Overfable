@@ -4,7 +4,8 @@ public class Pellet extends Damageable{
   PImage fin;
   PImage whip;  
   PImage katana;
-  PImage hat; 
+  PImage finalHat; 
+  PImage hat, hat2, hat3, hat4, hat5, hat6, hat7, hat8, hat9, hat10; 
   PImage finalSnake; 
   PImage snake, snake2, snake3, snake4, snake5, snake6, snake7, snake8; 
   PImage finalBanana;   
@@ -74,6 +75,29 @@ public class Pellet extends Damageable{
       banana4 = loadImage("Banana4.png");
       //banana4.resize((int)(banana3.width/1.4), (int)(banana3.width/1.4)); 
       finalBanana = banana; 
+    }
+    if (filename.equals("hat.png")) {
+      hat = loadImage("hat.png");
+      hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));    
+      hat2 = loadImage("hat2.png");
+      hat2.resize((int)(hat2.width/4.5), (int)(hat2.height/4.5));          
+      hat3 = loadImage("hat3.png");
+      hat3.resize((int)(hat3.width/4.5), (int)(hat3.height/4.5));          
+      hat4 = loadImage("hat4.png");
+      hat4.resize((int)(hat4.width/4.5), (int)(hat4.height/4.5));          
+      hat5 = loadImage("hat5.png");
+      hat5.resize((int)(hat5.width/4.5), (int)(hat5.height/4.5));          
+      hat6 = loadImage("hat6.png");
+      hat6.resize((int)(hat6.width/4.5), (int)(hat6.height/4.5));          
+      hat7 = loadImage("hat7.png");
+      hat7.resize((int)(hat7.width/4.5), (int)(hat7.height/4.5));          
+      hat8 = loadImage("hat8.png");
+      hat8.resize((int)(hat8.width/4.5), (int)(hat8.height/4.5));          
+      hat9 = loadImage("hat9.png");
+      hat9.resize((int)(hat9.width/4.5), (int)(hat9.height/4.5));    
+      hat10 = loadImage("hat10.png");
+      hat10.resize((int)(hat10.width/4.5), (int)(hat10.height/4.5));    
+      finalHat = hat;       
     }
     fill(255);
   }
@@ -354,7 +378,7 @@ public class Pellet extends Damageable{
     else if(count < 30){
       whip = loadImage("JawsWhipL.png");
     }
-    else if(count <40){
+    else if(count < 40){
       whip = loadImage("JawsWhipC.png");
     }
     else{
@@ -377,17 +401,41 @@ public class Pellet extends Damageable{
   
   void displayHat(int phase) {
     if (count > 1) {
-      filename = filename.substring(0, 3) + count + ".png";  
+      if (finalHat == hat) {
+        finalHat = hat2; 
+      }
+      else if (finalHat == hat2) {
+        finalHat = hat3;
+      }
+      else if (finalHat == hat3) {
+        finalHat = hat4;
+      }
+      else if (finalHat == hat4) {
+        finalHat = hat5;
+      }
+      else if (finalHat == hat5) {
+        finalHat = hat6;
+      }      
+      else if (finalHat == hat6) {
+        finalHat = hat7;
+      }      
+      else if (finalHat == hat7) {
+        finalHat = hat8;
+      }      
+      else if (finalHat == hat8) {
+        finalHat = hat9;
+      }      
+      else if (finalHat == hat9) {
+        finalHat = hat10;
+      }                      
     }
     else {
-      filename = "hat.png"; 
+      finalHat = hat;  
     }
     count += 1;
     if (count > 10) {
       count = 1;
     }
-    hat = loadImage(filename);
-    hat.resize((int)(hat.width/4.5), (int)(hat.height/4.5));    
     if (phase < 20) {
       if (turn) {
         move(-35, 0);
@@ -395,7 +443,7 @@ public class Pellet extends Damageable{
       else {
         move(35, 0);
       }
-      image(hat, x, y);        
+      image(finalHat, x, y);        
     }
   }
   

@@ -123,10 +123,17 @@ class MonKing extends Boss{
          if (!current.inside()) {
            pellets.remove(p); 
            p--; 
-         }
         }
-     }      
+      }
+    }      
+  }
+  void attack3() {
+    if (!j.whipFinished) {
+      f.attack2();
     }
+    j.attack2(); 
+  }
+   
   void setExp(int e) {
     exp = e; 
   }

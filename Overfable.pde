@@ -116,7 +116,9 @@ void draw() {
       bb = new Blackbeak();
     }
     else if (which == 7) {
-      mk = new MonKing(); 
+      mk = new MonKing();
+      j = new Jaws(); 
+      f = new JFK(); 
     }
   }
   else if (COMBAT) {
@@ -920,9 +922,10 @@ void fightEnemyMonKing(MonKing mon) {
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       attack = (int)(Math.random() * 5) + 1;
-      attack = 2; 
+      attack = 3; 
     }
     if (attack == 1) {
+      
     }
     else if(attack == 2){
       mon.attack2();
@@ -948,6 +951,36 @@ void fightEnemyMonKing(MonKing mon) {
         attack = 0;  
         mon.pellets = new ArrayList<Pellet>();  
         enPress = false; 
+      }      
+    }
+    else if (attack == 3) {
+      mon.attack3();
+      h.damaged(f.getHat(), f.getHat().x+140, f.getHat().x+140 + f.getImg().width-280, f.getHat().y+120 + f.getImg().height-280, f.getHat().y+120);      
+      if (h.getCurrentHP() <= 0) {
+          h.dead = true;
+      }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      h.damaged(j.getSharkFin());
+      if (h.getCurrentHP() <= 0) {
+        h.dead = true;
+       }
+      if(millis() - h.getHitTime() > 1500){
+        h.setInv(false);
+      }
+      if(j.getWhipFinished() || f.phase > 20){
+        attack = 0;
+        ENEMY_SCREEN = false;
+        enPress = false; 
+        j.currentSentence = " "; 
+        f.currentSentence = " "; 
+        j.phase = 0;
+        f.phase = 0;
+        j.sharkWhip.count = 0; 
+        f.count = 0;
+        f.hat.count = 0;  
+        f.setTurn(false);                
       }      
     }
     if (!ENEMY_SCREEN) {
