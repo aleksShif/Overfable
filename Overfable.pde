@@ -161,14 +161,14 @@ void draw() {
       strokeWeight(20); 
       noFill(); 
       rect(W/3.36, H/2.4, W/2.46, H/2.57);
-      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>// //<>// //<>// //<>// //<>//
+      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>// //<>// //<>// //<>// //<>// //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightEnemyMonKing(mk);  
       }
       else if(which == 1){
         fightEnemyTeddy(b);
       } //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-      else if(which == 2){ //<>// //<>// //<>// //<>// //<>//
+      else if(which == 2){ //<>// //<>// //<>// //<>// //<>// //<>//
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
@@ -178,8 +178,8 @@ void draw() {
         fightEnemyJFK(f);
       }
       else if(which == 5){
-        fightEnemySnake(k); //<>// //<>// //<>// //<>// //<>//
-      } //<>// //<>// //<>// //<>// //<>//
+        fightEnemySnake(k); //<>// //<>// //<>// //<>// //<>// //<>//
+      } //<>// //<>// //<>// //<>// //<>// //<>//
       else if(which == 6){
         fightEnemyBlackbeak(bb);
       }
@@ -188,8 +188,8 @@ void draw() {
       if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>//
         fightElse(mk); 
       }
-      else if(which == 1){ //<>// //<>// //<>// //<>// //<>//
-        fightElse(b); //<>// //<>// //<>// //<>// //<>//
+      else if(which == 1){ //<>// //<>// //<>// //<>// //<>// //<>//
+        fightElse(b); //<>// //<>// //<>// //<>// //<>// //<>//
       }
       else if(which == 2){
         fightElse(t);
@@ -960,14 +960,18 @@ void fightEnemyMonKing(MonKing mon) {
     if (attack == 0) {
       if (mk.cycle == 1) {
         attack = (int)(Math.random() * 2) + 1;
-        attack = 1; 
+        if(mk.HP <= 9){
+          mk.cycle++;
+        }
       }
       else if (mk.cycle == 2) {
         attack = (int)(Math.random() * 2) + 3;
-        attack = 1; 
+        if(mk.HP <= 3){
+          mk.cycle++;
+        }
       }
       else if (mk.cycle == 3) {
-        attack = 1;   
+        attack = 5;
       }
     }
     if (attack == 1) {
@@ -990,12 +994,14 @@ void fightEnemyMonKing(MonKing mon) {
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
       }
-      if(f.phase >= 40){
+      if(mk.countdown <= 0){
         attack = 0;
         ENEMY_SCREEN = false;
         enPress = false; 
         mon.currentSentence = " "; 
+        mk.countdown = 400;
       }
+      mk.countdown--;
     }
     else if(attack == 2){
       mon.attack2();
