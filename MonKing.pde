@@ -149,23 +149,23 @@ class MonKing extends Boss{
             image(monkey, W/2.45,H/9.99);
             displayCount += 1;          
           }
-           else if (cycle == 3) {
-          if (setCount == 0) {
-            monk1 = loadImage("(3)MonKing1.png"); 
-            monk1.resize((int)(monk1.width * 0.66), (int)(monk1.height * 0.66));                       
-            monk2 = loadImage("(3)MonKing2.png");
-            monk2.resize((int)(monk2.width * 0.66), (int)(monk2.height * 0.66));                       
-            monk3 = loadImage("(3)MonKing3.png");
-            monk3.resize((int)(monk3.width * 0.66), (int)(monk3.height * 0.66));           
-            monk4 = loadImage("(3)MonKing4.png"); 
-            monk4.resize((int)(monk4.width * 0.66), (int)(monk4.height * 0.66));           
-            monkHurt = loadImage("(3)MonKing5.png"); 
-            monkHurt.resize((int)(monkHurt.width * 0.66), (int)(monkHurt.height * 0.66));           
-            monkey = monk1;           
-            setCount += 1; 
-          }
-          if (displayCount <= 15){
-              monkey = monk1;            
+          else if (cycle == 3) {
+            if (setCount == 0) {
+              monk1 = loadImage("(3)MonKing1.png"); 
+              monk1.resize((int)(monk1.width * 0.66), (int)(monk1.height * 0.66));                       
+              monk2 = loadImage("(3)MonKing2.png");
+              monk2.resize((int)(monk2.width * 0.66), (int)(monk2.height * 0.66));                       
+              monk3 = loadImage("(3)MonKing3.png");
+              monk3.resize((int)(monk3.width * 0.66), (int)(monk3.height * 0.66));           
+              monk4 = loadImage("(3)MonKing4.png"); 
+              monk4.resize((int)(monk4.width * 0.66), (int)(monk4.height * 0.66));           
+              monkHurt = loadImage("(3)MonKing5.png"); 
+              monkHurt.resize((int)(monkHurt.width * 0.66), (int)(monkHurt.height * 0.66));           
+              monkey = monk1;           
+              setCount += 1; 
+            }
+            if (displayCount <= 15){
+                monkey = monk1;            
             }
             else if(displayCount <= 30){
               monkey = monk2;
