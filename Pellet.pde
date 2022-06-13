@@ -1,4 +1,4 @@
-public class Pellet extends Damageable{
+public class Pellet extends Damageable{ 
   PImage hawk; 
   PImage smokeGlass; 
   PImage fin;
@@ -13,6 +13,13 @@ public class Pellet extends Damageable{
   PImage cannon;
   PImage cball;
   PImage cutlass;
+  PImage branchL1 = loadImage("BranchL1.png"); 
+  PImage branchR1 = loadImage("BranchR2.png");
+  PImage branchL2 = loadImage("BranchL2.png");
+  PImage branchR2 = loadImage("BranchR2.png");
+  PImage branchL3 = loadImage("BranchL3.png");
+  PImage branchR3 = loadImage("BranchR3.png");
+  PImage finalBranch = branchL1; 
   //String filename;
   String side; 
   float size;
@@ -28,6 +35,8 @@ public class Pellet extends Damageable{
   boolean finFinished = false;
   boolean upCan = true;
   String name;
+  int ranum = 3;
+  float bx, by;
 
   
   Pellet(String file, float hX, float hY, float X, float Y, int at){
@@ -98,6 +107,26 @@ public class Pellet extends Damageable{
       hat10 = loadImage("hat10.png");
       hat10.resize((int)(hat10.width/4.5), (int)(hat10.height/4.5));    
       finalHat = hat;       
+    }
+    if (filename.equals("BranchL1.png")) {
+      finalBranch = branchL1;  
+    }
+    if (filename.equals("BranchL2.png")) {
+      branchL2.resize(branchL2.width + 70, branchL2.height); 
+      finalBranch = branchL2;  
+    }
+    if (filename.equals("BranchL3.png")) {
+      finalBranch = branchL3;  
+    }
+    if (filename.equals("BranchR1.png")) {
+      branchR1.resize(branchR1.width + 70, branchR1.height);
+      finalBranch = branchR1;  
+    }
+    if (filename.equals("BranchR2.png")) {
+      finalBranch = branchR2;  
+    }
+    if (filename.equals("BranchR3.png")) {
+      finalBranch = branchR3;   
     }
     fill(255);
   }
@@ -636,6 +665,52 @@ public class Pellet extends Damageable{
     }
   }
   
+  void displayBranch(){
+    if(finalBranch == branchL1){
+      image(branchL1, mk.Lx, mk.L1y);
+      mk.L1y += 1;
+      if(mk.L1y > 550){
+        mk.L1y = mk.L1Y;
+      }
+    }
+    else if(finalBranch == branchL2){
+      image(branchL2, mk.Lx-10, mk.L2y);
+      mk.L2y += 1;
+      if(mk.L2y > 550){
+        mk.L2y = mk.L1Y;
+      }
+    }
+    else if(finalBranch == branchL3){
+      image(branchL3, mk.Lx, mk.L3y);
+      mk.L3y += 1;
+      if(mk.L3y > 550){
+        mk.L3y = mk.L1Y;
+      }
+    }
+    else if(finalBranch == branchR1){
+      image(branchR1, mk.Rx-40, mk.R1y);
+      mk.R1y -= 1;
+      if(mk.R1y < 200){
+        mk.R1y = mk.R3Y;
+      }
+    }
+    else if(finalBranch == branchR2){
+      image(branchR2, mk.Rx, mk.R2y);
+      mk.R2y -= 1;
+      if(mk.R2y < 200){
+        mk.R2y = mk.R3Y;
+      }
+    }
+    else if(finalBranch == branchR3){
+      image(branchR3, mk.Rx, mk.R3y);
+      mk.R3y -= 1;
+      if(mk.R3y < 200){
+        mk.R3y = mk.R3Y;
+      }
+    }
+  }
+  //rect(W/3.36, H/2.4, W/2.46, H/2.57);
+
   void displayBanana(int c) {
     image(finalBanana, x, y); 
     if (finalBanana == banana && c % 15 == 0) {
@@ -670,6 +745,7 @@ public class Pellet extends Damageable{
       y+=Y;
     }
   }  
+  
   
   void move(float X, float Y){
     x += X; 

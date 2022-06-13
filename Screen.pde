@@ -1,13 +1,15 @@
 public class Screen {
   int loadTime = 0; 
-  int screenTime; 
+  int nextScreenTime; 
+  int prevScreenTime; 
   float upBorder, downBorder, leftBorder, rightBorder; 
   String scene; 
   
   Screen(String sce, int lT) {
     scene = sce; 
     if (sce.equals("forest") || sce.equals("snowy")) {
-      screenTime = 320;
+      nextScreenTime = 320;
+      prevScreenTime = 1; 
     }
     loadTime = lT;
   }

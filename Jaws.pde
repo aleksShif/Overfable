@@ -7,6 +7,8 @@ class Jaws extends Monster{
   int displayCount = 0;
   float rectX = ourDisplayX/3.36 - 500;
   float rectY = ourDisplayY/2.46;
+  float rectx = ourDisplayX/3.36 - 500;
+  float recty = ourDisplayY/2.46;
   float rectInc = 10;
   boolean right = true;
   boolean whipFinished = false;

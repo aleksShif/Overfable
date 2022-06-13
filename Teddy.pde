@@ -166,7 +166,7 @@ class Teddy extends Monster{
     int W = ourDisplayX; 
     int H = ourDisplayY;    
     if(p0.inside() || p1.inside() || p2.inside() || p3.inside() || p4.inside()|| p5.inside() || p6.inside() || p7.inside()){
-      if(p0.inside()){
+      if(p0.inside()){  
         for(int i = 0; i < 8; i++){
           p0.move(0,1);
         }

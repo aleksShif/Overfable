@@ -245,6 +245,18 @@ public class Heart {
         hitTime = millis(); 
       }
     }
+    else if(COMBAT && which == 7 && attack == 3){
+      leftEdgeD = j.rectX + 470;
+      rightEdgeD = j.rectX + 530;
+      lowerEdgeD = j.rectY +250;
+      upperEdgeD = j.rectY;
+      if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+        currentHP -= d.getAT();
+        currentHP += p.getDF();
+        inv = true;
+        hitTime = millis(); 
+      }
+    }
     else if(COMBAT && which == 6 && d.filename.equals("Cannon.png")){
       leftEdgeD = bb.canX+10;
       rightEdgeD = bb.canX + 100;
@@ -328,6 +340,23 @@ public class Heart {
           inv = true;
           hitTime = millis(); 
       }
+    }
+    strokeWeight(5);
+    stroke(255);
+    noFill();
+    rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
+  }
+  
+  void damaged(float leftEdgeD, float rightEdgeD, float lowerEdgeD, float upperEdgeD){
+    float leftEdgeH = x + hitboxX;
+    float rightEdgeH = x + 2 * hitboxX;
+    float lowerEdgeH = y + hitboxY;
+    float upperEdgeH = y - hitboxY;
+    if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
+      currentHP -= mk.AT;
+      currentHP += p.getDF();
+      inv = true;
+      hitTime = millis(); 
     }
     strokeWeight(5);
     stroke(255);

@@ -94,35 +94,35 @@ void setup() {
 void draw() {     
   int W = ourDisplayX; 
   int H = ourDisplayY;
-  if (COMBAT) {
-    if (which == 0) {
-      which = (int)(Math.random() * 7) + 1;
-      which = 7; 
-      if (which == 1) {
-        b = new Teddy(); 
-      }
-      else if (which == 2) {
-        t = new BirdLock();
-      }
-      else if(which == 3){
-        j = new Jaws();
-      }
-      else if (which == 4){
-        f = new JFK();
-      }
-      else if (which == 5){
-        k = new Snake();
-      }
-      else if (which == 6){
-        bb = new Blackbeak();
-      }
-      else if (which == 7) {
-        mk = new MonKing();
-        j = new Jaws(); 
-        f = new JFK();
-        b = new Teddy();
-      }
+  if (which == 0) {
+    which = (int)(Math.random() * 7) + 1;
+    which = 2; 
+    if (which == 1) {
+      b = new Teddy(); 
     }
+    else if (which == 2) {
+      t = new BirdLock();
+    }
+    else if(which == 3){
+      j = new Jaws();
+    }
+    else if (which == 4){
+      f = new JFK();
+    }
+    else if (which == 5){
+      k = new Snake();
+    }
+    else if (which == 6){
+      bb = new Blackbeak();
+    }
+    else if (which == 7) {
+      mk = new MonKing();
+      j = new Jaws(); 
+      f = new JFK();
+      b = new Teddy();
+    }
+  }
+  else if (COMBAT) {
     fightSetup();
     if (h.dead) {
       fightDead();
@@ -161,14 +161,14 @@ void draw() {
       strokeWeight(20); 
       noFill(); 
       rect(W/3.36, H/2.4, W/2.46, H/2.57);
-      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>// //<>// //<>// //<>//
+      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightEnemyMonKing(mk);  
       }
       else if(which == 1){
         fightEnemyTeddy(b);
-      } //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-      else if(which == 2){ //<>// //<>// //<>// //<>//
+      } //<>// //<>// //<>// //<>// //<>// //<>//
+      else if(which == 2){ //<>//
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
@@ -178,24 +178,24 @@ void draw() {
         fightEnemyJFK(f);
       }
       else if(which == 5){
-        fightEnemySnake(k); //<>// //<>// //<>// //<>//
-      } //<>// //<>// //<>// //<>//
+        fightEnemySnake(k); //<>//
+      } //<>//
       else if(which == 6){
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>// //<>// //<>// //<>//
-      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>//
+    else{ //<>//
+      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>//
         fightElse(mk); 
       }
-      else if(which == 1){ //<>// //<>// //<>// //<>//
-        fightElse(b); //<>// //<>// //<>// //<>//
+      else if(which == 1){ //<>//
+        fightElse(b); //<>//
       }
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){  //<>// //<>// //<>// //<>//
-        fightElse(j);  //<>// //<>// //<>// //<>//
+      else if(which == 3){  //<>//
+        fightElse(j);  //<>//
       }
       else if(which == 4){
         fightElse(f);
@@ -275,8 +275,8 @@ void draw() {
               p.x = W/3.5; 
               p.y = H/1.895; 
             } 
-            p.xSpeed = 4;
-            p.ySpeed = 4; 
+            p.xSpeed = W/160;
+            p.ySpeed = H/90; 
           }
         }
         else {
@@ -292,43 +292,25 @@ void draw() {
         }
       }
       else if (s.getScene().equals("forest") || s.getScene().equals("snowy")) {
-        if ((s.nextScreenTime <= 0 && !Right)  || (s.prevScreenTime <= 0 && !Left)) {
-          if ((p.x >= W - W/160 && s.nextScreenTime <= 0) || (p.x <= 8.75 && s.prevScreenTime <= 0)) {
+        if (s.screenTime <= 0) {
+          if (p.x >= W - W/160) {
             p.xSpeed = 0; 
             p.ySpeed = 0; 
             background(0); 
             s.loading(); 
             if (s.loadTime <= 0) {
               if (s.getScene().equals("forest")) {
-                if (s.nextScreenTime <= 0) {
-                  s = new Screen("snowy", 15); 
-                  prim = snowyScene;
-                  secon = snowyScrollScene;
-                  p.x = W/3.5;
-                  p.y = H/1.5;
-                }
-                else if (s.prevScreenTime <= 0) {
-                  s = new Screen("entrance", 15);
-                  p.x = 1200; 
-                  p.y = H/1.5; 
-                }
+                s = new Screen("snowy", 15); 
+                prim = snowyScene;
+                secon = snowyScrollScene;  
               }
               else {
-                if (s.nextScreenTime <= 0) {
-                  s = new Screen("cliffEntrance", 15);
-                  p.x = W/3.5; 
-                  p.y = H/1.5; 
-                }
-                else if (s.prevScreenTime <= 0) {
-                  s = new Screen("forest", 15);
-                  prim = forestScene; 
-                  secon = forestScrollScene; 
-                  p.x = 1200;
-                  p.y = H/1.5; 
-                }
+                s = new Screen("cliffEntrance", 15); 
               }
-              p.xSpeed = 4;
-              p.ySpeed = 4; 
+              p.x = W/3.5; 
+              p.y = H/1.5; 
+              p.xSpeed = W/160;
+              p.ySpeed = H/90; 
               }
           }
           else {
@@ -359,6 +341,9 @@ void draw() {
           }
           else if ((p.x >= W/2 && p.walking) || (scroll)) {
             scroll = true;
+            if (p.walking) {
+              s.screenTime -= 1;
+            }
             if ((Up || Down) && !Right && !Left) {
               p.display();
               if (justLeft) {
@@ -375,11 +360,6 @@ void draw() {
             else {
               p.display(); 
               if (Left && !Right) {
-                s.nextScreenTime -= 1; 
-                s.prevScreenTime += 1; 
-                //if (p.walking && !Left) {
-                //  s.screenTime -= 1;
-                //}
                 justRight = false;
                 if (Up || Down) {
                   p.move(); 
@@ -397,8 +377,6 @@ void draw() {
                 justLeft = true; 
                }
                else if (Right && !Left) { 
-                 s.nextScreenTime += 1; 
-                 s.prevScreenTime -= 1; 
                  justLeft = false; 
                  if (Up || Down) {          
                    p.move(); 
@@ -750,13 +728,6 @@ void fightEnemyJaws(Jaws jaw){
         enPress = false; 
         jaw.currentSentence = " "; 
         jaw.phase = 0;
-        jaw.setSharkFin(new Pellet("sharkFin.png", ourDisplayX/25.859, ourDisplayY/16.162, ourDisplayX/3.36, ourDisplayY/1.5, 6)); //file, hbx, hby, x, y
-        jaw.setSharkWhip(new Pellet("JawsWhipL.png", 7.5, 130, jaw.rectX, jaw.rectY, 6)); //file, hbx, hby, x, y
-        jaw.rectX = jaw.rectx;
-        jaw.rectY = jaw.recty;
-        jaw.right = true;
-        jaw.whipFinished = false;
-        jaw.rectInc = 10;
       }
     }
     else if(attack == 2){
@@ -774,13 +745,6 @@ void fightEnemyJaws(Jaws jaw){
         enPress = false; 
         jaw.currentSentence = " "; 
         jaw.phase = 0;
-        jaw.setSharkFin(new Pellet("sharkFin.png", ourDisplayX/25.859, ourDisplayY/16.162, ourDisplayX/3.36, ourDisplayY/1.5, 6)); //file, hbx, hby, x, y
-        jaw.setSharkWhip(new Pellet("JawsWhipL.png", 7.5, 130, jaw.rectX, jaw.rectY, 6)); //file, hbx, hby, x, y       
-        jaw.rectX = jaw.rectx;
-        jaw.rectY = jaw.recty;
-        jaw.right = true;
-        jaw.whipFinished = false;     
-        jaw.rectInc = 10;
       }
     }
     if (!ENEMY_SCREEN) {
@@ -958,38 +922,11 @@ void fightEnemyMonKing(MonKing mon) {
   
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
-      if (mk.cycle == 1) {
-        attack = (int)(Math.random() * 2) + 1;
-        attack = 1; 
-      }
-      else if (mk.cycle == 2) {
-        attack = (int)(Math.random() * 2) + 3;
-        attack = 1; 
-      }
-      else if (mk.cycle == 3) {
-        attack = 1;   
-      }
+      attack = (int)(Math.random() * 5) + 1;
+      attack = 3; 
     }
     if (attack == 1) {
-      mon.attack1();
-      mk.branch1.displayBranch();
-      mk.branch2.displayBranch();
-      mk.branch3.displayBranch();
-      mk.branch4.displayBranch();
-      mk.branch5.displayBranch();
-      mk.branch6.displayBranch();
-      if (h.getCurrentHP() <= 0) {
-        h.dead = true;
-       }
-      if(millis() - h.getHitTime() > 1500){
-        h.setInv(false);
-      }
-      if(f.phase >= 40){
-        attack = 0;
-        ENEMY_SCREEN = false;
-        enPress = false; 
-        mon.currentSentence = " "; 
-      }
+      
     }
     else if(attack == 2){
       mon.attack2();
@@ -1026,7 +963,7 @@ void fightEnemyMonKing(MonKing mon) {
       if(millis() - h.getHitTime() > 1500){
         h.setInv(false);
       }
-      h.damaged(j.getSharkFin());
+      h.damaged(j.getSharkWhip(), j.sharkWhip.x+65, j.sharkWhip.x + j.sharkWhip.whip.width, j.sharkWhip.y + j.sharkWhip.whip.height, j.sharkWhip.y+65);
       if (h.getCurrentHP() <= 0) {
         h.dead = true;
        }
@@ -1046,19 +983,12 @@ void fightEnemyMonKing(MonKing mon) {
         f.count = 0;
         f.hat.count = 0;  
         f.setTurn(false);
-        j.whipFinished = false;
-        j.setSharkFin(new Pellet("sharkFin.png", ourDisplayX/25.859, ourDisplayY/16.162, ourDisplayX/3.36, ourDisplayY/1.5, 6)); //file, hbx, hby, x, y
-        j.setSharkWhip(new Pellet("JawsWhipL.png", 7.5, 130, j.rectX, j.rectY, 6)); //file, hbx, hby, x, y       
-        j.rectX = j.rectx;
-        j.rectY = j.recty;
-        j.right = true;
-        j.whipFinished = false;     
-        j.rectInc = 10;
+        j.whipFinished = false; 
       }      
     }
     else if (attack == 4) {
       mon.attack4();
-      if (count <= 5 || count > 350) {
+      if (count <= 5) {
         h.damaged(p0);
         h.damaged(p1);
         h.damaged(p2);
@@ -1088,41 +1018,7 @@ void fightEnemyMonKing(MonKing mon) {
         b.currentSentence = " ";
         mon.currentSentence = " "; 
         j.phase = 0;
-        j.setSharkFin(new Pellet("sharkFin.png", ourDisplayX/25.859, ourDisplayY/16.162, ourDisplayX/3.36, ourDisplayY/1.5, 6)); //file, hbx, hby, x, y
-        j.setSharkWhip(new Pellet("JawsWhipL.png", 7.5, 130, j.rectX, j.rectY, 6)); //file, hbx, hby, x, y       
-        j.rectX = j.rectx;
-        j.rectY = j.recty;
-        j.right = true;
-        j.whipFinished = false;     
-        j.rectInc = 10;
-        j.whipFinished = false; 
-        j.phase = 0; 
-        j.sharkWhip.count = 0; 
       }           
-    }
-    else if(attack == 5){
-      if(!mon.falling){
-        mon.displayCount = 0;
-        mon.falling = true;
-      }
-      if(millis() - h.getHitTime() > 1500){
-        h.setInv(false);
-      }
-      h.damaged(mk.X, mk.X + 110, mk.Y + 120, mk.Y);
-      if (h.getCurrentHP() <= 0) {
-        h.dead = true;
-       }
-      if(millis() - h.getHitTime() > 1500){
-        h.setInv(false);
-      }
-      if(mon.numFalls >= 5){
-          mon.falling = false;
-          attack = 0;
-          ENEMY_SCREEN = false;
-          enPress = false; 
-          count = 0; 
-          mon.currentSentence = " "; 
-      }
     }
     if (!ENEMY_SCREEN) {
       rounds += 1; 
@@ -1272,7 +1168,15 @@ void keyPressed() {
     if (FIGHT_SCREEN) {
       TEXT_SCREEN = true; 
       FIGHT_SCREEN = false; 
-      if (which == 1) {
+      if (which == 2) {
+        t.damaged(p.getAT());
+        t.countdown = 3; 
+        if (t.getHP() <= 0) {
+          t.HP = 0; 
+          t.dead = true; 
+        }
+      }
+      else if (which == 1) {
         b.damaged(p.getAT());
         b.countdown = 3; 
         if (b.getHP() <= 0) {
@@ -1280,14 +1184,6 @@ void keyPressed() {
           b.dead = true; 
         }
       }
-      else if (which == 2) {
-        t.damaged(p.getAT());
-        t.countdown = 3; 
-        if (t.getHP() <= 0) {
-          t.HP = 0; 
-          t.dead = true; 
-        }
-      }      
       else if (which == 3) {
         j.damaged(p.getAT());
         j.countdown = 3; 
@@ -1320,26 +1216,12 @@ void keyPressed() {
           bb.dead = true; 
         }
       }
-      else if (which == 7) {
-        mk.damaged(p.getAT() - mk.getDEF()); 
-        mk.countdown = 400; 
-        if (mk.getHP() <= 0) {
-          mk.HP = 0; 
-          mk.dead = true;
-        }
-        else if (mk.getHP() >= 6 && mk.getHP() < 12) {
-          mk.cycle = 2;
-        }
-        else if (mk.getHP() < 6) {
-          mk.cycle = 3; 
-        }
-      }
     }
     else if (TEXT_SCREEN) {
       if (n > 1 && COMBAT) {
         n = tex.length(); 
       }
-      if (n == 1 && ((which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead) || (which == 4 && f.dead) || (which == 5 && k.dead) || (which == 6 && bb.dead))) {
+      if (n == 1 && (which == 1 && b.dead) || (which == 2 && t.dead) || (which == 3 && j.dead) || (which == 4 && f.dead) || (which == 5 && k.dead) || (which == 6 && bb.dead)) {
         loop(); 
         notLoop = false; 
         background(0); 
@@ -1350,7 +1232,7 @@ void keyPressed() {
         p.ySpeed = ourDisplayY / 90;
         p.noDisplay = false; 
        } 
-      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead) || !(which == 3 && j.dead) || !(which == 4 && f.dead) || !(which == 5 && k.dead) || !(which == 6 && bb.dead)) && COMBAT) { 
+      else if (n == 1 && (!(which == 1 && b.dead) || !(which == 2 && t.dead) || !(which == 3 && j.dead) || !(which == 4 && f.dead) || !(which == 5 && k.dead) || !(which == 6 && bb.dead)) && COMBAT) { 
         TEXT_SCREEN = false;
         SPEECH_SCREEN = true; 
         ENEMY_SCREEN = true; 
