@@ -112,21 +112,21 @@ class MonKing extends Boss{
               displayCount = 0; 
               monkey = monk1; 
             }
-            image(monkey,W/2.35,H/8.5);
+            image(monkey,W/2.45,H/9.99);
             displayCount += 1;
         }
         else if (cycle == 2) {
           if (setCount == 0) {
-            monk1 = loadImage("(2)MonKing.png"); 
-            monk1.resize((int)(monk1.width / 5), (int)(monk1.height / 5));                       
+            monk1 = loadImage("(2)MonKing1.png"); 
+            monk1.resize((int)(monk1.width*0.66), (int)(monk1.height*0.66));                       
             monk2 = loadImage("(2)MonKing2.png");
-            monk2.resize((int)(monk2.width / 5), (int)(monk2.height / 5));                       
+            monk2.resize((int)(monk2.width * 0.66), (int)(monk2.height * 0.66));                       
             monk3 = loadImage("(2)MonKing3.png");
-            monk3.resize((int)(monk3.width / 5), (int)(monk3.height / 5));           
+            monk3.resize((int)(monk3.width * 0.66), (int)(monk3.height * 0.66));           
             monk4 = loadImage("(2)MonKing4.png"); 
-            monk4.resize((int)(monk4.width / 5), (int)(monk4.height / 5));           
+            monk4.resize((int)(monk4.width * 0.66), (int)(monk4.height * 0.66));           
             monkHurt = loadImage("(2)MonKing5.png"); 
-            monkHurt.resize((int)(monkHurt.width / 5), (int)(monkHurt.height / 5));           
+            monkHurt.resize((int)(monkHurt.width * 0.66), (int)(monkHurt.height * 0.66));           
             monkey = monk1;           
             setCount += 1; 
           }
@@ -146,21 +146,21 @@ class MonKing extends Boss{
               displayCount = 0; 
               monkey = monk1; 
             }
-            image(monkey, 500, 35);
+            image(monkey, W/2.45,H/9.99);
             displayCount += 1;          
           }
            else if (cycle == 3) {
           if (setCount == 0) {
-            monk1 = loadImage("(3)MonKing.png"); 
-            monk1.resize((int)(monk1.width / 5), (int)(monk1.height / 5));                       
+            monk1 = loadImage("(3)MonKing1.png"); 
+            monk1.resize((int)(monk1.width * 0.66), (int)(monk1.height * 0.66));                       
             monk2 = loadImage("(3)MonKing2.png");
-            monk2.resize((int)(monk2.width / 5), (int)(monk2.height / 5));                       
+            monk2.resize((int)(monk2.width * 0.66), (int)(monk2.height * 0.66));                       
             monk3 = loadImage("(3)MonKing3.png");
-            monk3.resize((int)(monk3.width / 5), (int)(monk3.height / 5));           
+            monk3.resize((int)(monk3.width * 0.66), (int)(monk3.height * 0.66));           
             monk4 = loadImage("(3)MonKing4.png"); 
-            monk4.resize((int)(monk4.width / 5), (int)(monk4.height / 5));           
+            monk4.resize((int)(monk4.width * 0.66), (int)(monk4.height * 0.66));           
             monkHurt = loadImage("(3)MonKing5.png"); 
-            monkHurt.resize((int)(monkHurt.width / 5), (int)(monkHurt.height / 5));           
+            monkHurt.resize((int)(monkHurt.width * 0.66), (int)(monkHurt.height * 0.66));           
             monkey = monk1;           
             setCount += 1; 
           }
@@ -180,7 +180,7 @@ class MonKing extends Boss{
               displayCount = 0; 
               monkey = monk1; 
             }
-            image(monkey, 500, 35);
+            image(monkey, W/2.45,H/9.99);
             displayCount += 1;          
           }
         }
