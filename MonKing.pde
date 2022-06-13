@@ -32,9 +32,9 @@ class MonKing extends Boss{
     setGold((int)(Math.random() * 8) + 10); 
     String[] aO = {"placeholder"}; 
     setAO(aO); 
-    String[] d = {"The game is afoot", "Intriguing", "Aha! It was you!"};
+    String[] d = {"You murdered my people!", "You will pay in blood!", "Poor Teddy Jr...", "You haven't even seen my form!"};
     setDialogue(d); 
-    String[] u = {"Birdlock Holmes studies you", "Birdlock pulls out a magnifying glass", "Birdlock has cracked the case"};
+    String[] u = {"The MonKing stands defiantly", "The MonKing grieves his people", "The MonKing makes his final stand", "The MonKing readies an attack"};
     setUpdate(u); 
     //setHawk(new Pellet("Hawkson1.png", ourDisplayX/30.476, ourDisplayY/15.652, ourDisplayX/2.7, ourDisplayY/2.7, 6)); 
     //setSmokeGlass(new Pellet("smoke1.png", false)); 

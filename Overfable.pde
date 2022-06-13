@@ -54,7 +54,7 @@ color cSec;
 
 void setup() { 
   size(1400, 800); 
-  COMBAT = true; 
+  COMBAT = false; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(ourDisplayX, ourDisplayY);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
@@ -161,14 +161,14 @@ void draw() {
     fightSetup();
     if (h.dead) {
       fightDead();
-    }
+    } //<>//
     else if (ITEM_SCREEN) { 
       fightItem();
     }
     else if (FIGHT_SCREEN) { 
       fightFight();
     } //<>//
-    else if (TEXT_SCREEN) {
+    else if (TEXT_SCREEN) { //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightText(mk);
       }
@@ -178,8 +178,8 @@ void draw() {
       else if(which == 2){
         fightText(t);
       }
-      else if(which == 3){
-        fightText(j);
+      else if(which == 3){ //<>//
+        fightText(j); //<>//
       }
       else if(which == 4){
         fightText(f);
@@ -188,8 +188,8 @@ void draw() {
         fightText(k); //<>//
       }
       else if(which == 6){
-        fightText(bb);
-      }
+        fightText(bb); //<>//
+      } //<>//
     }
     else if (ENEMY_SCREEN) {
       stroke(255); 
