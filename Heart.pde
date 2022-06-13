@@ -303,10 +303,10 @@ public class Heart {
         hitTime = millis(); 
       }
     }
-    strokeWeight(5);
-    stroke(255);
-    noFill();
-    rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
+    //strokeWeight(5);
+    //stroke(255);
+    //noFill();
+    //rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
   }
   
   
@@ -341,10 +341,10 @@ public class Heart {
           hitTime = millis(); 
       }
     }
-    strokeWeight(5);
-    stroke(255);
-    noFill();
-    rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
+    //strokeWeight(5);
+    //stroke(255);
+    //noFill();
+    //rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
   }
   
   void damaged(float leftEdgeD, float rightEdgeD, float lowerEdgeD, float upperEdgeD){
@@ -358,10 +358,10 @@ public class Heart {
       inv = true;
       hitTime = millis(); 
     }
-    strokeWeight(5);
-    stroke(255);
-    noFill();
-    rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
+    //strokeWeight(5);
+    //stroke(255);
+    //noFill();
+    //rect(leftEdgeD, upperEdgeD, rightEdgeD - leftEdgeD, lowerEdgeD - upperEdgeD);
   }
   
   int getHitTime(){

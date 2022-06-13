@@ -1,4 +1,4 @@
-PImage entranceScene, cliffEntranceScene, forestScene, forestScrollScene, snowyScene, snowyScrollScene, prim, secon;
+PImage entranceScene, cliffEntranceScene, forestScene, forestScrollScene, snowyScene, snowyScrollScene, finalCaveEntranceScene, caveEntranceScene, caveEntrance2Scene, caveEntrance3Scene, bridgeScene, prim, secon;
 PImage TeddyJr; 
 Heart h, item;
 Monster m;
@@ -27,6 +27,7 @@ int attack = 0;
 int rounds = 0; 
 int n = 1; 
 int stagger = 5;
+int imgStagger = 10; 
 int ourDisplayX = 1400;
 int ourDisplayY = 800; 
 int LimgShift = (int)(-1 * (ourDisplayX/71.111)); 
@@ -68,6 +69,15 @@ void setup() {
   snowyScrollScene.resize(ourDisplayX, ourDisplayY); 
   cliffEntranceScene = loadImage("pixil-frame-3.png");
   cliffEntranceScene.resize(ourDisplayX, ourDisplayY); 
+  caveEntranceScene = loadImage("CaveScene1.png"); 
+  caveEntranceScene.resize(ourDisplayX, ourDisplayY*2);
+  caveEntrance2Scene = loadImage("CaveScene2.png");
+  caveEntrance2Scene.resize(ourDisplayX, ourDisplayY*2);
+  caveEntrance3Scene = loadImage("CaveScene3.png");
+  caveEntrance3Scene.resize(ourDisplayX, ourDisplayY*2);
+  finalCaveEntranceScene = caveEntranceScene;
+  bridgeScene = loadImage("bridgeScene.png");
+  bridgeScene.resize(ourDisplayX, ourDisplayY);
   s = new Screen("entrance", 15); 
   h = new Heart(ourDisplayX / 2.13, ourDisplayY / 1.714);
   TeddyJr = loadImage("TeddyJr.png");
@@ -96,8 +106,33 @@ void draw() {
   int H = ourDisplayY;
   if (COMBAT) {
     if (which == 0) {
-      which = (int)(Math.random() * 7) + 1;
-      which = 7; 
+      if (!s.getScene().equals("caveEntrance") && !s.getScene().equals("bridge") && !s.getScene().equals("cliffEntrance")) {
+        int temp = (int)(Math.random() * 3) + 1;
+        if (temp == 1) {
+          which = 1;
+        }
+        else if (temp == 2) {
+          which = 4;  
+        }
+        else if (temp == 3) {
+          which = 5;
+        }
+      }
+      else if (s.getScene().equals("caveEntrance") || s.getScene().equals("bridge") && !s.getScene().equals("cliffEntrance")) {
+        int temp = (int)(Math.random() * 3) + 1;
+        if (temp == 1) {
+          which = 2;
+        }
+        else if (temp == 2) {
+          which = 3;
+        }
+        else if (temp == 3) {
+          which = 6;
+        }
+      }
+      else if (s.getScene().equals("cliffEntrance")) {
+        which = 7;
+      }
       if (which == 1) {
         b = new Teddy(); 
       }
@@ -132,7 +167,7 @@ void draw() {
     }
     else if (FIGHT_SCREEN) { 
       fightFight();
-    }
+    } //<>//
     else if (TEXT_SCREEN) {
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightText(mk);
@@ -149,8 +184,8 @@ void draw() {
       else if(which == 4){
         fightText(f);
       }
-      else if(which == 5){
-        fightText(k);
+      else if(which == 5){ //<>//
+        fightText(k); //<>//
       }
       else if(which == 6){
         fightText(bb);
@@ -159,15 +194,15 @@ void draw() {
     else if (ENEMY_SCREEN) {
       stroke(255); 
       strokeWeight(20); 
-      noFill(); 
-      rect(W/3.36, H/2.4, W/2.46, H/2.57);
+      noFill();  //<>//
+      rect(W/3.36, H/2.4, W/2.46, H/2.57); //<>//
       h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>// //<>// //<>// //<>// //<>// //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightEnemyMonKing(mk);  
       }
       else if(which == 1){
         fightEnemyTeddy(b);
-      } //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+      } //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       else if(which == 2){ //<>// //<>// //<>// //<>// //<>// //<>//
         fightEnemyBirdLock(t);
       }
@@ -184,8 +219,8 @@ void draw() {
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>// //<>// //<>// //<>// //<>// //<>//
-      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>// //<>// //<>//
+    else{ //<>// //<>// //<>// //<>// //<>//
+      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>// //<>//
         fightElse(mk); 
       }
       else if(which == 1){ //<>// //<>// //<>// //<>// //<>// //<>//
@@ -194,8 +229,8 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){  //<>// //<>// //<>// //<>// //<>// //<>//
-        fightElse(j);  //<>// //<>// //<>// //<>// //<>// //<>//
+      else if(which == 3){  //<>// //<>// //<>// //<>// //<>//
+        fightElse(j);  //<>// //<>// //<>// //<>// //<>//
       }
       else if(which == 4){
         fightElse(f);
@@ -258,7 +293,7 @@ void draw() {
       p.display(); 
     }
     else { 
-      if (s.getScene().equals("entrance") || s.getScene().equals("cliffEntrance")) {
+      if (s.getScene().equals("entrance") || s.getScene().equals("cliffEntrance") || s.getScene().equals("caveEntrance") || s.getScene().equals("bridge")) {
         if (p.x >= W - W/160) {
           p.xSpeed = 0; 
           p.ySpeed = 0; 
@@ -270,11 +305,21 @@ void draw() {
               p.x = W/3.5; 
               p.y = H/1.5;
             }
-            else {
-              s = new Screen("cliff", 15);
+            else if (s.getScene().equals("caveEntrance")) {
+              s = new Screen("bridge", 15);
               p.x = W/3.5; 
               p.y = H/1.895; 
-            } 
+            }
+            else if (s.getScene().equals("bridge")) {
+              s = new Screen("cliffEntrance", 15);
+              p.x = W/3.5; 
+              p.y = H/1.895;
+            }
+            else {
+              s = new Screen("cliff", 15);
+              p.x = W/3.5;
+              p.y = H/1.895;
+            }
             p.xSpeed = 4;
             p.ySpeed = 4; 
           }
@@ -286,6 +331,25 @@ void draw() {
           }
           else if (s.getScene().equals("cliffEntrance")) {
             image(cliffEntranceScene, 0, 0); 
+          }
+          else if (s.getScene().equals("caveEntrance")) {
+            image(finalCaveEntranceScene, 0, 0);  
+            if (finalCaveEntranceScene == caveEntranceScene && imgStagger <= 0) {
+              finalCaveEntranceScene = caveEntrance2Scene; 
+              imgStagger = 10; 
+            }
+            else if (finalCaveEntranceScene == caveEntrance2Scene && imgStagger <= 0) {
+              finalCaveEntranceScene = caveEntrance3Scene;  
+              imgStagger = 10; 
+            }
+            else if (finalCaveEntranceScene == caveEntrance3Scene && imgStagger <= 0) {
+              finalCaveEntranceScene = caveEntranceScene;
+              imgStagger = 10;
+            }
+            imgStagger -= 1; 
+          }
+          else if (s.getScene().equals("bridge")) {
+            image(bridgeScene, 0, 0);
           }
           p.display();
           p.move(); 
@@ -315,7 +379,7 @@ void draw() {
               }
               else {
                 if (s.nextScreenTime <= 0) {
-                  s = new Screen("cliffEntrance", 15);
+                  s = new Screen("caveEntrance", 15);
                   p.x = W/3.5; 
                   p.y = H/1.5; 
                 }
