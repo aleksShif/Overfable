@@ -24,6 +24,7 @@ class MonKing extends Boss{
   float X = ourDisplayX/2.35;
   float Y = 0;
   int numFalls = 0;
+  int monAttack = 0; 
   //rect(W/3.36, H/2.4, W/2.46, H/2.57);
   public MonKing(){
     super("Monking", 18, 3, 3, 5, 15, false, new String[5], new String[3], new String[3], new ArrayList<Pellet>()); 

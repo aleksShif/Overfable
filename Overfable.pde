@@ -167,7 +167,7 @@ void draw() {
       }
       else if(which == 1){
         fightEnemyTeddy(b);
-      } //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+      } //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       else if(which == 2){ //<>// //<>// //<>// //<>// //<>// //<>//
         fightEnemyBirdLock(t);
       }
@@ -184,8 +184,8 @@ void draw() {
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>// //<>// //<>// //<>//
-      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>//
+    else{ //<>// //<>// //<>// //<>// //<>//
+      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>// //<>//
         fightElse(mk); 
       }
       else if(which == 1){ //<>// //<>// //<>// //<>// //<>// //<>//
@@ -194,8 +194,8 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){  //<>// //<>// //<>// //<>//
-        fightElse(j);  //<>// //<>// //<>// //<>//
+      else if(which == 3){  //<>// //<>// //<>// //<>// //<>//
+        fightElse(j);  //<>// //<>// //<>// //<>// //<>//
       }
       else if(which == 4){
         fightElse(f);
@@ -959,20 +959,15 @@ void fightEnemyMonKing(MonKing mon) {
   else if (!SPEECH_SCREEN) {
     if (attack == 0) {
       if (mk.cycle == 1) {
-        attack = (int)(Math.random() * 2) + 1;
-        if(mk.HP <= 9){
-          mk.cycle++;
-        }
+        attack = mon.monAttack; 
       }
       else if (mk.cycle == 2) {
-        attack = (int)(Math.random() * 2) + 3;
-        if(mk.HP <= 3){
-          mk.cycle++;
-        }
+        attack = mon.monAttack; 
       }
       else if (mk.cycle == 3) {
         attack = 5;
       }
+      mon.monAttack += 1;       
     }
     if (attack == 1) {
       mon.attack1();
@@ -1343,7 +1338,8 @@ void keyPressed() {
           mk.cycle = 2;
         }
         else if (mk.getHP() < 6) {
-          mk.cycle = 3; 
+          mk.cycle = 3;
+          mk.setCount = 0;
         }
       }
     }
