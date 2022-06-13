@@ -167,7 +167,7 @@ void draw() {
       }
       else if(which == 1){
         fightEnemyTeddy(b);
-      } //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+      } //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       else if(which == 2){ //<>// //<>// //<>// //<>// //<>// //<>//
         fightEnemyBirdLock(t);
       }
@@ -184,8 +184,8 @@ void draw() {
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>// //<>// //<>// //<>// //<>//
-      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>// //<>//
+    else{ //<>// //<>// //<>// //<>// //<>// //<>//
+      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>// //<>// //<>//
         fightElse(mk); 
       }
       else if(which == 1){ //<>// //<>// //<>// //<>// //<>// //<>//
@@ -194,8 +194,8 @@ void draw() {
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){  //<>// //<>// //<>// //<>// //<>//
-        fightElse(j);  //<>// //<>// //<>// //<>// //<>//
+      else if(which == 3){  //<>// //<>// //<>// //<>// //<>// //<>//
+        fightElse(j);  //<>// //<>// //<>// //<>// //<>// //<>//
       }
       else if(which == 4){
         fightElse(f);
@@ -1238,6 +1238,9 @@ void keyPressed() {
     else if (which == 6) {
       bb.dead = true; 
     }
+    else if (which == 7) {
+      mk.dead = true;
+    }
   }
   if (keyCode == 87 && !h.dead) {
     //keyHeld = true; 
@@ -1329,7 +1332,7 @@ void keyPressed() {
       }
       else if (which == 7) {
         mk.damaged(p.getAT() - mk.getDEF()); 
-        mk.countdown = 400; 
+        mk.countdown = 3; 
         if (mk.getHP() <= 0) {
           mk.HP = 0; 
           mk.dead = true;
@@ -1347,7 +1350,7 @@ void keyPressed() {
       if (n > 1 && COMBAT) {
         n = tex.length(); 
       }
-      if (n == 1 && ((which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead) || (which == 4 && f.dead) || (which == 5 && k.dead) || (which == 6 && bb.dead))) {
+      if (n == 1 && ((which == 2 && t.dead) || (which == 1 && b.dead) || (which == 3 && j.dead) || (which == 4 && f.dead) || (which == 5 && k.dead) || (which == 6 && bb.dead) || (which == 7 && mk.dead))) {
         loop(); 
         notLoop = false; 
         background(0); 
@@ -1358,7 +1361,7 @@ void keyPressed() {
         p.ySpeed = ourDisplayY / 90;
         p.noDisplay = false; 
        } 
-      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead) || !(which == 3 && j.dead) || !(which == 4 && f.dead) || !(which == 5 && k.dead) || !(which == 6 && bb.dead)) && COMBAT) { 
+      else if (n == 1 && (!(which == 2 && t.dead) || !(which == 1 && b.dead) || !(which == 3 && j.dead) || !(which == 4 && f.dead) || !(which == 5 && k.dead) || !(which == 6 && bb.dead) || !(which == 7 && mk.dead) && COMBAT)) { 
         TEXT_SCREEN = false;
         SPEECH_SCREEN = true; 
         ENEMY_SCREEN = true; 
@@ -1377,6 +1380,9 @@ void keyPressed() {
         }
         else if (which == 6){
           bb.countdown = 400;
+        }
+        else if (which == 7) {
+          mk.countdown = 400;
         }
         loop();
         notLoop = false; 
@@ -1407,6 +1413,10 @@ void keyPressed() {
         else if (which == 6) {
           n = bb.currentSentence.length(); 
           bb.countdown = 400;
+        }
+        else if (which == 7) {
+          n = mk.currentSentence.length();
+          mk.countdown = 400; 
         }
       }
     }
