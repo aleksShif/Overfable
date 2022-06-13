@@ -3,19 +3,19 @@ class MonKing extends Boss{
   PImage monk1, monk2, monk3, monk4, monkHurt, monkDead;
   int countdown; 
   int displayCount = 0; 
-  int setCount = 0; 
+  int setCount = 0;   
   float L1y = ourDisplayY/2.4 - 50;
   float L2y = L1y + 90;
   float L3y = L1y + 180;
-  float R1y = L1y;
-  float R2y = L2y;
-  float R3y = L3y;
   float L1Y = ourDisplayY/2.4 - 50;
-  float L2Y = L1y + 90;
-  float L3Y = L1y + 180;
-  float R1Y = L1y;
-  float R2Y = L2y;
-  float R3Y = L3y;
+  float L2Y = L1Y + 90;
+  float L3Y = L1Y + 180;  
+  float R1y = L1Y;
+  float R2y = L2Y;
+  float R3y = L3Y;
+  float R1Y = L1Y;
+  float R2Y = L2Y;
+  float R3Y = L3Y;
   float Lx = ourDisplayX/3.36;
   float Rx = ourDisplayX/3.36 + ourDisplayX/2.46 - 225;
   float LX = ourDisplayX/3.36;
@@ -41,11 +41,11 @@ class MonKing extends Boss{
     setCycle(1);
     countdown = 400;  
     setBranch1(new Pellet("BranchL1.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
-    setBranch2(new Pellet("CutlassDown.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
-    setBranch3(new Pellet("CutlassLeft.png", 60, 20, X, Y, 3)); //file, hbx, hby, x, y
-    setBranch4(new Pellet("CutlassRight.png", 60, 20, X, Y, 3)); //file, hbx, hby, x, y
-    setBranch5(new Pellet("CutlassUpleft.png", 45, 45, X, Y, 3)); //file, hbx, hby, x, y
-    setBranch6(new Pellet("CutlassUpright.png", 45, 45, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch2(new Pellet("BranchL2.png", 20, 60, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch3(new Pellet("BranchL3.png", 60, 20, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch4(new Pellet("BranchR1.png", 60, 20, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch5(new Pellet("BranchR2.png", 45, 45, X, Y, 3)); //file, hbx, hby, x, y
+    setBranch6(new Pellet("BranchR3.png", 45, 45, X, Y, 3)); //file, hbx, hby, x, y
     monk1 = loadImage("MonKing1.png"); 
     monk1.resize((int)(monk1.width * 3), (int)(monk1.height * 3)); 
     monk2 = loadImage("MonKing2.png");
@@ -72,10 +72,6 @@ class MonKing extends Boss{
       monkey = monkHurt;
       if (cycle == 2) {
         monkey = monkHurt;
-    PImage monkey1;
-    if(!falling){
-      if (displayCount <= 15){
-        monkey1 = loadImage("MonKing1.png");
       }
       hurtTime++;
       if(hurtTime >= 60){
@@ -97,88 +93,89 @@ class MonKing extends Boss{
         image(monkey,W/2.45,H/9.99);
       }
     }
-    else { 
-      if (cycle == 1) {
-        if (displayCount <= 15){
-            monkey = monk1;
-          }
-          else if(displayCount <= 30){
-            monkey = monk2;
-          }
-          else if(displayCount <= 45){
-            monkey = monk3;
-          }
-          else if (displayCount <= 60){
-            monkey = monk4;
-          }
-          else{
-            displayCount = 0; 
-            monkey = monk1; 
-          }
-          image(monkey,W/2.35,H/8.5);
-          displayCount += 1;
-      }
-      else if (cycle == 2) {
-        if (setCount == 0) {
-          monk1 = loadImage("(2)MonKing.png"); 
-          monk1.resize((int)(monk1.width / 5), (int)(monk1.height / 5));                       
-          monk2 = loadImage("(2)MonKing2.png");
-          monk2.resize((int)(monk2.width / 5), (int)(monk2.height / 5));                       
-          monk3 = loadImage("(2)MonKing3.png");
-          monk3.resize((int)(monk3.width / 5), (int)(monk3.height / 5));           
-          monk4 = loadImage("(2)MonKing4.png"); 
-          monk4.resize((int)(monk4.width / 5), (int)(monk4.height / 5));           
-          monkHurt = loadImage("(2)MonKing5.png"); 
-          monkHurt.resize((int)(monkHurt.width / 5), (int)(monkHurt.height / 5));           
-          monkey = monk1;           
-          setCount += 1; 
+    else {
+      if (!falling) {
+        if (cycle == 1) {
+          if (displayCount <= 15){
+              monkey = monk1;
+            }
+            else if(displayCount <= 30){
+              monkey = monk2;
+            }
+            else if(displayCount <= 45){
+              monkey = monk3;
+            }
+            else if (displayCount <= 60){
+              monkey = monk4;
+            }
+            else{
+              displayCount = 0; 
+              monkey = monk1; 
+            }
+            image(monkey,W/2.35,H/8.5);
+            displayCount += 1;
         }
-        if (displayCount <= 15){
-            monkey = monk1;            
+        else if (cycle == 2) {
+          if (setCount == 0) {
+            monk1 = loadImage("(2)MonKing.png"); 
+            monk1.resize((int)(monk1.width / 5), (int)(monk1.height / 5));                       
+            monk2 = loadImage("(2)MonKing2.png");
+            monk2.resize((int)(monk2.width / 5), (int)(monk2.height / 5));                       
+            monk3 = loadImage("(2)MonKing3.png");
+            monk3.resize((int)(monk3.width / 5), (int)(monk3.height / 5));           
+            monk4 = loadImage("(2)MonKing4.png"); 
+            monk4.resize((int)(monk4.width / 5), (int)(monk4.height / 5));           
+            monkHurt = loadImage("(2)MonKing5.png"); 
+            monkHurt.resize((int)(monkHurt.width / 5), (int)(monkHurt.height / 5));           
+            monkey = monk1;           
+            setCount += 1; 
           }
-          else if(displayCount <= 30){
-            monkey = monk2;
+          if (displayCount <= 15){
+              monkey = monk1;            
+            }
+            else if(displayCount <= 30){
+              monkey = monk2;
+            }
+            else if(displayCount <= 45){
+              monkey = monk3;
+            }
+            else if (displayCount <= 60){
+              monkey = monk4;
+            }
+            else{
+              displayCount = 0; 
+              monkey = monk1; 
+            }
+            image(monkey, 500, 35);
+            displayCount += 1;          
           }
-          else if(displayCount <= 45){
-            monkey = monk3;
-          }
-          else if (displayCount <= 60){
-            monkey = monk4;
-          }
-          else{
-            displayCount = 0; 
-            monkey = monk1; 
-          }
-          image(monkey, 500, 35);
-          displayCount += 1;          
         }
-      }
-    }
-    else{
-      if(displayCount > 20 && displayCount <= 30){
-        monkey = loadImage("MonFalling1.png");
-        monkey.resize(monkey.width * 1, monkey.height * 1);
-        image(monkey,X,Y);
-        Y += 10;
-      }
-      else if(displayCount > 30 && displayCount <= 40){
-        monkey = loadImage("MonFalling2.png");
-        monkey.resize(monkey.width * 1, monkey.height * 1);
-        image(monkey,X,Y);
-        Y += 10;
-      }
-      else if(displayCount > 40){
-        displayCount = 21;
-        monkey = loadImage("MonFalling1.png");
-        monkey.resize(monkey.width * 1, monkey.height * 1);
-        image(monkey,X,Y);
-        Y += 10;
-      }
-      displayCount++;
-      if(Y > ourDisplayY){
-        Y = 0;
-        X = (float)(Math.random() * (ourDisplayX/2.46-85)) + ourDisplayX/3.36;
-        numFalls++;
+      else{
+        if(displayCount > 20 && displayCount <= 30){
+          monkey = loadImage("MonFalling1.png");
+          monkey.resize(monkey.width * 1, monkey.height * 1);
+          image(monkey,X,Y);
+          Y += 10;
+        }
+        else if(displayCount > 30 && displayCount <= 40){
+          monkey = loadImage("MonFalling2.png");
+          monkey.resize(monkey.width * 1, monkey.height * 1);
+          image(monkey,X,Y);
+          Y += 10;
+        }
+        else if(displayCount > 40){
+          displayCount = 21;
+          monkey = loadImage("MonFalling1.png");
+          monkey.resize(monkey.width * 1, monkey.height * 1);
+          image(monkey,X,Y);
+          Y += 10;
+        }
+        displayCount++;
+        if(Y > ourDisplayY){
+          Y = 0;
+          X = (float)(Math.random() * (ourDisplayX/2.46-85)) + ourDisplayX/3.36;
+          numFalls++;
+        }
       }
     }
   }

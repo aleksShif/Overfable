@@ -960,14 +960,14 @@ void fightEnemyMonKing(MonKing mon) {
     if (attack == 0) {
       if (mk.cycle == 1) {
         attack = (int)(Math.random() * 2) + 1;
-        attack = 2; 
+        attack = 1; 
       }
       else if (mk.cycle == 2) {
         attack = (int)(Math.random() * 2) + 3;
-        attack = 4; 
+        attack = 1; 
       }
       else if (mk.cycle == 3) {
-        attack = 5;   
+        attack = 1;   
       }
     }
     if (attack == 1) {

@@ -19,6 +19,7 @@ public class Pellet extends Damageable{
   PImage branchR2 = loadImage("BranchR2.png");
   PImage branchL3 = loadImage("BranchL3.png");
   PImage branchR3 = loadImage("BranchR3.png");
+  PImage finalBranch = branchL1; 
   //String filename;
   String side; 
   float size;
@@ -106,6 +107,26 @@ public class Pellet extends Damageable{
       hat10 = loadImage("hat10.png");
       hat10.resize((int)(hat10.width/4.5), (int)(hat10.height/4.5));    
       finalHat = hat;       
+    }
+    if (filename.equals("BranchL1.png")) {
+      finalBranch = branchL1;  
+    }
+    if (filename.equals("BranchL2.png")) {
+      branchL2.resize(branchL2.width + 70, branchL2.height); 
+      finalBranch = branchL2;  
+    }
+    if (filename.equals("BranchL3.png")) {
+      finalBranch = branchL3;  
+    }
+    if (filename.equals("BranchR1.png")) {
+      branchR1.resize(branchR1.width + 70, branchR1.height);
+      finalBranch = branchR1;  
+    }
+    if (filename.equals("BranchR2.png")) {
+      finalBranch = branchR2;  
+    }
+    if (filename.equals("BranchR3.png")) {
+      finalBranch = branchR3;   
     }
     fill(255);
   }
@@ -645,58 +666,45 @@ public class Pellet extends Damageable{
   }
   
   void displayBranch(){
-    //if(ranum == 1){
-    //  mk.Lx = mk.LX;
-    //}
-    //else{
-    //  mk.Rx = mk.RX;
-    //}
-    //ranum = (int)(Math.random() * 2) + 1;
-    //if(ranum == 1){
-    //  mk.Lx += 5;
-    //}
-    //else{
-    //  mk.Rx -= 5;
-    //}
-    if(filename == "BranchL1.png"){
+    if(finalBranch == branchL1){
       image(branchL1, mk.Lx, mk.L1y);
-      mk.L1y += 5;
+      mk.L1y += 1;
       if(mk.L1y > 550){
         mk.L1y = mk.L1Y;
       }
     }
-    else if(filename == "BranchL2.png"){
-      image(branchL1, mk.Lx, mk.L2y);
-      mk.L2y += 5;
+    else if(finalBranch == branchL2){
+      image(branchL2, mk.Lx-10, mk.L2y);
+      mk.L2y += 1;
       if(mk.L2y > 550){
         mk.L2y = mk.L1Y;
       }
     }
-    else if(filename == "BranchL3.png"){
-      image(branchL1, mk.Lx, mk.L3y);
-      mk.L3y += 5;
+    else if(finalBranch == branchL3){
+      image(branchL3, mk.Lx, mk.L3y);
+      mk.L3y += 1;
       if(mk.L3y > 550){
         mk.L3y = mk.L1Y;
       }
     }
-    else if(filename == "BranchR1.png"){
-      image(branchR1, mk.Rx, mk.R1y);
-      mk.R1y -= 5;
-      if(mk.R1y < 330){
+    else if(finalBranch == branchR1){
+      image(branchR1, mk.Rx-40, mk.R1y);
+      mk.R1y -= 1;
+      if(mk.R1y < 200){
         mk.R1y = mk.R3Y;
       }
     }
-    else if(filename == "BranchR2.png"){
+    else if(finalBranch == branchR2){
       image(branchR2, mk.Rx, mk.R2y);
-      mk.R2y -= 5;
-      if(mk.R2y < 330){
+      mk.R2y -= 1;
+      if(mk.R2y < 200){
         mk.R2y = mk.R3Y;
       }
     }
-    else if(filename == "BranchR3.png"){
+    else if(finalBranch == branchR3){
       image(branchR3, mk.Rx, mk.R3y);
-      mk.R3y -= 5;
-      if(mk.R3y < 330){
+      mk.R3y -= 1;
+      if(mk.R3y < 200){
         mk.R3y = mk.R3Y;
       }
     }
