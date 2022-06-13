@@ -353,7 +353,7 @@ public class Heart {
     float lowerEdgeH = y + hitboxY;
     float upperEdgeH = y - hitboxY;
     if (!(lowerEdgeH < upperEdgeD || lowerEdgeD < upperEdgeH || rightEdgeH < leftEdgeD || rightEdgeD < leftEdgeH) && !inv){
-      currentHP -= mk.AT;
+      currentHP -= 5;
       currentHP += p.getDF();
       inv = true;
       hitTime = millis(); 
