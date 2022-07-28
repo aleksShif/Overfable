@@ -57,7 +57,7 @@ color cSec;
 
 void setup() { 
   size(1400, 800); 
-  COMBAT = true; 
+  COMBAT = false; 
   entranceScene = loadImage("pixil-frame-1.png");
   entranceScene.resize(ourDisplayX, ourDisplayY);
   forestScene = loadImage("pixil-frame-0 (3).png"); 
@@ -81,7 +81,7 @@ void setup() {
   finalCaveEntranceScene = caveEntranceScene;
   bridgeScene = loadImage("bridgeScene.png");
   bridgeScene.resize(ourDisplayX, ourDisplayY);
-  s = new Screen("entrance", 15); 
+  s = new Screen("entrance", 15, 450, 750, 50, 1350); 
   h = new Heart(ourDisplayX / 2.13, ourDisplayY / 1.714);
   TeddyJr = loadImage("TeddyJr.png");
   TeddyJr.resize(TeddyJr.width, TeddyJr.height); 
@@ -304,22 +304,22 @@ void draw() {
           s.loading(); 
           if (s.loadTime <= 0) {
             if (s.getScene().equals("entrance")) {
-              s = new Screen("forest", 15);  
+              s = new Screen("forest", 15, 450, 750, 50, 1350);  
               p.x = W/3.5; 
               p.y = H/1.5;
             }
             else if (s.getScene().equals("caveEntrance")) {
-              s = new Screen("bridge", 15);
+              s = new Screen("bridge", 15, 450, 750, 50, 1350);
               p.x = W/3.5; 
               p.y = H/1.895; 
             }
             else if (s.getScene().equals("bridge")) {
-              s = new Screen("cliffEntrance", 15);
+              s = new Screen("cliffEntrance", 15, 450, 750, 50, 1350);
               p.x = W/3.5; 
               p.y = H/1.895;
             }
             else {
-              s = new Screen("cliff", 15);
+              s = new Screen("cliff", 15, 450, 750, 0, 1350);
               p.x = W/3.5;
               p.y = H/1.895;
             }
@@ -368,26 +368,26 @@ void draw() {
             if (s.loadTime <= 0) {
               if (s.getScene().equals("forest")) {
                 if (s.nextScreenTime <= 0) {
-                  s = new Screen("snowy", 15); 
+                  s = new Screen("snowy", 15, 450, 750, 50, 1350); 
                   prim = snowyScene;
                   secon = snowyScrollScene;
                   p.x = W/3.5;
                   p.y = H/1.5;
                 }
                 else if (s.prevScreenTime <= 0) {
-                  s = new Screen("entrance", 15);
+                  s = new Screen("entrance", 15, 450, 750, 50, 1350);
                   p.x = 1200; 
                   p.y = H/1.5; 
                 }
               }
               else {
                 if (s.nextScreenTime <= 0) {
-                  s = new Screen("caveEntrance", 15);
+                  s = new Screen("caveEntrance", 15, 450, 750, 50, 1350);
                   p.x = W/3.5; 
                   p.y = H/1.5; 
                 }
                 else if (s.prevScreenTime <= 0) {
-                  s = new Screen("forest", 15);
+                  s = new Screen("forest", 15, 450, 750, 50, 1350);
                   prim = forestScene; 
                   secon = forestScrollScene; 
                   p.x = 1200;
@@ -434,7 +434,7 @@ void draw() {
                }  
               if (justRight) {        
                 image(prim, RimgShift, 0); 
-                image(secon, RimgShift-W+(W/64), 0);
+                  image(secon, RimgShift-W+(W/64), 0);
                }
               p.move(); 
               p.display(); 
