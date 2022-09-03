@@ -81,7 +81,7 @@ void setup() {
   finalCaveEntranceScene = caveEntranceScene;
   bridgeScene = loadImage("bridgeScene.png");
   bridgeScene.resize(ourDisplayX, ourDisplayY);
-  s = new Screen("entrance", 15, 450, 750, 50, 1350); 
+  s = new Screen("entrance", 15, 450, 700, 50, 1350); 
   h = new Heart(ourDisplayX / 2.13, ourDisplayY / 1.714);
   TeddyJr = loadImage("TeddyJr.png");
   TeddyJr.resize(TeddyJr.width, TeddyJr.height); 
@@ -170,7 +170,7 @@ void draw() {
     }
     else if (FIGHT_SCREEN) { 
       fightFight();
-    } //<>//
+    } //<>// //<>//
     else if (TEXT_SCREEN) { //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightText(mk);
@@ -187,8 +187,8 @@ void draw() {
       else if(which == 4){
         fightText(f);
       }
-      else if(which == 5){ //<>//
-        fightText(k); //<>//
+      else if(which == 5){ //<>// //<>//
+        fightText(k); //<>// //<>//
       }
       else if(which == 6){
         fightText(bb); //<>//
@@ -197,43 +197,43 @@ void draw() {
     else if (ENEMY_SCREEN) {
       stroke(255); 
       strokeWeight(20); 
-      noFill();  //<>//
-      rect(W/3.36, H/2.4, W/2.46, H/2.57); //<>//
-      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);    //<>//
+      noFill();  //<>// //<>//
+      rect(W/3.36, H/2.4, W/2.46, H/2.57); //<>// //<>//
+      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);    //<>// //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightEnemyMonKing(mk);  
       }
       else if(which == 1){
         fightEnemyTeddy(b); 
-      }  //<>//
-      else if(which == 2){ //<>//
+      }  //<>// //<>//
+      else if(which == 2){ //<>// //<>//
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
          fightEnemyJaws(j);
       }
-      else if(which == 4){ //<>//
+      else if(which == 4){ //<>// //<>//
         fightEnemyJFK(f);
       }
       else if(which == 5){
-        fightEnemySnake(k); //<>// //<>// //<>// //<>// //<>// //<>//
-      } //<>// //<>// //<>// //<>// //<>// //<>//
+        fightEnemySnake(k); //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+      } //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       else if(which == 6){
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>// //<>// //<>// //<>// //<>//
-      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>// //<>//
+    else{ //<>// //<>// //<>// //<>// //<>// //<>//
+      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>// //<>// //<>//
         fightElse(mk); 
       }
-      else if(which == 1){ //<>// //<>// //<>// //<>// //<>// //<>//
-        fightElse(b); //<>// //<>// //<>// //<>// //<>// //<>//
+      else if(which == 1){ //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+        fightElse(b); //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       }
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){  //<>// //<>// //<>// //<>// //<>//
-        fightElse(j);  //<>// //<>// //<>// //<>// //<>//
+      else if(which == 3){  //<>// //<>// //<>// //<>// //<>// //<>//
+        fightElse(j);  //<>// //<>// //<>// //<>// //<>// //<>//
       }
       else if(which == 4){
         fightElse(f);
@@ -304,7 +304,7 @@ void draw() {
           s.loading(); 
           if (s.loadTime <= 0) {
             if (s.getScene().equals("entrance")) {
-              s = new Screen("forest", 15, 450, 750, 50, 1350);  
+              s = new Screen("forest", 15, 450, 700, 50, 1250);  
               p.x = W/3.5; 
               p.y = H/1.5;
             }
@@ -368,14 +368,14 @@ void draw() {
             if (s.loadTime <= 0) {
               if (s.getScene().equals("forest")) {
                 if (s.nextScreenTime <= 0) {
-                  s = new Screen("snowy", 15, 450, 750, 50, 1350); 
+                  s = new Screen("snowy", 15, 420, 570, 50, 1250); 
                   prim = snowyScene;
                   secon = snowyScrollScene;
                   p.x = W/3.5;
                   p.y = H/1.5;
                 }
                 else if (s.prevScreenTime <= 0) {
-                  s = new Screen("entrance", 15, 450, 750, 50, 1350);
+                  s = new Screen("entrance", 15, 450, 700, 50, 1350);
                   p.x = 1200; 
                   p.y = H/1.5; 
                 }
@@ -387,7 +387,7 @@ void draw() {
                   p.y = H/1.5; 
                 }
                 else if (s.prevScreenTime <= 0) {
-                  s = new Screen("forest", 15, 450, 750, 50, 1350);
+                  s = new Screen("forest", 15, 450, 700, 50, 1250);
                   prim = forestScene; 
                   secon = forestScrollScene; 
                   p.x = 1200;
@@ -444,6 +444,12 @@ void draw() {
               if (Left && !Right) {
                 s.nextScreenTime -= 1; 
                 s.prevScreenTime += 1; 
+                if (s.prevScreenTime > 1) {
+                  s.lBDisable = false;  
+                }
+                if (s.nextScreenTime <= 1) {
+                  s.rBDisable = true;   
+                }
                 //if (p.walking && !Left) {
                 //  s.screenTime -= 1;
                 //}
@@ -465,7 +471,13 @@ void draw() {
                }
                else if (Right && !Left) { 
                  s.nextScreenTime += 1; 
-                 s.prevScreenTime -= 1; 
+                 s.prevScreenTime -= 1;
+                 if (s.prevScreenTime <= 1) {
+                   s.lBDisable = true;  
+                 }
+                 if (s.nextScreenTime > 1) {
+                   s.rBDisable = false;   
+                 }
                  justLeft = false; 
                  if (Up || Down) {          
                    p.move(); 

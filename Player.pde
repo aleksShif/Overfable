@@ -171,7 +171,7 @@ public class Player{
         ySpeed = 0;
       }
       y -= ySpeed;
-      walking =   true;
+      walking = true;
     }
     if (Down) {
       if (temp == 'd') {
