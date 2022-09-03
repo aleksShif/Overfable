@@ -43,13 +43,13 @@ public class Screen {
       if (temp[1] > upBorder && temp[1] < downBorder) {
         return 'a';  
       }
-      if (temp[1] <= upBorder) {
-        return 'u';
-      }
-      if (temp[1] >= downBorder) {
-        return 'd';
-      }
     }
+    if (temp[1] <= upBorder) {
+      return 'u';
+    }
+    if (temp[1] >= downBorder) {
+      return 'd';
+     }
     if (!lBDisable && temp[0] >= leftBorder) {
       return 'l';
     }
