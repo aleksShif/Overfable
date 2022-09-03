@@ -4,13 +4,16 @@ public class Screen {
   int prevScreenTime; 
   float upBorder, downBorder, leftBorder, rightBorder; 
   String scene; 
-  boolean rBDisable, lBDisable = false; 
+  boolean rBDisable = true;
+  boolean lBDisable = false; 
   
   Screen(String sce, int lT, float uB, float dB, float lB, float rB) {
     scene = sce; 
     if (sce.equals("forest") || sce.equals("snowy")) {
       nextScreenTime = 320;
       prevScreenTime = 1; 
+      rBDisable = false; 
+      lBDisable = true; 
     }
     loadTime = lT;
     upBorder = uB;
@@ -47,7 +50,7 @@ public class Screen {
         return 'd';
       }
     }
-    if (!lBDisable && temp[0] <= leftBorder) {
+    if (!lBDisable && temp[0] >= leftBorder) {
       return 'l';
     }
     //if (!rBDisable && temp[0] >= rightBorder) {

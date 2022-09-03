@@ -40,11 +40,8 @@ boolean notLoop = false;
 boolean keyHeld; 
 boolean Up,Down,Right,Left;
 boolean arrowPress = false; 
-boolean fightPress = false;
-boolean itemPress = false; 
 boolean enPress = false;
 boolean switchItem = false;
-boolean justFin = false; 
 boolean COMBAT = false; 
 boolean ITEM_SCREEN = false; 
 boolean FIGHT_SCREEN = false; 
@@ -81,7 +78,7 @@ void setup() {
   finalCaveEntranceScene = caveEntranceScene;
   bridgeScene = loadImage("bridgeScene.png");
   bridgeScene.resize(ourDisplayX, ourDisplayY);
-  s = new Screen("entrance", 15, 450, 700, 50, 1350); 
+  s = new Screen("entrance", 15); 
   h = new Heart(ourDisplayX / 2.13, ourDisplayY / 1.714);
   TeddyJr = loadImage("TeddyJr.png");
   TeddyJr.resize(TeddyJr.width, TeddyJr.height); 
@@ -135,7 +132,7 @@ void draw() {
       }
       else if (s.getScene().equals("cliffEntrance")) {
         which = 7;
-      } 
+      }
       if (which == 1) {
         b = new Teddy(); 
       }
@@ -170,7 +167,7 @@ void draw() {
     }
     else if (FIGHT_SCREEN) { 
       fightFight();
-    } //<>// //<>//
+    } //<>//
     else if (TEXT_SCREEN) { //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightText(mk);
@@ -187,8 +184,8 @@ void draw() {
       else if(which == 4){
         fightText(f);
       }
-      else if(which == 5){ //<>// //<>//
-        fightText(k); //<>// //<>//
+      else if(which == 5){ //<>//
+        fightText(k); //<>//
       }
       else if(which == 6){
         fightText(bb); //<>//
@@ -197,43 +194,43 @@ void draw() {
     else if (ENEMY_SCREEN) {
       stroke(255); 
       strokeWeight(20); 
-      noFill();  //<>// //<>//
-      rect(W/3.36, H/2.4, W/2.46, H/2.57); //<>// //<>//
-      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);    //<>// //<>//
+      noFill();  //<>//
+      rect(W/3.36, H/2.4, W/2.46, H/2.57); //<>//
+      h.display(h.x, h.y, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);   //<>// //<>// //<>// //<>// //<>// //<>//
       if (s.getScene().equals("cliffEntrance") || which == 7){
         fightEnemyMonKing(mk);  
       }
       else if(which == 1){
-        fightEnemyTeddy(b); 
-      }  //<>// //<>//
-      else if(which == 2){ //<>// //<>//
+        fightEnemyTeddy(b);
+      } //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+      else if(which == 2){ //<>// //<>// //<>// //<>// //<>// //<>//
         fightEnemyBirdLock(t);
       }
       else if(which == 3){
          fightEnemyJaws(j);
       }
-      else if(which == 4){ //<>// //<>//
+      else if(which == 4){ //<>//
         fightEnemyJFK(f);
       }
       else if(which == 5){
-        fightEnemySnake(k); //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-      } //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+        fightEnemySnake(k); //<>// //<>// //<>// //<>// //<>// //<>//
+      } //<>// //<>// //<>// //<>// //<>// //<>//
       else if(which == 6){
         fightEnemyBlackbeak(bb);
       }
     }
-    else{ //<>// //<>// //<>// //<>// //<>// //<>//
-      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>// //<>// //<>//
+    else{ //<>// //<>// //<>// //<>// //<>//
+      if (s.getScene().equals("cliffEntrance") || which == 7){  //<>// //<>// //<>// //<>// //<>//
         fightElse(mk); 
       }
-      else if(which == 1){ //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-        fightElse(b); //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+      else if(which == 1){ //<>// //<>// //<>// //<>// //<>// //<>//
+        fightElse(b); //<>// //<>// //<>// //<>// //<>// //<>//
       }
       else if(which == 2){
         fightElse(t);
       }
-      else if(which == 3){  //<>// //<>// //<>// //<>// //<>// //<>//
-        fightElse(j);  //<>// //<>// //<>// //<>// //<>// //<>//
+      else if(which == 3){  //<>// //<>// //<>// //<>// //<>//
+        fightElse(j);  //<>// //<>// //<>// //<>// //<>//
       }
       else if(which == 4){
         fightElse(f);
@@ -304,22 +301,22 @@ void draw() {
           s.loading(); 
           if (s.loadTime <= 0) {
             if (s.getScene().equals("entrance")) {
-              s = new Screen("forest", 15, 450, 700, 50, 1250);  
+              s = new Screen("forest", 15);  
               p.x = W/3.5; 
               p.y = H/1.5;
             }
             else if (s.getScene().equals("caveEntrance")) {
-              s = new Screen("bridge", 15, 450, 750, 50, 1350);
+              s = new Screen("bridge", 15);
               p.x = W/3.5; 
               p.y = H/1.895; 
             }
             else if (s.getScene().equals("bridge")) {
-              s = new Screen("cliffEntrance", 15, 450, 750, 50, 1350);
+              s = new Screen("cliffEntrance", 15);
               p.x = W/3.5; 
               p.y = H/1.895;
             }
             else {
-              s = new Screen("cliff", 15, 450, 750, 0, 1350);
+              s = new Screen("cliff", 15);
               p.x = W/3.5;
               p.y = H/1.895;
             }
@@ -368,26 +365,26 @@ void draw() {
             if (s.loadTime <= 0) {
               if (s.getScene().equals("forest")) {
                 if (s.nextScreenTime <= 0) {
-                  s = new Screen("snowy", 15, 420, 570, 50, 1250); 
+                  s = new Screen("snowy", 15); 
                   prim = snowyScene;
                   secon = snowyScrollScene;
                   p.x = W/3.5;
                   p.y = H/1.5;
                 }
                 else if (s.prevScreenTime <= 0) {
-                  s = new Screen("entrance", 15, 450, 700, 50, 1350);
+                  s = new Screen("entrance", 15);
                   p.x = 1200; 
                   p.y = H/1.5; 
                 }
               }
               else {
                 if (s.nextScreenTime <= 0) {
-                  s = new Screen("caveEntrance", 15, 450, 750, 50, 1350);
+                  s = new Screen("caveEntrance", 15);
                   p.x = W/3.5; 
                   p.y = H/1.5; 
                 }
                 else if (s.prevScreenTime <= 0) {
-                  s = new Screen("forest", 15, 450, 700, 50, 1250);
+                  s = new Screen("forest", 15);
                   prim = forestScene; 
                   secon = forestScrollScene; 
                   p.x = 1200;
@@ -434,7 +431,7 @@ void draw() {
                }  
               if (justRight) {        
                 image(prim, RimgShift, 0); 
-                  image(secon, RimgShift-W+(W/64), 0);
+                image(secon, RimgShift-W+(W/64), 0);
                }
               p.move(); 
               p.display(); 
@@ -444,12 +441,6 @@ void draw() {
               if (Left && !Right) {
                 s.nextScreenTime -= 1; 
                 s.prevScreenTime += 1; 
-                if (s.prevScreenTime > 1) {
-                  s.lBDisable = false;  
-                }
-                if (s.nextScreenTime <= 1) {
-                  s.rBDisable = true;   
-                }
                 //if (p.walking && !Left) {
                 //  s.screenTime -= 1;
                 //}
@@ -471,13 +462,7 @@ void draw() {
                }
                else if (Right && !Left) { 
                  s.nextScreenTime += 1; 
-                 s.prevScreenTime -= 1;
-                 if (s.prevScreenTime <= 1) {
-                   s.lBDisable = true;  
-                 }
-                 if (s.nextScreenTime > 1) {
-                   s.rBDisable = false;   
-                 }
+                 s.prevScreenTime -= 1; 
                  justLeft = false; 
                  if (Up || Down) {          
                    p.move(); 
@@ -542,12 +527,6 @@ void fightSetup(){
   fill(cSec);
   text("ITEM", W/1.46, H/1.05); 
   set(2125, 1710, #D86E1C);
-  if (justFin) {
-    arrowPress = false; 
-    cFirst = color(229, 209, 19);  
-    cSec = color(216, 110, 28); 
-    justFin = false; 
-  }
   if (arrowPress && !ITEM_SCREEN && !TEXT_SCREEN && !ENEMY_SCREEN) {
     item.display(W/1.576, H/1.111, ourDisplayX/38.4, ourDisplayY/21.6,heartMode);
   }
@@ -616,25 +595,13 @@ void fightText(Monster mon){
   textSize(H/40); 
   texSiz = H/40; 
   fill(255); 
-  if (fightPress) {
-    if (mon.dead) {
-      tex = "You killed " + mon.getName() + "! Why would you do that??? Okay killer, you gained " + mon.exp * rounds + " EXP and " + mon.gold * rounds + " GOLD. Happy?"; 
-      addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
-    }
-    else{
-      tex = "You farted on " + mon.getName() + "! It was so foul that it dealt damage! Dealt " + p.getAT() + " AT and " + mon.getName() + " now has " + mon.getHP() + " HP left."; 
-      addText(tex, W/53.333, H/2.4, W/16, W/1.063);
-    }
+  if (mon.dead) {
+    tex = "You killed " + mon.getName() + "! Why would you do that??? Okay killer, you gained " + mon.exp * rounds + " EXP and " + mon.gold * rounds + " GOLD. Happy?"; 
+    addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
   }
-  else if (itemPress) {
-    if (!switchItem) {
-      tex = "You devoured the Butterscotch Pie! You gained 5 HP"; 
-      addText(tex, W/53.333, H/2.4, W/16, W/1.063); 
-    }
-    else {
-      tex = "You greedily ate the Steak! You gained 7 HP"; 
-      addText(tex, W/53.333, H/2.4, W/16, W/1.063);
-    }
+  else{
+    tex = "You farted on " + mon.getName() + "! It was so foul that it dealt damage! Dealt " + p.getAT() + " AT and " + mon.getName() + " now has " + mon.getHP() + " HP left."; 
+    addText(tex, W/53.333, H/2.4, W/16, W/1.063);
   }
 }
 
@@ -681,7 +648,6 @@ void fightEnemyTeddy(Teddy ted){
       ted.countdown--; 
       if (ted.countdown <= 0) {
         ENEMY_SCREEN = false;
-        justFin = true; 
         ted.currentSentence = " ";
         ted.countdown = 400;
         attack = 0;  
@@ -723,7 +689,6 @@ void fightEnemyTeddy(Teddy ted){
       }
       if(count >= 5){
         ENEMY_SCREEN = false;
-        justFin = true;
         ted.currentSentence = " ";
         attack = 0; 
         count = 0;
@@ -781,7 +746,6 @@ void fightEnemyBirdLock(BirdLock bir){
               bir.setTurn(false);
               bir.resetHawk();
               ENEMY_SCREEN = false;
-              justFin = true; 
               bir.currentSentence = " "; 
               enPress = false; 
             }
@@ -803,7 +767,6 @@ void fightEnemyBirdLock(BirdLock bir){
         attack = 0; 
         bir.phase = 0; 
         ENEMY_SCREEN = false;
-        justFin = true; 
         bir.currentSentence = " ";
         enPress = false;
       }
@@ -848,7 +811,6 @@ void fightEnemyJaws(Jaws jaw){
       if(jaw.getFinFinished()){
         attack = 0;
         ENEMY_SCREEN = false;
-        justFin = true;
         enPress = false; 
         jaw.currentSentence = " "; 
         jaw.phase = 0;
@@ -873,7 +835,6 @@ void fightEnemyJaws(Jaws jaw){
       if(jaw.getWhipFinished()){
         attack = 0;
         ENEMY_SCREEN = false;
-        justFin = true; 
         enPress = false; 
         jaw.currentSentence = " "; 
         jaw.phase = 0;
@@ -929,7 +890,6 @@ void fightEnemyJFK(JFK fox) {
       f.countdown--; 
       if (f.countdown <= 0) {
         ENEMY_SCREEN = false;
-        justFin = true; 
         f.currentSentence = " ";
         f.countdown = 400;
         f.count = 0;
@@ -949,7 +909,6 @@ void fightEnemyJFK(JFK fox) {
       }
       if (f.phase >= 40) {
         ENEMY_SCREEN = false;
-        justFin = true;
         f.currentSentence = " ";
         f.count = 0;
         f.hat.count = 0; 
@@ -1001,7 +960,6 @@ void fightEnemyBlackbeak(Blackbeak bla) {
       }
       if(bla.countdown == 0){
         ENEMY_SCREEN = false;
-        justFin = true; 
         bla.currentSentence = " ";
         bla.countdown = 400;
         attack = 0;  
@@ -1031,7 +989,6 @@ void fightEnemyBlackbeak(Blackbeak bla) {
       }
       if(bla.countdown == 0){
         ENEMY_SCREEN = false;
-        justFin = true; 
         bla.currentSentence = " ";
         bla.countdown = 400;
         attack = 0;  
@@ -1099,7 +1056,6 @@ void fightEnemyMonKing(MonKing mon) {
       if(mk.countdown <= 0){
         attack = 0;
         ENEMY_SCREEN = false;
-        justFin = true;
         enPress = false; 
         mon.currentSentence = " "; 
         mk.countdown = 400;
@@ -1125,7 +1081,6 @@ void fightEnemyMonKing(MonKing mon) {
       mon.countdown--; 
       if (mon.countdown <= 0) {
         ENEMY_SCREEN = false;
-        justFin = true;
         mon.currentSentence = " ";
         mon.countdown = 400;
         attack = 0;  
@@ -1152,7 +1107,6 @@ void fightEnemyMonKing(MonKing mon) {
       if(f.phase >= 40){
         attack = 0;
         ENEMY_SCREEN = false;
-        justFin = true; 
         enPress = false; 
         j.currentSentence = " "; 
         f.currentSentence = " "; 
@@ -1198,7 +1152,6 @@ void fightEnemyMonKing(MonKing mon) {
       if(j.getFinFinished()){
         attack = 0;
         ENEMY_SCREEN = false;
-        justFin = true; 
         enPress = false; 
         count = 0; 
         b.at2 = false; 
@@ -1237,7 +1190,6 @@ void fightEnemyMonKing(MonKing mon) {
           mon.falling = false;
           attack = 0;
           ENEMY_SCREEN = false;
-          justFin = true; 
           enPress = false; 
           count = 0; 
           mon.currentSentence = " "; 
@@ -1290,7 +1242,6 @@ void fightEnemySnake(Snake sna) {
     sna.phase += 1; 
     if (k.countdown <= 0) {
       ENEMY_SCREEN = false;
-      justFin = true; 
       k.currentSentence = " ";
       k.countdown = 200;
       k.phase = 0;
@@ -1395,7 +1346,6 @@ void keyPressed() {
     if (FIGHT_SCREEN) {
       TEXT_SCREEN = true; 
       FIGHT_SCREEN = false; 
-      fightPress = true; 
       if (which == 1) {
         b.damaged(p.getAT());
         b.countdown = 3; 
@@ -1460,20 +1410,6 @@ void keyPressed() {
         }
       }
     }
-    else if (ITEM_SCREEN) {
-      TEXT_SCREEN = true; 
-      ITEM_SCREEN = false; 
-      itemPress = true; 
-      if (!switchItem) {
-        h.currentHP += 5;   
-      }
-      else {
-        h.currentHP += 7;   
-      }
-      if (h.currentHP > p.HP) {
-        h.currentHP = p.HP; 
-      }
-    }
     else if (TEXT_SCREEN) {
       if (n > 1 && COMBAT) {
         n = tex.length(); 
@@ -1493,9 +1429,6 @@ void keyPressed() {
         TEXT_SCREEN = false;
         SPEECH_SCREEN = true; 
         ENEMY_SCREEN = true; 
-        fightPress = false;
-        itemPress = false; 
-        switchItem = false; 
         if (which == 2) {
           t.countdown = 400; 
         }
