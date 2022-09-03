@@ -164,25 +164,41 @@ public class Player{
   }
   
   void move() {
+    char temp = 'a'; 
+    temp = s.inBorder(this); 
     if (Up) {
+      if (temp == 'u') {
+        ySpeed = 0;
+      }
       y -= ySpeed;
-      walking = true;
+      walking =   true;
     }
     if (Down) {
+      if (temp == 'd') {
+        ySpeed = 0;
+      }      
       y += ySpeed;
       walking = true;
     }
     if (Right) {
+      if (temp == 'r') {
+        xSpeed = 0;
+      }      
       x -= xSpeed;
       walking = true;
     }
     if (Left) {
+      if (temp == 'l') {
+        xSpeed = 0;
+      }      
       x += xSpeed;
       walking = true;  
     }
     if(!(Up || Down || Left || Right)){
       walking = false;
     }
+    xSpeed = 4;
+    ySpeed = 4; 
   }
   
   int getHP(){
