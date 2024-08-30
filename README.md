@@ -1,14 +1,10 @@
 # Overfable
-https://docs.google.com/document/d/1BndaS9E9zW7pufR5NAbLEkqlf4gSGu8N2WPT1sfg_bM/edit?usp=sharing
 
 
 INSTRUCTIONS TO MAKE GAME MORE ENJOYABLE:
 
 
-  This game (so far) contains a total of 6 super unique monsters with fairly difficult attacks. To trigger these fights, you need to walk around in the current room and it will eventually throw you into a combat interface. The second and third rooms will spawn 1 of 3 'land' animals (John Fox Kennedy, Teddy Grizzlevelt, and Parissss de Paris). Stick around to fight each of them. The fourth and fifth rooms will spawn 1 of 3 'water' animals (Captain Jack Swimmer & BlackBeak, BirdLock Holmes, and Indiana Jaws). Stick around to fight each of them. 
-  
-  
-  The sixth room will only spawn the final boss, MonKing. He has three phases, and five total attacks. GOOD LUCK!! He's super cute btw and has a revamp for each phase where he looks kinda scarier. After that, once you walk off to the right(to the end of the room), a black screen will emerge and that will unfortunately be the end of the game. 
+  This game contains a total of 6 super unique monsters with fairly difficult attacks. To trigger these fights, you need to walk around in the current room and it will eventually throw you into a combat interface. The second and third rooms will spawn 1 of 3 'land' animals (John Fox Kennedy, Teddy Grizzlevelt, and Parissss de Paris). Stick around to fight each of them. The fourth and fifth rooms will spawn 1 of 3 'water' animals (Captain Jack Swimmer & BlackBeak, BirdLock Holmes, and Indiana Jaws). Stick around to fight each of them. The sixth room will only spawn the final boss, MonKing. He has three phases, and five total attacks. 
   
 5/21: 
 
